@@ -241,6 +241,9 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .tform-msg{ grid-column:1 / -1; padding:14px 16px; border-radius:12px; font-size:15.5px; font-weight:600; display:grid; gap:10px; }
 .tform-msg.ok{ background:#E2F2EF; color:#0F5550; }
 .tform-msg.err{ background:#F8E1E3; color:#842129; }
+.tform-msg.sent{ display:flex; align-items:center; gap:10px; background:#E7F6EC; color:#157A3A; font-weight:750; font-size:16.5px; }
+.tform-msg.sent svg{ width:22px; height:22px; flex:none; border-radius:50%; background:#1E9E4A; padding:3px; }
+.tform-msg.sent svg path{ fill:none; stroke:#FFFFFF; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
 .tform-msg a{ color:inherit; }
 .tform-copy{ width:100%; font:inherit; font-size:14px; font-weight:500; border:1px solid #9CC9C3; border-radius:8px; padding:10px; background:var(--white); color:var(--navy); resize:vertical; }
 .tform-actions{ display:flex; flex-wrap:wrap; gap:10px; }
@@ -415,9 +418,9 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .ticker-track{ animation:none; width:auto; } .ticker .tk{ flex-wrap:wrap; justify-content:center; row-gap:10px; } .ticker .dup{ display:none; }
   .ticker{ -webkit-mask-image:none; mask-image:none; } }
 
-/* ---------- home hero: still photo and skylines; only the khatam stars move (scroll and mouse) ---------- */
+/* ---------- home hero: still photo; only the khatam stars move (scroll and mouse) ---------- */
 .hero{ position:relative; overflow:hidden; overflow:clip; isolation:isolate; background:var(--navy-deep); color:var(--white);
-  --y:0; --mx:0; --my:0; --sky:7vw; }
+  --y:0; --mx:0; --my:0; }
 .hero > .hl{ position:absolute; pointer-events:none; }
 .hero-photo{ inset:0; z-index:0; }
 .hero-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 42%; }
@@ -431,12 +434,8 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .hs svg{ display:block; width:100%; height:auto; overflow:visible; animation:hsSpin var(--spin) linear infinite; }
 @keyframes hsIn{ from{ opacity:0; scale:.55; } }
 @keyframes hsSpin{ to{ rotate:360deg; } }
-.hero-far{ left:0; right:0; bottom:0; height:calc(var(--sky) * 1.05); z-index:3; color:#4A67B0; opacity:.5; }
-.hero-city{ left:0; right:0; bottom:0; height:var(--sky); z-index:4; color:var(--yellow); }
-.hero-far svg, .hero-city svg{ display:block; width:100%; height:var(--sky); }
-.hero-far svg{ position:absolute; left:0; bottom:0; }
 .hero > .side{ z-index:5; }
-.hero > .wrap{ position:relative; z-index:5; padding-block:clamp(40px, 5.5vw, 76px) calc(var(--sky) + 24px); }
+.hero > .wrap{ position:relative; z-index:5; padding-block:clamp(40px, 5.5vw, 76px); }
 .choice .s{ display:none; }
 
 /* ---------- group boxes: no parallax, a small lift on hover ---------- */
@@ -537,7 +536,6 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .tailor-row{ grid-template-columns:minmax(0,1fr); }
 }
 @media (max-width: 640px){
-  .hero{ --sky:clamp(46px, 12.5vw, 60px); }
   .hs.dsk{ display:none; }
   .hero .ask small{ display:none; }
   .hero .ask{ margin:22px auto 12px; }

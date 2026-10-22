@@ -23,7 +23,7 @@ A static website (plain HTML, no build step), ready for GitHub Pages. Forms and 
 4. After a minute or two the site is live at `https://YOUR-USERNAME.github.io/uzbekistan-trek/`.
 5. Optional: to use your own domain, add it under **Settings > Pages > Custom domain** and follow GitHub's DNS instructions.
 
-The site works right away. Until you finish steps 2 to 5 below, a submitted form shows the visitor their request with two buttons: copy it and open Telegram, or send it by email.
+The pages work right away, but the forms need the relay. Until you finish steps 2 to 5 below, a submitted form cannot be sent: the visitor sees a red message pointing to Telegram and email. Once the relay address is in `assets/config.js`, every request goes straight to your chat with @uzbtrek_bot and the visitor sees a green "Your message has been successfully sent!"
 
 **Important:** a Telegram bot answers nobody on its own. Until the relay in steps 3 to 5 is running, messages people send to @uzbtrek_bot are not forwarded to you. Either finish the relay before you share the site, or rely on the email option for now.
 
