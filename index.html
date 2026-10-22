@@ -208,6 +208,48 @@ td b{ display:block; font-weight:850; }
 .pill{ display:inline-block; background:var(--yellow-soft); border:1px solid var(--yellow); color:#6E4E00; font-weight:700; font-size:13px; padding:3px 10px; border-radius:999px; white-space:nowrap; }
 .mini{ appearance:none; border:2px solid var(--navy); background-color:var(--white); color:var(--navy); --sw:var(--navy); --swf:var(--white); border-radius:999px; padding:7px 14px; font:inherit; font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap; }
 .nw{ white-space:nowrap; }
+
+/* Start a trek at your university (home): five steps on a dashed route, where to look, tips, sample texts */
+.steps{ list-style:none; margin:52px 0 0; padding:0; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:26px; position:relative; }
+.steps::before{ content:""; position:absolute; left:28px; right:calc((100% - 104px) / 5 - 28px); top:27px; border-top:3px dashed var(--navy); opacity:.5; }
+.steps li{ position:relative; min-width:0; display:grid; gap:8px; align-content:start; }
+.steps .sn{ position:relative; width:56px; height:56px; display:grid; place-items:center; isolation:isolate; margin-bottom:6px;
+  font-weight:900; font-stretch:110%; font-size:22px; color:var(--navy-deep); }
+.steps .sn::before{ content:""; position:absolute; inset:4px; border-radius:50%; background:var(--white); z-index:-2; }
+.steps .sn svg{ position:absolute; inset:0; width:100%; height:100%; z-index:-1; overflow:visible; }
+.steps .sn path{ fill:var(--yellow); stroke:var(--navy); stroke-width:2.2; stroke-linejoin:round; }
+.steps .sn i{ font-style:normal; }
+.steps li:last-child .sn{ color:var(--yellow); }
+.steps li:last-child .sn path{ fill:var(--navy); }
+.steps b{ font-size:18px; font-weight:850; font-stretch:106%; text-transform:uppercase; line-height:1.15; }
+.steps p{ font-size:15.5px; line-height:1.5; color:var(--muted); }
+.go-link{ justify-self:start; font-weight:750; font-size:15px; text-decoration:none; border-bottom:2px solid var(--yellow); line-height:1.3; }
+.go-link::after{ content:" \203A"; }
+.go-link:hover{ border-bottom-color:var(--navy); }
+.start-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:22px; margin-top:52px; }
+.start-box{ border-radius:16px; padding:24px 26px; }
+.start-box h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:14px; }
+.start-box.where{ background:var(--paper); }
+.start-box.tips{ background:var(--yellow); color:var(--navy-deep); }
+.start-box.tips .diam{ margin:0; gap:10px; }
+.start-box.tips .diam li{ font-size:16px; }
+.chips{ display:flex; flex-wrap:wrap; gap:10px; list-style:none; margin:0; padding:0; }
+.chips li{ background:var(--white); border:2px solid var(--navy); border-radius:999px; padding:7px 14px; font-weight:700; font-size:15px; line-height:1.3; }
+.samples-title{ margin-top:52px; font-size:clamp(22px, 2.6vw, 28px); font-weight:850; font-stretch:108%; text-transform:uppercase; }
+.samples{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px; margin-top:18px; align-items:start; }
+.sample{ background:var(--white); border:2px solid var(--navy); border-top:10px solid var(--yellow); border-radius:14px; padding:20px 22px; scroll-margin-top:100px; min-width:0; }
+.sample-head{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px 16px; }
+.sample h4{ margin:8px 0 0; font-size:19px; font-weight:800; line-height:1.25; }
+.sample .when{ color:var(--muted); font-size:15px; margin-top:2px; }
+.copy-row{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; }
+.copy-status{ font-size:14px; font-weight:700; color:#157A3A; }
+.copy-status:empty{ display:none; }
+.sample details{ margin-top:14px; border-top:1px solid var(--line); }
+.sample summary{ cursor:pointer; list-style:none; padding:12px 0 2px; font-weight:750; font-size:15.5px; display:flex; align-items:center; gap:10px; }
+.sample summary::-webkit-details-marker{ display:none; }
+.sample summary::before{ content:"+"; display:grid; place-items:center; width:24px; height:24px; flex:none; border-radius:50%; background:var(--yellow); font-weight:900; }
+.sample details[open] summary::before{ content:"\2212"; }
+.sample-text{ white-space:pre-line; overflow-wrap:anywhere; margin-top:10px; padding:16px 18px; border-radius:10px; background:var(--paper); font-size:15.5px; line-height:1.55; color:var(--navy); }
 .sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 .opt-grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:26px; margin-top:36px; }
 .opt{ background:var(--white); border-radius:20px; overflow:hidden; box-shadow:0 12px 30px rgba(19,35,75,.14); display:flex; flex-direction:column; }
@@ -367,6 +409,11 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .timeline li::before{ margin:0; grid-row:span 2; }
   .tl{ grid-template-columns:repeat(3, minmax(0,1fr)); row-gap:30px; }
   .tl::before{ display:none; }
+  .steps{ grid-template-columns:1fr; gap:22px; margin-top:40px; }
+  .steps::before{ left:27px; right:auto; top:28px; bottom:28px; border-top:0; border-left:3px dashed var(--navy); }
+  .steps li{ grid-template-columns:56px minmax(0,1fr); column-gap:18px; row-gap:6px; }
+  .steps .sn{ grid-row:1 / span 3; margin:0; }
+  .steps li > :not(.sn){ grid-column:2; }
 }
 @media (max-width: 860px){
   .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
@@ -376,6 +423,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .menu-btn{ display:inline-flex; align-items:center; }
   .choices{ grid-template-columns:1fr; }
   .opt-grid, .who-grid, .areas-grid, .inc-cols{ grid-template-columns:1fr; }
+  .start-grid, .samples{ grid-template-columns:1fr; }
 }
 @media (max-width: 640px){
   .logo svg{ height:32px; }
@@ -611,6 +659,52 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
     </div>
   </section>
 
+  <section class="sec start" id="start" aria-labelledby="start-title">
+    <span class="side" aria-hidden="true">UZBEKISTAN TREK</span>
+    <div class="wrap">
+      <h2 id="start-title">Start a trek at your university</h2>
+      <p class="lede">No trek program at your school? You do not need one. Every trek starts with one student, a few interested classmates and a quote from us.</p>
+      <ol class="steps"><li><span class="sn" aria-hidden="true"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>1</i></span><b>Check the interest</b><p>Share a short note and a one-minute form in your class group chat. Aim for 10 or more classmates who say yes; fewer can still travel as a small group.</p><a class="go-link" href="#sample-note">Use the sample note</a></li><li><span class="sn" aria-hidden="true"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>2</i></span><b>Find co-hosts</b><p>Team up with one or two classmates, and ask a student club to share the trip with its members. Clubs have the mailing lists you may not have.</p></li><li><span class="sn" aria-hidden="true"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>3</i></span><b>Get a quote</b><p>Tell us your group size and dates. We reply with a day-by-day plan and a price per person, usually within three working days.</p><a class="go-link" href="big-group.html#quote">Request a quote</a></li><li><span class="sn" aria-hidden="true"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>4</i></span><b>Open sign-ups</b><p>Hold a short info session with our slides and share the registration link. Everyone registers and pays through our page.</p><a class="go-link" href="#sample-announcement">Use the sample announcement</a></li><li><span class="sn" aria-hidden="true"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>5</i></span><b>Travel together</b><p>We plan and run everything on the ground and host your group in Uzbekistan.</p><a class="go-link" href="#itinerary">See the sample itinerary</a></li></ol>
+      <div class="start-grid">
+        <div class="start-box where"><h3>Where to find your group</h3><ul class="chips"><li>Your class or cohort group chat</li><li>Student clubs: regional, international affairs, policy, business</li><li>Your program&rsquo;s student newsletter</li><li>The graduate student council</li><li>Professors who teach the region</li><li>Friends in other programs</li></ul></div>
+        <div class="start-box tips"><h3>Keep it student-led</h3><ul class="diam"><li>Write as a classmate: say why you want to go and who you hope will come.</li><li>Be open about how it works: Uzbekistan Trek plans the trip and handles registration and payments; you bring the group together.</li><li>Do not use your university&rsquo;s name or logo as if the trip were an official program.</li></ul></div>
+      </div>
+      <h3 class="samples-title">Sample texts you can copy</h3>
+      <div class="samples"><article class="sample" id="sample-note" aria-labelledby="sample-note-title"><div class="sample-head"><div><span class="pill">Step 1</span><h4 id="sample-note-title">Sample note to check interest</h4><p class="when">Send it before you ask for a quote.</p></div><div class="copy-row"><button class="mini" type="button" data-copy="sample-note-text">Copy the text</button><span class="copy-status" role="status" aria-live="polite"></span></div></div><details><summary>Read the text</summary><div class="sample-text" id="sample-note-text">Subject: Uzbekistan over spring break? Quick interest check
+
+Hi everyone,
+
+I am thinking of organizing a trip to Uzbekistan for graduate students at [University], around [spring break or other dates]. Graduate students from Harvard and MIT went in 2025 and 2026: about a week in Tashkent, Samarkand and Bukhara, with Silk Road cities, great food and a day in the mountains.
+
+Uzbekistan Trek would plan and run the trip, and everyone would pay for their own place. I am only bringing the group together.
+
+If you might want to come, please fill out this one-minute form by [date]: [form link]. It is not a commitment. If 10 or more of us are interested, I will share the dates, the program and the price per person.
+
+More about the trek: [website link]
+
+[Your name]</div></details></article><article class="sample" id="sample-announcement" aria-labelledby="sample-announcement-title"><div class="sample-head"><div><span class="pill">Step 4</span><h4 id="sample-announcement-title">Sample announcement</h4><p class="when">Send it once you have your quote.</p></div><div class="copy-row"><button class="mini" type="button" data-copy="sample-announcement-text">Copy the text</button><span class="copy-status" role="status" aria-live="polite"></span></div></div><details><summary>Read the text</summary><div class="sample-text" id="sample-announcement-text">Subject: Uzbekistan Trek for [University] graduate students: sign-ups are open
+
+Dear friends,
+
+We are organizing a trip to Uzbekistan for [University] graduate students, and you are invited!
+
+When: [dates]
+Where: Tashkent, Samarkand, Bukhara and the mountains near Tashkent
+Price: [price per person from your quote]
+Included: hotels with breakfast, lunches and dinners, city tours with licensed guides, cultural experiences, fast trains and transfers, museum entrance fees and a local SIM card
+Not included: international flights, travel medical and evacuation insurance, visa fees if your passport needs a visa, alcohol and personal expenses
+How to join: register by [deadline] at [registration link]. You pay through the registration page in three installments: a first deposit to hold your place, a second deposit, then the balance.
+Who can join: [University] graduate students, fellows and postdocs; partners when space allows
+
+More about the trek and past trips: [website link]
+Questions? Write to [your names and emails].
+
+This is a trip organized by students; it is not an official [University] program.
+
+[Your names]</div></details></article></div>
+    </div>
+  </section>
+
 
   <section class="sec band-navy press" aria-labelledby="press-title">
     <span class="side light" aria-hidden="true">UZBEKISTAN TREK</span>
@@ -719,7 +813,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   </section>
 
   <section class="sec faq-sec" id="faq" aria-labelledby="faq-title" style="background-image:linear-gradient(rgba(19,35,75,.62), rgba(19,35,75,.82)), url('img/tashkent_civilization_dome.webp')">
-    <div class="wrap"><div class="faq-box"><h2 id="faq-title">FAQ</h2><details><summary>Who can join?</summary><div class="a"><p>Graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows. We do not run trips for undergraduates.</p></div></details><details><summary>Do I need a visa?</summary><div class="a"><p>The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).</p><p>For other passports, check the official visa page: <a href="https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi" target="_blank" rel="noopener">Visa to the Republic of Uzbekistan</a>.</p></div></details><details><summary>Is Uzbekistan safe?</summary><div class="a"><p>The US State Department rates Uzbekistan Level 1, its lowest advisory level, with the advice to exercise normal precautions (advisory issued January 26, 2026). Every group gets a safety briefing before departure.</p></div></details><details><summary>Are international flights included?</summary><div class="a"><p>No. Trips are land-only, so you book your own flights.</p><p>Uzbekistan Airways flies nonstop between New York (JFK) and Tashkent a few times a week, in about 13 hours. You can also connect through hubs such as Istanbul or Dubai.</p></div></details><details><summary>What is not included in the cost?</summary><div class="a"><p>International flights, travel medical and evacuation insurance, visa fees if your passport needs a visa, alcohol and personal expenses, and anything not listed as included.</p></div></details><details><summary>How does payment work?</summary><div class="a"><p>In three installments: a fixed first deposit, a fixed second deposit, and the remaining balance before departure. Your quote lists the exact amounts and due dates.</p></div></details><details><summary>Can a trek run outside spring break?</summary><div class="a"><p>Yes. Most groups travel during a school break, but we can run a trek in any month and for any length.</p></div></details><details><summary>Will we meet government officials?</summary><div class="a"><p>The standard program focuses on companies, universities and/or culture (subject to approval). Formal government meetings are not part of it.</p></div></details><details><summary>Is there a refund if I withdraw?</summary><div class="a"><p>You can transfer your place to another graduate student with our approval. Refund terms are set out in the booking terms you accept when you pay. We strongly recommend trip cancellation insurance.</p></div></details><details><summary>Is this run by my university?</summary><div class="a"><p>No. Groups organize themselves, and Uzbekistan Trek is not affiliated with any university. Please do not present the trip as an official university program.</p></div></details></div></div>
+    <div class="wrap"><div class="faq-box"><h2 id="faq-title">FAQ</h2><details><summary>Who can join?</summary><div class="a"><p>Graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows. We do not run trips for undergraduates.</p></div></details><details><summary>Who is funding the travel?</summary><div class="a"><p>The students themselves. Each traveler pays for their own place on the trek, through our registration page, and books their own international flights.</p></div></details><details><summary>How can I check the demand at my university?</summary><div class="a"><p>Send a short note with a one-minute form to your classmates. You do not need a mailing list: a class group chat or a student club is enough.</p><p><a href="#sample-note">Use our sample note</a>, and see <a href="#start">how to start a trek</a> for the next steps.</p></div></details><details><summary>Do I need a visa?</summary><div class="a"><p>The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).</p><p>For other passports, check the official visa page: <a href="https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi" target="_blank" rel="noopener">Visa to the Republic of Uzbekistan</a>.</p></div></details><details><summary>Is Uzbekistan safe?</summary><div class="a"><p>The US State Department rates Uzbekistan Level 1, its lowest advisory level, with the advice to exercise normal precautions (advisory issued January 26, 2026). Every group gets a safety briefing before departure.</p></div></details><details><summary>Are international flights included?</summary><div class="a"><p>No. Trips are land-only, so you book your own flights.</p><p>Uzbekistan Airways flies nonstop between New York (JFK) and Tashkent a few times a week, in about 13 hours. You can also connect through hubs such as Istanbul or Dubai.</p></div></details><details><summary>What is not included in the cost?</summary><div class="a"><p>International flights, travel medical and evacuation insurance, visa fees if your passport needs a visa, alcohol and personal expenses, and anything not listed as included.</p></div></details><details><summary>How does payment work?</summary><div class="a"><p>In three installments: a fixed first deposit, a fixed second deposit, and the remaining balance before departure. Your quote lists the exact amounts and due dates.</p></div></details><details><summary>Can a trek run outside spring break?</summary><div class="a"><p>Yes. Most groups travel during a school break, but we can run a trek in any month and for any length.</p></div></details><details><summary>Will we meet government officials?</summary><div class="a"><p>The standard program focuses on companies, universities and/or culture (subject to approval). Formal government meetings are not part of it.</p></div></details><details><summary>Is there a refund if I withdraw?</summary><div class="a"><p>You can transfer your place to another graduate student with our approval. Refund terms are set out in the booking terms you accept when you pay. We strongly recommend trip cancellation insurance.</p></div></details><details><summary>Is this run by my university?</summary><div class="a"><p>No. Groups organize themselves, and Uzbekistan Trek is not affiliated with any university. Please do not present the trip as an official university program.</p></div></details></div></div>
   </section>
 
   <section class="sec band-yellow" aria-labelledby="final-title">
