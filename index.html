@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Uzbekistan Trek</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Trips to Uzbekistan for graduate students: big group treks for 10 or more and small group trips for fewer than 10, built on the 2025 and 2026 Harvard and MIT treks.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' role='img' aria-label='Uzbekistan Trek'%3E%3Cg fill='%23FBB617'%3E%3Crect x='8' y='8' width='32' height='32' rx='1.5'/%3E%3Crect x='8' y='8' width='32' height='32' rx='1.5' transform='rotate(45 24 24)'/%3E%3C/g%3E%3Cg fill='%231C3166'%3E%3Crect x='15' y='15' width='18' height='18'/%3E%3Crect x='15' y='15' width='18' height='18' transform='rotate(45 24 24)'/%3E%3C/g%3E%3Ccircle cx='24' cy='24' r='4.2' fill='%23FBB617'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Kaushan+Script&display=swap" rel="stylesheet">
+<style>
+/* Layout: the trek decks on the web. Yellow and navy bands, white polaroids, a dark tiled itinerary. */
+:root{
+  --navy:#1C3166; --navy-deep:#13234B; --yellow:#FBB617; --yellow-soft:#FFF3CF; --sky:#BFE0E8; --red:#C2272D;
+  --white:#FFFFFF; --paper:#F6F7FA; --muted:#4E5A7B; --line:#E3E0D5;
+  --sans:"Archivo","Tahoma","Verdana",system-ui,-apple-system,sans-serif;
+  --script:"Kaushan Script","Brush Script MT","Segoe Script",cursive;
+  color-scheme:light;
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ background:var(--white); scroll-behavior:smooth; scroll-padding-top:84px; }
+body{ margin:0; background:var(--white); color:var(--navy); font-family:var(--sans); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+body::before{ content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:40; background:var(--white); }
+img{ max-width:100%; display:block; }
+a{ color:var(--navy); text-underline-offset:3px; }
+:focus-visible{ outline:3px solid var(--red); outline-offset:3px; border-radius:4px; }
+h1,h2,h3{ font-family:var(--sans); margin:0; line-height:1.08; text-wrap:balance; }
+h1,h2{ font-weight:850; font-stretch:108%; text-transform:uppercase; letter-spacing:.005em; }
+h2{ font-size:clamp(30px, 4.4vw, 48px); }
+h3{ font-weight:750; font-size:20px; }
+p{ margin:0; }
+.wrap{ position:relative; max-width:1180px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+.sec{ position:relative; padding-block:clamp(60px, 8vw, 104px); }
+.lede{ font-size:clamp(17px, 1.6vw, 19px); max-width:62ch; margin-top:16px; }
+.muted{ color:var(--muted); }
+
+.btn{ display:inline-flex; align-items:center; justify-content:center; min-height:50px; padding:12px 24px; border-radius:999px; font-family:var(--sans); font-weight:750; font-size:16px; text-decoration:none; border:2px solid transparent; cursor:pointer; text-align:center; }
+.btn-navy{ background:var(--navy); color:var(--white); }
+.btn-navy:hover{ background:var(--navy-deep); }
+.btn-yellow{ background:var(--yellow); color:var(--navy-deep); }
+.btn-yellow:hover{ background:#FFC53D; }
+.btn-line{ border-color:var(--navy); color:var(--navy); background:transparent; }
+.btn-line:hover{ background:var(--navy); color:var(--white); }
+.btn-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+
+/* Header */
+.head{ position:sticky; top:env(safe-area-inset-top,0px); z-index:30; background:var(--white); border-bottom:3px solid var(--yellow); }
+.head .wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:72px; }
+.logo{ display:flex; align-items:center; text-decoration:none; flex:none; }
+.logo svg{ height:40px; width:auto; display:block; }
+.nav{ display:flex; align-items:center; gap:22px; }
+.nav a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
+.nav a:hover, .nav a[aria-current="page"]{ border-bottom-color:var(--yellow); }
+.nav .btn{ border-bottom:0; padding:10px 18px; min-height:44px; font-size:15px; color:var(--white); }
+.menu-btn{ display:none; appearance:none; border:2px solid var(--navy); background:var(--white); color:var(--navy); border-radius:999px; min-height:44px; padding:0 16px; font:inherit; font-weight:700; cursor:pointer; }
+
+/* Vertical side label, as on the decks */
+.side{ position:absolute; top:44px; bottom:44px; right:max(14px, env(safe-area-inset-right,0px)); display:flex; flex-direction:column; align-items:center; gap:16px; writing-mode:vertical-rl; font-size:11.5px; letter-spacing:.42em; font-weight:600; pointer-events:none; }
+.side::before, .side::after{ content:""; flex:1; width:1px; background:currentColor; opacity:.7; }
+.side.light{ color:var(--white); }
+
+/* Home hero (layers and motion are in MOTION_CSS) */
+.cover{ background:var(--white); color:var(--navy); display:grid; grid-template-columns:auto 1fr; gap:12px 40px; align-items:center; padding:26px 30px; max-width:760px; margin:0 auto; box-shadow:0 18px 40px rgba(10,20,50,.35); position:relative; }
+.cover::before{ content:""; position:absolute; inset:-14px; border:3px solid var(--white); pointer-events:none; }
+.cover h1{ font-size:clamp(28px, 4.6vw, 46px); line-height:1.02; }
+.cover h1 span{ display:block; font-weight:500; font-stretch:100%; font-size:.62em; letter-spacing:.02em; margin-top:6px; }
+.cover p{ text-align:right; font-size:clamp(15px, 1.7vw, 19px); font-weight:500; text-transform:uppercase; line-height:1.3; letter-spacing:.02em; }
+.ask{ text-align:center; margin:clamp(36px, 5.5vw, 60px) auto 18px; font-weight:800; font-stretch:108%; text-transform:uppercase; font-size:clamp(20px, 2.6vw, 28px); letter-spacing:.01em; }
+.ask small{ display:block; font-weight:500; font-stretch:100%; text-transform:none; font-size:16px; margin-top:6px; color:#E1E7F5; letter-spacing:0; }
+.choices{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px; max-width:1000px; margin:0 auto; }
+.choice{ display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto 1fr auto; column-gap:22px; row-gap:6px; padding:26px 28px; border-radius:20px; background:var(--yellow); color:var(--navy-deep); text-decoration:none; box-shadow:0 14px 34px rgba(10,20,50,.38); transition:transform .18s ease, box-shadow .18s ease; min-height:230px; }
+.choice.on-white{ background:var(--white); box-shadow:0 12px 30px rgba(19,35,75,.16); }
+.choice:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(10,20,50,.45); }
+.choice:focus-visible{ outline:4px solid var(--white); outline-offset:4px; }
+.choice.on-white:focus-visible{ outline-color:var(--navy); }
+.choice .num{ grid-row:1 / span 3; font-weight:900; font-stretch:112%; font-size:clamp(52px, 6vw, 72px); line-height:.9; letter-spacing:-.02em; }
+.choice .num small{ display:block; font-size:15px; font-weight:700; letter-spacing:.04em; margin-top:8px; text-transform:uppercase; }
+.choice .people{ height:34px; width:auto; margin-bottom:2px; }
+.choice strong{ font-weight:850; font-stretch:108%; font-size:clamp(22px, 2.4vw, 28px); text-transform:uppercase; line-height:1.05; }
+.choice span.d{ font-size:16px; line-height:1.45; }
+.choice .go{ grid-column:1 / -1; margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--navy-deep); color:var(--white); border-radius:999px; padding:12px 20px; font-weight:750; font-size:16px; }
+.choice .go i{ font-style:normal; font-size:20px; line-height:1; display:inline-block; transition:transform .2s ease; }
+.choice .go{ transition:background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+.choice:hover .go, .choice:focus-visible .go{ background:var(--white); color:var(--navy-deep); box-shadow:inset 0 0 0 2px var(--navy-deep); }
+.choice.on-white:hover .go, .choice.on-white:focus-visible .go{ background:var(--yellow); }
+.choice:hover .go i, .choice:focus-visible .go i{ transform:translateX(6px); }
+.choices.small .choice{ min-height:0; }
+
+/* Bands */
+.band-yellow{ background:var(--yellow); }
+.band-navy{ background:var(--navy-deep); color:var(--white); }
+.band-navy h2, .band-navy h3{ color:var(--white); }
+.band-sky{ background:var(--sky); }
+.band-paper{ background:var(--paper); }
+
+/* Text + polaroids */
+.split{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:clamp(28px, 5vw, 64px); align-items:center; }
+.diam{ list-style:none; padding:0; margin:22px 0 0; display:grid; gap:12px; }
+.diam li{ position:relative; padding-left:28px; font-size:18px; line-height:1.5; }
+.diam li::before{ content:""; position:absolute; left:3px; top:.42em; width:12px; height:12px; background:var(--navy); transform:rotate(45deg); }
+.band-navy .diam li::before, .itin .diam li::before{ background:var(--yellow); }
+.diam.x li::before{ background:transparent; border:2px solid var(--red); width:11px; height:11px; }
+.red-script{ font-family:var(--script); color:var(--red); font-size:clamp(24px, 3vw, 32px); margin-top:26px; display:block; }
+
+.pol{ margin:0; background:var(--white); padding:10px 10px 0; box-shadow:0 12px 26px rgba(19,35,75,.22); transform:rotate(var(--r,0deg)); max-width:100%; }
+.pol .ph{ aspect-ratio:var(--ar, 4/3); overflow:hidden; background:#DCE2EE; max-width:100%; }
+.pol img{ width:100%; height:100%; object-fit:cover; }
+.pol figcaption{ padding:12px 8px 16px; text-align:center; font-weight:800; font-size:13.5px; line-height:1.35; text-transform:uppercase; letter-spacing:.03em; color:var(--navy); }
+.pol figcaption small{ display:block; margin-top:4px; font-weight:600; font-size:12px; color:var(--muted); letter-spacing:.06em; }
+.pols{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:26px 22px; align-items:start; }
+.pol.q figcaption{ text-transform:none; font-weight:700; font-size:14.5px; letter-spacing:0; line-height:1.4; }
+.pol.q figcaption small{ text-transform:uppercase; }
+.pols .pol:nth-child(odd){ --r:-2.5deg; }
+.pols .pol:nth-child(even){ --r:2deg; margin-top:24px; }
+.collage{ display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:28px 22px; margin-top:40px; align-items:start; }
+.collage .pol:nth-child(3n+1){ --r:-3deg; }
+.collage .pol:nth-child(3n+2){ --r:2.5deg; margin-top:18px; }
+.collage .pol:nth-child(3n){ --r:-1deg; }
+.moments-title{ font-family:var(--script); color:var(--yellow); text-shadow:2px 2px 0 var(--navy), -1px -1px 0 var(--navy), 1px -1px 0 var(--navy), -1px 1px 0 var(--navy); font-size:clamp(40px, 6vw, 72px); line-height:1.1; text-align:center; transform:rotate(-2deg); font-weight:400; text-transform:none; }
+
+/* Itinerary (route scene styles are in MOTION_CSS) */
+.tailor{ margin-top:44px; background:var(--yellow); color:var(--navy-deep); border-radius:18px; padding:clamp(22px, 3vw, 32px); display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:20px 36px; align-items:center; }
+.tailor h3{ font-size:clamp(24px, 2.8vw, 32px); font-weight:850; font-stretch:108%; text-transform:uppercase; }
+.tailor .diam{ margin:0; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 22px; }
+.tailor .diam li{ font-size:17px; font-weight:600; }
+.tailor .diam li::before{ background:var(--navy); }
+.tent{ margin-top:22px; font-style:italic; color:var(--yellow); font-size:15.5px; max-width:80ch; }
+
+/* Included and not included */
+.inc-grid{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); align-items:stretch; }
+.inc-photo{ position:relative; min-height:460px; background-color:var(--navy-deep); background-position:center; background-size:cover; display:flex; align-items:center; justify-content:center; padding:40px; }
+.inc-photo .pol{ width:min(340px, 100%); --r:-2deg; }
+.inc-text{ background:var(--yellow); padding:clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px); position:relative; display:grid; gap:34px; }
+.inc-text h2{ font-size:clamp(26px, 3.4vw, 38px); }
+.inc-cols{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:28px; }
+.inc-cols .diam{ margin-top:14px; }
+.inc-cols .diam li{ font-size:16.5px; }
+
+/* Payment */
+.tranches{ list-style:none; margin:46px 0 0; padding:0; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:22px; counter-reset:t; }
+.tranches li{ position:relative; background:var(--white); border:2px solid var(--navy); border-radius:16px; padding:34px 14px 18px; text-align:center;
+  box-shadow:4px 5px 0 0 rgba(19,35,75,.16); display:grid; gap:6px; align-content:start; }
+.tranches li:last-child{ background:var(--yellow-soft); }
+.tranches .tn{ position:absolute; top:-26px; left:50%; width:50px; height:50px; margin-left:-25px; display:grid; place-items:center; isolation:isolate;
+  font-weight:900; font-stretch:110%; font-size:20px; color:var(--navy-deep); }
+.tranches .tn svg{ position:absolute; inset:0; width:100%; height:100%; z-index:-1; overflow:visible; }
+.tranches .tn path{ fill:var(--yellow); stroke:var(--navy); stroke-width:2.2; stroke-linejoin:round; }
+.tranches .tn i{ font-style:normal; }
+.tranches li:not(:last-child)::after{ content:""; position:absolute; right:-17px; top:50%; width:10px; height:10px; margin-top:-5px;
+  border-top:3px solid var(--navy); border-right:3px solid var(--navy); transform:rotate(45deg); }
+.tranches b{ display:block; font-size:18px; font-weight:850; line-height:1.2; }
+.tranches span.d{ font-size:14.5px; color:var(--muted); line-height:1.4; }
+.pay-note{ margin-top:14px; font-size:15.5px; color:var(--muted); }
+
+/* Founder teaser */
+.letter{ background:var(--white); color:var(--navy); padding:clamp(24px, 3vw, 36px); border-radius:6px; box-shadow:0 18px 40px rgba(0,0,0,.28); position:relative; }
+.letter p{ font-size:clamp(17px, 1.6vw, 19px); line-height:1.65; }
+.sig{ display:block; margin-top:18px; font-family:var(--script); font-size:clamp(30px, 3.4vw, 40px); color:var(--navy); line-height:1.1; }
+.sig small{ display:block; font-family:var(--sans); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:14px; }
+
+/* FAQ */
+.faq-sec{ background-color:var(--navy-deep); background-position:center; background-size:cover; }
+.faq-box{ background:var(--white); border:8px solid var(--yellow); padding:clamp(22px, 4vw, 40px); max-width:920px; margin:0 auto; }
+.faq-box h2{ font-size:clamp(26px, 3.4vw, 36px); margin-bottom:10px; }
+.faq-box details{ border-bottom:1px solid var(--line); }
+.faq-box details:last-of-type{ border-bottom:0; }
+.faq-box summary{ cursor:pointer; list-style:none; padding:18px 44px 18px 0; position:relative; font-weight:800; font-size:18px; }
+.faq-box summary::-webkit-details-marker{ display:none; }
+.faq-box summary::after{ content:"+"; position:absolute; right:4px; top:50%; transform:translateY(-50%); width:30px; height:30px; display:grid; place-items:center; border-radius:50%; background:var(--yellow); font-weight:900; font-size:20px; line-height:1; }
+.faq-box details[open] summary::after{ content:"\2212"; }
+.faq-box .a{ padding:0 0 20px; max-width:68ch; color:var(--muted); font-size:17px; }
+.faq-box .a p + p{ margin-top:10px; }
+.faq-box .a a{ color:var(--navy); font-weight:700; }
+
+/* Inner page hero */
+.page-hero{ background:var(--yellow); position:relative; overflow:hidden; }
+.page-hero .wrap{ padding-block:clamp(48px, 7vw, 88px); }
+.kicker{ display:inline-block; background:var(--navy); color:var(--white); font-weight:800; font-size:14px; letter-spacing:.06em; text-transform:uppercase; padding:6px 14px; border-radius:999px; margin-bottom:18px; }
+.page-hero h1{ font-size:clamp(40px, 6.4vw, 76px); line-height:.98; }
+.hero-pols{ position:relative; min-height:540px; }
+.hero-pols .pol{ position:absolute; width:min(260px, 50%); }
+.hero-pols .pol:nth-child(1){ left:0; top:6px; --r:-5deg; }
+.hero-pols .pol:nth-child(2){ right:0; top:22px; --r:4deg; }
+.hero-pols .pol:nth-child(3){ left:26%; bottom:0; --r:-1deg; z-index:1; }
+.hero-pols.f .pol:nth-child(1){ width:min(300px, 56%); left:2%; top:0; --r:-3deg; }
+.hero-pols.f .pol:nth-child(2){ top:auto; bottom:0; right:0; width:min(250px, 46%); --r:4deg; }
+
+.cards3{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:22px; margin-top:34px; }
+.card{ background:var(--white); border:2px solid var(--navy); border-top:10px solid var(--yellow); border-radius:14px; padding:24px; }
+.card h3{ margin-bottom:8px; }
+.card p{ color:var(--muted); font-size:16px; }
+.who-grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px; margin-top:34px; }
+.who{ background:var(--white); border-radius:16px; padding:26px 28px; color:var(--navy); }
+.who h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:12px; }
+.who.us{ background:var(--yellow); }
+.who ul{ margin:0; padding-left:20px; display:grid; gap:8px; }
+.timeline{ list-style:none; padding:0; margin:40px 0 0; display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:14px; position:relative; }
+.timeline::before{ content:""; position:absolute; left:20px; right:20px; top:19px; height:4px; background:var(--navy); }
+.timeline li{ position:relative; min-width:0; counter-increment:tl; }
+.timeline{ counter-reset:tl; }
+.timeline li::before{ content:counter(tl); position:relative; display:grid; place-items:center; width:40px; height:40px; font-weight:900; color:var(--navy-deep); background:var(--yellow); clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%); margin-bottom:12px; }
+.timeline b{ display:block; font-size:14px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:750; }
+.timeline span{ display:block; font-weight:750; font-size:16px; line-height:1.35; margin-top:2px; }
+.tl-note{ margin-top:22px; color:var(--muted); font-size:16px; }
+.table-wrap{ position:relative; overflow-x:auto; margin-top:30px; border:2px solid var(--navy); border-radius:16px; background:var(--white); }
+table{ border-collapse:collapse; width:100%; min-width:680px; }
+th, td{ text-align:left; padding:16px 18px; border-bottom:1px solid var(--line); vertical-align:top; font-size:16px; }
+th{ background:var(--navy); color:var(--white); font-weight:750; font-size:14.5px; letter-spacing:.03em; text-transform:uppercase; }
+tr:last-child td{ border-bottom:0; }
+td b{ display:block; font-weight:850; }
+.pill{ display:inline-block; background:var(--yellow-soft); border:1px solid var(--yellow); color:#6E4E00; font-weight:700; font-size:13px; padding:3px 10px; border-radius:999px; white-space:nowrap; }
+.mini{ appearance:none; border:2px solid var(--navy); background:var(--white); color:var(--navy); border-radius:999px; padding:7px 14px; font:inherit; font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap; }
+.mini:hover{ background:var(--navy); color:var(--white); }
+.sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.opt-grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:26px; margin-top:36px; }
+.opt{ background:var(--white); border-radius:20px; overflow:hidden; box-shadow:0 12px 30px rgba(19,35,75,.14); display:flex; flex-direction:column; }
+.opt .ph{ aspect-ratio:16/9; overflow:hidden; }
+.opt .ph img{ width:100%; height:100%; object-fit:cover; }
+.opt .body{ padding:26px 28px 28px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.opt h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; font-size:24px; }
+.opt .tag{ align-self:flex-start; background:var(--yellow); font-weight:800; font-size:13.5px; padding:4px 12px; border-radius:999px; letter-spacing:.03em; text-transform:uppercase; }
+.opt .btn{ align-self:flex-start; margin-top:auto; }
+.opt .diam{ margin-top:4px; }
+.opt .diam li{ font-size:16.5px; }
+
+/* Forms */
+.form-wrap{ display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(28px, 5vw, 56px); align-items:start; }
+.tform{ background:var(--white); color:var(--navy); border-radius:20px; padding:clamp(22px, 3vw, 32px); display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px 18px; box-shadow:0 16px 40px rgba(10,20,50,.25); }
+.tf{ display:grid; gap:6px; min-width:0; }
+.tf.full, fieldset.tf{ grid-column:1 / -1; }
+.tf label, .tf legend{ font-weight:750; font-size:15px; }
+.tf input, .tf select, .tf textarea{ font:inherit; font-size:16px; color:var(--navy); background:var(--white); border:2px solid #C9CFDD; border-radius:10px; padding:10px 12px; min-height:48px; width:100%; }
+.tf textarea{ min-height:110px; resize:vertical; }
+.tf input:focus, .tf select:focus, .tf textarea:focus{ outline:none; border-color:var(--navy); box-shadow:0 0 0 4px rgba(251,182,23,.55); }
+.tf [aria-invalid="true"]{ border-color:var(--red); }
+fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
+.tchips{ display:flex; flex-wrap:wrap; gap:10px; }
+.tchip{ display:flex; align-items:center; gap:8px; border:2px solid #C9CFDD; border-radius:999px; padding:8px 14px; cursor:pointer; font-size:15px; font-weight:600; }
+.tchip input{ width:18px; height:18px; min-height:0; margin:0; accent-color:var(--navy); }
+.tchip:has(input:checked){ border-color:var(--navy); background:var(--yellow-soft); }
+.tform-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.tform-foot{ grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; }
+.tform-foot small{ color:var(--muted); font-size:14px; max-width:42ch; }
+.tform-msg{ grid-column:1 / -1; padding:14px 16px; border-radius:12px; font-size:15.5px; font-weight:600; display:grid; gap:10px; }
+.tform-msg.ok{ background:#E2F2EF; color:#0F5550; }
+.tform-msg.err{ background:#F8E1E3; color:#842129; }
+.tform-msg a{ color:inherit; }
+.tform-copy{ width:100%; font:inherit; font-size:14px; font-weight:500; border:1px solid #9CC9C3; border-radius:8px; padding:10px; background:var(--white); color:var(--navy); resize:vertical; }
+.tform-actions{ display:flex; flex-wrap:wrap; gap:10px; }
+.tform-copybtn, .tform-tg{ display:inline-flex; align-items:center; min-height:44px; padding:8px 16px; border-radius:999px; font:inherit; font-weight:750; font-size:15px; cursor:pointer; text-decoration:none; }
+.tform-copybtn{ border:2px solid #0F5550; background:transparent; color:#0F5550; }
+.tform-tg{ background:#229ED9; color:var(--white) !important; border:2px solid #229ED9; }
+.tform-copied{ font-weight:600; font-size:14.5px; }
+.tform-mail{ display:inline-flex; align-items:center; min-height:44px; padding:0 6px; font-weight:750; font-size:15px; text-decoration:underline; text-underline-offset:3px; }
+.tform-alt{ grid-column:1 / -1; font-size:14.5px; color:var(--muted); margin:0; }
+.tform-alt a{ font-weight:700; }
+
+/* Founder page */
+.portrait-big{ --ar:3/4; }
+.facts{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px 22px; margin-top:26px; max-width:640px; }
+.facts div{ border-left:4px solid var(--navy); padding-left:12px; font-size:16px; line-height:1.4; }
+.facts b{ display:block; font-weight:850; }
+.story{ max-width:760px; }
+.story h2{ font-size:clamp(22px, 2.8vw, 30px); margin-top:46px; }
+.story h2:first-child{ margin-top:0; }
+.story p{ margin-top:14px; font-size:18.5px; line-height:1.7; }
+.story .sig{ margin-top:30px; }
+.story-grid{ display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:clamp(28px, 5vw, 64px); align-items:start; }
+.story-side{ position:sticky; top:96px; display:grid; gap:30px; }
+.story-side .pol:nth-child(odd){ --r:-2deg; }
+.story-side .pol:nth-child(even){ --r:2.5deg; }
+.tl{ list-style:none; padding:0; margin:36px 0 0; display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:18px; position:relative; }
+.tl::before{ content:""; position:absolute; left:12px; right:calc((100% - 90px) / 6 - 12px); top:9px; height:3px; background:var(--yellow); }
+.tl li{ position:relative; padding-top:34px; min-width:0; }
+.tl li::before{ content:""; position:absolute; left:2px; top:0; width:20px; height:20px; background:var(--yellow); transform:rotate(45deg); }
+.tl b{ display:block; color:var(--yellow); font-weight:850; font-size:15px; letter-spacing:.04em; text-transform:uppercase; }
+.tl span{ display:block; margin-top:4px; font-size:16px; line-height:1.4; }
+.tl strong{ display:block; font-weight:900; font-stretch:110%; font-size:34px; line-height:1.05; color:var(--white); margin-top:6px; }
+.quotes2{ display:grid; gap:34px; }
+.bigquote{ margin:0; font-weight:650; font-size:clamp(19px, 2.1vw, 23px); line-height:1.5; max-width:62ch; }
+.bigquote::before{ content:"\201C"; display:block; font-family:var(--script); font-size:84px; line-height:.6; color:var(--navy); margin-bottom:4px; }
+.cite{ margin-top:14px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; font-size:14.5px; }
+.areas-grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:26px; margin-top:30px; }
+.areas-col{ background:var(--paper); border-radius:16px; padding:24px 26px; }
+.areas-col h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:14px; }
+.areas-col ul{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.areas-col li{ background:var(--white); border:2px solid var(--navy); border-radius:12px; padding:10px 14px; font-weight:650; font-size:16px; }
+
+/* Footer */
+.foot{ background:var(--navy-deep); color:#CBD3E6; font-size:15px; }
+.foot .wrap{ padding-block:44px 48px; display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:28px 48px; }
+.foot .logo svg{ height:38px; }
+.foot nav{ display:grid; gap:8px; align-content:start; }
+.foot nav a{ color:var(--white); text-decoration:none; font-weight:650; }
+.foot nav a:hover{ text-decoration:underline; }
+.foot p + p{ margin-top:10px; }
+.contact{ margin-top:18px; display:grid; gap:6px; }
+.contact b{ color:var(--white); font-weight:700; }
+.contact a{ color:var(--yellow); font-weight:700; }
+.contact .mail{ color:var(--white); user-select:all; font-weight:600; }
+
+@media (max-width: 1100px){ .side{ display:none; } }
+@media (max-width: 980px){
+  .split, .form-wrap, .story-grid{ grid-template-columns:1fr; }
+  .story-side{ position:static; grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .collage{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+  .inc-grid{ grid-template-columns:1fr; }
+  .inc-photo{ min-height:380px; }
+  .cards3{ grid-template-columns:1fr; }
+  .tailor{ grid-template-columns:1fr; }
+  .timeline{ grid-template-columns:1fr; gap:16px; }
+  .timeline::before{ left:18px; right:auto; top:20px; bottom:20px; width:4px; height:auto; }
+  .timeline li{ display:grid; grid-template-columns:40px 1fr; column-gap:16px; align-items:center; }
+  .timeline li::before{ margin:0; grid-row:span 2; }
+  .tl{ grid-template-columns:repeat(3, minmax(0,1fr)); row-gap:30px; }
+  .tl::before{ display:none; }
+}
+@media (max-width: 860px){
+  .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
+  .nav.open{ display:flex; }
+  .nav a{ padding:12px 0; border-bottom:1px solid var(--line); }
+  .nav .btn{ margin-top:14px; }
+  .menu-btn{ display:inline-flex; align-items:center; }
+  .choices{ grid-template-columns:1fr; }
+  .opt-grid, .who-grid, .areas-grid, .inc-cols{ grid-template-columns:1fr; }
+}
+@media (max-width: 640px){
+  .logo svg{ height:32px; }
+  .cover{ grid-template-columns:1fr; text-align:left; padding:22px; }
+  .cover p{ text-align:left; }
+  .cover::before{ inset:-10px; }
+  .collage{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px 16px; }
+  .tailor .diam{ grid-template-columns:1fr; }
+  .tranches{ grid-template-columns:1fr; gap:40px; }
+  .tranches li{ padding:32px 18px 16px; }
+  .tranches li:not(:last-child)::after{ right:auto; left:50%; top:auto; bottom:-27px; margin:0 0 0 -6px; transform:rotate(135deg); }
+  .tform{ grid-template-columns:1fr; }
+  .hero-pols, .hero-pols.f{ min-height:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:18px; align-items:start; }
+  .hero-pols .pol, .hero-pols.f .pol{ position:static; width:auto !important; }
+  .hero-pols .pol:nth-child(3){ display:none; }
+  .facts{ grid-template-columns:1fr; }
+  .tl{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .foot .wrap{ grid-template-columns:1fr; }
+  .choice{ padding:22px; min-height:0; }
+  .choice .num{ font-size:52px; }
+}
+@media (max-width: 420px){
+  .story-side{ grid-template-columns:1fr; }
+}
+@media (max-width: 560px){
+  .pols.quotes{ grid-template-columns:1fr; gap:22px; }
+  .pols.quotes .pol{ width:84%; margin-top:0; }
+  .pols.quotes .pol:nth-child(even){ justify-self:end; }
+}
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; } }
+
+/* ---------- home hero: still photo and skylines; only the khatam stars move (scroll and mouse) ---------- */
+.hero{ position:relative; overflow:hidden; overflow:clip; isolation:isolate; background:var(--navy-deep); color:var(--white);
+  --y:0; --mx:0; --my:0; --sky:7vw; }
+.hero > .hl{ position:absolute; pointer-events:none; }
+.hero-photo{ inset:0; z-index:0; }
+.hero-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 42%; }
+.hero-shade{ inset:0; z-index:1; background:
+  radial-gradient(120% 70% at 50% 30%, rgba(19,35,75,.18), rgba(19,35,75,.55) 70%),
+  linear-gradient(180deg, rgba(19,35,75,.45) 0%, rgba(19,35,75,.28) 38%, rgba(19,35,75,.82) 100%); }
+.hero-stars{ inset:0; z-index:2; }
+.hs{ position:absolute; display:block; opacity:var(--o);
+  transform:translate3d(calc(var(--mx) * var(--d) * 34px), calc(var(--y) * (.32 - var(--d) * .62) * 1px + var(--my) * var(--d) * 22px), 0) rotate(calc(var(--y) * var(--d) * .09deg));
+  animation:hsIn 1.1s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--i) * 70ms); }
+.hs svg{ display:block; width:100%; height:auto; overflow:visible; animation:hsSpin var(--spin) linear infinite; }
+@keyframes hsIn{ from{ opacity:0; scale:.55; } }
+@keyframes hsSpin{ to{ rotate:360deg; } }
+.hero-far{ left:0; right:0; bottom:0; height:calc(var(--sky) * 1.05); z-index:3; color:#4A67B0; opacity:.5; }
+.hero-city{ left:0; right:0; bottom:0; height:var(--sky); z-index:4; color:var(--yellow); }
+.hero-far svg, .hero-city svg{ display:block; width:100%; height:var(--sky); }
+.hero-far svg{ position:absolute; left:0; bottom:0; }
+.hero > .side{ z-index:5; }
+.hero > .wrap{ position:relative; z-index:5; padding-block:clamp(40px, 5.5vw, 76px) calc(var(--sky) + 24px); }
+.choice .s{ display:none; }
+
+/* ---------- group boxes: no parallax, a small lift on hover ---------- */
+.choice{ transition:transform .18s ease, box-shadow .18s ease; }
+
+/* ---------- pill buttons: magnetic, with the label and a hard shadow at different depths ---------- */
+.btn{ --bx:0px; --by:0px; --lx:0px; --ly:0px; position:relative;
+  transform:translate3d(var(--bx), var(--by), 0);
+  box-shadow:calc(4px - var(--bx) * .7) calc(5px - var(--by) * .7) 0 0 var(--btn-sh, rgba(19,35,75,.28));
+  transition:transform .45s cubic-bezier(.2,.9,.25,1), box-shadow .45s cubic-bezier(.2,.9,.25,1), background-color .2s ease, color .2s ease; }
+.btn .bt{ display:inline-block; transform:translate3d(var(--lx), var(--ly), 0); transition:transform .45s cubic-bezier(.2,.9,.25,1); }
+.btn.mag, .btn.mag .bt{ transition-duration:.12s, .12s, .2s, .2s; }
+.btn.mag .bt{ transition-duration:.12s; }
+.btn-yellow{ --btn-sh:rgba(0,0,0,.32); }
+.band-navy .btn-navy, .itin .btn-navy{ --btn-sh:rgba(0,0,0,.35); }
+.nav .btn{ --btn-sh:rgba(19,35,75,.18); }
+.btn:active{ --bx:1px; --by:2px; }
+
+/* ---------- yellow bands: a light khatam watermark that drifts on scroll ---------- */
+.band-yellow, .page-hero, .inc-text{ --wy:0; background-color:var(--yellow);
+  background-image:radial-gradient(ellipse 62% 78% at 50% 50%, var(--yellow) 30%, rgba(251,182,23,.55) 62%, rgba(251,182,23,0) 100%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%231C3166' stroke-opacity='0.07' stroke-width='1.6'%3E%3Cpath d='M80 50L88.8 58.8L101.2 58.8L101.2 71.2L110 80L101.2 88.8L101.2 101.2L88.8 101.2L80 110L71.2 101.2L58.8 101.2L58.8 88.8L50 80L58.8 71.2L58.8 58.8L71.2 58.8Z'/%3E%3Cpath d='M0 -9L2.6 -6.4L6.4 -6.4L6.4 -2.6L9 0L6.4 2.6L6.4 6.4L2.6 6.4L0 9L-2.6 6.4L-6.4 6.4L-6.4 2.6L-9 0L-6.4 -2.6L-6.4 -6.4L-2.6 -6.4ZM160 151L162.6 153.6L166.4 153.6L166.4 157.4L169 160L166.4 162.6L166.4 166.4L162.6 166.4L160 169L157.4 166.4L153.6 166.4L153.6 162.6L151 160L153.6 157.4L153.6 153.6L157.4 153.6ZM160 -9L162.6 -6.4L166.4 -6.4L166.4 -2.6L169 0L166.4 2.6L166.4 6.4L162.6 6.4L160 9L157.4 6.4L153.6 6.4L153.6 2.6L151 0L153.6 -2.6L153.6 -6.4L157.4 -6.4ZM0 151L2.6 153.6L6.4 153.6L6.4 157.4L9 160L6.4 162.6L6.4 166.4L2.6 166.4L0 169L-2.6 166.4L-6.4 166.4L-6.4 162.6L-9 160L-6.4 157.4L-6.4 153.6L-2.6 153.6Z'/%3E%3Cpath d='M80 4l5 5-5 5-5-5Z M80 146l5 5-5 5-5-5Z M4 80l5-5 5 5-5 5Z M146 80l5-5 5 5-5 5Z'/%3E%3Cpath d='M80 50V110M50 80H110' stroke-opacity='0.042'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:100% 100%, 160px 160px; background-repeat:no-repeat, repeat;
+  background-position:center, calc(50% + 80px) calc(var(--wy) * 1px); }
+
+/* ---------- itinerary: the train runs the route ---------- */
+.itin{ --navh:75px; background:var(--navy-deep); color:var(--white); position:relative; }
+.itin-head{ position:relative; background-color:var(--navy-deep); background-position:center; background-size:cover; padding-block:clamp(60px, 8vw, 100px) 10px; }
+.itin-head .lede{ color:#E6EBF7; }
+.itin h2{ color:var(--white); }
+.route-stage{ display:grid; grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); gap:clamp(20px, 3.5vw, 48px); align-items:start; padding-block:30px; }
+.map-wrap{ position:sticky; top:calc(var(--navh) + 20px); }
+.map{ width:100%; height:auto; display:block; overflow:visible; }
+.map .rail{ fill:none; stroke:#FFFFFF; stroke-opacity:.38; stroke-width:3; stroke-dasharray:2 9; stroke-linecap:round; }
+.map .rail-done{ fill:none; stroke:var(--yellow); stroke-width:4.5; stroke-linecap:round; }
+.map .ring{ fill:var(--navy-deep); stroke:#FFFFFF; stroke-width:3; }
+.map .core{ fill:var(--yellow); }
+.map .halo{ fill:var(--yellow); opacity:0; transform-box:fill-box; transform-origin:center; }
+.mo .map .core{ fill:#FFFFFF; opacity:.35; transition:fill .3s ease, opacity .3s ease; }
+.mo .map .stop-dot.on .core{ fill:var(--yellow); opacity:1; }
+.mo .map .stop-dot.now .halo{ animation:halo 1.8s ease-out infinite; }
+@keyframes halo{ from{ opacity:.6; transform:scale(.4); } to{ opacity:0; transform:scale(1.25); } }
+.map .city text{ font-family:var(--sans); font-weight:850; font-stretch:110%; font-size:27px; fill:#FFFFFF; letter-spacing:.03em; text-transform:uppercase; }
+.map .city text.sub{ font-weight:500; font-stretch:100%; font-size:15px; fill:#C8D0E6; text-transform:none; letter-spacing:0; }
+.mo .map .city.now text:not(.sub){ fill:var(--yellow); }
+#train{ fill:#FFFFFF; transition:opacity .25s ease; }
+#train .stripe{ fill:var(--yellow); }
+#bus{ fill:#FFFFFF; opacity:0; transition:opacity .25s ease; }
+#bus .win, #bus .wheel{ fill:var(--navy-deep); }
+#bus .wheel{ stroke:#FFFFFF; stroke-width:1.6; }
+#bus .stripe{ fill:var(--yellow); }
+.map.by-bus #bus{ opacity:1; }
+.map.by-bus #train{ opacity:0; }
+.map .road{ fill:none; stroke:#FFFFFF; stroke-opacity:.38; stroke-width:3; stroke-dasharray:10 7; stroke-linecap:round; }
+.map .opt-link{ fill:none; stroke:var(--yellow); stroke-opacity:.6; stroke-width:2.5; stroke-dasharray:2 8; stroke-linecap:round; }
+.map .opt-ring{ fill:var(--navy-deep); stroke:var(--yellow); stroke-width:2.5; stroke-dasharray:4 3; }
+.map .opt-plus{ fill:none; stroke:var(--yellow); stroke-width:2.4; stroke-linecap:round; }
+.map .extra text{ font-family:var(--sans); font-weight:850; font-stretch:110%; font-size:24px; fill:#C8D0E6; letter-spacing:.03em; text-transform:uppercase; }
+.map .extra text.sub{ font-weight:600; font-stretch:100%; font-size:15px; fill:var(--yellow); text-transform:none; letter-spacing:0; }
+.map-hint{ display:none; margin-top:8px; font-size:14px; color:#C8D0E6; text-align:center; }
+.stops{ display:grid; gap:20px; }
+.stop-card{ background:var(--navy); border:1px solid rgba(255,255,255,.14); border-radius:20px; overflow:hidden; box-shadow:0 22px 44px rgba(0,0,0,.35); }
+.stop-photo{ position:relative; overflow:hidden; background:#24396F; }
+.stop-photo img{ width:100%; aspect-ratio:16/9; object-fit:cover; }
+.stop-photo .cap{ position:absolute; left:12px; bottom:12px; background:rgba(19,35,75,.86); color:#FFFFFF; font-size:13px; font-weight:650; padding:4px 11px; border-radius:999px; }
+.stop-text{ padding:18px 22px 22px; }
+.stop-n{ font-size:13.5px; color:var(--yellow); font-weight:750; letter-spacing:.04em; text-transform:uppercase; }
+.stop-text h3{ margin-top:4px; font-size:clamp(28px, 3vw, 40px); font-weight:850; font-stretch:110%; text-transform:uppercase; color:#FFFFFF; }
+.sday{ margin-top:12px; }
+.sday b{ font-weight:900; font-stretch:110%; color:var(--yellow); font-size:20px; letter-spacing:.02em; text-transform:uppercase; }
+.sday .where{ display:block; font-size:16px; color:#FFFFFF; }
+.sday ul{ list-style:none; margin:6px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+.sday li{ font-size:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:999px; padding:3px 11px; color:#FFFFFF; }
+.tailor-row{ display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(24px, 4vw, 56px); align-items:center; padding-block:clamp(30px, 5vw, 60px) clamp(64px, 8vw, 104px); }
+.tailor-row .tailor{ margin-top:0; grid-template-columns:1fr; }
+.tailor-row .pol{ --r:3deg; width:min(300px, 100%); justify-self:center; }
+
+/* pinned route (motion only) */
+.mo .route-pin{ height:500vh; height:500svh; }
+.mo .route-stage{ position:sticky; top:0; height:100vh; height:100svh; align-items:center; padding-top:calc(var(--navh) + 14px); padding-bottom:20px; }
+.mo .map-wrap{ position:relative; top:auto; }
+.mo .stops{ position:relative; height:min(600px, calc(100svh - var(--navh) - 60px)); }
+.mo .stop-card{ position:absolute; inset:0; display:flex; flex-direction:column; opacity:0; transform:translateY(26px) scale(.98); transition:opacity .45s ease, transform .45s ease; pointer-events:none; }
+.mo .stop-card.on{ opacity:1; transform:none; pointer-events:auto; }
+.mo .stop-photo{ flex:1 1 auto; min-height:0; }
+.mo .stop-photo img{ height:100%; aspect-ratio:auto; }
+.mo .stop-text{ flex:none; }
+.mo .map-hint{ display:block; }
+
+@media (max-width: 980px){
+  .route-stage{ grid-template-columns:minmax(0,1fr); }
+  .map-wrap{ position:static; }
+  .mo .route-pin{ height:440vh; height:440svh; }
+  .mo .route-stage{ display:flex; flex-direction:column; gap:10px; align-items:stretch; }
+  .mo .map-wrap{ flex:none; }
+  .mo .map{ max-height:30svh; width:auto; max-width:100%; margin:0 auto; }
+  .mo .map-hint{ margin-top:2px; }
+  .mo .stops{ height:auto; flex:1 1 auto; min-height:0; }
+  .tailor-row{ grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width: 640px){
+  .hero{ --sky:clamp(46px, 12.5vw, 60px); }
+  .hs.dsk{ display:none; }
+  .hero .ask small{ display:none; }
+  .hero .ask{ margin:22px auto 12px; }
+  .choices{ gap:12px; }
+  .choice{ grid-template-rows:auto auto auto; padding:16px 18px 16px; column-gap:16px; row-gap:2px; }
+  .choice .num{ font-size:44px; grid-row:1 / span 2; }
+  .choice .num small{ font-size:11.5px; margin-top:6px; }
+  .choice .people{ display:none; }
+  .choice strong{ font-size:21px; }
+  .choice .d{ display:none; }
+  .choice .s{ display:block; font-size:15px; line-height:1.35; }
+  .choice .go{ margin-top:12px; padding:10px 16px; font-size:15px; }
+  .map .city text{ font-size:28px; }
+  .map .city[data-city="buk"]{ transform:translate(20px, 56px); }
+  .map .extra text{ font-size:26px; }
+  .map .extra text.sub{ font-size:22px; }
+  .map .city text.sub{ display:none; }
+  .mo .route-pin{ height:420vh; height:420svh; }
+  .mo .stop-text{ padding:12px 16px 16px; }
+  .mo .stop-text h3{ font-size:26px; }
+  .mo .sday{ margin-top:6px; }
+  .mo .sday b{ font-size:17px; }
+  .mo .sday .where{ font-size:14.5px; }
+  .mo .sday li{ font-size:12.5px; padding:2px 9px; }
+}
+@media (max-height: 700px) and (max-width: 980px){ .mo .map{ max-height:26svh; } }
+@media (prefers-reduced-motion: reduce){
+  .hs, .hs svg{ animation:none !important; }
+}
+</style></head>
+<body>
+<header class="head">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Uzbekistan Trek, home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298.9 48" height="40" width="249.1" role="img" aria-label="Uzbekistan Trek"><g transform="translate(0 0) scale(1.0)"><g fill="#FBB617"><rect x="8" y="8" width="32" height="32" rx="1.5"/><rect x="8" y="8" width="32" height="32" rx="1.5" transform="rotate(45 24 24)"/></g><g fill="#1C3166"><rect x="15" y="15" width="18" height="18"/><rect x="15" y="15" width="18" height="18" transform="rotate(45 24 24)"/></g><circle cx="24" cy="24" r="4.2" fill="#FBB617"/></g><path fill="#1C3166" d="M68.757 31.476Q66.489 31.476 64.88250000000001 30.7935Q63.276 30.111 62.415000000000006 28.756500000000003Q61.554 27.402 61.554 25.407V16.776H66.195V25.344Q66.195 26.499 66.82499999999999 27.255Q67.455 28.011 68.736 28.011Q70.017 28.011 70.6575 27.255Q71.298 26.499 71.298 25.344V16.776H75.93900000000001V25.407Q75.93900000000001 27.402 75.08850000000001 28.756500000000003Q74.238 30.111 72.6315 30.7935Q71.025 31.476 68.757 31.476Z M79.09700000000001 31.224V29.733L85.796 20.241H79.601V16.776H92.936V18.267L86.23700000000001 27.759H93.104V31.224Z M96.409 31.224V16.776H106.027Q107.119 16.776 108.022 17.2275Q108.92500000000001 17.679 109.471 18.476999999999997Q110.01700000000001 19.275 110.01700000000001 20.325Q110.01700000000001 21.375 109.68100000000001 22.047Q109.345 22.719 108.799 23.1075Q108.253 23.496 107.602 23.685V23.769Q108.358 23.936999999999998 108.9775 24.3465Q109.59700000000001 24.756 109.97500000000001 25.491Q110.35300000000001 26.226 110.35300000000001 27.381Q110.35300000000001 28.536 109.786 29.397Q109.21900000000001 30.258 108.274 30.741Q107.32900000000001 31.224 106.153 31.224ZM101.05000000000001 27.864H104.578Q105.061 27.864 105.355 27.528Q105.649 27.192 105.649 26.52Q105.649 26.205 105.5125 25.9425Q105.376 25.68 105.1345 25.533Q104.893 25.386 104.578 25.386H101.05000000000001ZM101.05000000000001 22.404H104.242Q104.578 22.404 104.809 22.246499999999997Q105.04 22.089 105.1765 21.794999999999998Q105.313 21.500999999999998 105.313 21.06Q105.313 20.598 104.998 20.2725Q104.683 19.947 104.242 19.947H101.05000000000001Z M113.91000000000001 31.224V16.776H126.405V20.241H118.551V22.235999999999997H125.27100000000002V25.554000000000002H118.551V27.759H126.552V31.224Z M130.109 31.224V16.776H134.75V22.95L139.895 16.776H145.649L140.46200000000002 22.719L145.75400000000002 31.224H140.273L137.207 25.826999999999998L134.75 28.2V31.224Z M148.70200000000003 31.224V16.776H153.34300000000002V31.224Z M164.04000000000002 31.476Q162.549 31.476 161.2575 31.255499999999998Q159.966 31.035 158.98950000000002 30.499499999999998Q158.013 29.964 157.4565 29.008499999999998Q156.9 28.053 156.9 26.604Q156.9 26.562 156.9 26.488500000000002Q156.9 26.415 156.92100000000002 26.331H161.31Q161.28900000000002 26.415 161.28900000000002 26.488500000000002Q161.28900000000002 26.562 161.28900000000002 26.625Q161.28900000000002 27.255 161.58300000000003 27.591Q161.877 27.927 162.41250000000002 28.0425Q162.948 28.158 163.62 28.158Q163.872 28.158 164.15550000000002 28.1475Q164.43900000000002 28.137 164.7015 28.0845Q164.96400000000003 28.032 165.1845 27.927Q165.40500000000003 27.822 165.531 27.6435Q165.657 27.465 165.657 27.192Q165.657 26.793 165.3 26.561999999999998Q164.943 26.331 164.334 26.163Q163.72500000000002 25.995 162.96900000000002 25.848Q162.21300000000002 25.701 161.394 25.5015Q160.57500000000002 25.302 159.81900000000002 24.987000000000002Q159.06300000000002 24.672 158.454 24.1785Q157.84500000000003 23.685 157.488 22.9395Q157.131 22.194 157.131 21.144Q157.131 19.884 157.656 19.002Q158.181 18.119999999999997 159.0945 17.573999999999998Q160.008 17.028 161.17350000000002 16.776Q162.33900000000003 16.524 163.62 16.524Q164.92200000000003 16.524 166.06650000000002 16.7865Q167.211 17.049 168.09300000000002 17.595Q168.97500000000002 18.141 169.479 18.980999999999998Q169.983 19.820999999999998 170.00400000000002 20.976V21.228H165.657V21.144Q165.657 20.766 165.46800000000002 20.43Q165.27900000000002 20.094 164.86950000000002 19.884Q164.46 19.674 163.788 19.674Q163.15800000000002 19.674 162.72750000000002 19.8Q162.29700000000003 19.926000000000002 162.08700000000002 20.1465Q161.877 20.366999999999997 161.877 20.619Q161.877 21.018 162.234 21.27Q162.591 21.522 163.20000000000002 21.689999999999998Q163.80900000000003 21.857999999999997 164.56500000000003 22.005Q165.32100000000003 22.152 166.14000000000001 22.3305Q166.959 22.509 167.715 22.803Q168.471 23.097 169.08 23.5695Q169.68900000000002 24.042 170.04600000000002 24.735Q170.40300000000002 25.428 170.40300000000002 26.436Q170.40300000000002 28.221 169.57350000000002 29.334Q168.74400000000003 30.447 167.30550000000002 30.9615Q165.86700000000002 31.476 164.04000000000002 31.476Z M177.48800000000003 31.224V20.472H172.74200000000002V16.776H186.854V20.472H182.12900000000002V31.224Z M188.73100000000002 31.224 194.002 16.776H199.399L204.67000000000002 31.224H199.75600000000003L199.14700000000002 29.187H194.086L193.477 31.224ZM195.05200000000002 25.953H198.20200000000003L197.50900000000001 23.643Q197.425 23.391 197.32 23.034Q197.215 22.677 197.11 22.278Q197.00500000000002 21.878999999999998 196.90000000000003 21.490499999999997Q196.79500000000002 21.102 196.711 20.808H196.543Q196.459 21.186 196.3225 21.669Q196.186 22.152 196.03900000000002 22.6665Q195.89200000000002 23.180999999999997 195.745 23.643Z M207.513 31.224V16.776H211.461L215.955 21.963Q216.144 22.173000000000002 216.459 22.572000000000003Q216.774 22.971 217.0995 23.380499999999998Q217.425 23.79 217.59300000000002 24.042L217.698 24.0Q217.677 23.412 217.677 22.8345Q217.677 22.256999999999998 217.677 21.963V16.776H221.898V31.224H217.971L212.91 25.448999999999998Q212.553 25.029 212.301 24.682499999999997Q212.049 24.336 211.818 24.021L211.713 24.063Q211.734 24.462 211.734 24.860999999999997Q211.734 25.259999999999998 211.734 25.448999999999998V31.224Z  M234.66100000000003 31.224V20.472H229.91500000000002V16.776H244.02700000000002V20.472H239.30200000000002V31.224Z M247.24800000000002 31.224V16.776H256.29900000000004Q257.916 16.776 258.9975 17.427Q260.079 18.078 260.625 19.128Q261.171 20.177999999999997 261.171 21.396Q261.171 22.782 260.52 23.863500000000002Q259.869 24.945 258.75600000000003 25.596L261.591 31.224H256.38300000000004L254.17800000000003 26.373H251.889V31.224ZM251.889 23.16H255.144Q255.69000000000003 23.16 256.06800000000004 22.7295Q256.446 22.299 256.446 21.585Q256.446 21.144 256.278 20.808Q256.11 20.472 255.81600000000003 20.2725Q255.52200000000002 20.073 255.144 20.073H251.889Z M264.749 31.224V16.776H277.244V20.241H269.39V22.235999999999997H276.11V25.554000000000002H269.39V27.759H277.391V31.224Z M280.948 31.224V16.776H285.589V22.95L290.734 16.776H296.488L291.301 22.719L296.593 31.224H291.112L288.046 25.826999999999998L285.589 28.2V31.224Z"/></svg></a>
+    <button class="menu-btn" id="menu-btn" data-menu-btn aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="big-group.html">Big group (10+)</a><a href="small-group.html">Small group (under 10)</a><a href="founder.html">Founder</a><a href="./#faq">FAQ</a>
+      <a class="btn btn-navy" href="./#choose">Plan your trek</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero" data-parallax aria-labelledby="home-title">
+    <div class="hl hero-photo" aria-hidden="true"><img src="img/samarkand_registan.webp" alt="" fetchpriority="high"></div>
+    <div class="hl hero-shade" aria-hidden="true"></div>
+    <div class="hl hero-stars" aria-hidden="true"><span class="hs" style="left:-5%;top:4%;width:280px;--d:0.18;--o:0.2;--spin:70s;--i:0"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="none" stroke="#FBB617" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg></span><span class="hs" style="left:84%;top:10%;width:72px;--d:0.85;--o:0.95;--spin:87s;--i:1"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><g fill="#FBB617"><rect x="8" y="8" width="32" height="32" rx="1.5"/><rect x="8" y="8" width="32" height="32" rx="1.5" transform="rotate(45 24 24)"/></g><g fill="#13234B"><rect x="15" y="15" width="18" height="18"/><rect x="15" y="15" width="18" height="18" transform="rotate(45 24 24)"/></g><circle cx="24" cy="24" r="4.2" fill="#FBB617"/></svg></span><span class="hs" style="left:11%;top:60%;width:28px;--d:0.95;--o:0.9;--spin:104s;--i:2"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="#FBB617"/></svg></span><span class="hs dsk" style="left:70%;top:50%;width:130px;--d:0.42;--o:0.28;--spin:121s;--i:3"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="none" stroke="#FBB617" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg></span><span class="hs dsk" style="left:29%;top:16%;width:18px;--d:1.0;--o:0.75;--spin:78s;--i:4"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="#FBB617"/></svg></span><span class="hs dsk" style="left:63%;top:7%;width:22px;--d:0.7;--o:0.6;--spin:95s;--i:5"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="#FBB617"/></svg></span><span class="hs dsk" style="left:88%;top:44%;width:320px;--d:0.12;--o:0.13;--spin:112s;--i:6"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="none" stroke="#FBB617" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg></span><span class="hs dsk" style="left:5%;top:33%;width:46px;--d:0.6;--o:0.45;--spin:129s;--i:7"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="none" stroke="#FBB617" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></span><span class="hs" style="left:93%;top:72%;width:24px;--d:0.95;--o:0.85;--spin:86s;--i:8"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="#FBB617"/></svg></span><span class="hs dsk" style="left:46%;top:3%;width:36px;--d:0.55;--o:0.35;--spin:103s;--i:9"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z" fill="none" stroke="#FBB617" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></span></div>
+    <div class="hl hero-far" aria-hidden="true"><svg viewBox="0 0 3600 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><path d="M0 150H3600V240H0ZM90 152C90 95 135.6 74.7 150 60C164.4 74.7 210 95 210 152ZM322 152L324 34H336L338 152ZM320 27H340V34H320ZM325 16H335V27H325ZM324.5 16C324.5 7.9 328.7 5.1 330 3C331.3 5.1 335.5 7.9 335.5 16ZM432 152C432 104.9 468.5 88.2 480 76C491.5 88.2 528 104.9 528 152ZM3072 152C3072 104.9 3108.5 88.2 3120 76C3131.5 88.2 3168 104.9 3168 152ZM3262 152L3264 34H3276L3278 152ZM3260 27H3280V34H3260ZM3265 16H3275V27H3265ZM3264.5 16C3264.5 7.9 3268.7 5.1 3270 3C3271.3 5.1 3275.5 7.9 3275.5 16ZM3390 152C3390 95 3435.6 74.7 3450 60C3464.4 74.7 3510 95 3510 152Z" fill="currentColor"/><g transform="translate(600 0)"><path d="M65 152C65 96.2 106.8 76.4 120 62C133.2 76.4 175 96.2 175 152ZM242 152L244 26H256L258 152ZM240 19H260V26H240ZM245 8H255V19H245ZM244.5 8C244.5 -0.1 248.7 -2.9 250 -5C251.3 -2.9 255.5 -0.1 255.5 8ZM300 110H360V152H300ZM2090 152C2090 92.5 2135.6 71.4 2150 56C2164.4 71.4 2210 92.5 2210 152ZM2262 152L2264 24H2276L2278 152ZM2260 17H2280V24H2260ZM2265 6H2275V17H2265ZM2264.5 6C2264.5 -2.1 2268.7 -4.9 2270 -7C2271.3 -4.9 2275.5 -2.1 2275.5 6ZM2305 152C2305 107.4 2339.2 91.5 2350 80C2360.8 91.5 2395 107.4 2395 152Z" fill="currentColor"/><g transform="translate(400 0)"><path d="M22 152C22 106.1 58.5 89.8 70 78C81.5 89.8 118 106.1 118 152ZM150 96H230V152H150ZM254 152L256 22H268L270 152ZM252 15H272V22H252ZM257 4H267V15H257ZM256.5 4C256.5 -4.1 260.7 -6.9 262 -9C263.3 -6.9 267.5 -4.1 267.5 4ZM316 154C316 89.5 364.6 66.6 380 50C395.4 66.6 444 89.5 444 154ZM470 110H520V154H470ZM470 110C470 85.2 489 76.4 495 70C501 76.4 520 85.2 520 110ZM592 152L594 14H606L608 152ZM590 7H610V14H590ZM595 -4H605V7H595ZM594.5 -4C594.5 -12.1 598.7 -14.9 600 -17C601.3 -14.9 605.5 -12.1 605.5 -4ZM652 150C652 96.7 688.5 77.8 700 64C711.5 77.8 748 96.7 748 150ZM760 84H810V152H760ZM880 70H990V152H880ZM900 70C900 37.8 926.6 26.3 935 18C943.4 26.3 970 37.8 970 70ZM1004 152L1006 16H1018L1020 152ZM1002 9H1022V16H1002ZM1007 -2H1017V9H1007ZM1006.5 -2C1006.5 -10.1 1010.7 -12.9 1012 -15C1013.3 -12.9 1017.5 -10.1 1017.5 -2ZM1090 152C1090 90 1135.6 68 1150 52C1164.4 68 1210 90 1210 152ZM1230 104H1290V152H1230ZM1322 152L1324 30H1336L1338 152ZM1320 23H1340V30H1320ZM1325 12H1335V23H1325ZM1324.5 12C1324.5 3.9 1328.7 1.1 1330 -1C1331.3 1.1 1335.5 3.9 1335.5 12ZM1378 152C1378 97.4 1417.5 78.1 1430 64C1442.5 78.1 1482 97.4 1482 152ZM1500 92H1560V152H1500ZM1504 92C1504 67.2 1523.8 58.4 1530 52C1536.2 58.4 1556 67.2 1556 92Z" fill="currentColor"/></g></g></svg></div>
+    <div class="hl hero-city" aria-hidden="true"><svg viewBox="0 0 3600 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><defs><mask id="skyN" maskUnits="userSpaceOnUse" x="0" y="0" width="3600" height="240"><path d="M40 160H200V206H40ZM80 160C80 121.6 110.4 107.9 120 98C129.6 107.9 160 121.6 160 160ZM232 206L234 60H246L248 206ZM230 53H250V60H230ZM235 42H245V53H235ZM234.5 42C234.5 33.9 238.7 31.1 240 29C241.3 31.1 245.5 33.9 245.5 42ZM280 150H420V206H280ZM315 150C315 115.3 341.6 103 350 94C358.4 103 385 115.3 385 150ZM440 170H500V206H440ZM440 170C440 142.7 462.8 133 470 126C477.2 133 500 142.7 500 170ZM553 206L554.5 70H565.5L567 206ZM550.5 63H569.5V70H550.5ZM555.5 52H564.5V63H555.5ZM555 52C555 43.9 558.8 41.1 560 39C561.2 41.1 565 43.9 565 52ZM3060 150H3200V206H3060ZM3095 150C3095 115.3 3121.6 103 3130 94C3138.4 103 3165 115.3 3165 150ZM3232 206L3234 60H3246L3248 206ZM3230 53H3250V60H3230ZM3235 42H3245V53H3235ZM3234.5 42C3234.5 33.9 3238.7 31.1 3240 29C3241.3 31.1 3245.5 33.9 3245.5 42ZM3280 160H3440V206H3280ZM3320 160C3320 121.6 3350.4 107.9 3360 98C3369.6 107.9 3400 121.6 3400 160ZM3470 170H3530V206H3470ZM3470 170C3470 142.7 3492.8 133 3500 126C3507.2 133 3530 142.7 3530 170ZM3563 206L3564.5 70H3575.5L3577 206ZM3560.5 63H3579.5V70H3560.5ZM3565.5 52H3574.5V63H3565.5ZM3565 52C3565 43.9 3568.8 41.1 3570 39C3571.2 41.1 3575 43.9 3575 52ZM0 204H3600V240H0Z" fill="#fff"/><path d="M108 206V186.9C108 176.8 115.7 174.9 120 172C124.3 174.9 132 176.8 132 186.9V206ZM338 206V180.9C338 170.8 345.7 168.9 350 166C354.3 168.9 362 170.8 362 180.9V206ZM3118 206V180.9C3118 170.8 3125.7 168.9 3130 166C3134.3 168.9 3142 170.8 3142 180.9V206ZM3348 206V186.9C3348 176.8 3355.7 174.9 3360 172C3364.3 174.9 3372 176.8 3372 186.9V206Z" fill="#000"/><g transform="translate(600 0)"><path d="M70 146H350V206H70ZM166 98H254V206H166ZM158 104C158 55.6 197.5 38.5 210 26C222.5 38.5 262 55.6 262 104ZM39 206L41 44H55L57 206ZM37 37H59V44H37ZM42 26H54V37H42ZM41.5 26C41.5 17.9 46.4 15.1 48 13C49.6 15.1 54.5 17.9 54.5 26ZM363 206L365 44H379L381 206ZM361 37H383V44H361ZM366 26H378V37H366ZM365.5 26C365.5 17.9 370.4 15.1 372 13C373.6 15.1 378.5 17.9 378.5 26ZM2080 206L2088 98H2172L2180 206ZM2084 88H2176V98H2084ZM2252 206L2255 34H2269L2272 206ZM2251 27H2273V34H2251ZM2256 16H2268V27H2256ZM2255.5 16C2255.5 7.9 2260.4 5.1 2262 3C2263.6 5.1 2268.5 7.9 2268.5 16ZM2300 150H2390V206H2300ZM2316 150C2316 120.2 2338 109.7 2345 102C2352 109.7 2374 120.2 2374 150Z" fill="#fff"/><g transform="translate(420 0)"><path d="M110 206L116 46H144L150 206ZM110 27H150V46H110ZM115 27C115 15.8 126.4 11.9 130 9C133.6 11.9 145 15.8 145 27ZM200 128H470V206H200ZM286 72H384V206H286ZM212 116H252V130H212ZM207 116C207 88.7 226 79 232 72C238 79 257 88.7 257 116ZM418 116H458V130H418ZM413 116C413 88.7 432 79 438 72C444 79 463 88.7 463 116ZM560 130H780V206H560ZM626 60H714V206H626ZM570 132C570 114.6 582.2 108.5 586 104C589.8 108.5 602 114.6 602 132ZM738 132C738 114.6 750.2 108.5 754 104C757.8 108.5 770 114.6 770 132ZM541 206L543 44H557L559 206ZM539 37H561V44H539ZM544 26H556V37H544ZM543.5 26C543.5 17.9 548.4 15.1 550 13C551.6 15.1 556.5 17.9 556.5 26ZM781 206L783 44H797L799 206ZM779 37H801V44H779ZM784 26H796V37H784ZM783.5 26C783.5 17.9 788.4 15.1 790 13C791.6 15.1 796.5 17.9 796.5 26ZM820 142H1004V206H820ZM874 88H950V206H874ZM806 128H870V146H806ZM796 130C796 84.1 827.9 67.8 838 56C848.1 67.8 880 84.1 880 130ZM1040 130H1260V206H1040ZM1106 60H1194V206H1106ZM1049 132C1049 107.2 1065 98.4 1070 92C1075 98.4 1091 107.2 1091 132ZM1209 132C1209 107.2 1225 98.4 1230 92C1235 98.4 1251 107.2 1251 132ZM1021 206L1023 44H1037L1039 206ZM1019 37H1041V44H1019ZM1024 26H1036V37H1024ZM1023.5 26C1023.5 17.9 1028.4 15.1 1030 13C1031.6 15.1 1036.5 17.9 1036.5 26ZM1261 206L1263 44H1277L1279 206ZM1259 37H1281V44H1259ZM1264 26H1276V37H1264ZM1263.5 26C1263.5 17.9 1268.4 15.1 1270 13C1271.6 15.1 1276.5 17.9 1276.5 26ZM1330 150H1392V206H1330ZM1330 150C1330 116.5 1353.6 104.6 1361 96C1368.4 104.6 1392 116.5 1392 150ZM1410 128H1486V206H1410ZM1410 128C1410 87.1 1438.9 72.6 1448 62C1457.1 72.6 1486 87.1 1486 128ZM1504 158H1560V206H1504ZM1504 158C1504 130.7 1525.3 121 1532 114C1538.7 121 1560 130.7 1560 158ZM1577 206L1578.5 74H1589.5L1591 206ZM1574.5 67H1593.5V74H1574.5ZM1579.5 56H1588.5V67H1579.5ZM1579 56C1579 47.9 1582.8 45.1 1584 43C1585.2 45.1 1589 47.9 1589 56Z" fill="#fff"/><path d="M117 42V35.3C117 32.4 119.2 31.8 120.5 31C121.8 31.8 124 32.4 124 35.3V42ZM128 42V35.3C128 32.4 130.2 31.8 131.5 31C132.8 31.8 135 32.4 135 35.3V42ZM139 42V35.3C139 32.4 141.2 31.8 142.5 31C143.8 31.8 146 32.4 146 35.3V42ZM304 206V130.4C304 104.4 323.8 99.4 335 92C346.2 99.4 366 104.4 366 130.4V206ZM212 166V154.1C212 148.6 216.2 147.6 218.5 146C220.8 147.6 225 148.6 225 154.1V166ZM236 166V154.1C236 148.6 240.2 147.6 242.5 146C244.8 147.6 249 148.6 249 154.1V166ZM260 166V154.1C260 148.6 264.2 147.6 266.5 146C268.8 147.6 273 148.6 273 154.1V166ZM212 198V184.1C212 178.6 216.2 177.6 218.5 176C220.8 177.6 225 178.6 225 184.1V198ZM236 198V184.1C236 178.6 240.2 177.6 242.5 176C244.8 177.6 249 178.6 249 184.1V198ZM260 198V184.1C260 178.6 264.2 177.6 266.5 176C268.8 177.6 273 178.6 273 184.1V198ZM392 166V154.1C392 148.6 396.2 147.6 398.5 146C400.8 147.6 405 148.6 405 154.1V166ZM416 166V154.1C416 148.6 420.2 147.6 422.5 146C424.8 147.6 429 148.6 429 154.1V166ZM440 166V154.1C440 148.6 444.2 147.6 446.5 146C448.8 147.6 453 148.6 453 154.1V166ZM392 198V184.1C392 178.6 396.2 177.6 398.5 176C400.8 177.6 405 178.6 405 184.1V198ZM416 198V184.1C416 178.6 420.2 177.6 422.5 176C424.8 177.6 429 178.6 429 184.1V198ZM440 198V184.1C440 178.6 444.2 177.6 446.5 176C448.8 177.6 453 178.6 453 184.1V198ZM644 206V112.2C644 90.4 660.6 86.2 670 80C679.4 86.2 696 90.4 696 112.2V206ZM570 169V157.4C570 152.4 573.8 151.4 576 150C578.2 151.4 582 152.4 582 157.4V169ZM592 169V157.4C592 152.4 595.8 151.4 598 150C600.2 151.4 604 152.4 604 157.4V169ZM570 200V185.4C570 180.4 573.8 179.4 576 178C578.2 179.4 582 180.4 582 185.4V200ZM592 200V185.4C592 180.4 595.8 179.4 598 178C600.2 179.4 604 180.4 604 185.4V200ZM720 169V157.4C720 152.4 723.8 151.4 726 150C728.2 151.4 732 152.4 732 157.4V169ZM742 169V157.4C742 152.4 745.8 151.4 748 150C750.2 151.4 754 152.4 754 157.4V169ZM720 200V185.4C720 180.4 723.8 179.4 726 178C728.2 179.4 732 180.4 732 185.4V200ZM742 200V185.4C742 180.4 745.8 179.4 748 178C750.2 179.4 754 180.4 754 185.4V200ZM890 206V131.3C890 112.8 904.1 109.3 912 104C919.9 109.3 934 112.8 934 131.3V206ZM830 183V171.4C830 166.4 833.8 165.4 836 164C838.2 165.4 842 166.4 842 171.4V183ZM852 183V171.4C852 166.4 855.8 165.4 858 164C860.2 165.4 864 166.4 864 171.4V183ZM958 183V171.4C958 166.4 961.8 165.4 964 164C966.2 165.4 970 166.4 970 171.4V183ZM980 183V171.4C980 166.4 983.8 165.4 986 164C988.2 165.4 992 166.4 992 171.4V183ZM1124 206V112.2C1124 90.4 1140.6 86.2 1150 80C1159.4 86.2 1176 90.4 1176 112.2V206ZM1050 169V157.4C1050 152.4 1053.8 151.4 1056 150C1058.2 151.4 1062 152.4 1062 157.4V169ZM1072 169V157.4C1072 152.4 1075.8 151.4 1078 150C1080.2 151.4 1084 152.4 1084 157.4V169ZM1050 200V185.4C1050 180.4 1053.8 179.4 1056 178C1058.2 179.4 1062 180.4 1062 185.4V200ZM1072 200V185.4C1072 180.4 1075.8 179.4 1078 178C1080.2 179.4 1084 180.4 1084 185.4V200ZM1200 169V157.4C1200 152.4 1203.8 151.4 1206 150C1208.2 151.4 1212 152.4 1212 157.4V169ZM1222 169V157.4C1222 152.4 1225.8 151.4 1228 150C1230.2 151.4 1234 152.4 1234 157.4V169ZM1200 200V185.4C1200 180.4 1203.8 179.4 1206 178C1208.2 179.4 1212 180.4 1212 185.4V200ZM1222 200V185.4C1222 180.4 1225.8 179.4 1228 178C1230.2 179.4 1234 180.4 1234 185.4V200ZM1350 206V185.6C1350 176.4 1357 174.6 1361 172C1365 174.6 1372 176.4 1372 185.6V206ZM1436 206V166.9C1436 156.8 1443.7 154.9 1448 152C1452.3 154.9 1460 156.8 1460 166.9V206ZM1522 206V190.4C1522 182 1528.4 180.4 1532 178C1535.6 180.4 1542 182 1542 190.4V206Z" fill="#000"/></g><path d="M186 206V147.8C186 127.6 201.4 123.8 210 118C218.6 123.8 234 127.6 234 147.8V206ZM84 183V171.4C84 166.4 87.8 165.4 90 164C92.2 165.4 96 166.4 96 171.4V183ZM106 183V171.4C106 166.4 109.8 165.4 112 164C114.2 165.4 118 166.4 118 171.4V183ZM128 183V171.4C128 166.4 131.8 165.4 134 164C136.2 165.4 140 166.4 140 171.4V183ZM270 183V171.4C270 166.4 273.8 165.4 276 164C278.2 165.4 282 166.4 282 171.4V183ZM292 183V171.4C292 166.4 295.8 165.4 298 164C300.2 165.4 304 166.4 304 171.4V183ZM314 183V171.4C314 166.4 317.8 165.4 320 164C322.2 165.4 326 166.4 326 171.4V183ZM2096 136V126.2C2096 122 2099.2 121.2 2101 120C2102.8 121.2 2106 122 2106 126.2V136ZM2116 136V126.2C2116 122 2119.2 121.2 2121 120C2122.8 121.2 2126 122 2126 126.2V136ZM2136 136V126.2C2136 122 2139.2 121.2 2141 120C2142.8 121.2 2146 122 2146 126.2V136ZM2333 206V186.9C2333 176.8 2340.7 174.9 2345 172C2349.3 174.9 2357 176.8 2357 186.9V206Z" fill="#000"/></g></mask></defs><rect width="3600" height="240" fill="currentColor" mask="url(#skyN)"/></svg></div>
+    <span class="side light" aria-hidden="true">UZBEKISTAN TREK</span>
+    <div class="wrap">
+      <div class="cover">
+        <h1 id="home-title">Uzbekistan Trek<span>Since 2025</span></h1>
+        <p>Explore the hidden gem<br>in Central Asia</p>
+      </div>
+      <p class="ask">How many people are traveling?<small>Pick one to see how it works, what is included and how to book.</small></p>
+      <div class="choices" id="choose"><a class="choice" href="big-group.html"><span class="num">10+<small>travelers</small></span><svg class="people" viewBox="0 0 77 52" fill="currentColor" aria-hidden="true"><circle cx="8" cy="7" r="4.4"/><path d="M2 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="21" cy="7" r="4.4"/><path d="M15 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="34" cy="7" r="4.4"/><path d="M28 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="47" cy="7" r="4.4"/><path d="M41 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="60" cy="7" r="4.4"/><path d="M54 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="14" cy="23" r="4.4"/><path d="M8 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="27" cy="23" r="4.4"/><path d="M21 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="40" cy="23" r="4.4"/><path d="M34 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="53" cy="23" r="4.4"/><path d="M47 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="66" cy="23" r="4.4"/><path d="M60 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/></svg><strong>Big group trek</strong><span class="d">For a class, club or program. Choose your dates; we plan the whole trip as a full package.</span><span class="s">Full package on your dates.</span><span class="go">Plan a big group trek <i aria-hidden="true">&#8250;</i></span></a><a class="choice" href="small-group.html"><span class="num">1&ndash;9<small>travelers</small></span><svg class="people" viewBox="0 0 51 34" fill="currentColor" aria-hidden="true"><circle cx="8" cy="7" r="4.4"/><path d="M2 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="21" cy="7" r="4.4"/><path d="M15 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="34" cy="7" r="4.4"/><path d="M28 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/></svg><strong>Small group trip</strong><span class="d">Solo, as a couple or with a few friends. Join a planned departure or travel privately.</span><span class="s">Join a departure or go private.</span><span class="go">See small group options <i aria-hidden="true">&#8250;</i></span></a></div>
+    </div>
+  </section>
+
+  <section class="sec band-yellow" aria-labelledby="prev-title">
+    <span class="side" aria-hidden="true">UZBEKISTAN TREK</span>
+    <div class="wrap split">
+      <div>
+        <h2 id="prev-title">From the previous treks</h2>
+        <ul class="diam"><li>In March 2025, 45 graduate students from Harvard and MIT traveled with us to Tashkent, Bukhara and Samarkand.</li><li>In March 2026, the second trek grew to 50 travelers.</li><li>Now we are opening the trek to graduate students at other universities.</li></ul>
+        <span class="red-script">What are the participants saying?</span>
+        <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">How the trek started</a></div>
+      </div>
+      <div class="pols quotes">
+        <figure class="pol q" style="--ar:4/3"><div class="ph"><img src="img/y2025_circle.webp" alt="Students lying in a circle under a painted dome" loading="lazy"></div><figcaption>&ldquo;After eight treks, Uzbekistan was the best one. By far!&rdquo;<small>2025 participant</small></figcaption></figure>
+        <figure class="pol q" style="--ar:4/3"><div class="ph"><img src="img/y2025_bukhara_arch.webp" alt="A group of students under an arch in Bukhara" loading="lazy"></div><figcaption>&ldquo;Name something better than being guided around the beauties of the Silk Road by HKS classmates that truly love their country.&rdquo;<small>2026 participant</small></figcaption></figure>
+        <figure class="pol q" style="--ar:4/3"><div class="ph"><img src="img/y2025_dancer.webp" alt="A dancer in traditional dress performing for the group" loading="lazy"></div><figcaption>&ldquo;Dancing at almost every meal, private access to Registan&rsquo;s light show&hellip; Truly one of the most special weeks of my Harvard experience.&rdquo;<small>2025 participant</small></figcaption></figure>
+        <figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/cohort_registan.webp" alt="The 2026 group of graduate students at the Registan" loading="lazy"></div><figcaption>50 travelers at the Registan<small>March 2026</small></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band-sky" aria-labelledby="mom-title">
+    <div class="wrap">
+      <h2 id="mom-title" class="moments-title">Uzbekistan Trek moments</h2>
+      <div class="collage"><figure class="pol" style="--ar:4/3.4"><div class="ph"><img src="img/y2025_registan.webp" alt="A group of students posing at the Registan" loading="lazy"></div><figcaption>Registan, Samarkand<small>2025</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/food_plov.webp" alt="Plov ingredients layered in a kazan at the cooking workshop" loading="lazy"></div><figcaption>Plov we cooked at the workshop<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/y2025_suzani.webp" alt="The 2025 group sitting with suzani textiles" loading="lazy"></div><figcaption>Suzani workshop, Bukhara<small>2025</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/samarkand_circle.webp" alt="Students lying in a circle under a gilded dome, faces up" loading="lazy"></div><figcaption>Under the golden dome<small>2026</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/workshop_cooking.webp" alt="A student rolling dough at the somsa cooking class" loading="lazy"></div><figcaption>Somsa cooking class<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/mountains_amirsoy_group.webp" alt="Students in the snow at Amirsoy" loading="lazy"></div><figcaption>Snow at Amirsoy<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/y2025_workshop.webp" alt="Students holding their paintings at a workshop" loading="lazy"></div><figcaption>Painting class, Bukhara<small>2025</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/bukhara_golf_cart.webp" alt="Three students smiling on an electric cart in Bukhara" loading="lazy"></div><figcaption>Old Bukhara by cart<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/a822.webp" alt="The Lyab-i Hauz pond in Bukhara" loading="lazy"></div><figcaption>Lyab-i Hauz, Bukhara<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/mountains_charvak.webp" alt="Charvak reservoir among hills" loading="lazy"></div><figcaption>Lake Charvak<small>2026</small></figcaption></figure></div>
+    </div>
+  </section>
+
+
+  <section class="itin" id="itinerary" aria-labelledby="itin-title">
+    <div class="itin-head" style="background-image:linear-gradient(180deg, rgba(19,35,75,.84), rgba(19,35,75,.97)), url('img/bukhara_palace_ceiling.webp')">
+      <span class="side light" aria-hidden="true">UZBEKISTAN TREK</span>
+      <div class="wrap">
+        <h2 id="itin-title">Sample itinerary</h2>
+        <p class="lede">This is how our Harvard and MIT treks ran, shown for information. It is a starting point, not a fixed package: we can make it longer, add cities such as Khiva or the Fergana Valley, and shape every day around your group. Past treks ran over spring break, but a trek can run in any month.</p>
+      </div>
+    </div>
+    <div class="route-pin">
+      <div class="route-stage wrap">
+        <div class="map-wrap"><svg class="map" viewBox="0 0 900 520" role="img" aria-labelledby="mapTitle" focusable="false">
+  <title id="mapTitle">Route of the sample itinerary: arrival in Tashkent, fast train to Bukhara, fast train to Samarkand, back to Tashkent, a day in the Tashkent mountains by bus, departures from Tashkent. Khiva can be added as an option.</title>
+  <defs><pattern id="dotgrid" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#FFFFFF" fill-opacity=".11"/></pattern></defs>
+  <rect width="900" height="520" fill="url(#dotgrid)"/>
+  <path d="M40 470C90 455 130 455 180 468C230 481 260 480 300 468M90 500C140 488 180 488 230 498C270 506 300 505 340 496" fill="none" stroke="#FBB617" stroke-opacity=".32" stroke-width="2" stroke-linecap="round"/>
+  <path d="M866 178l15-30 15 30Z M878 178l11-21 11 21Z M856 178l10-17 10 17Z" fill="#3A5294"/>
+  <g class="extra" data-city="khi"><path class="opt-link" d="M170 345C176 268 92 214 60 120"/><circle class="opt-ring" cx="60" cy="120" r="11"/><path class="opt-plus" d="M60 114.5v11M54.5 120h11"/><text x="84" y="113">Khiva</text><text class="sub" x="84" y="137">Optional add-on</text></g>
+  <path class="rail" d="M760 170C700 380 420 520 170 345C250 290 390 290 480 352C560 300 650 150 760 170"/>
+  <path class="road" d="M760 170C780 120 815 88 858 112C884 150 826 204 760 170"/>
+  <path class="rail-done" id="routeDone" d="M760 170C700 380 420 520 170 345C250 290 390 290 480 352C560 300 650 150 760 170C780 120 815 88 858 112C884 150 826 204 760 170"/>
+  <path id="routePath" d="M760 170C700 380 420 520 170 345C250 290 390 290 480 352C560 300 650 150 760 170C780 120 815 88 858 112C884 150 826 204 760 170" fill="none" stroke="none" data-stops="0.0,0.42955,0.62462,0.83053,0.90909,1.0" data-bus-from="3"/>
+  <g class="stop-dot" data-city="tas"><circle class="halo" cx="760" cy="170" r="22"/><circle class="ring" cx="760" cy="170" r="11"/><circle class="core" cx="760" cy="170" r="5"/></g><g class="stop-dot" data-city="buk"><circle class="halo" cx="170" cy="345" r="22"/><circle class="ring" cx="170" cy="345" r="11"/><circle class="core" cx="170" cy="345" r="5"/></g><g class="stop-dot" data-city="sam"><circle class="halo" cx="480" cy="352" r="22"/><circle class="ring" cx="480" cy="352" r="11"/><circle class="core" cx="480" cy="352" r="5"/></g><g class="stop-dot" data-city="mtn"><circle class="halo" cx="858" cy="112" r="22"/><circle class="ring" cx="858" cy="112" r="11"/><circle class="core" cx="858" cy="112" r="5"/></g>
+  <g class="city" data-city="tas"><text x="746" y="126" text-anchor="end">Tashkent</text><text class="sub" x="746" y="148" text-anchor="end">Days 1, 6 and 8</text></g><g class="city" data-city="buk"><text x="148" y="336" text-anchor="end">Bukhara</text><text class="sub" x="148" y="358" text-anchor="end">Days 2 and 3</text></g><g class="city" data-city="sam"><text x="470" y="292" text-anchor="middle">Samarkand</text><text class="sub" x="470" y="314" text-anchor="middle">Days 4 and 5</text></g><g class="city" data-city="mtn"><text x="888" y="60" text-anchor="end">Mountains</text><text class="sub" x="888" y="82" text-anchor="end">Day 7, by bus</text></g>
+  <g id="train" transform="translate(760 170)"><g transform="translate(-36 0)"><rect x="0" y="-6.5" width="21" height="13" rx="3.5"/><rect x="23" y="-6.5" width="21" height="13" rx="3.5"/><path d="M46 -6.5H60Q72 0 60 6.5H46Z"/><rect class="stripe" x="1" y="-1.3" width="66" height="2.6"/></g></g>
+  <g id="bus" transform="translate(760 170)"><rect x="-21" y="-11" width="42" height="18" rx="4.5"/><rect class="win" x="-17" y="-8" width="26" height="6" rx="1.5"/><rect class="win" x="12" y="-8" width="6" height="8" rx="1.5"/><rect class="stripe" x="-21" y="1.5" width="42" height="2.4"/><circle class="wheel" cx="-11" cy="8" r="3.8"/><circle class="wheel" cx="11" cy="8" r="3.8"/></g>
+</svg><p class="map-hint" aria-hidden="true">Scroll to ride the fast train</p></div>
+        <div class="stops"><article class="stop-card on" data-city="tas"><div class="stop-photo"><img src="img/tashkent_minor_mosque.webp" alt="A grand tiled portal with a blue carpet in Tashkent" loading="lazy" decoding="async"><span class="cap">A tiled portal, Tashkent</span></div><div class="stop-text"><p class="stop-n">Stop 1 of 6</p><h3>Tashkent</h3><div class="sday"><b>Day 1</b><span class="where">Arrival in <strong>Tashkent</strong></span><ul><li>Check-in and rest</li><li>Tashkent city walk</li></ul></div></div></article><article class="stop-card" data-city="buk"><div class="stop-photo"><img src="img/hero_mir_i_arab.webp" alt="The Mir-i-Arab Madrasa with turquoise domes in late sun" loading="lazy" decoding="async"><span class="cap">Mir-i-Arab Madrasa, Bukhara</span></div><div class="stop-text"><p class="stop-n">Stop 2 of 6</p><h3>Bukhara</h3><div class="sday"><b>Day 2</b><span class="where">Fast train to <strong>Bukhara</strong></span><ul><li>Lyab-i Hauz</li><li>Old City</li><li>Kalyan Minaret</li></ul></div><div class="sday"><b>Day 3</b><span class="where">In <strong>Bukhara</strong></span><ul><li>Ark Fortress</li><li>Sitorai Mohi Hosa Palace</li><li>Mausoleum of Ismail Samani</li></ul></div></div></article><article class="stop-card" data-city="sam"><div class="stop-photo"><img src="img/samarkand_registan_night.webp" alt="The Registan lit up at night, reflected on the wet square" loading="lazy" decoding="async"><span class="cap">The Registan at night</span></div><div class="stop-text"><p class="stop-n">Stop 3 of 6</p><h3>Samarkand</h3><div class="sday"><b>Day 4</b><span class="where">Fast train to <strong>Samarkand</strong></span><ul><li>Registan and Shah-i-Zinda</li><li>Bibi-Khanym Mosque</li><li>Laser show at the Registan</li></ul></div><div class="sday"><b>Day 5</b><span class="where"><strong>Samarkand</strong> to <strong>Tashkent</strong></span><ul><li>Gur-e-Amir</li><li>Ulugbek Observatory</li></ul></div></div></article><article class="stop-card" data-city="tas"><div class="stop-photo"><img src="img/a006.webp" alt="A mosque complex with blue domes in Tashkent" loading="lazy" decoding="async"><span class="cap">Blue domes, Tashkent</span></div><div class="stop-text"><p class="stop-n">Stop 4 of 6</p><h3>Tashkent</h3><div class="sday"><b>Day 6</b><span class="where">In <strong>Tashkent</strong></span><ul><li>Company and university visits</li><li>Chorsu Bazaar</li></ul></div></div></article><article class="stop-card" data-city="mtn"><div class="stop-photo"><img src="img/mountains_snow.webp" alt="A cable car over snowy slopes at Amirsoy" loading="lazy" decoding="async"><span class="cap">Amirsoy cable car</span></div><div class="stop-text"><p class="stop-n">Stop 5 of 6</p><h3>Tashkent mountains</h3><div class="sday"><b>Day 7</b><span class="where">By bus to the <strong>Tashkent mountains</strong></span><ul><li>Lake Charvak</li><li>Amirsoy cable car</li></ul></div></div></article><article class="stop-card" data-city="tas"><div class="stop-photo"><img src="img/a030.webp" alt="A monumental building in silhouette at sunset in Tashkent" loading="lazy" decoding="async"><span class="cap">Tashkent at sunset</span></div><div class="stop-text"><p class="stop-n">Stop 6 of 6</p><h3>Tashkent</h3><div class="sday"><b>Day 8</b><span class="where">Departures from <strong>Tashkent</strong></span><ul><li>Tashkent International Airport</li></ul></div></div></article></div>
+      </div>
+    </div>
+    <div class="wrap tailor-row">
+      <div>
+        <div class="tailor">
+          <h3>Make it yours</h3>
+          <ul class="diam"><li>Any month, not only during the school break</li><li>Longer or shorter than eight days</li><li>Add Khiva, the Fergana Valley or a desert yurt camp</li><li>Visits shaped around your field of study</li></ul>
+        </div>
+        <p class="tent">Sample itinerary from the Harvard and MIT treks, for information only. Every trek is tailored: dates, length, cities and visits are agreed with your group.</p>
+      </div>
+      <figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/train_afrosiyob.webp" alt="The Afrosiyob high-speed train at a station platform" loading="lazy"></div><figcaption>The fast train<small>2026</small></figcaption></figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="inc-title">
+    <div class="inc-grid">
+      <div class="inc-photo" style="background-image:url('img/samarkand_shahizinda.webp')"><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/samarkand_tillakari_dome.webp" alt="The gilded dome of the Tilla-Kari Madrasa seen from below" loading="lazy"></div><figcaption>Tilla-Kari, Samarkand<small>2026</small></figcaption></figure></div>
+      <div class="inc-text">
+        <h2 id="inc-title">What the trek includes</h2>
+        <div class="inc-cols">
+          <div><h3>Included in the cost</h3><ul class="diam"><li>Accommodation with breakfast</li><li>Meals (lunches and dinners)</li><li>City tours in Tashkent, Samarkand and Bukhara</li><li>Cultural experiences with guides, such as Nowruz in March</li><li>Transportation (fast trains and transfers)</li><li>Local guide, museum entrance fees and a SIM card</li></ul></div>
+          <div><h3>Not included</h3><ul class="diam x"><li>International flights</li><li>Travel medical and evacuation insurance</li><li>Visa fees, if your passport needs a visa</li><li>Alcohol and personal expenses</li><li>Anything not listed as included</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="pay-title">
+    <span class="side" aria-hidden="true">UZBEKISTAN TREK</span>
+    <div class="wrap split">
+      <div>
+        <h2 id="pay-title">Dates and payment</h2>
+        <p class="lede">Most groups travel during a school break, but a trek can run in any month. Every trek is quoted for its group, dates and length, so we do not publish a single price.</p>
+        <h3 style="margin-top:30px">Payment in three installments</h3>
+        <ol class="tranches"><li><span class="tn" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>1</i></span><b>First deposit</b><span class="d">a fixed amount to hold your place</span></li><li><span class="tn" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>2</i></span><b>Second deposit</b><span class="d">a fixed amount, closer to the trip</span></li><li><span class="tn" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg><i>3</i></span><b>Remaining balance</b><span class="d">paid before departure</span></li></ol>
+        <p class="pay-note">Your quote lists the exact amounts and due dates.</p>
+      </div>
+      <div class="pols">
+        <figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/a626.webp" alt="Three friends smiling in a mountain cafe" loading="lazy"></div><figcaption>Hot drinks at the top<small>2026</small></figcaption></figure>
+        <figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/food_tandir.webp" alt="A baker and a student at a clay tandir oven" loading="lazy"></div><figcaption>Baking in a clay tandir<small>2026</small></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band-navy" aria-labelledby="founder-title">
+    <span class="side light" aria-hidden="true">UZBEKISTAN TREK</span>
+    <div class="wrap split">
+      <figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/a405.webp" alt="The 2026 group in front of a blue-domed mausoleum" loading="lazy"></div><figcaption>The 2026 group, Samarkand<small>March 2026</small></figcaption></figure>
+      <div>
+        <h2 id="founder-title">A childhood dream</h2>
+        <div class="letter" style="margin-top:22px">
+          <p>As a boy in Uzbekistan, I saw a photo of a student showing his university classmates around his home country. I promised myself I would do the same one day. At Harvard, I did: on the first day we announced the trek, 40 people signed up.</p>
+          <span class="sig">Jakhongir Sadiev<small>Founder, Uzbekistan Trek</small></span>
+        </div>
+        <div class="btn-row" data-float="0.06"><a class="btn btn-yellow" href="founder.html">Read the founder&rsquo;s story</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec faq-sec" id="faq" aria-labelledby="faq-title" style="background-image:linear-gradient(rgba(19,35,75,.62), rgba(19,35,75,.82)), url('img/tashkent_civilization_dome.webp')">
+    <div class="wrap"><div class="faq-box"><h2 id="faq-title">FAQ</h2><details><summary>Who can join?</summary><div class="a"><p>Graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows. We do not run trips for undergraduates.</p></div></details><details><summary>Do I need a visa?</summary><div class="a"><p>The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).</p><p>For other passports, check the official visa page: <a href="https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi" target="_blank" rel="noopener">Visa to the Republic of Uzbekistan</a>.</p></div></details><details><summary>Is Uzbekistan safe?</summary><div class="a"><p>The US State Department rates Uzbekistan Level 1, its lowest advisory level, with the advice to exercise normal precautions (advisory issued January 26, 2026). Every group gets a safety briefing before departure.</p></div></details><details><summary>Are international flights included?</summary><div class="a"><p>No. Trips are land-only, so you book your own flights.</p><p>Uzbekistan Airways flies nonstop between New York (JFK) and Tashkent a few times a week, in about 13 hours. You can also connect through hubs such as Istanbul or Dubai.</p></div></details><details><summary>What is not included in the cost?</summary><div class="a"><p>International flights, travel medical and evacuation insurance, visa fees if your passport needs a visa, alcohol and personal expenses, and anything not listed as included.</p></div></details><details><summary>How does payment work?</summary><div class="a"><p>In three installments: a fixed first deposit, a fixed second deposit, and the remaining balance before departure. Your quote lists the exact amounts and due dates.</p></div></details><details><summary>Can a trek run outside spring break?</summary><div class="a"><p>Yes. Most groups travel during a school break, but we can run a trek in any month and for any length.</p></div></details><details><summary>Will we meet government officials?</summary><div class="a"><p>The standard program focuses on companies, universities and/or culture (subject to approval). Formal government meetings are not part of it.</p></div></details><details><summary>Is there a refund if I withdraw?</summary><div class="a"><p>You can transfer your place to another graduate student with our approval. Refund terms are set out in the booking terms you accept when you pay. We strongly recommend trip cancellation insurance.</p></div></details><details><summary>Is this run by my university?</summary><div class="a"><p>No. Groups organize themselves, and Uzbekistan Trek is not affiliated with any university. Please do not present the trip as an official university program.</p></div></details></div></div>
+  </section>
+
+  <section class="sec band-yellow" aria-labelledby="final-title">
+    <div class="wrap">
+      <h2 id="final-title" style="text-align:center">Ready to plan?</h2>
+      <p class="lede" style="margin:12px auto 32px; text-align:center">Tell us how many of you are coming.</p>
+      <div class="choices small" id="choose-end"><a class="choice on-white" href="big-group.html"><span class="num">10+<small>travelers</small></span><svg class="people" viewBox="0 0 77 52" fill="currentColor" aria-hidden="true"><circle cx="8" cy="7" r="4.4"/><path d="M2 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="21" cy="7" r="4.4"/><path d="M15 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="34" cy="7" r="4.4"/><path d="M28 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="47" cy="7" r="4.4"/><path d="M41 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="60" cy="7" r="4.4"/><path d="M54 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="14" cy="23" r="4.4"/><path d="M8 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="27" cy="23" r="4.4"/><path d="M21 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="40" cy="23" r="4.4"/><path d="M34 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="53" cy="23" r="4.4"/><path d="M47 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="66" cy="23" r="4.4"/><path d="M60 39c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/></svg><strong>Big group trek</strong><span class="d">Full package on your dates.</span><span class="s">Full package on your dates.</span><span class="go">Plan a big group trek <i aria-hidden="true">&#8250;</i></span></a><a class="choice on-white" href="small-group.html"><span class="num">1&ndash;9<small>travelers</small></span><svg class="people" viewBox="0 0 51 34" fill="currentColor" aria-hidden="true"><circle cx="8" cy="7" r="4.4"/><path d="M2 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="21" cy="7" r="4.4"/><path d="M15 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/><circle cx="34" cy="7" r="4.4"/><path d="M28 23c0-4.2 2.7-7.6 6-7.6s6 3.4 6 7.6z"/></svg><strong>Small group trip</strong><span class="d">Join a departure or go private.</span><span class="s">Join a departure or go private.</span><span class="go">See small group options <i aria-hidden="true">&#8250;</i></span></a></div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <a class="logo" href="./" aria-label="Uzbekistan Trek, home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298.9 48" height="38" width="236.6" role="img" aria-label="Uzbekistan Trek"><g transform="translate(0 0) scale(1.0)"><g fill="#FBB617"><rect x="8" y="8" width="32" height="32" rx="1.5"/><rect x="8" y="8" width="32" height="32" rx="1.5" transform="rotate(45 24 24)"/></g><g fill="#13234B"><rect x="15" y="15" width="18" height="18"/><rect x="15" y="15" width="18" height="18" transform="rotate(45 24 24)"/></g><circle cx="24" cy="24" r="4.2" fill="#FBB617"/></g><path fill="#FFFFFF" d="M68.757 31.476Q66.489 31.476 64.88250000000001 30.7935Q63.276 30.111 62.415000000000006 28.756500000000003Q61.554 27.402 61.554 25.407V16.776H66.195V25.344Q66.195 26.499 66.82499999999999 27.255Q67.455 28.011 68.736 28.011Q70.017 28.011 70.6575 27.255Q71.298 26.499 71.298 25.344V16.776H75.93900000000001V25.407Q75.93900000000001 27.402 75.08850000000001 28.756500000000003Q74.238 30.111 72.6315 30.7935Q71.025 31.476 68.757 31.476Z M79.09700000000001 31.224V29.733L85.796 20.241H79.601V16.776H92.936V18.267L86.23700000000001 27.759H93.104V31.224Z M96.409 31.224V16.776H106.027Q107.119 16.776 108.022 17.2275Q108.92500000000001 17.679 109.471 18.476999999999997Q110.01700000000001 19.275 110.01700000000001 20.325Q110.01700000000001 21.375 109.68100000000001 22.047Q109.345 22.719 108.799 23.1075Q108.253 23.496 107.602 23.685V23.769Q108.358 23.936999999999998 108.9775 24.3465Q109.59700000000001 24.756 109.97500000000001 25.491Q110.35300000000001 26.226 110.35300000000001 27.381Q110.35300000000001 28.536 109.786 29.397Q109.21900000000001 30.258 108.274 30.741Q107.32900000000001 31.224 106.153 31.224ZM101.05000000000001 27.864H104.578Q105.061 27.864 105.355 27.528Q105.649 27.192 105.649 26.52Q105.649 26.205 105.5125 25.9425Q105.376 25.68 105.1345 25.533Q104.893 25.386 104.578 25.386H101.05000000000001ZM101.05000000000001 22.404H104.242Q104.578 22.404 104.809 22.246499999999997Q105.04 22.089 105.1765 21.794999999999998Q105.313 21.500999999999998 105.313 21.06Q105.313 20.598 104.998 20.2725Q104.683 19.947 104.242 19.947H101.05000000000001Z M113.91000000000001 31.224V16.776H126.405V20.241H118.551V22.235999999999997H125.27100000000002V25.554000000000002H118.551V27.759H126.552V31.224Z M130.109 31.224V16.776H134.75V22.95L139.895 16.776H145.649L140.46200000000002 22.719L145.75400000000002 31.224H140.273L137.207 25.826999999999998L134.75 28.2V31.224Z M148.70200000000003 31.224V16.776H153.34300000000002V31.224Z M164.04000000000002 31.476Q162.549 31.476 161.2575 31.255499999999998Q159.966 31.035 158.98950000000002 30.499499999999998Q158.013 29.964 157.4565 29.008499999999998Q156.9 28.053 156.9 26.604Q156.9 26.562 156.9 26.488500000000002Q156.9 26.415 156.92100000000002 26.331H161.31Q161.28900000000002 26.415 161.28900000000002 26.488500000000002Q161.28900000000002 26.562 161.28900000000002 26.625Q161.28900000000002 27.255 161.58300000000003 27.591Q161.877 27.927 162.41250000000002 28.0425Q162.948 28.158 163.62 28.158Q163.872 28.158 164.15550000000002 28.1475Q164.43900000000002 28.137 164.7015 28.0845Q164.96400000000003 28.032 165.1845 27.927Q165.40500000000003 27.822 165.531 27.6435Q165.657 27.465 165.657 27.192Q165.657 26.793 165.3 26.561999999999998Q164.943 26.331 164.334 26.163Q163.72500000000002 25.995 162.96900000000002 25.848Q162.21300000000002 25.701 161.394 25.5015Q160.57500000000002 25.302 159.81900000000002 24.987000000000002Q159.06300000000002 24.672 158.454 24.1785Q157.84500000000003 23.685 157.488 22.9395Q157.131 22.194 157.131 21.144Q157.131 19.884 157.656 19.002Q158.181 18.119999999999997 159.0945 17.573999999999998Q160.008 17.028 161.17350000000002 16.776Q162.33900000000003 16.524 163.62 16.524Q164.92200000000003 16.524 166.06650000000002 16.7865Q167.211 17.049 168.09300000000002 17.595Q168.97500000000002 18.141 169.479 18.980999999999998Q169.983 19.820999999999998 170.00400000000002 20.976V21.228H165.657V21.144Q165.657 20.766 165.46800000000002 20.43Q165.27900000000002 20.094 164.86950000000002 19.884Q164.46 19.674 163.788 19.674Q163.15800000000002 19.674 162.72750000000002 19.8Q162.29700000000003 19.926000000000002 162.08700000000002 20.1465Q161.877 20.366999999999997 161.877 20.619Q161.877 21.018 162.234 21.27Q162.591 21.522 163.20000000000002 21.689999999999998Q163.80900000000003 21.857999999999997 164.56500000000003 22.005Q165.32100000000003 22.152 166.14000000000001 22.3305Q166.959 22.509 167.715 22.803Q168.471 23.097 169.08 23.5695Q169.68900000000002 24.042 170.04600000000002 24.735Q170.40300000000002 25.428 170.40300000000002 26.436Q170.40300000000002 28.221 169.57350000000002 29.334Q168.74400000000003 30.447 167.30550000000002 30.9615Q165.86700000000002 31.476 164.04000000000002 31.476Z M177.48800000000003 31.224V20.472H172.74200000000002V16.776H186.854V20.472H182.12900000000002V31.224Z M188.73100000000002 31.224 194.002 16.776H199.399L204.67000000000002 31.224H199.75600000000003L199.14700000000002 29.187H194.086L193.477 31.224ZM195.05200000000002 25.953H198.20200000000003L197.50900000000001 23.643Q197.425 23.391 197.32 23.034Q197.215 22.677 197.11 22.278Q197.00500000000002 21.878999999999998 196.90000000000003 21.490499999999997Q196.79500000000002 21.102 196.711 20.808H196.543Q196.459 21.186 196.3225 21.669Q196.186 22.152 196.03900000000002 22.6665Q195.89200000000002 23.180999999999997 195.745 23.643Z M207.513 31.224V16.776H211.461L215.955 21.963Q216.144 22.173000000000002 216.459 22.572000000000003Q216.774 22.971 217.0995 23.380499999999998Q217.425 23.79 217.59300000000002 24.042L217.698 24.0Q217.677 23.412 217.677 22.8345Q217.677 22.256999999999998 217.677 21.963V16.776H221.898V31.224H217.971L212.91 25.448999999999998Q212.553 25.029 212.301 24.682499999999997Q212.049 24.336 211.818 24.021L211.713 24.063Q211.734 24.462 211.734 24.860999999999997Q211.734 25.259999999999998 211.734 25.448999999999998V31.224Z  M234.66100000000003 31.224V20.472H229.91500000000002V16.776H244.02700000000002V20.472H239.30200000000002V31.224Z M247.24800000000002 31.224V16.776H256.29900000000004Q257.916 16.776 258.9975 17.427Q260.079 18.078 260.625 19.128Q261.171 20.177999999999997 261.171 21.396Q261.171 22.782 260.52 23.863500000000002Q259.869 24.945 258.75600000000003 25.596L261.591 31.224H256.38300000000004L254.17800000000003 26.373H251.889V31.224ZM251.889 23.16H255.144Q255.69000000000003 23.16 256.06800000000004 22.7295Q256.446 22.299 256.446 21.585Q256.446 21.144 256.278 20.808Q256.11 20.472 255.81600000000003 20.2725Q255.52200000000002 20.073 255.144 20.073H251.889Z M264.749 31.224V16.776H277.244V20.241H269.39V22.235999999999997H276.11V25.554000000000002H269.39V27.759H277.391V31.224Z M280.948 31.224V16.776H285.589V22.95L290.734 16.776H296.488L291.301 22.719L296.593 31.224H291.112L288.046 25.826999999999998L285.589 28.2V31.224Z"/></svg></a>
+      <p style="margin-top:16px">Group trips to Uzbekistan for graduate students. Trips are land-only; international flights are not included.</p>
+      <p>Uzbekistan Trek is independent. It is not affiliated with, sponsored or endorsed by Harvard University, the Massachusetts Institute of Technology or any other university. University names describe where past participants study.</p>
+      <div class="contact">
+        <span><b>Email:</b> <span class="mail">jsadiev@hks.harvard.edu</span></span>
+        <span><b>Telegram:</b> <a href="https://t.me/uzbtrek_bot" target="_blank" rel="noopener">@uzbtrek_bot</a></span>
+      </div>
+    </div>
+    <nav aria-label="Footer">
+      <a href="big-group.html">Big group trek, 10 or more</a>
+      <a href="small-group.html">Small group trip, under 10</a>
+      <a href="founder.html">About the founder</a>
+      <a href="./#faq">Questions</a>
+      <span style="margin-top:14px">&copy; 2026 Uzbekistan Trek. Photos from the 2025 and 2026 treks.</span>
+    </nav>
+  </div>
+</footer>
+<script src="assets/config.js"></script>
+<script src="assets/trek.js"></script>
+<script src="assets/motion.js"></script>
+</body>
+</html>
