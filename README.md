@@ -7,8 +7,8 @@ A static website (plain HTML, no build step), ready for GitHub Pages. Forms and 
 | Path | What it is |
 |---|---|
 | `index.html`, `big-group.html`, `small-group.html`, `founder.html` | The site (yellow and navy, khatam star logo) |
-| `assets/config.js` | Settings: relay address, bot name, email. The only file you edit to connect Telegram |
-| `assets/trek.js` | Forms, mobile menu, departure picker |
+| `assets/config.js` | Settings: relay address, visitor statistics token, bot name, email. The only file you edit to connect Telegram and the visitor counter |
+| `assets/trek.js` | Forms, mobile menu, departure picker, visitor counter |
 | `assets/motion.js` | Motion: the khatam stars on the home banner, the train and bus on the sample itinerary, button hover effects and the drifting watermark on yellow sections. Photos do not move. Visitors who turn on "reduce motion" get a still page |
 | `img/` | Photos from the 2025 and 2026 treks used on the site |
 | `brand/` | The khatam star logo as SVG files: `khatam-star-mark.svg`, `khatam-star-lockup.svg`, `khatam-star-lockup-white.svg` (for dark backgrounds) |
@@ -76,6 +76,26 @@ Everything arrives in your own chat with @uzbtrek_bot:
 - **Website requests** arrive as a formatted message. Reply by email, or write to the person on Telegram if they left a handle.
 - **Chat messages** arrive tagged `#u123456789`. To answer, **reply** to that message (swipe it, or right-click > Reply). The bot sends your reply to the visitor and confirms "Sent." Text, photos and files all work.
 - If you write to the bot without replying to a tagged message, nothing is sent to anyone.
+
+## Visitor statistics (only you can see them)
+
+The site can count its visitors with Cloudflare Web Analytics. It is free, it sets no cookies, and the numbers appear only inside your Cloudflare account (the one that runs the relay). Visitors see nothing.
+
+1. Open [Web Analytics in the Cloudflare dashboard](https://dash.cloudflare.com/?to=/:account/web-analytics) and select **Add a site**.
+2. Enter your site's hostname without `https://` or a path, for example `YOUR-USERNAME.github.io` (or your own domain), then select **Done**.
+3. Open **Manage site**. Cloudflare shows a short snippet of code. Copy only the token from it: the letters and digits after `"token": "`.
+4. In `assets/config.js` on GitHub, put the token in the `analyticsToken` line and commit:
+   `analyticsToken: "YOUR-TOKEN",`
+   If your `config.js` has no `analyticsToken` line yet, add that line directly below the `endpoint:` line.
+5. Open your site, wait a few minutes, then open Web Analytics again. You see visits, page views, the most viewed pages, where visitors came from, countries and devices.
+
+Good to know:
+
+- The token can only send visits to your account; it cannot read your statistics. That is why it may sit in this public file, unlike the bot token.
+- "Visits" counts arrivals at the site from somewhere else (a link, a search, typing the address); "page views" counts every page opened. Cloudflare does not count unique people, because it does not follow individuals.
+- Some ad blockers block the counter, so the real numbers are somewhat higher. Cloudflare keeps the data for six months.
+- To leave out your own visits, open your site once with `?count=off` at the end of the address, for example `https://YOUR-USERNAME.github.io/uzbekistan-trek/?count=off`, in each browser you use (laptop and phone). A short message confirms it. `?count=on` turns counting back on in that browser.
+- GitHub's own Insights > Traffic page counts visits to the repository on github.com, not visits to the website.
 
 ## Changing settings later
 
