@@ -165,6 +165,9 @@ p{ margin:0; }
 .faq-box summary::-webkit-details-marker{ display:none; }
 .faq-box summary::after{ content:"+"; position:absolute; right:4px; top:50%; transform:translateY(-50%); width:30px; height:30px; display:grid; place-items:center; border-radius:50%; background:var(--yellow); font-weight:900; font-size:20px; line-height:1; }
 .faq-box details[open] summary::after{ content:"\2212"; }
+.faq-box summary::after{ transition:transform .5s cubic-bezier(.4,0,.2,1); }
+.faq-box details[open]:not(.closing) summary::after{ transform:translateY(-50%) rotate(180deg); }
+.faq-box details.closing summary::after{ content:"+"; }
 .faq-box .a{ padding:0 0 20px; max-width:68ch; color:var(--muted); font-size:17px; }
 .faq-box .a p + p{ margin-top:10px; }
 .faq-box .a a{ color:var(--navy); font-weight:700; }
@@ -249,6 +252,9 @@ td b{ display:block; font-weight:850; }
 .sample summary::-webkit-details-marker{ display:none; }
 .sample summary::before{ content:"+"; display:grid; place-items:center; width:24px; height:24px; flex:none; border-radius:50%; background:var(--yellow); font-weight:900; }
 .sample details[open] summary::before{ content:"\2212"; }
+.sample summary::before{ transition:transform .5s cubic-bezier(.4,0,.2,1); }
+.sample details[open]:not(.closing) summary::before{ transform:rotate(180deg); }
+.sample details.closing summary::before{ content:"+"; }
 .sample-text{ white-space:pre-line; overflow-wrap:anywhere; margin-top:10px; padding:16px 18px; border-radius:10px; background:var(--paper); font-size:15.5px; line-height:1.55; color:var(--navy); }
 .sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 .opt-grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:26px; margin-top:36px; }
