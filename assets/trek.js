@@ -2,7 +2,7 @@
    Reads window.TREK_CONFIG from assets/config.js:
      endpoint     URL of the Telegram relay (Cloudflare Worker), e.g. "https://uzbtrek-relay.example.workers.dev/submit".
                   Forms send requests straight to the bot through it. If it is empty or unreachable, the visitor
-                  sees a red message pointing to Telegram and email.
+                  sees a red message pointing to Telegram and email. Visit alerts go to the same relay at /visit.
      telegramBot  bot username without @, e.g. "uzbtrek_bot".
      email        address offered as a second way to send the request when the relay is not set up.
      analyticsToken  Cloudflare Web Analytics site token. When set, every page loads Cloudflare's visitor counter;
@@ -64,15 +64,39 @@
     toTop(true);
   }, true);
 
-  /* ---------- visitor statistics: Cloudflare Web Analytics, seen only in the owner's Cloudflare dashboard ----------
-     Loads only when assets/config.js has an analyticsToken. That token can send visits but cannot read them,
-     and the counter sets no cookies. Opening any page with ?count=off stops counting visits from that browser
-     (for the owner's own visits); ?count=on turns counting back on. */
+  /* ---------- visitor statistics and visit alerts: only the owner sees them; visitors see nothing ----------
+     1. Counter: when assets/config.js has an analyticsToken, every page loads Cloudflare Web Analytics. The numbers
+        appear only in the owner's Cloudflare dashboard; that token can send visits but cannot read them.
+     2. Visit alerts: when someone arrives at the site (not when they move between its pages, reload or go back),
+        the page tells the relay (the endpoint, with /visit instead of /submit) and @uzbtrek_bot sends the owner a note.
+     Neither sets cookies. Opening any page with ?count=off stops both for that browser (for the owner's own visits);
+     ?count=on turns them back on. */
   (function () {
     var token = String(CFG.analyticsToken || "").trim();
+    var endpoint = String(CFG.endpoint || "").trim();
+    var visitUrl = /\/submit\/?$/.test(endpoint) ? endpoint.replace(/\/submit\/?$/, "/visit") : "";
     var KEY = "uztrek-count";
     var m = /[?&]count=(on|off)(?:&|$)/.exec(location.search);
-    if (!token && !m) return;
+    if (!token && !visitUrl && !m) return;
+
+    function sendVisit() {
+      var nav = null;
+      try { nav = performance.getEntriesByType("navigation")[0]; } catch (e) { /* ignore */ }
+      if (nav && (nav.type === "reload" || nav.type === "back_forward")) return;   /* not a new arrival */
+      var ref = "";
+      try { ref = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e) { /* ignore */ }
+      if (ref === location.hostname) return;   /* moving between the site's own pages */
+      if (navigator.webdriver) return;   /* automated browsers */
+      var tag = "";
+      try { tag = new URLSearchParams(location.search).get("utm_source") || ""; } catch (e) { /* ignore */ }
+      var data = JSON.stringify({ page: location.pathname, ref: ref, src: tag.slice(0, 40) });
+      function send() {
+        try { if (navigator.sendBeacon && navigator.sendBeacon(visitUrl, data)) return; } catch (e) { /* use fetch */ }
+        try { fetch(visitUrl, { method: "POST", body: data, mode: "no-cors", keepalive: true }).catch(function () {}); } catch (e) { /* ignore */ }
+      }
+      if (document.prerendering) document.addEventListener("prerenderingchange", send, { once: true });   /* only once actually shown */
+      else send();
+    }
 
     function note(text) {
       function show() {
@@ -106,12 +130,15 @@
       note(!saved ? "This browser does not let the site save this setting."
         : m[1] === "off" ? "Visits from this browser are no longer counted." : "Visits from this browser are counted again.");
     }
-    if (!token || off) return;
-    var s = document.createElement("script");
-    s.defer = true;
-    s.src = "https://static.cloudflareinsights.com/beacon.min.js";
-    s.setAttribute("data-cf-beacon", JSON.stringify({ token: token }));
-    document.head.appendChild(s);
+    if (off) return;
+    if (token) {
+      var s = document.createElement("script");
+      s.defer = true;
+      s.src = "https://static.cloudflareinsights.com/beacon.min.js";
+      s.setAttribute("data-cf-beacon", JSON.stringify({ token: token }));
+      document.head.appendChild(s);
+    }
+    if (visitUrl && !m) sendVisit();   /* no note for the visit that only switches ?count on or off */
   })();
 
   /* ---------- mobile menu: a button with [data-menu-btn] toggles the element with [data-menu] ---------- */
