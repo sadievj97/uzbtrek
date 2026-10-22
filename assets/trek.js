@@ -1,7 +1,8 @@
 /* Uzbekistan Trek: shared page script (forms to Telegram, mobile menu, departure picker).
    Reads window.TREK_CONFIG from assets/config.js:
      endpoint     URL of the Telegram relay (Cloudflare Worker), e.g. "https://uzbtrek-relay.example.workers.dev/submit".
-                  Leave it empty and the form falls back to "copy the request and open Telegram".
+                  Forms send requests straight to the bot through it. If it is empty or unreachable, the visitor
+                  sees a red message pointing to Telegram and email.
      telegramBot  bot username without @, e.g. "uzbtrek_bot".
      email        address offered as a second way to send the request when the relay is not set up.
    Never put a Telegram bot token in this file or anywhere in the website: the site is public. */
@@ -108,11 +109,6 @@
     return out;
   }
 
-  function asText(form, fields) {
-    var title = form.getAttribute("data-form-title") || "Trek request";
-    return ["Uzbekistan Trek: " + title].concat(fields.map(function (f) { return f.label + (/[?:]$/.test(f.label) ? " " : ": ") + f.value; })).join("\n");
-  }
-
   function validate(form) {
     var bad = null, names = [];
     form.querySelectorAll("[data-req]").forEach(function (el) {
@@ -137,58 +133,34 @@
     return p;
   }
 
-  function copyText(text, onDone) {
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { onDone(true); }, function () { onDone(false); });
-        return;
-      }
-    } catch (e) { /* fall through */ }
-    onDone(false);
+  /* green line under the button when the request has reached the bot */
+  function showSent(msg) {
+    setMsg(msg, "sent");
+    var ns = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 20 20"); svg.setAttribute("aria-hidden", "true"); svg.setAttribute("focusable", "false");
+    var path = document.createElementNS(ns, "path");
+    path.setAttribute("d", "M5 10.5 8.5 14 15 6.5");
+    svg.appendChild(path);
+    msg.appendChild(svg);
+    msg.appendChild(document.createTextNode("Your message has been successfully sent!"));
   }
 
-  function telegramFallback(msg, text, intro, title) {
-    setMsg(msg, "ok tg");
-    line(msg, intro);
-    var status = line(msg, "", "p");
-    status.className = "tform-copied";
-    var ta = document.createElement("textarea");
-    ta.className = "tform-copy";
-    ta.readOnly = true;
-    ta.value = text;
-    ta.rows = Math.min(10, text.split("\n").length + 1);
-    ta.setAttribute("aria-label", "Your request");
-    msg.appendChild(ta);
-    var row = document.createElement("div");
-    row.className = "tform-actions";
-    var copy = document.createElement("button");
-    copy.type = "button";
-    copy.className = "tform-copybtn";
-    copy.textContent = "Copy request";
-    var open = document.createElement("a");
-    open.className = "tform-tg";
-    open.href = BOT_URL;
-    open.target = "_blank";
-    open.rel = "noopener";
-    open.textContent = "Open Telegram: @" + BOT;
-    row.appendChild(copy);
-    row.appendChild(open);
+  /* red message when the request could not be sent; the form keeps what the visitor typed */
+  function showFailed(msg) {
+    setMsg(msg, "err");
+    line(msg, "Sorry, your message could not be sent. Please try again in a minute.");
+    var p = line(msg, "You can also write to us on Telegram at ");
+    var a = document.createElement("a");
+    a.href = BOT_URL; a.target = "_blank"; a.rel = "noopener"; a.textContent = "@" + BOT;
+    p.appendChild(a);
     if (EMAIL) {
-      var mail = document.createElement("a");
-      mail.className = "tform-mail";
-      mail.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Uzbekistan Trek: " + (title || "Trek request")) +
-        "&body=" + encodeURIComponent(text);
-      mail.textContent = "Or send it by email";
-      row.appendChild(mail);
+      p.appendChild(document.createTextNode(" or by email at "));
+      var m = document.createElement("a");
+      m.href = "mailto:" + EMAIL; m.textContent = EMAIL;
+      p.appendChild(m);
     }
-    msg.appendChild(row);
-    function done(ok) {
-      status.textContent = ok ? "Copied. Paste it into the chat with @" + BOT + " and send, or use the email link." :
-        "Copy the request below, then paste it into the chat with @" + BOT + ", or use the email link.";
-      if (!ok) { ta.focus(); ta.select(); }
-    }
-    copy.addEventListener("click", function () { copyText(text, done); });
-    copyText(text, done);
+    p.appendChild(document.createTextNode("."));
   }
 
   document.querySelectorAll("form.tform").forEach(function (form) {
@@ -210,10 +182,9 @@
       if (hp && hp.value) { form.reset(); setMsg(msg, "ok"); msg.textContent = "Thank you."; return; }
 
       var fields = fieldsOf(form);
-      var text = asText(form, fields);
 
-      if (!CFG.endpoint) {
-        telegramFallback(msg, text, "Last step: send this request to us on Telegram or by email.", form.getAttribute("data-form-title"));
+      if (!CFG.endpoint) {   /* the relay address is missing in assets/config.js */
+        showFailed(msg);
         return;
       }
 
@@ -230,16 +201,9 @@
         .then(function (r) {
           if (!r.ok) throw new Error("status " + r.status);
           form.reset();
-          setMsg(msg, "ok");
-          line(msg, "Request sent. We usually reply within three working days.");
-          var p = line(msg, "For a faster answer, message us on Telegram: ");
-          var a = document.createElement("a");
-          a.href = BOT_URL; a.target = "_blank"; a.rel = "noopener"; a.textContent = "@" + BOT;
-          p.appendChild(a);
+          showSent(msg);
         })
-        .catch(function () {
-          telegramFallback(msg, text, "We could not send your request automatically. Please send it to us on Telegram or by email instead.", form.getAttribute("data-form-title"));
-        })
+        .catch(function () { showFailed(msg); })
         .then(function () { submit.disabled = false; submit.textContent = label; });
     });
   });

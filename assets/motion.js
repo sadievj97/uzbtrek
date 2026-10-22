@@ -1,5 +1,5 @@
 /* Uzbekistan Trek: motion for the main site.
-   - Home banner: only the khatam stars move, at different depths, on scroll and with the mouse. Photo and skylines stay still.
+   - Home banner: only the khatam stars move, at different depths, on scroll and with the mouse. The photo stays still.
    - Sample itinerary: the fast train runs the route while the section is pinned (a bus for the mountain day);
      city cards swap at each stop.
    - Buttons: on hover a fill runs across from left to right, with a copy of the label riding on it;
