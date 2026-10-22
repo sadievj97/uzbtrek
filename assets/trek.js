@@ -172,11 +172,59 @@
     });
   });
 
+  /* ---------- FAQ answers and sample texts slide open and closed instead of jumping ----------
+     The <details> box grows from its question to its full height (and back), while the answer fades in (or out).
+     A second click during the slide reverses it from where it is. "Reduce motion" keeps the instant toggle. */
+  var OPEN_MS = 520, CLOSE_MS = 420, EASE = "cubic-bezier(.4,0,.2,1)";
+  function setDetails(d, open) {
+    var summary = d.querySelector("summary");
+    if (!summary || reduce || typeof d.animate !== "function") { d.open = open; return; }
+    var busy = !!d._slide;
+    if (!busy && d.open === open) return;
+    var body = summary.nextElementSibling;
+    var from = d.getBoundingClientRect().height;
+    if (d._slide) { d._slide.cancel(); d._slide = null; }
+    if (d._fade) { d._fade.cancel(); d._fade = null; }
+    d.style.overflow = "hidden";
+    var to;
+    if (open) {
+      d.classList.remove("closing");
+      d.open = true;
+      to = d.getBoundingClientRect().height;
+    } else {
+      d.classList.add("closing");
+      to = summary.getBoundingClientRect().height + (d.offsetHeight - d.clientHeight);   /* the question plus the box's borders */
+    }
+    var ms = open ? OPEN_MS : CLOSE_MS;
+    var slide = d.animate([{ height: from + "px" }, { height: to + "px" }], { duration: ms, easing: EASE });
+    d._slide = slide;
+    if (body && typeof body.animate === "function") {
+      d._fade = body.animate([{ opacity: open ? 0 : 1 }, { opacity: open ? 1 : 0 }],
+        { duration: open ? ms : Math.round(ms * 0.75), easing: "ease", fill: "forwards" });
+    }
+    slide.onfinish = function () {
+      d._slide = null;
+      if (!open) d.open = false;
+      d.classList.remove("closing");
+      d.style.overflow = "";
+      if (d._fade) { d._fade.cancel(); d._fade = null; }
+    };
+  }
+  document.querySelectorAll(".faq-box details, .sample details").forEach(function (d) {
+    var summary = d.querySelector("summary");
+    if (!summary) return;
+    summary.addEventListener("click", function (e) {
+      if (reduce || typeof d.animate !== "function") return;   /* the browser's own instant toggle */
+      e.preventDefault();
+      setDetails(d, !d.open || d.classList.contains("closing"));
+    });
+  });
+
   /* ---------- sample texts (home page guide): links to a sample open it; copy buttons copy its text ---------- */
   function openSample(id) {
     var el = id ? document.getElementById(id) : null;
     var d = el ? (el.tagName === "DETAILS" ? el : el.querySelector("details")) : null;
-    if (d) d.open = true;
+    if (d) setDetails(d, true);
   }
   document.addEventListener("click", function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href^="#sample-"]') : null;
