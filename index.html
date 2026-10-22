@@ -37,12 +37,9 @@ p{ margin:0; }
 .muted{ color:var(--muted); }
 
 .btn{ display:inline-flex; align-items:center; justify-content:center; min-height:50px; padding:12px 24px; border-radius:999px; font-family:var(--sans); font-weight:750; font-size:16px; text-decoration:none; border:2px solid transparent; cursor:pointer; text-align:center; }
-.btn-navy{ background:var(--navy); color:var(--white); }
-.btn-navy:hover{ background:var(--navy-deep); }
-.btn-yellow{ background:var(--yellow); color:var(--navy-deep); }
-.btn-yellow:hover{ background:#FFC53D; }
-.btn-line{ border-color:var(--navy); color:var(--navy); background:transparent; }
-.btn-line:hover{ background:var(--navy); color:var(--white); }
+.btn-navy{ background-color:var(--navy); color:var(--white); border-color:var(--navy); }
+.btn-yellow{ background-color:var(--yellow); color:var(--navy-deep); --sw:var(--white); }
+.btn-line{ border-color:var(--navy); color:var(--navy); background-color:transparent; --sw:var(--navy); --swf:var(--white); }
 .btn-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
 
 /* Header */
@@ -54,7 +51,7 @@ p{ margin:0; }
 .nav a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
 .nav a:hover, .nav a[aria-current="page"]{ border-bottom-color:var(--yellow); }
 .nav .btn{ border-bottom:0; padding:10px 18px; min-height:44px; font-size:15px; color:var(--white); }
-.menu-btn{ display:none; appearance:none; border:2px solid var(--navy); background:var(--white); color:var(--navy); border-radius:999px; min-height:44px; padding:0 16px; font:inherit; font-weight:700; cursor:pointer; }
+.menu-btn{ display:none; appearance:none; border:2px solid var(--navy); background-color:var(--white); color:var(--navy); --sw:var(--navy); --swf:var(--white); border-radius:999px; min-height:44px; padding:0 16px; font:inherit; font-weight:700; cursor:pointer; }
 
 /* Vertical side label, as on the decks */
 .side{ position:absolute; top:44px; bottom:44px; right:max(14px, env(safe-area-inset-right,0px)); display:flex; flex-direction:column; align-items:center; gap:16px; writing-mode:vertical-rl; font-size:11.5px; letter-spacing:.42em; font-weight:600; pointer-events:none; }
@@ -80,11 +77,9 @@ p{ margin:0; }
 .choice .people{ height:34px; width:auto; margin-bottom:2px; }
 .choice strong{ font-weight:850; font-stretch:108%; font-size:clamp(22px, 2.4vw, 28px); text-transform:uppercase; line-height:1.05; }
 .choice span.d{ font-size:16px; line-height:1.45; }
-.choice .go{ grid-column:1 / -1; margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--navy-deep); color:var(--white); border-radius:999px; padding:12px 20px; font-weight:750; font-size:16px; }
-.choice .go i{ font-style:normal; font-size:20px; line-height:1; display:inline-block; transition:transform .2s ease; }
-.choice .go{ transition:background-color .2s ease, color .2s ease, box-shadow .2s ease; }
-.choice:hover .go, .choice:focus-visible .go{ background:var(--white); color:var(--navy-deep); box-shadow:inset 0 0 0 2px var(--navy-deep); }
-.choice.on-white:hover .go, .choice.on-white:focus-visible .go{ background:var(--yellow); }
+.choice .go{ grid-column:1 / -1; margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; background-color:var(--navy-deep); color:var(--white); border:2px solid var(--navy-deep); border-radius:999px; padding:10px 18px; font-weight:750; font-size:16px; --sw:var(--white); --swf:var(--navy-deep); }
+.choice.on-white .go{ --sw:var(--yellow); }
+.choice .go i{ font-style:normal; font-size:20px; line-height:1; display:inline-block; transition:transform .55s cubic-bezier(.4,0,.2,1); }
 .choice:hover .go i, .choice:focus-visible .go i{ transform:translateX(6px); }
 .choices.small .choice{ min-height:0; }
 
@@ -211,8 +206,8 @@ th{ background:var(--navy); color:var(--white); font-weight:750; font-size:14.5p
 tr:last-child td{ border-bottom:0; }
 td b{ display:block; font-weight:850; }
 .pill{ display:inline-block; background:var(--yellow-soft); border:1px solid var(--yellow); color:#6E4E00; font-weight:700; font-size:13px; padding:3px 10px; border-radius:999px; white-space:nowrap; }
-.mini{ appearance:none; border:2px solid var(--navy); background:var(--white); color:var(--navy); border-radius:999px; padding:7px 14px; font:inherit; font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap; }
-.mini:hover{ background:var(--navy); color:var(--white); }
+.mini{ appearance:none; border:2px solid var(--navy); background-color:var(--white); color:var(--navy); --sw:var(--navy); --swf:var(--white); border-radius:999px; padding:7px 14px; font:inherit; font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap; }
+.nw{ white-space:nowrap; }
 .sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 .opt-grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:26px; margin-top:36px; }
 .opt{ background:var(--white); border-radius:20px; overflow:hidden; box-shadow:0 12px 30px rgba(19,35,75,.14); display:flex; flex-direction:column; }
@@ -250,8 +245,8 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .tform-copy{ width:100%; font:inherit; font-size:14px; font-weight:500; border:1px solid #9CC9C3; border-radius:8px; padding:10px; background:var(--white); color:var(--navy); resize:vertical; }
 .tform-actions{ display:flex; flex-wrap:wrap; gap:10px; }
 .tform-copybtn, .tform-tg{ display:inline-flex; align-items:center; min-height:44px; padding:8px 16px; border-radius:999px; font:inherit; font-weight:750; font-size:15px; cursor:pointer; text-decoration:none; }
-.tform-copybtn{ border:2px solid #0F5550; background:transparent; color:#0F5550; }
-.tform-tg{ background:#229ED9; color:var(--white) !important; border:2px solid #229ED9; }
+.tform-copybtn{ border:2px solid #0F5550; background-color:transparent; color:#0F5550; --sw:#0F5550; --swf:var(--white); }
+.tform-tg{ background-color:#229ED9; color:var(--white) !important; border:2px solid #229ED9; --sw:var(--navy-deep); --swf:var(--white); }
 .tform-copied{ font-weight:600; font-size:14.5px; }
 .tform-mail{ display:inline-flex; align-items:center; min-height:44px; padding:0 6px; font-weight:750; font-size:15px; text-decoration:underline; text-underline-offset:3px; }
 .tform-alt{ grid-column:1 / -1; font-size:14.5px; color:var(--muted); margin:0; }
@@ -286,6 +281,41 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .areas-col{ background:var(--paper); border-radius:16px; padding:24px 26px; }
 .areas-col h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:14px; }
 .areas-col ul{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+/* In the news (home page) */
+.press-head{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:12px 48px; align-items:end; }
+.press-head .lede{ margin-top:0; }
+.press-note{ display:block; margin-top:6px; font-size:15px; color:rgba(255,255,255,.72); }
+.ticker{ position:relative; overflow:hidden; margin-top:38px; padding:16px 0; border-block:1px solid rgba(255,255,255,.2);
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.ticker-track{ display:flex; width:max-content; animation:tick 52s linear infinite; }
+.ticker:hover .ticker-track{ animation-play-state:paused; }
+.ticker .tk{ display:flex; }
+.ticker .tk span{ display:inline-flex; align-items:center; gap:22px; padding-right:22px; white-space:nowrap; font-weight:850; font-stretch:110%;
+  text-transform:uppercase; letter-spacing:.03em; font-size:clamp(17px, 2vw, 24px); color:var(--white); }
+.ticker svg{ width:16px; height:16px; flex:none; }
+.ticker svg path{ fill:var(--yellow); }
+@keyframes tick{ to{ transform:translateX(-50%); } }
+.press-years{ display:grid; gap:46px; margin-top:46px; }
+.press-year{ display:grid; grid-template-columns:220px minmax(0,1fr); gap:18px 36px; align-items:start; }
+.py-label{ position:sticky; top:96px; }
+.py-label b{ display:block; font-weight:900; font-stretch:115%; font-size:clamp(48px, 5.4vw, 72px); line-height:.9; letter-spacing:-.02em; color:var(--yellow); }
+.py-label span{ display:block; margin-top:10px; font-weight:700; font-size:13.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.75); }
+.press-grid{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; }
+.press-card{ position:relative; display:flex; flex-direction:column; gap:8px; min-height:172px; padding:18px 18px 16px; border-radius:16px;
+  background-color:var(--white); color:var(--navy-deep); text-decoration:none; box-shadow:0 10px 24px rgba(0,0,0,.2);
+  background-image:linear-gradient(var(--yellow), var(--yellow)); background-repeat:no-repeat; background-position:left center; background-size:0% 100%;
+  transition:background-size .6s cubic-bezier(.4,0,.2,1), transform .45s cubic-bezier(.2,.9,.25,1), box-shadow .45s cubic-bezier(.2,.9,.25,1); }
+.press-card:hover, .press-card:focus-visible{ background-size:100% 100%; transform:translateY(-4px); box-shadow:0 18px 32px rgba(0,0,0,.28); }
+.pc-kind{ align-self:flex-start; display:inline-flex; align-items:center; gap:6px; padding:4px 10px 4px 8px; border-radius:999px; background:var(--yellow-soft);
+  color:var(--navy-deep); font-weight:800; font-size:12px; letter-spacing:.06em; text-transform:uppercase; transition:background-color .4s ease; }
+.pc-kind svg{ width:15px; height:15px; flex:none; }
+.press-card:hover .pc-kind, .press-card:focus-visible .pc-kind{ background:var(--white); }
+.pc-src{ font-weight:850; font-stretch:105%; font-size:19px; line-height:1.2; margin-top:4px; }
+.pc-line{ font-size:15px; line-height:1.4; color:var(--muted); transition:color .4s ease; }
+.press-card:hover .pc-line, .press-card:focus-visible .pc-line{ color:var(--navy-deep); }
+.pc-go{ margin-top:auto; padding-top:6px; display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:13.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--navy); }
+.pc-go svg{ width:12px; height:12px; transition:transform .45s cubic-bezier(.2,.9,.25,1); }
+.press-card:hover .pc-go svg, .press-card:focus-visible .pc-go svg{ transform:translate(3px, -3px); }
 .areas-col li{ background:var(--white); border:2px solid var(--navy); border-radius:12px; padding:10px 14px; font-weight:650; font-size:16px; }
 
 /* Footer */
@@ -301,7 +331,25 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .contact a{ color:var(--yellow); font-weight:700; }
 .contact .mail{ color:var(--white); user-select:all; font-weight:600; }
 
-@media (max-width: 1100px){ .side{ display:none; } }
+/* Buttons: on hover a fill runs across from left to right.
+   Plain CSS draws the fill as a background and fades the text color. Where motion.js has added a copy of the label (.sw),
+   the copy rides on the fill instead, so the text color changes exactly at the fill's edge. */
+.btn, .mini, .menu-btn, .choice .go, .tform-copybtn, .tform-tg{
+  background-image:linear-gradient(var(--sw, var(--yellow)), var(--sw, var(--yellow)));
+  background-repeat:no-repeat; background-position:left center; background-size:0% 100%; background-origin:border-box;
+  transition:background-size .6s cubic-bezier(.4,0,.2,1), color .3s ease .15s; }
+.btn:not(.has-sw):hover, .btn:not(.has-sw):focus-visible, .mini:not(.has-sw):hover, .mini:not(.has-sw):focus-visible,
+.menu-btn:hover, .menu-btn:focus-visible, .tform-copybtn:hover, .tform-copybtn:focus-visible, .tform-tg:hover, .tform-tg:focus-visible,
+.choice:hover .go:not(.has-sw), .choice:focus-visible .go:not(.has-sw){ background-size:100% 100%; color:var(--swf, var(--navy-deep)); }
+.btn.has-sw, .mini.has-sw, .choice .go.has-sw{ background-image:none; }
+.mini, .choice .go{ position:relative; isolation:isolate; }
+.sw{ position:absolute; inset:0; z-index:1; display:flex; align-items:center; justify-content:center; gap:inherit; padding:inherit; border-radius:inherit;
+  background-color:var(--sw, var(--yellow)); color:var(--swf, var(--navy-deep)); pointer-events:none; user-select:none;
+  clip-path:inset(0 100% 0 0); transition:clip-path .6s cubic-bezier(.4,0,.2,1); }
+.choice .go .sw{ justify-content:space-between; }
+.has-sw:hover .sw, .has-sw:focus-visible .sw, .choice:hover .has-sw .sw, .choice:focus-visible .has-sw .sw{ clip-path:inset(0); }
+
+@media (max-width: 1100px){ .side{ display:none; } .press-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
 @media (max-width: 980px){
   .split, .form-wrap, .story-grid{ grid-template-columns:1fr; }
   .story-side{ position:static; grid-template-columns:repeat(2, minmax(0,1fr)); }
@@ -332,6 +380,15 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .cover p{ text-align:left; }
   .cover::before{ inset:-10px; }
   .collage{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px 16px; }
+  .press-head{ grid-template-columns:1fr; }
+  .press-year{ grid-template-columns:1fr; }
+  .py-label{ position:static; display:flex; align-items:baseline; gap:14px; }
+  .py-label b{ font-size:52px; }
+  .py-label span{ margin-top:0; }
+  .press-grid{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:78%; overflow-x:auto; scroll-snap-type:x mandatory;
+    margin-inline:-16px; padding:4px 16px 14px; scroll-padding-inline:16px; }
+  .press-card{ scroll-snap-align:start; }
+  .collage .pol:last-child:nth-child(odd){ grid-column:1 / -1; justify-self:center; width:calc(50% - 8px); }
   .tailor .diam{ grid-template-columns:1fr; }
   .tranches{ grid-template-columns:1fr; gap:40px; }
   .tranches li{ padding:32px 18px 16px; }
@@ -354,7 +411,9 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .pols.quotes .pol{ width:84%; margin-top:0; }
   .pols.quotes .pol:nth-child(even){ justify-self:end; }
 }
-@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; } }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; }
+  .ticker-track{ animation:none; width:auto; } .ticker .tk{ flex-wrap:wrap; justify-content:center; row-gap:10px; } .ticker .dup{ display:none; }
+  .ticker{ -webkit-mask-image:none; mask-image:none; } }
 
 /* ---------- home hero: still photo and skylines; only the khatam stars move (scroll and mouse) ---------- */
 .hero{ position:relative; overflow:hidden; overflow:clip; isolation:isolate; background:var(--navy-deep); color:var(--white);
@@ -381,16 +440,16 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .choice .s{ display:none; }
 
 /* ---------- group boxes: no parallax, a small lift on hover ---------- */
-.choice{ transition:transform .18s ease, box-shadow .18s ease; }
+.choice{ transition:transform .45s cubic-bezier(.2,.9,.25,1), box-shadow .45s cubic-bezier(.2,.9,.25,1); }
 
 /* ---------- pill buttons: magnetic, with the label and a hard shadow at different depths ---------- */
 .btn{ --bx:0px; --by:0px; --lx:0px; --ly:0px; position:relative;
   transform:translate3d(var(--bx), var(--by), 0);
   box-shadow:calc(4px - var(--bx) * .7) calc(5px - var(--by) * .7) 0 0 var(--btn-sh, rgba(19,35,75,.28));
-  transition:transform .45s cubic-bezier(.2,.9,.25,1), box-shadow .45s cubic-bezier(.2,.9,.25,1), background-color .2s ease, color .2s ease; }
-.btn .bt{ display:inline-block; transform:translate3d(var(--lx), var(--ly), 0); transition:transform .45s cubic-bezier(.2,.9,.25,1); }
-.btn.mag, .btn.mag .bt{ transition-duration:.12s, .12s, .2s, .2s; }
-.btn.mag .bt{ transition-duration:.12s; }
+  transition:transform .55s cubic-bezier(.2,.9,.25,1), box-shadow .55s cubic-bezier(.2,.9,.25,1), background-size .55s cubic-bezier(.4,0,.2,1), color .3s ease .12s; }
+.btn .bt{ display:inline-block; transform:translate3d(var(--lx), var(--ly), 0); transition:transform .55s cubic-bezier(.2,.9,.25,1); }
+.btn.mag{ transition-duration:.35s, .35s, .55s, .3s; }
+.btn.mag .bt{ transition-duration:.35s; }
 .btn-yellow{ --btn-sh:rgba(0,0,0,.32); }
 .band-navy .btn-navy, .itin .btn-navy{ --btn-sh:rgba(0,0,0,.35); }
 .nav .btn{ --btn-sh:rgba(19,35,75,.18); }
@@ -516,7 +575,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
     <button class="menu-btn" id="menu-btn" data-menu-btn aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main">
       <a href="big-group.html">Big group (10+)</a><a href="small-group.html">Small group (under 10)</a><a href="founder.html">Founder</a><a href="./#faq">FAQ</a>
-      <a class="btn btn-navy" href="./#choose">Plan your trek</a>
+      <a class="btn btn-navy" href="#choose">Plan your trek</a>
     </nav>
   </div>
 </header>
@@ -556,10 +615,23 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
     </div>
   </section>
 
+
+  <section class="sec band-navy press" aria-labelledby="press-title">
+    <span class="side light" aria-hidden="true">UZBEKISTAN TREK</span>
+    <div class="wrap">
+      <div class="press-head">
+        <h2 id="press-title">In the news</h2>
+        <p class="lede">Uzbek TV, the national news agency, the Senate, ministries and universities covered both treks. <span class="press-note">Most coverage is in Uzbek.</span></p>
+      </div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><span class="tk"><span>Uzbekistan 24<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>MY5<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>UzA<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Senate of Uzbekistan<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Ministry of Higher Education, Science and Innovation<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>National Agency for Social Protection<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>New Uzbekistan University<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Nordic University<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Bright Uzbekistan<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span></span><span class="tk dup"><span>Uzbekistan 24<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>MY5<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>UzA<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Senate of Uzbekistan<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Ministry of Higher Education, Science and Innovation<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>National Agency for Social Protection<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>New Uzbekistan University<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Nordic University<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span><span>Bright Uzbekistan<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 1.4L30.6 8L40 8L40 17.4L46.6 24L40 30.6L40 40L30.6 40L24 46.6L17.4 40L8 40L8 30.6L1.4 24L8 17.4L8 8L17.4 8Z"/></svg></span></span></div></div>
+      <div class="press-years"><div class="press-year"><div class="py-label"><b>2025</b><span>March 2025, 45 travelers</span></div><div class="press-grid"><a class="press-card" href="https://t.me/uzmtrk_official/5341" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="8.5" rx="1.6"/><path d="M6 14h4M8 11.5V14"/></svg>TV</span><b class="pc-src">Uzbekistan 24</b><span class="pc-line">Harvard University students in Uzbekistan</span><span class="pc-go">Watch<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/uzmtrk_official/5365" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="8.5" rx="1.6"/><path d="M6 14h4M8 11.5V14"/></svg>TV</span><b class="pc-src">Uzbekistan 24</b><span class="pc-line">The students visit New Uzbekistan University</span><span class="pc-go">Watch<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/hududtv/32780" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="8.5" rx="1.6"/><path d="M6 14h4M8 11.5V14"/></svg>TV</span><b class="pc-src">MY5</b><span class="pc-line">Harvard University students in Uzbekistan</span><span class="pc-go">Watch<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://nordicuniversity.org/uz/press-service/news/garvard-universiteti-delegatsiyasining-ozbekistonga-tashrifi-qizgin-boshlandi" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="11" height="11" rx="1.6"/><path d="M5 6h6M5 8.5h6M5 11h3.5"/></svg>Article</span><b class="pc-src">Nordic University</b><span class="pc-line">The visit to Uzbekistan begins</span><span class="pc-go">Read<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/senatuz/33351" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3h9.6A1.2 1.2 0 0 1 14 4.2v6A1.2 1.2 0 0 1 12.8 11.4H7.2L4.2 14v-2.6h-1A1.2 1.2 0 0 1 2 10.2v-6A1.2 1.2 0 0 1 3.2 3z"/></svg>Telegram</span><b class="pc-src">Senate</b><span class="pc-line">A meeting with Harvard and MIT students on joint education projects</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/senatuz/33360" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3h9.6A1.2 1.2 0 0 1 14 4.2v6A1.2 1.2 0 0 1 12.8 11.4H7.2L4.2 14v-2.6h-1A1.2 1.2 0 0 1 2 10.2v-6A1.2 1.2 0 0 1 3.2 3z"/></svg>Telegram</span><b class="pc-src">Senate</b><span class="pc-line">The Chairwoman of the Senate meets the students</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/newuzbekistanuniversity/3497" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3h9.6A1.2 1.2 0 0 1 14 4.2v6A1.2 1.2 0 0 1 12.8 11.4H7.2L4.2 14v-2.6h-1A1.2 1.2 0 0 1 2 10.2v-6A1.2 1.2 0 0 1 3.2 3z"/></svg>Telegram</span><b class="pc-src">New Uzbekistan University</b><span class="pc-line">43 Harvard Kennedy School and MIT students on campus</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/nordic_edu/5562" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3h9.6A1.2 1.2 0 0 1 14 4.2v6A1.2 1.2 0 0 1 12.8 11.4H7.2L4.2 14v-2.6h-1A1.2 1.2 0 0 1 2 10.2v-6A1.2 1.2 0 0 1 3.2 3z"/></svg>Telegram</span><b class="pc-src">Nordic University</b><span class="pc-line">Celebrating Nowruz with the Uzbekistan Trek 2025</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://youtu.be/FuITHJNq-3c" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M6.9 5.7v4.6L10.6 8z" fill="currentColor" stroke="none"/></svg>YouTube</span><b class="pc-src">Nordic University</b><span class="pc-line">Video of the visit</span><span class="pc-go">Watch<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a></div></div><div class="press-year"><div class="py-label"><b>2026</b><span>March 2026, 50 travelers</span></div><div class="press-grid"><a class="press-card" href="https://uza.uz/uz/posts/aqshda-tahsil-olayotgan-52-nafar-talaba-buxoroda_833625" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="11" height="11" rx="1.6"/><path d="M5 6h6M5 8.5h6M5 11h3.5"/></svg>News agency</span><b class="pc-src">UzA</b><span class="pc-line">52 students studying in the US visit Bukhara</span><span class="pc-go">Read<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/tanzilanarbaeva/6816" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3h9.6A1.2 1.2 0 0 1 14 4.2v6A1.2 1.2 0 0 1 12.8 11.4H7.2L4.2 14v-2.6h-1A1.2 1.2 0 0 1 2 10.2v-6A1.2 1.2 0 0 1 3.2 3z"/></svg>Telegram</span><b class="pc-src">Tanzila Narbaeva</b><span class="pc-line">The Chairwoman of the Senate meets the students</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/eduuz/43656?single" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3h9.6A1.2 1.2 0 0 1 14 4.2v6A1.2 1.2 0 0 1 12.8 11.4H7.2L4.2 14v-2.6h-1A1.2 1.2 0 0 1 2 10.2v-6A1.2 1.2 0 0 1 3.2 3z"/></svg>Telegram</span><b class="pc-src">Ministry of Higher Education, Science and Innovation</b><span class="pc-line">Telegram post</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://t.me/ijtimoiyhimoya_agentligi/7623?single" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3h9.6A1.2 1.2 0 0 1 14 4.2v6A1.2 1.2 0 0 1 12.8 11.4H7.2L4.2 14v-2.6h-1A1.2 1.2 0 0 1 2 10.2v-6A1.2 1.2 0 0 1 3.2 3z"/></svg>Telegram</span><b class="pc-src">National Agency for Social Protection</b><span class="pc-line">Telegram post</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://www.instagram.com/reel/DV_Y0zKsTp1/" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M4.5 11.2 7 8.4l1.8 1.8L10.4 8.8l1.4 2.4"/><circle cx="10.4" cy="5.6" r="1"/></svg>Instagram</span><b class="pc-src">Shakhnoza Mirziyoyeva</b><span class="pc-line">Instagram reel</span><span class="pc-go">Watch<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://www.instagram.com/reel/DV-zNqYDfgu/" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M4.5 11.2 7 8.4l1.8 1.8L10.4 8.8l1.4 2.4"/><circle cx="10.4" cy="5.6" r="1"/></svg>Instagram</span><b class="pc-src">Senate</b><span class="pc-line">Instagram reel</span><span class="pc-go">Watch<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://www.instagram.com/p/DV_LRhZinHA/" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M4.5 11.2 7 8.4l1.8 1.8L10.4 8.8l1.4 2.4"/><circle cx="10.4" cy="5.6" r="1"/></svg>Instagram</span><b class="pc-src">Bright Uzbekistan</b><span class="pc-line">Instagram post</span><span class="pc-go">View<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a><a class="press-card" href="https://www.instagram.com/reel/DWBC_QsDKh-/" target="_blank" rel="noopener"><span class="pc-kind"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M4.5 11.2 7 8.4l1.8 1.8L10.4 8.8l1.4 2.4"/><circle cx="10.4" cy="5.6" r="1"/></svg>Instagram</span><b class="pc-src">Mari Wellness Restaurant</b><span class="pc-line">Instagram reel</span><span class="pc-go">Watch<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr"> (opens in a new tab)</span></a></div></div></div>
+    </div>
+  </section>
+
   <section class="sec band-sky" aria-labelledby="mom-title">
     <div class="wrap">
       <h2 id="mom-title" class="moments-title">Uzbekistan Trek moments</h2>
-      <div class="collage"><figure class="pol" style="--ar:4/3.4"><div class="ph"><img src="img/y2025_registan.webp" alt="A group of students posing at the Registan" loading="lazy"></div><figcaption>Registan, Samarkand<small>2025</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/food_plov.webp" alt="Plov ingredients layered in a kazan at the cooking workshop" loading="lazy"></div><figcaption>Plov we cooked at the workshop<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/y2025_suzani.webp" alt="The 2025 group sitting with suzani textiles" loading="lazy"></div><figcaption>Suzani workshop, Bukhara<small>2025</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/samarkand_circle.webp" alt="Students lying in a circle under a gilded dome, faces up" loading="lazy"></div><figcaption>Under the golden dome<small>2026</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/workshop_cooking.webp" alt="A student rolling dough at the somsa cooking class" loading="lazy"></div><figcaption>Somsa cooking class<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/mountains_amirsoy_group.webp" alt="Students in the snow at Amirsoy" loading="lazy"></div><figcaption>Snow at Amirsoy<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/y2025_workshop.webp" alt="Students holding their paintings at a workshop" loading="lazy"></div><figcaption>Painting class, Bukhara<small>2025</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/bukhara_golf_cart.webp" alt="Three students smiling on an electric cart in Bukhara" loading="lazy"></div><figcaption>Old Bukhara by cart<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/a822.webp" alt="The Lyab-i Hauz pond in Bukhara" loading="lazy"></div><figcaption>Lyab-i Hauz, Bukhara<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/mountains_charvak.webp" alt="Charvak reservoir among hills" loading="lazy"></div><figcaption>Lake Charvak<small>2026</small></figcaption></figure></div>
+      <div class="collage"><figure class="pol" style="--ar:4/3.4"><div class="ph"><img src="img/y2025_registan.webp" alt="A group of students posing at the Registan" loading="lazy"></div><figcaption>Registan, Samarkand<small>2025</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/food_plov.webp" alt="Plov ingredients layered in a kazan at the cooking workshop" loading="lazy"></div><figcaption>Plov we cooked at the workshop<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/y2025_suzani.webp" alt="The 2025 group sitting with suzani textiles" loading="lazy"></div><figcaption>Suzani workshop, Bukhara<small>2025</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/samarkand_circle.webp" alt="Students lying in a circle under a gilded dome, faces up" loading="lazy"></div><figcaption>Under the golden dome<small>2026</small></figcaption></figure><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/workshop_cooking.webp" alt="A student rolling dough at the somsa cooking class" loading="lazy"></div><figcaption>Somsa cooking class<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/mountains_amirsoy_group.webp" alt="Students in the snow at Amirsoy" loading="lazy"></div><figcaption>Snow at Amirsoy<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/y2025_workshop.webp" alt="Students holding their paintings at a workshop" loading="lazy"></div><figcaption>Painting class, Bukhara<small>2025</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/bukhara_golf_cart.webp" alt="Three students smiling on an electric cart in Bukhara" loading="lazy"></div><figcaption>Old Bukhara by cart<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/a822.webp" alt="The Lyab-i Hauz pond in Bukhara" loading="lazy"></div><figcaption><span class="nw">Lyab-i</span> Hauz, Bukhara<small>2026</small></figcaption></figure><figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/mountains_charvak.webp" alt="Charvak reservoir among hills" loading="lazy"></div><figcaption>Lake Charvak<small>2026</small></figcaption></figure></div>
     </div>
   </section>
 
@@ -607,7 +679,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 
   <section aria-labelledby="inc-title">
     <div class="inc-grid">
-      <div class="inc-photo" style="background-image:url('img/samarkand_shahizinda.webp')"><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/samarkand_tillakari_dome.webp" alt="The gilded dome of the Tilla-Kari Madrasa seen from below" loading="lazy"></div><figcaption>Tilla-Kari, Samarkand<small>2026</small></figcaption></figure></div>
+      <div class="inc-photo" style="background-image:url('img/samarkand_shahizinda.webp')"><figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/samarkand_tillakari_dome.webp" alt="The gilded dome of the Tilla-Kari Madrasa seen from below" loading="lazy"></div><figcaption><span class="nw">Tilla-Kari</span>, Samarkand<small>2026</small></figcaption></figure></div>
       <div class="inc-text">
         <h2 id="inc-title">What the trek includes</h2>
         <div class="inc-cols">
