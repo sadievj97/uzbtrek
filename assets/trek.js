@@ -13,6 +13,54 @@
   var EMAIL = CFG.email || "";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- every page opens at its top, showing the banner ----------
+     Normal browsers already open a new page at the top. Some previews and app views keep the old scroll position,
+     so the page also goes to its top when it loads (until the visitor scrolls), when it is left, after Back or a
+     reload, and, inside a preview frame, the moment a link to another page is clicked.
+     Links to a section (like #faq) keep their target. */
+  var root = document.documentElement;
+  function toTop(frames) {
+    var was = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    if (frames && window.self !== window.top) {
+      /* shown inside a taller frame: also scroll the outer page up to this page's first pixel */
+      var pad = root.style.scrollPaddingTop;
+      root.style.scrollPaddingTop = "0px";
+      try { root.scrollIntoView({ block: "start" }); } catch (e) { /* ignore */ }
+      root.style.scrollPaddingTop = pad;
+    }
+    root.style.scrollBehavior = was;
+  }
+  function wantsSection() {
+    var id = "";
+    try { id = location.hash ? decodeURIComponent(location.hash.slice(1)) : ""; } catch (e) { /* ignore */ }
+    return !!(id && document.getElementById(id));
+  }
+  try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) { /* ignore */ }
+  var touched = false;
+  ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (t) {
+    window.addEventListener(t, function () { touched = true; }, { passive: true, capture: true });
+  });
+  function startAtTop() { if (!touched && !wantsSection()) toTop(false); }
+  startAtTop();
+  document.addEventListener("DOMContentLoaded", startAtTop);
+  window.addEventListener("load", function () { startAtTop(); setTimeout(startAtTop, 150); setTimeout(startAtTop, 450); });
+  window.addEventListener("pageshow", function (e) { if (e.persisted) { touched = false; startAtTop(); } });
+  window.addEventListener("pagehide", function () { toTop(false); });
+  /* inside a preview frame, the frame may keep its scroll position or swap the page in place:
+     jump to the top as the link is followed (a normal browser tab already opens the next page at its top) */
+  window.addEventListener("click", function (e) {
+    if (window.self === window.top) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+    var url;
+    try { url = new URL(a.href, location.href); } catch (err) { return; }
+    if (!/^https?:$/.test(url.protocol) || url.origin !== location.origin || url.hash) return;   /* other sites, mail, and links to a section */
+    toTop(true);
+  }, true);
+
   /* ---------- mobile menu: a button with [data-menu-btn] toggles the element with [data-menu] ---------- */
   document.querySelectorAll("[data-menu-btn]").forEach(function (btn) {
     var menu = document.getElementById(btn.getAttribute("aria-controls")) || document.querySelector("[data-menu]");

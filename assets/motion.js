@@ -2,7 +2,8 @@
    - Home banner: only the khatam stars move, at different depths, on scroll and with the mouse. Photo and skylines stay still.
    - Sample itinerary: the fast train runs the route while the section is pinned (a bus for the mountain day);
      city cards swap at each stop.
-   - Buttons: magnetic pills whose label and shadow move at different depths; button rows drift gently on scroll.
+   - Buttons: on hover a fill runs across from left to right, with a copy of the label riding on it;
+     pills are magnetic, their label and shadow move at different depths; button rows drift gently on scroll.
    - Yellow bands: the khatam watermark drifts slowly on scroll.
    Photos do not move.
    Respects "reduce motion": with it on, nothing moves and the itinerary shows every stop as a list.
@@ -119,6 +120,17 @@
       s.className = "bt";
       while (b.firstChild) s.appendChild(b.firstChild);
       b.appendChild(s);
+    });
+
+    /* ---------- buttons: a copy of the label rides on the hover fill, so the text color changes exactly at its edge ---------- */
+    $$(".btn:not([type=submit]), .mini, .choice .go").forEach(function (b) {
+      if (b.querySelector(".sw")) return;
+      var s = document.createElement("span");
+      s.className = "sw";
+      s.setAttribute("aria-hidden", "true");
+      Array.prototype.forEach.call(b.childNodes, function (n) { s.appendChild(n.cloneNode(true)); });
+      b.appendChild(s);
+      b.classList.add("has-sw");
     });
 
     if (fine) {
