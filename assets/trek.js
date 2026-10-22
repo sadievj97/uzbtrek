@@ -172,6 +172,49 @@
     });
   });
 
+  /* ---------- sample texts (home page guide): links to a sample open it; copy buttons copy its text ---------- */
+  function openSample(id) {
+    var el = id ? document.getElementById(id) : null;
+    var d = el ? (el.tagName === "DETAILS" ? el : el.querySelector("details")) : null;
+    if (d) d.open = true;
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#sample-"]') : null;
+    if (a) openSample(a.getAttribute("href").slice(1));
+  });
+  if (/^#sample-/.test(location.hash)) openSample(location.hash.slice(1));
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    var status = btn.parentNode.querySelector(".copy-status");
+    var timer = null;
+    function say(text) {
+      if (!status) return;
+      status.textContent = text;
+      clearTimeout(timer);
+      timer = setTimeout(function () { status.textContent = ""; }, 5000);
+    }
+    btn.addEventListener("click", function () {
+      var src = document.getElementById(btn.getAttribute("data-copy"));
+      if (!src) return;
+      function selectIt() {   /* when the browser refuses the clipboard: open the text and select it */
+        var box = src.closest(".sample");
+        if (box) openSample(box.id);
+        try {
+          var range = document.createRange();
+          range.selectNodeContents(src);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          say("Text selected: press Ctrl+C (or Cmd+C) to copy.");
+        } catch (err) { say("Open the text and copy it by hand."); }
+      }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(src.textContent).then(function () { say("Copied."); }, selectIt);
+        } else { selectIt(); }
+      } catch (err) { selectIt(); }
+    });
+  });
+
   /* ---------- forms ---------- */
   function fieldsOf(form) {
     var out = [], seen = {};
