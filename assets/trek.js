@@ -5,6 +5,8 @@
                   sees a red message pointing to Telegram and email.
      telegramBot  bot username without @, e.g. "uzbtrek_bot".
      email        address offered as a second way to send the request when the relay is not set up.
+     analyticsToken  Cloudflare Web Analytics site token. When set, every page loads Cloudflare's visitor counter;
+                  the numbers are visible only in the owner's Cloudflare dashboard. Leave empty to turn it off.
    Never put a Telegram bot token in this file or anywhere in the website: the site is public. */
 (function () {
   "use strict";
@@ -61,6 +63,56 @@
     if (!/^https?:$/.test(url.protocol) || url.origin !== location.origin || url.hash) return;   /* other sites, mail, and links to a section */
     toTop(true);
   }, true);
+
+  /* ---------- visitor statistics: Cloudflare Web Analytics, seen only in the owner's Cloudflare dashboard ----------
+     Loads only when assets/config.js has an analyticsToken. That token can send visits but cannot read them,
+     and the counter sets no cookies. Opening any page with ?count=off stops counting visits from that browser
+     (for the owner's own visits); ?count=on turns counting back on. */
+  (function () {
+    var token = String(CFG.analyticsToken || "").trim();
+    var KEY = "uztrek-count";
+    var m = /[?&]count=(on|off)(?:&|$)/.exec(location.search);
+    if (!token && !m) return;
+
+    function note(text) {
+      function show() {
+        var n = document.createElement("div");
+        n.setAttribute("role", "status");
+        n.setAttribute("data-count-note", "");
+        n.textContent = text;
+        n.style.cssText = "position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:9999;" +
+          "width:max-content;max-width:calc(100% - 32px);box-sizing:border-box;padding:12px 18px;border-radius:999px;" +
+          "background:#13234B;color:#fff;font-weight:600;font-size:15px;line-height:1.35;text-align:center;" +
+          "box-shadow:0 6px 24px rgba(19,35,75,.35)";
+        document.body.appendChild(n);
+        setTimeout(function () { if (n.parentNode) n.parentNode.removeChild(n); }, 5000);
+      }
+      if (document.body) show(); else document.addEventListener("DOMContentLoaded", show);
+    }
+
+    var off = !!(m && m[1] === "off"), saved = false;
+    try {
+      if (m) { if (m[1] === "off") localStorage.setItem(KEY, "off"); else localStorage.removeItem(KEY); }
+      saved = true;
+      if (localStorage.getItem(KEY) === "off") off = true;
+    } catch (e) { /* this browser blocks site storage */ }
+    if (m) {
+      try {   /* take ?count=... out of the address, so a copied link does not carry it */
+        var q = new URLSearchParams(location.search);
+        q.delete("count");
+        q = q.toString();
+        history.replaceState(history.state, "", location.pathname + (q ? "?" + q : "") + location.hash);
+      } catch (e) { /* ignore */ }
+      note(!saved ? "This browser does not let the site save this setting."
+        : m[1] === "off" ? "Visits from this browser are no longer counted." : "Visits from this browser are counted again.");
+    }
+    if (!token || off) return;
+    var s = document.createElement("script");
+    s.defer = true;
+    s.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    s.setAttribute("data-cf-beacon", JSON.stringify({ token: token }));
+    document.head.appendChild(s);
+  })();
 
   /* ---------- mobile menu: a button with [data-menu-btn] toggles the element with [data-menu] ---------- */
   document.querySelectorAll("[data-menu-btn]").forEach(function (btn) {
