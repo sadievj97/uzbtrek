@@ -96,7 +96,7 @@ The forms show a green "Your message has been successfully sent!" when a request
 
 Everything arrives in your own chat with @uzbtrek_bot:
 
-- **Website requests** arrive as a formatted message. Reply by email, or write to the person on Telegram if they left a handle.
+- **Website requests** arrive as a formatted message. Its title says which form it came from: "Ambassador application" (home page), "Big group quote request" or "Small group interest". Reply by email, or write to the person on Telegram if they left a handle.
 - **Chat messages** arrive tagged `#u123456789`. To answer, **reply** to that message (swipe it, or right-click > Reply). The bot sends your reply to the visitor and confirms "Sent." Text, photos and files all work.
 - If you write to the bot without replying to a tagged message, nothing is sent to anyone.
 
@@ -147,3 +147,4 @@ They need the relay (the alerts use the same Worker as the forms) running the cu
 - Every photo appears once per site; no photo repeats across pages.
 - No prices are shown. Payment is described as three installments: a fixed first deposit, a fixed second deposit, then the remaining balance.
 - The site states that Uzbekistan Trek is independent and not affiliated with any university.
+- The ambassador program promises no pay, discount or free place. Many ambassadors study on student visas.

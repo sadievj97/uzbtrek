@@ -21,10 +21,32 @@ def _field(fid, name, label, kind="text", req=None, extra="", full=False, placeh
     return f'<div class="{cls}"><label for="{fid}">{label}</label>{ctl}</div>'
 
 
-def _select(fid, name, label, options, selected=None, full=False):
+def _select(fid, name, label, options, selected=None, full=False, prompt=None):
+    """prompt adds an empty first option (for example "Choose one"); an empty value is left out of the request."""
     cls = "tf full" if full else "tf"
-    opts = "".join(f'<option{" selected" if o == selected else ""}>{o}</option>' for o in options)
+    first = f'<option value="">{prompt}</option>' if prompt else ""
+    opts = first + "".join(f'<option{" selected" if o == selected else ""}>{o}</option>' for o in options)
     return f'<div class="{cls}"><label for="{fid}">{label}</label><select id="{fid}" name="{name}" data-label="{label}">{opts}</select></div>'
+
+
+def ambassador_form(btn_class="btn", prefix="a"):
+    """Home page application. It goes to the bot like the other forms, titled "Ambassador application"."""
+    p = prefix
+    return f"""<form class="tform" data-form="ambassador" data-form-title="Ambassador application" novalidate>
+  {HONEYPOT}
+  {_field(p+"-name", "name", "Your name", req="your name", extra=' autocomplete="name"')}
+  {_field(p+"-email", "email", "Email", kind="email", req="a valid email", extra=' autocomplete="email"', placeholder="Your university email, if you can")}
+  {_field(p+"-school", "university", "University", req="your university", placeholder="e.g. Columbia University")}
+  {_field(p+"-program", "program", "Program and degree", req="your program and degree", placeholder="e.g. MBA, MPP or PhD")}
+  {_select(p+"-grad", "graduation", "Expected graduation", ["2027", "2028", "2029 or later"], prompt="Choose one")}
+  {_select(p+"-size", "group_size", "Classmates who might come", ["Not sure yet", "Fewer than 10", "10 to 20", "20 to 40", "More than 40"])}
+  {_field(p+"-dates", "dates", "When could your group travel?", placeholder="e.g. Spring break 2027")}
+  {_field(p+"-telegram", "telegram", "Telegram or WhatsApp (optional)", placeholder="@username or phone")}
+  {_field(p+"-notes", "notes", "Why do you want to bring your classmates?", kind="textarea", full=True, placeholder="A few lines about you, your classmates and the student clubs you are part of")}
+  <div class="tform-foot"><small>{FORM_COMMON["privacy_apply"]}</small><button class="{btn_class}" type="submit">Send application</button></div>
+  <div class="tform-msg" role="status" hidden></div>
+  <p class="tform-alt">{FORM_COMMON["telegram_hint"]}</p>
+</form>"""
 
 
 def big_group_form(btn_class="btn", prefix="b"):

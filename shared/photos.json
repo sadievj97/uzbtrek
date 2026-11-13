@@ -1,15 +1,4 @@
 {
- "samarkand_registan": {
-  "file": "samarkand_registan.webp",
-  "caption": "The Registan, Samarkand",
-  "alt": "The three madrasas of the Registan in Samarkand under a cloudy sky",
-  "year": "2026",
-  "people": "small",
-  "restrict": "",
-  "w": 2000,
-  "h": 1500,
-  "orient": "landscape"
- },
  "samarkand_registan_night": {
   "file": "samarkand_registan_night.webp",
   "caption": "The Registan at night",
@@ -581,5 +570,38 @@
   "w": 1600,
   "h": 1200,
   "orient": "landscape"
+ },
+ "a423": {
+  "file": "a423.webp",
+  "caption": "Friends at the Registan",
+  "alt": "Five students at the Registan",
+  "year": "2026",
+  "people": "faces",
+  "restrict": "",
+  "w": 1500,
+  "h": 1125,
+  "orient": "landscape"
+ },
+ "a573": {
+  "file": "a573.webp",
+  "caption": "In the snow at Amirsoy",
+  "alt": "The group in the snow at Amirsoy",
+  "year": "2026",
+  "people": "faces",
+  "restrict": "",
+  "w": 1500,
+  "h": 1125,
+  "orient": "landscape"
+ },
+ "zokirjon_khabibullaev": {
+  "file": "zokirjon_khabibullaev.webp",
+  "caption": "Zokirjon Khabibullaev",
+  "alt": "Zokirjon Khabibullaev, Co-Founder of Uzbekistan Trek",
+  "year": "",
+  "people": "faces",
+  "restrict": "cofounder",
+  "w": 520,
+  "h": 520,
+  "orient": "square"
  }
 }

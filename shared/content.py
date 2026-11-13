@@ -2,7 +2,8 @@
 
 Every builder (deck, registan, campus, parallax) imports this module so the words stay identical across styles.
 Strings are HTML-safe fragments: they may contain entities (&rsquo;, &hellip;) and simple inline tags (<a>, <strong>).
-House rules: no em dashes, no prices, no "2027" in side labels, government meetings never promised for new treks.
+House rules: no em dashes, no prices, no "2027" in side labels, government meetings never promised for new treks,
+no pay, discount or free place promised to ambassadors.
 """
 
 SITE = {
@@ -14,25 +15,79 @@ SITE = {
     "telegram_bot": "uzbtrek_bot",
     "telegram_url": "https://t.me/uzbtrek_bot",
     "visa_url": "https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi",
-    "description": "Trips to Uzbekistan for graduate students: big group treks for 10 or more and small group trips for fewer than 10, built on the 2025 and 2026 Harvard and MIT treks.",
+    "description": ("Become an Uzbekistan Trek ambassador: bring your graduate school classmates to Uzbekistan, with our materials "
+                    "and support at every step. Built on the 2025 and 2026 Harvard and MIT treks."),
 }
 
+# Header links. On the home page the "index.html" part is dropped, so the links scroll instead of reloading the page.
 NAV = [
-    ("big-group.html", "Big group (10+)", "big"),
-    ("small-group.html", "Small group (under 10)", "small"),
-    ("founder.html", "Founder", "founder"),
+    ("index.html#how", "How it works", "how"),
+    ("index.html#team", "Who we are", "team"),
+    ("index.html#groups", "Group trips", "groups"),
     ("index.html#faq", "FAQ", "faq"),
 ]
-NAV_CTA = ("index.html#choose", "Plan your trek")
+NAV_CTA = ("index.html#apply", "Apply now")
 
 DISCLAIMER = ("Uzbekistan Trek is independent. It is not affiliated with, sponsored or endorsed by Harvard University, "
               "the Massachusetts Institute of Technology or any other university. University names describe where past participants study.")
-FOOTER_BLURB = "Group trips to Uzbekistan for graduate students. Trips are land-only; international flights are not included."
+FOOTER_BLURB = "The ambassador program and group trips to Uzbekistan for graduate students. Trips are land-only; international flights are not included."
 COPYRIGHT = "&copy; 2026 Uzbekistan Trek. Photos from the 2025 and 2026 treks."
 
-# ---------------------------------------------------------------- the two choices (home page, end of pages)
-CHOICE_QUESTION = "How many people are traveling?"
-CHOICE_HINT = "Pick one to see how it works, what is included and how to book."
+# ---------------------------------------------------------------- home: the ambassador program
+HERO = {
+    "kicker": "Ambassador program",
+    "title": "Become an Uzbekistan Trek Ambassador",
+    "lede": ("Bring Uzbekistan to your campus. You coordinate your students. We give you the materials, the promotion techniques "
+             "and support at every step, and you travel to Uzbekistan with your group."),
+    "cta_primary": ("#apply", "Apply now"),
+    "cta_secondary": ("#how", "How it works"),
+    # group photos used nowhere else on the site; captions and years come from photos.json
+    "photos": ["a405", "a423", "a573"],
+}
+
+TEAM = {
+    "title": "Who we are",
+    "lede": ("We are Jakhongir and Zokirjon, two Uzbek graduate students in Boston who love showing our country "
+             "to classmates from around the world."),
+    # photo None shows the initials: founder_portrait is already on the founder page, and each photo appears once per site
+    "members": [
+        {"role": "Founder", "name": "Jakhongir Sadiev", "initials": "JS", "photo": None,
+         "text": "Harvard Kennedy School. Started the trek at Harvard in 2025: two treks, 95 travelers.",
+         "link": ("founder.html", "Read his story")},
+        {"role": "Co-Founder", "name": "Zokirjon Khabibullaev", "initials": "ZK", "photo": "zokirjon_khabibullaev",
+         "text": "Boston University. Coordinates the ambassador program and the trek&rsquo;s growth to new universities.",
+         "link": None},
+    ],
+}
+
+# Never promise ambassadors pay, a discount or a free place: many of them study on student visas.
+GETS = {
+    "title": "What you get",
+    "lede": "Everything we learned from two treks, ready for your university.",
+    "items": [
+        ("slides", "Ready-made materials", "Info-session slides, a flyer, sample texts and a registration page for your group."),
+        ("megaphone", "Promotion techniques",
+         "How we brought 95 travelers on two treks: where to share the trip, how to run an info session and how to turn interest into sign-ups."),
+        ("chat", "Support at every step",
+         "We plan the trip with you, answer your classmates&rsquo; questions and prepare a quote and a day-by-day plan for your dates."),
+        ("plane", "Travel with your group", "You travel to Uzbekistan with your classmates. We plan and run everything on the ground."),
+    ],
+}
+
+APPLY = {
+    "title": "Apply to become an ambassador",
+    "lede": "Tell us about yourself and the classmates you want to bring. We get back to you by email or Telegram.",
+    "who_title": "Who can apply",
+    "who": ["Uzbek graduate students, fellows and postdocs at universities outside Uzbekistan",
+            "No experience organizing trips needed",
+            "Your classmates can be from any country"],
+}
+
+# ---------------------------------------------------------------- the two choices (home page "Group trips" band)
+GROUPS = {
+    "title": "Already have a group?",
+    "lede": "Clubs, cohorts and friends can also travel with us directly. Pick your group size.",
+}
 CHOICES = {
     "big": {
         "href": "big-group.html", "count": "10+", "unit": "travelers", "title": "Big group trek",
@@ -65,7 +120,7 @@ PREVIOUS = {
     "bullets": [
         "In March 2025, 45 graduate students from Harvard and MIT traveled with us to Tashkent, Bukhara and Samarkand.",
         "In March 2026, the second trek grew to 50 travelers.",
-        "Now we are opening the trek to graduate students at other universities.",
+        "Now Uzbek students at other universities can bring their own classmates, as Uzbekistan Trek ambassadors.",
     ],
     "script": "What are the participants saying?",
 }
@@ -131,34 +186,26 @@ PAYMENT = {
     "note": "Your quote lists the exact amounts and due dates.",
 }
 
-FOUNDER_TEASER = {
-    "title": "A childhood dream",
-    "text": ("As a boy in Uzbekistan, I saw a photo of a student showing his university classmates around his home country. "
-             "I promised myself I would do the same one day. At Harvard, I did: on the first day we announced the trek, 40 people signed up."),
-    "signature": "Jakhongir Sadiev",
-    "cta": "Read the founder&rsquo;s story",
-}
-
-# ---------------------------------------------------------------- start a trek at your university (home page guide)
+# ---------------------------------------------------------------- how it works (home page guide for ambassadors)
 START = {
-    "title": "Start a trek at your university",
-    "lede": ("No trek program at your school? You do not need one. Every trek starts with one student, "
-             "a few interested classmates and a quote from us."),
+    "title": "How it works",
+    "lede": ("No trek program at your university? You do not need one. Every trek starts with one student, "
+             "a few interested classmates and our support."),
     "steps": [
+        ("Apply",
+         "Tell us about yourself, your university and the classmates you want to bring. It takes a few minutes.",
+         ("#apply", "Apply now")),
+        ("Get your kit",
+         "We talk through your plan and share the organizer kit: info-session slides, a flyer and sample texts.",
+         None),
         ("Check the interest",
          "Share a short note and a one-minute form in your class group chat. Aim for 10 or more classmates who say yes; fewer can still travel as a small group.",
          ("#sample-note", "Use the sample note")),
-        ("Find co-hosts",
-         "Team up with one or two classmates, and ask a student club to share the trip with its members. Clubs have the mailing lists you may not have.",
-         None),
-        ("Get a quote",
-         "Tell us your group size and dates. We reply with a day-by-day plan and a price per person, usually within three working days.",
-         ("big-group.html#quote", "Request a quote")),
         ("Open sign-ups",
-         "Hold a short info session with our slides and share the registration link. Everyone registers and pays through our page.",
+         "We send a quote and a day-by-day plan for your dates. Hold a short info session and share the registration link. Everyone registers and pays through our page.",
          ("#sample-announcement", "Use the sample announcement")),
         ("Travel together",
-         "We plan and run everything on the ground and host your group in Uzbekistan.",
+         "You travel to Uzbekistan with your group. We plan and run everything on the ground and host you there.",
          ("#itinerary", "See the sample itinerary")),
     ],
     "where_title": "Where to find your group",
@@ -167,6 +214,7 @@ START = {
               "Friends in other programs"],
     "tips_title": "Keep it student-led",
     "tips": ["Write as a classmate: say why you want to go and who you hope will come.",
+             "Team up with one or two classmates, and ask a student club to share the trip with its members. Clubs have the mailing lists you may not have.",
              "Be open about how it works: Uzbekistan Trek plans the trip and handles registration and payments; you bring the group together.",
              "Do not use your university&rsquo;s name or logo as if the trip were an official program."],
     "samples_title": "Sample texts you can copy",
@@ -174,7 +222,7 @@ START = {
 
 # Plain text (not HTML): shown with line breaks and copied as is. Words in [brackets] are for the organizer to fill in.
 SAMPLES = [
-    {"id": "sample-note", "step": "Step 1", "title": "Sample note to check interest", "when": "Send it before you ask for a quote.",
+    {"id": "sample-note", "step": "Step 3", "title": "Sample note to check interest", "when": "Send it before you ask for a quote.",
      "text": ("Subject: Uzbekistan over spring break? Quick interest check\n\n"
               "Hi everyone,\n\n"
               "I am thinking of organizing a trip to Uzbekistan for graduate students at [University], around [spring break or other dates]. "
@@ -205,14 +253,28 @@ SAMPLES = [
               "[Your names]")},
 ]
 
+# Home FAQ in two groups: (group title, [(question, [paragraphs])])
 FAQ_HOME = [
-    ("Who can join?",
-     ["Graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows. We do not run trips for undergraduates."]),
+  ("For ambassadors", [
+    ("Who can become an ambassador?",
+     ["Uzbek graduate students, fellows and postdocs at universities outside Uzbekistan. You do not need experience organizing trips: "
+      "we give you the materials and support at every step."]),
+    ("What does an ambassador do?",
+     ["You bring your classmates together: you share the trip, hold an info session and keep your group informed. "
+      "We plan the trip, run registration and payments, and host your group in Uzbekistan."]),
     ("Who is funding the travel?",
      ["The students themselves. Each traveler pays for their own place on the trek, through our registration page, and books their own international flights."]),
+    ("My university has no trek program. Can I still start one?",
+     ["Yes. You do not need one. Every trek starts with one student and a few interested classmates. See <a href=\"#how\">how it works</a>."]),
     ("How can I check the demand at my university?",
      ["Send a short note with a one-minute form to your classmates. You do not need a mailing list: a class group chat or a student club is enough.",
-      "<a href=\"#sample-note\">Use our sample note</a>, and see <a href=\"#start\">how to start a trek</a> for the next steps."]),
+      "<a href=\"#sample-note\">Use our sample note</a>, and see <a href=\"#how\">how it works</a> for the next steps."]),
+    ("I am not Uzbek. Can I bring my classmates?",
+     ["Yes. Plan a <a href=\"big-group.html\">big group trek</a> for 10 or more travelers, or a <a href=\"small-group.html\">small group trip</a> for fewer than 10."]),
+  ]),
+  ("For travelers", [
+    ("Who can join?",
+     ["Graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows. We do not run trips for undergraduates."]),
     ("Do I need a visa?",
      ["The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).",
       "For other passports, check the official visa page: <a href=\"https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi\" target=\"_blank\" rel=\"noopener\">Visa to the Republic of Uzbekistan</a>."]),
@@ -233,9 +295,8 @@ FAQ_HOME = [
      ["You can transfer your place to another graduate student with our approval. Refund terms are set out in the booking terms you accept when you pay. We strongly recommend trip cancellation insurance."]),
     ("Is this run by my university?",
      ["No. Groups organize themselves, and Uzbekistan Trek is not affiliated with any university. Please do not present the trip as an official university program."]),
+  ]),
 ]
-
-FINAL_CTA = {"title": "Ready to plan?", "lede": "Tell us how many of you are coming."}
 
 # ---------------------------------------------------------------- big group page
 BIG = {
@@ -371,7 +432,8 @@ FOUNDER = {
           "In the private sector, we discussed renewable energy with the leadership of ACWA Power, financial markets with TBC Bank, "
           "and technology at IT Park."]),
         ("What comes next",
-         ["My goal is to run more treks and open them to graduate students at other universities. We offer a full package for big groups and direct trips for small groups. "
+         ["My goal is to run more treks and open them to graduate students at other universities. That is why we started the ambassador program: "
+          "Uzbek students studying abroad can now bring their own classmates, and we support them at every step. "
           "After two treks, we know what students want from a week in Uzbekistan, and we can help you organize one for your group."]),
     ],
     "signature": "Jakhongir Sadiev",
@@ -407,8 +469,10 @@ FOUNDER = {
     },
     "areas_note": ("Treks for other universities focus on companies, universities and/or culture (subject to approval). "
                    "Formal government meetings are not part of the standard program."),
-    "cta_title": "Bring your group",
-    "cta_lede": "How many of you are coming?",
+    "cta_title": "Bring Uzbekistan to your campus",
+    "cta_lede": "Become an ambassador and travel to Uzbekistan with your classmates.",
+    "cta_groups": ("Already have a group? See <a href=\"big-group.html\">big group treks</a> "
+                   "and <a href=\"small-group.html\">small group trips</a>."),
     "moments_title": "Moments from the treks",
     # (photo key, aspect ratio); the captions carry the year
     "moments": [("navoi_theater", "4/3"), ("y2025_nowruz_concert", "4/3"), ("y2025_bukhara_classmates", "3/4"),
@@ -453,6 +517,7 @@ PRESS = {
 # ---------------------------------------------------------------- forms
 FORM_COMMON = {
     "privacy": "We use your details only to answer this request.",
+    "privacy_apply": "We use your details only to review your application and get back to you.",
     "telegram_hint": "Prefer chatting? Message us on Telegram at <a href=\"https://t.me/uzbtrek_bot\" target=\"_blank\" rel=\"noopener\">@uzbtrek_bot</a>.",
 }
 INTERESTS = ["Business and finance", "Public policy", "Technology", "Energy and climate", "Culture and food", "Mountains and outdoors"]

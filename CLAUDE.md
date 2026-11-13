@@ -1,6 +1,6 @@
 # Uzbekistan Trek website
 
-Static site for uzbekistantrek.com: trips to Uzbekistan for graduate students at any university (big groups of 10 or more, small groups under 10). GitHub Pages serves the root of `main`; merging into `main` publishes the site in a minute or two.
+Static site for uzbekistantrek.com. The home page leads with the ambassador program: Uzbek graduate students at universities outside Uzbekistan bring their classmates on a trek, with our materials and support. Group trips stay as secondary pages for graduate students at any university (big groups of 10 or more, small groups under 10), linked from "Group trips" in the header and from the footer. GitHub Pages serves the root of `main`; merging into `main` publishes the site in a minute or two.
 
 ## How the site is built
 - `index.html`, `big-group.html`, `small-group.html` and `founder.html` are generated. Never edit them by hand.
@@ -22,7 +22,9 @@ Static site for uzbekistantrek.com: trips to Uzbekistan for graduate students at
 - Formal government meetings are not part of the standard program for new universities; never promise them.
 - Do not name or link to any tour operator or travel company.
 - Never invent quotes, names, numbers or reviews. Use people's names and titles exactly as they appear in `shared/content.py`, and list government before the private sector.
-- Founder: say only that his hometown is Samarkand. Never say he was born or raised there.
+- Never promise ambassadors pay, a discount, a free place or any other reward. Describe them as students organizing a trip for their own classmates.
+- Founder: Jakhongir Sadiev. Co-Founder: Zokirjon Khabibullaev (Boston University). Say only that Jakhongir's hometown is Samarkand. Never say he was born or raised there.
+- Jakhongir's card on the home page shows his initials, because his portrait is on the founder page. Use a different photo of him there, never a crop of `founder_portrait`.
 - Contact: jsadiev@hks.harvard.edu and Telegram @uzbtrek_bot.
 - No em dashes. Short, plain sentences.
 - Each photo appears once per site, near-duplicates included (`SAME_PHOTO` in `shared/check.py`).

@@ -18,8 +18,24 @@ def text_of(path):
 
 
 R=[
- ('home','start guide', r'Start a trek at your university', True),
- ('home','guide five steps', r'Check the interest.*Find co-hosts.*Get a quote.*Open sign-ups.*Travel together', True),
+ # ambassador program (13 Nov 2026): hero and "Who we are" from the owner's mock-ups
+ ('home','hero pill and title', r'Ambassador program Become an Uzbekistan Trek Ambassador', True),
+ ('home','hero lede', r'Bring Uzbekistan to your campus\. You coordinate your students\. We give you the materials, the promotion techniques and support at every step, and you travel to Uzbekistan with your group\.', True),
+ ('home','hero buttons', r'href="#apply">Apply now</a>\s*<a class="btn btn-line" href="#how">How it works', 'raw'),
+ ('home','who we are lede', r'We are Jakhongir and Zokirjon, two Uzbek graduate students in Boston who love showing our country to classmates from around the world\.', True),
+ ('home','founder card', r'Founder Jakhongir Sadiev Harvard Kennedy School\. Started the trek at Harvard in 2025: two treks, 95 travelers\. Read his story', True),
+ ('home','co-founder card', r'Co-Founder Zokirjon Khabibullaev Boston University\. Coordinates the ambassador program and the trek.s growth to new universities\.', True),
+ ('home','what you get', r'What you get.*Ready-made materials.*Promotion techniques.*Support at every step.*Travel with your group', True),
+ ('home','application form', r'data-form="ambassador"', 'raw'),
+ ('home','who can apply', r'Uzbek graduate students, fellows and postdocs at universities outside Uzbekistan', True),
+ ('home','group pages still linked', r'href="big-group\.html".*href="small-group\.html"', 'raw'),
+ ('home','old #start links still land', r'id="start"', 'raw'),
+ ('home','old #choose links still land', r'id="choose"', 'raw'),
+ ('big','header apply button', r'href="\./#apply">Apply now<', 'raw'),
+ ('founder','founder cta apply', r'Bring Uzbekistan to your campus', True),
+ ('any','no pay or perks for ambassadors', r'(?i)\b(commission|stipend|free (trip|place|spot|travel)|discount|get paid|earn money|rewards?\b)', False),
+ ('home','how it works', r'How it works No trek program at your university\? You do not need one\.', True),
+ ('home','guide five steps', r'Apply.*Get your kit.*Check the interest.*Open sign-ups.*Travel together', True),
  ('home','where to find group', r'Where to find your group', True),
  ('home','student-led tips', r'Keep it student-led', True),
  ('home','sample note', r'Quick interest check', True),
@@ -39,8 +55,7 @@ R=[
  ('home','first deposit', r'[Ff]irst deposit', True),
  ('home','second deposit', r'[Ss]econd deposit', True),
  ('home','remaining balance', r'[Rr]emaining balance', True),
- ('home','teaser first person', r'As a boy in Uzbekistan, I saw a photo', True),
- ('home','teaser signature', r'Jakhongir Sadiev', True),
+ ('home','founder named on home', r'Jakhongir Sadiev', True),
  ('home','visa link', r'gov\.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi', 'raw'),
  ('home','all countries', r'all countries|any nationality|every nationality|citizens of all', True),
  ('home','US visa-free', r'US citizens|U\.S\. citizens', True),
@@ -136,6 +151,9 @@ def main():
         if need not in raw:
             fails += 1
             print(f"FAIL founder photo missing: {need}")
+    if "zokirjon_khabibullaev" not in pages["index.html"][0]:
+        fails += 1
+        print("FAIL home page: the co-founder photo is missing")
     if "samarkand_registan_night" in raw:
         fails += 1
         print("FAIL founder page shows the Registan at night (it belongs to the small group page)")
@@ -144,7 +162,7 @@ def main():
     if not 0 <= i < j:
         fails += 1
         print("FAIL founder page: government must come before the private sector")
-    print(f"{len(R) + 5} requirement checks, {fails} failed")
+    print(f"{len(R) + 6} requirement checks, {fails} failed")
     sys.exit(1 if fails else 0)
 
 
