@@ -227,7 +227,7 @@ START = {
 }
 
 # Plain text (not HTML): shown with line breaks. Words in [brackets] are for the organizer to fill in.
-# **bold** and __italic__ follow the owner's originals (Nov 2026). Copy keeps them: the email copies as formatted text for
+# **bold**, __italic__ and !!bold red!! follow the owner's originals (Nov 2026). Copy keeps them: the email copies as formatted text for
 # Gmail or Outlook, the WhatsApp message ("copy_as": "whatsapp") as WhatsApp's own *bold* and _italic_ marks.
 SAMPLES = [
     {"id": "sample-note", "step": "Step 3", "title": "Sample note to check interest", "when": "Send it before you ask for a quote.",
@@ -265,7 +265,7 @@ SAMPLES = [
               "(bullet train tickets), all meals, SIM card, museum and cultural site admissions.\n"
               "__Note: Personal expenses, visa fees (if any), alcohol, and international airfare are not included.__\n\n"
               "🟢 **How to join?**\n"
-              "• Submit the form here: [form link] (the form is open until **December 1**, 2026, EOD. If you have already submitted the form, "
+              "• Submit the form here: [form link] (the form is open until !!December 1!!, 2026, EOD. If you have already submitted the form, "
               "there is no need to submit it again).\n"
               "• Make the first deposit of **[amount]** by **December 20, 2026**, to confirm your spot. The second deposit of [amount] is due by "
               "January 20, 2027, and the remaining balance must be paid by February 27, 2027. Payment details will be sent to the email "

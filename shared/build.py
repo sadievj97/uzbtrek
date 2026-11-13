@@ -560,9 +560,11 @@ def pol(key, cap=None, sub=None, ar="4/3", extra_style="", cls="pol", lazy=True,
 
 
 def rich(text):
-    """A sample text as HTML: **bold** and __italic__ (within one line) become <strong> and <em>; everything else is escaped."""
+    """A sample text as HTML: **bold**, __italic__ and !!bold red!! (within one line) become <strong>, <em> and a red <strong>;
+    everything else is escaped. The red is an inline style, so it stays red when the copied text is pasted into an email."""
     t = html.escape(text, quote=False)
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"!!(.+?)!!", r'<strong style="color:#C2272D">\1</strong>', t)
     return re.sub(r"__(.+?)__", r"<em>\1</em>", t)
 
 
