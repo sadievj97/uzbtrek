@@ -210,8 +210,8 @@
  },
  "y2025_circle": {
   "file": "y2025_circle.webp",
-  "caption": "Under a painted dome",
-  "alt": "Students lying in a circle under a painted dome",
+  "caption": "Under the dome in Samarkand",
+  "alt": "Students lying in a circle under a painted dome in Samarkand",
   "year": "2025",
   "people": "faces",
   "restrict": "",
@@ -406,17 +406,6 @@
   "h": 1500,
   "orient": "portrait"
  },
- "a405": {
-  "file": "a405.webp",
-  "caption": "The 2026 group, Samarkand",
-  "alt": "The 2026 group in front of a blue-domed mausoleum",
-  "year": "2026",
-  "people": "faces",
-  "restrict": "",
-  "w": 1500,
-  "h": 1125,
-  "orient": "landscape"
- },
  "a474": {
   "file": "a474.webp",
   "caption": "In the doorway of Tilla-Kari, Registan",
@@ -608,6 +597,17 @@
   "file": "train_group.webp",
   "caption": "On the train",
   "alt": "A train carriage full of smiling students waving at the camera",
+  "year": "",
+  "people": "faces",
+  "restrict": "",
+  "w": 1200,
+  "h": 900,
+  "orient": "landscape"
+ },
+ "senate_handshake": {
+  "file": "senate_handshake.webp",
+  "caption": "At the Senate",
+  "alt": "Two people in suits shaking hands, seated in the Senate hall in front of Uzbek flags",
   "year": "",
   "people": "faces",
   "restrict": "",
