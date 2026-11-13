@@ -49,9 +49,10 @@ TEAM = {
     "title": "Who we are",
     "lede": ("We are Jakhongir and Zokirjon, two Uzbek graduate students in Boston who love showing our country "
              "to classmates from around the world."),
-    # photo None shows the initials: founder_portrait is already on the founder page, and each photo appears once per site
+    # photo None shows the initials. Jakhongir's avatar is a different photo from founder_portrait, which is on the founder page:
+    # each photo appears once per site.
     "members": [
-        {"role": "Founder", "name": "Jakhongir Sadiev", "initials": "JS", "photo": None,
+        {"role": "Founder", "name": "Jakhongir Sadiev", "initials": "JS", "photo": "jakhongir_sadiev",
          "text": "Harvard Kennedy School. Started the trek at Harvard in 2025: two treks, 95 travelers.",
          "link": ("founder.html", "Read his story")},
         {"role": "Co-Founder", "name": "Zokirjon Khabibullaev", "initials": "ZK", "photo": "zokirjon_khabibullaev",

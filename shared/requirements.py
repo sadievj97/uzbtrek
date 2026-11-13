@@ -154,6 +154,9 @@ def main():
     if "zokirjon_khabibullaev" not in pages["index.html"][0]:
         fails += 1
         print("FAIL home page: the co-founder photo is missing")
+    if "jakhongir_sadiev.webp" not in pages["index.html"][0]:
+        fails += 1
+        print("FAIL home page: the founder photo is missing")
     if "samarkand_registan_night" in raw:
         fails += 1
         print("FAIL founder page shows the Registan at night (it belongs to the small group page)")
@@ -162,7 +165,7 @@ def main():
     if not 0 <= i < j:
         fails += 1
         print("FAIL founder page: government must come before the private sector")
-    print(f"{len(R) + 6} requirement checks, {fails} failed")
+    print(f"{len(R) + 7} requirement checks, {fails} failed")
     sys.exit(1 if fails else 0)
 
 

@@ -603,5 +603,16 @@
   "w": 520,
   "h": 520,
   "orient": "square"
+ },
+ "jakhongir_sadiev": {
+  "file": "jakhongir_sadiev.webp",
+  "caption": "Jakhongir Sadiev",
+  "alt": "Jakhongir Sadiev, Founder of Uzbekistan Trek",
+  "year": "",
+  "people": "faces",
+  "restrict": "founder",
+  "w": 600,
+  "h": 600,
+  "orient": "square"
  }
 }
