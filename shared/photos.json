@@ -604,15 +604,15 @@
   "h": 600,
   "orient": "square"
  },
- "y2026_bukhara_view": {
-  "file": "y2026_bukhara_view.webp",
-  "caption": "Above old Bukhara",
-  "alt": "Four students on a viewpoint above old Bukhara, with a minaret and a blue dome behind them",
-  "year": "2026",
+ "train_group": {
+  "file": "train_group.webp",
+  "caption": "On the train",
+  "alt": "A train carriage full of smiling students waving at the camera",
+  "year": "",
   "people": "faces",
   "restrict": "",
-  "w": 2000,
-  "h": 1500,
+  "w": 1200,
+  "h": 900,
   "orient": "landscape"
  }
 }

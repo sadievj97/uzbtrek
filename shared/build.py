@@ -645,7 +645,7 @@ def footer():
       <p style="margin-top:16px">{FOOTER_BLURB}</p>
       <p>{DISCLAIMER}</p>
       <div class="contact">
-        <span><b>Email:</b> <span class="mail">{SITE["email"]}</span></span>
+        <span><b>Email:</b> {", ".join(f'<span class="mail">{e}</span>' for e in SITE["emails"])}</span>
         <span><b>Telegram:</b> <a href="{SITE["telegram_url"]}" target="_blank" rel="noopener">@{SITE["telegram_bot"]}</a></span>
       </div>
     </div>
@@ -887,7 +887,7 @@ def page_home():
       </div>
       <div class="pols quotes">
         {pol("a405", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
-        {pol("y2026_bukhara_view", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
+        {pol("train_group", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
         {pol("y2025_dancer", "&ldquo;" + q["dancing"]["text"] + "&rdquo;", q["dancing"]["cite"], cls="pol q")}
         {pol("cohort_registan", None, "March 2026")}
       </div>

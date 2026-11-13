@@ -151,6 +151,8 @@ R=[
 
 PAGEFILE = {"home": "index.html", "big": "big-group.html", "small": "small-group.html", "founder": "founder.html",
             "contact": "contact.html"}
+# the owner, Nov 2026: both co-founders' emails in the footer of every page
+R += [(p, "both emails in the footer", r"Email: jsadiev@hks\.harvard\.edu ?, zkhabib@bu\.edu", True) for p in PAGEFILE]
 
 
 def main():

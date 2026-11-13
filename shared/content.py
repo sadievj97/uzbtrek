@@ -12,6 +12,7 @@ SITE = {
     "since": "Since 2025",
     "side_label": "UZBEKISTAN TREK",
     "email": "jsadiev@hks.harvard.edu",
+    "emails": ["jsadiev@hks.harvard.edu", "zkhabib@bu.edu"],   # both shown in the footer of every page
     "telegram_bot": "uzbtrek_bot",
     "telegram_url": "https://t.me/uzbtrek_bot",
     "visa_url": "https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi",
