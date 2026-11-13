@@ -21,6 +21,7 @@ R=[
  # ambassador program (13 Nov 2026): hero and "Who we are" from the owner's mock-ups
  ('home','hero pill and title', r'Ambassador program Become an Uzbekistan Trek Ambassador', True),
  ('home','hero lede', r'Bring Uzbekistan to your campus\. You coordinate your students\. We give you the materials, the promotion techniques and support at every step, and you travel to Uzbekistan with your group\.', True),
+ ('home','hero title: Uzbekistan Trek as a white sticker', r'<h1 id="home-title">Become an <span class="sticker">Uzbekistan Trek</span> Ambassador</h1>', 'raw'),
  ('home','hero buttons', r'href="#apply">Apply now</a>\s*<a class="btn btn-line" href="#how">How it works', 'raw'),
  ('home','who we are lede', r'We are Jakhongir and Zokirjon, two Uzbek graduate students in Boston who love showing our country to classmates from around the world\.', True),
  ('home','founder card', r'Founder Jakhongir Sadiev Harvard Kennedy School\. Started the trek at Harvard in 2025: two treks, 95 travelers\. Read his story', True),

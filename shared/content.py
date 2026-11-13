@@ -37,6 +37,8 @@ COPYRIGHT = "&copy; 2026 Uzbekistan Trek. Photos from the 2025 and 2026 treks."
 HERO = {
     "kicker": "Ambassador program",
     "title": "Become an Uzbekistan Trek Ambassador",
+    # the owner chose this: these words show as white letters with a navy outline and shadow
+    "title_sticker": "Uzbekistan Trek",
     "lede": ("Bring Uzbekistan to your campus. You coordinate your students. We give you the materials, the promotion techniques "
              "and support at every step, and you travel to Uzbekistan with your group."),
     "cta_primary": ("#apply", "Apply now"),

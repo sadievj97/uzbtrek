@@ -72,6 +72,9 @@ p{ margin:0; }
 .home-hero .split{ grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); }
 .home-hero .wrap{ padding-block:clamp(44px, 6vw, 88px); }
 .page-hero.home-hero h1{ font-size:clamp(36px, 5.6vw, 72px); line-height:.95; }   /* the longest word must fit the text column */
+/* "Uzbekistan Trek" in the title: white letters, navy outline and a hard navy shadow. paint-order keeps the outline
+   outside the letters, so the white stays full width (Chrome 123+, Safari 11+, Firefox 60+). */
+.home-hero h1 .sticker{ color:var(--white); -webkit-text-stroke:.07em var(--navy); paint-order:stroke fill; text-shadow:.06em .06em 0 var(--navy); }
 .home-hero .lede{ max-width:54ch; margin-top:22px; }
 .hero-pols.h{ min-height:530px; }
 .hero-pols.h .pol{ width:min(268px, 48%); }
@@ -801,6 +804,8 @@ def page_home():
     tranches = "".join(f'<li><span class="tn" aria-hidden="true">{star}<i>{i}</i></span><b>{t}</b><span class="d">{d}</span></li>'
                        for i, (t, d) in enumerate(PAYMENT["tranches"], 1))
     hero_pols = "".join(pol(k, None, None, lazy=False) for k in H["photos"])
+    assert H["title_sticker"] in H["title"], "HERO title_sticker must be part of the title"
+    hero_title = H["title"].replace(H["title_sticker"], f'<span class="sticker">{H["title_sticker"]}</span>', 1)
     members = ""
     for m in T["members"]:
         av = f'<img src="{img(m["photo"])}" alt="" loading="lazy">' if m["photo"] else m["initials"]
@@ -816,7 +821,7 @@ def page_home():
     <div class="wrap split">
       <div>
         <span class="kicker">{H["kicker"]}</span>
-        <h1 id="home-title">{H["title"]}</h1>
+        <h1 id="home-title">{hero_title}</h1>
         <p class="lede">{H["lede"]}</p>
         <div class="btn-row">
           <a class="btn btn-navy" href="{H["cta_primary"][0]}">{H["cta_primary"][1]}</a>
