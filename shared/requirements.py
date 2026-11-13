@@ -45,7 +45,7 @@ R=[
  ('home','samples not official', r'not an official Harvard or MIT program', True),
  ('home','samples promise no government meetings', r'Meet top government officials|policymakers|Exclusive meetings', False),
  ('home','samples: graduate students only', r'MIT students and postdocs|95 Harvard and MIT students', False),
- ('home','Harvard brochure next to the WhatsApp sample', r'id="sample-whatsapp".*href="files/uzbekistan_trek_2027_harvard_info\.pdf"', 'raw'),
+ ('home','Harvard brochure is the 4th sample block', r'id="sample-whatsapp"[\s\S]*id="sample-brochure"[\s\S]*href="files/uzbekistan_trek_2027_harvard_info\.pdf"', 'raw'),
  ('home','sample email points to the site FAQ', r'refer to the FAQ at https://uzbekistantrek\.com/#faq', True),
  ('home','sample email: no FAQ that is not there', r'FAQs below', False),
  ('home','no dollar placeholders in samples', r'\$X', False),

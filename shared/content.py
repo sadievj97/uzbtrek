@@ -280,8 +280,6 @@ SAMPLES = [
               "Uzbekistan Trek 2027 Team")},
     {"id": "sample-whatsapp", "step": "Step 4", "title": "Sample WhatsApp message from Harvard",
      "when": "Post it in your class group chats when sign-ups open. Swap the Harvard details for your own.",
-     # the owner's Harvard brochure, with prices shown as [$X] and the organizers' emails removed
-     "file": ("files/uzbekistan_trek_2027_harvard_info.pdf", "Harvard info brochure (PDF, 3 MB)"),
      "text": ("🌟 UZBEKISTAN TREK 2027 (3rd edition) 🌟\n\n"
               "Hi everyone!\n"
               "🇺🇿 After the tremendous success of our March 2025 and 2026 treks with 95 Harvard and MIT graduate students, "
@@ -304,6 +302,10 @@ SAMPLES = [
               "❗️ Application deadline: December 1, 2026\n"
               "Limited spots available.\n\n"
               "Registration form: [form link]")},
+    # the owner's Harvard brochure as the fourth block: prices show as [$X], the organizers' emails and the form link are removed
+    {"id": "sample-brochure", "step": "Step 4", "title": "Harvard info brochure (PDF)",
+     "when": "The info brochure for the Harvard 2027 trek, with the prices taken out.",
+     "file": ("files/uzbekistan_trek_2027_harvard_info.pdf", "Open the brochure", "Download the PDF (17 pages, 3 MB)")},
 ]
 
 # Home FAQ in two groups: (group title, [(question, [paragraphs])])
