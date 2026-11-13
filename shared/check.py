@@ -13,7 +13,7 @@ import os, re, sys, html
 from collections import Counter
 
 IMG_RE = re.compile(r'''(?:src|href|data-src|data-bg)\s*=\s*["']([^"']+\.(?:webp|jpe?g|png|gif|avif))["']|url\(\s*["']?([^"')]+\.(?:webp|jpe?g|png|gif|avif))["']?\s*\)''', re.I)
-ASSET_RE = re.compile(r'''(?:src|href)\s*=\s*["']([^"'#?]+\.(?:js|css|svg|webp|jpe?g|png))["']''', re.I)
+ASSET_RE = re.compile(r'''(?:src|href)\s*=\s*["']([^"'#?]+\.(?:js|css|svg|webp|jpe?g|png|pdf))["']''', re.I)
 LINK_RE = re.compile(r'''href\s*=\s*["']([^"']+)["']''', re.I)
 # Different file names, same picture (exact copies or burst shots): never use two of a group on one site.
 SAME_PHOTO = [("a000", "tashkent_painted_hall"), ("a131", "bukhara_panorama"), ("a308", "nowruz_trees_group"),
@@ -22,7 +22,8 @@ SAME_PHOTO = [("a000", "tashkent_painted_hall"), ("a131", "bukhara_panorama"), (
 BANNED = [
     ("em dash", re.compile("—|&mdash;")),
     ("price", re.compile(r"\$\s?\d")),
-    ("side label with year", re.compile(r"TREK\s+2027")),
+    # only the vertical side label: the owner wants "Uzbekistan Trek 2027" kept in the sample announcement
+    ("side label with year", re.compile(r'class="side[^"]*"[^>]*>[^<]*\b20\d\d')),
     ("operator line", re.compile(r"Operated by|license no\.", re.I)),
     ("removed copy: pays operator in gets list", re.compile(r"so you never collect money", re.I)),
     ("removed copy: movie night", re.compile(r"movie night", re.I)),

@@ -72,6 +72,9 @@ p{ margin:0; }
 .home-hero .split{ grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); }
 .home-hero .wrap{ padding-block:clamp(44px, 6vw, 88px); }
 .page-hero.home-hero h1{ font-size:clamp(36px, 5.6vw, 72px); line-height:.95; }   /* the longest word must fit the text column */
+/* "Uzbekistan Trek" in the title: white letters, navy outline and a hard navy shadow. paint-order keeps the outline
+   outside the letters, so the white stays full width (Chrome 123+, Safari 11+, Firefox 60+). */
+.home-hero h1 .sticker{ color:var(--white); -webkit-text-stroke:.07em var(--navy); paint-order:stroke fill; text-shadow:.06em .06em 0 var(--navy); }
 .home-hero .lede{ max-width:54ch; margin-top:22px; }
 .hero-pols.h{ min-height:530px; }
 .hero-pols.h .pol{ width:min(268px, 48%); }
@@ -241,6 +244,7 @@ td b{ display:block; font-weight:850; }
 .go-link{ justify-self:start; font-weight:750; font-size:15px; text-decoration:none; border-bottom:2px solid var(--yellow); line-height:1.3; }
 .go-link::after{ content:" \203A"; }
 .go-link:hover{ border-bottom-color:var(--navy); }
+.sample-file{ display:inline-block; margin-top:8px; }
 .start-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:22px; margin-top:52px; }
 .start-box{ border-radius:16px; padding:24px 26px; }
 .start-box h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:14px; }
@@ -713,7 +717,10 @@ def start_block():
         tid = s["id"] + "-text"
         samples += (f'<article class="sample" id="{s["id"]}" aria-labelledby="{s["id"]}-title">'
                     f'<div class="sample-head"><div><span class="pill">{s["step"]}</span><h4 id="{s["id"]}-title">{s["title"]}</h4>'
-                    f'<p class="when">{s["when"]}</p></div>'
+                    f'<p class="when">{s["when"]}</p>'
+                    + (f'<a class="go-link sample-file" href="{s["file"][0]}" target="_blank" rel="noopener">{s["file"][1]}</a>'
+                       if s.get("file") else "") +
+                    '</div>'
                     f'<div class="copy-row"><button class="mini" type="button" data-copy="{tid}">Copy the text</button>'
                     f'<span class="copy-status" role="status" aria-live="polite"></span></div></div>'
                     f'<details><summary>Read the text</summary><div class="sample-text" id="{tid}">{html.escape(s["text"], quote=False)}</div></details>'
@@ -800,7 +807,10 @@ def page_home():
     star = f'<svg viewBox="0 0 48 48" focusable="false"><path d="{MP.STAR_OUTLINE}"/></svg>'
     tranches = "".join(f'<li><span class="tn" aria-hidden="true">{star}<i>{i}</i></span><b>{t}</b><span class="d">{d}</span></li>'
                        for i, (t, d) in enumerate(PAYMENT["tranches"], 1))
-    hero_pols = "".join(pol(k, None, None, lazy=False) for k in H["photos"])
+    hero_pols = "".join(pol(k, None, "" if PH[k]["year"] and PH[k]["caption"].endswith(PH[k]["year"]) else None, lazy=False)
+                        for k in H["photos"])
+    assert H["title_sticker"] in H["title"], "HERO title_sticker must be part of the title"
+    hero_title = H["title"].replace(H["title_sticker"], f'<span class="sticker">{H["title_sticker"]}</span>', 1)
     members = ""
     for m in T["members"]:
         av = f'<img src="{img(m["photo"])}" alt="" loading="lazy">' if m["photo"] else m["initials"]
@@ -816,7 +826,7 @@ def page_home():
     <div class="wrap split">
       <div>
         <span class="kicker">{H["kicker"]}</span>
-        <h1 id="home-title">{H["title"]}</h1>
+        <h1 id="home-title">{hero_title}</h1>
         <p class="lede">{H["lede"]}</p>
         <div class="btn-row">
           <a class="btn btn-navy" href="{H["cta_primary"][0]}">{H["cta_primary"][1]}</a>
@@ -854,8 +864,8 @@ def page_home():
         <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">How the trek started</a></div>
       </div>
       <div class="pols quotes">
-        {pol("y2025_circle", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
-        {pol("y2025_bukhara_arch", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
+        {pol("a405", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
+        {pol("a423", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
         {pol("y2025_dancer", "&ldquo;" + q["dancing"]["text"] + "&rdquo;", q["dancing"]["cite"], cls="pol q")}
         {pol("cohort_registan", None, "March 2026")}
       </div>
@@ -1130,7 +1140,7 @@ def page_founder():
       <aside class="story-side">
         {pol("senate_group", None, "", "3/2")}
         {pol("with_shakhnoza", None, "", "3/4")}
-        {pol("y2025_senate", None, "")}
+        {pol("a573", None, "")}
       </aside>
     </div>
   </section>

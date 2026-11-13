@@ -37,21 +37,25 @@ COPYRIGHT = "&copy; 2026 Uzbekistan Trek. Photos from the 2025 and 2026 treks."
 HERO = {
     "kicker": "Ambassador program",
     "title": "Become an Uzbekistan Trek Ambassador",
+    # the owner chose this: these words show as white letters with a navy outline and shadow
+    "title_sticker": "Uzbekistan Trek",
     "lede": ("Bring Uzbekistan to your campus. You coordinate your students. We give you the materials, the promotion techniques "
              "and support at every step, and you travel to Uzbekistan with your group."),
     "cta_primary": ("#apply", "Apply now"),
     "cta_secondary": ("#how", "How it works"),
-    # group photos used nowhere else on the site; captions and years come from photos.json
-    "photos": ["a405", "a423", "a573"],
+    # the owner's choice from the Harvard 2027 PowerPoint (Nov 2026): two photos from its "From the previous treks" slide and
+    # the first trek at the Senate. Captions and years come from photos.json. Each photo appears once per site.
+    "photos": ["y2025_circle", "y2025_bukhara_arch", "y2025_senate"],
 }
 
 TEAM = {
     "title": "Who we are",
     "lede": ("We are Jakhongir and Zokirjon, two Uzbek graduate students in Boston who love showing our country "
              "to classmates from around the world."),
-    # photo None shows the initials: founder_portrait is already on the founder page, and each photo appears once per site
+    # photo None shows the initials. Jakhongir's avatar is a different photo from founder_portrait, which is on the founder page:
+    # each photo appears once per site.
     "members": [
-        {"role": "Founder", "name": "Jakhongir Sadiev", "initials": "JS", "photo": None,
+        {"role": "Founder", "name": "Jakhongir Sadiev", "initials": "JS", "photo": "jakhongir_sadiev",
          "text": "Harvard Kennedy School. Started the trek at Harvard in 2025: two treks, 95 travelers.",
          "link": ("founder.html", "Read his story")},
         {"role": "Co-Founder", "name": "Zokirjon Khabibullaev", "initials": "ZK", "photo": "zokirjon_khabibullaev",
@@ -233,24 +237,73 @@ SAMPLES = [
               "If 10 or more of us are interested, I will share the dates, the program and the price per person.\n\n"
               "More about the trek: [website link]\n\n"
               "[Your name]")},
-    {"id": "sample-announcement", "step": "Step 4", "title": "Sample announcement", "when": "Send it once you have your quote.",
-     "text": ("Subject: Uzbekistan Trek for [University] graduate students: sign-ups are open\n\n"
-              "Dear friends,\n\n"
-              "We are organizing a trip to Uzbekistan for [University] graduate students, and you are invited!\n\n"
-              "When: [dates]\n"
-              "Where: Tashkent, Samarkand, Bukhara and the mountains near Tashkent\n"
-              "Price: [price per person from your quote]\n"
-              "Included: hotels with breakfast, lunches and dinners, city tours with licensed guides, cultural experiences, "
-              "fast trains and transfers, museum entrance fees and a local SIM card\n"
-              "Not included: international flights, travel medical and evacuation insurance, visa fees if your passport needs a visa, "
-              "alcohol and personal expenses\n"
-              "How to join: register by [deadline] at [registration link]. You pay through the registration page in three installments: "
-              "a first deposit to hold your place, a second deposit, then the balance.\n"
-              "Who can join: [University] graduate students, fellows and postdocs; partners when space allows\n\n"
-              "More about the trek and past trips: [website link]\n"
-              "Questions? Write to [your names and emails].\n\n"
-              "This is a trip organized by students; it is not an official [University] program.\n\n"
-              "[Your names]")},
+    # The two Harvard samples are the owner's own texts (November 2026), kept close to the original. Changes, for the content rules:
+    # prices and deposits are [placeholders]; no promise of government officials, policymakers or exclusive meetings;
+    # "graduate students, fellows and postdocs", never just "students"; the WhatsApp heading said 2026 for the 3rd edition, which is
+    # March 2027; the balance was due "February 27, 2025", now 2027; "the FAQs below" points to the site FAQ instead; the email ends
+    # with the not-official line. The owner asked to keep "Uzbekistan Trek 2027".
+    {"id": "sample-announcement", "step": "Step 4", "title": "Sample announcement from Harvard (email)",
+     "when": "Send it once you have your quote. Swap the Harvard details and the words in [brackets] for your own.",
+     "text": ("Dear friends!\n\n"
+              "After the tremendous success of our March 2025 and 2026 treks with 95 Harvard and MIT graduate students, "
+              "we are excited to announce the Uzbekistan Trek 2027! This is the right opportunity to explore the heart of Central Asia! "
+              "Want to join? Follow the instructions below.\n\n"
+              "📅 When?\n"
+              "• March 14-21, 2027 (Spring Break)\n"
+              "• Arrive in Tashkent by March 14, and departures begin any time on March 21.\n\n"
+              "📍 Where?\n"
+              "• Tashkent, Tashkent region (mountains), Samarkand, Bukhara\n\n"
+              "💰 How much?\n"
+              "• [price] per person for double occupancy\n"
+              "• [price] per person for single occupancy\n\n"
+              "📦 What's included?\n"
+              "• The cost covers nearly everything: hotel accommodations, guide, city tours, local transportation, and in-country transfers "
+              "(bullet train tickets), all meals, SIM card, museum and cultural site admissions.\n"
+              "Note: Personal expenses, visa fees (if any), alcohol, and international airfare are not included.\n\n"
+              "🟢 How to join?\n"
+              "• Submit the form here: [form link] (the form is open until December 1, 2026, EOD. If you have already submitted the form, "
+              "there is no need to submit it again).\n"
+              "• Make the first deposit of [amount] by December 20, 2026, to confirm your spot. The second deposit of [amount] is due by "
+              "January 20, 2027, and the remaining balance must be paid by February 27, 2027. Payment details will be sent to the email "
+              "address provided in your application form.\n\n"
+              "👥 Who can join?\n"
+              "• All current Harvard and MIT graduate students, fellows, and postdocs\n\n"
+              "🎉 Program highlights\n"
+              "• Visit iconic Silk Road cities, see the stunning bazaars, visit the oldest carpet and paper-making workshop, "
+              "and attend the Nowruz celebration.\n"
+              "• Meet local entrepreneurs and visit companies and universities.\n"
+              "• Experience authentic Uzbek cuisine, music, shows, and hospitality.\n\n"
+              "If you have any questions, refer to the FAQ at https://uzbekistantrek.com/#faq, or feel free to reach out to us! We are here to help!\n\n"
+              "We look forward to exploring Uzbekistan with you!\n\n"
+              "This trip is organized by students. It is not an official Harvard or MIT program.\n\n"
+              "Best regards,\n"
+              "Uzbekistan Trek 2027 Team")},
+    {"id": "sample-whatsapp", "step": "Step 4", "title": "Sample WhatsApp message from Harvard",
+     "when": "Post it in your class group chats when sign-ups open. Swap the Harvard details for your own.",
+     # the owner's Harvard brochure, with prices shown as [$X] and the organizers' emails removed
+     "file": ("files/uzbekistan_trek_2027_harvard_info.pdf", "Harvard info brochure (PDF, 3 MB)"),
+     "text": ("🌟 UZBEKISTAN TREK 2027 (3rd edition) 🌟\n\n"
+              "Hi everyone!\n"
+              "🇺🇿 After the tremendous success of our March 2025 and 2026 treks with 95 Harvard and MIT graduate students, "
+              "we are excited to bring the Uzbekistan Trek experience back for a new cohort. "
+              "An incredible opportunity awaits in the heart of the Silk Road!\n\n"
+              "Previous years' participants described the trek as “the best ever,” “a week packed with unforgettable moments,” "
+              "and “one of the most inspiring journeys at Harvard.”\n\n"
+              "Get ready to:\n"
+              "• Explore magnificent sites in Samarkand, Tashkent and Bukhara\n"
+              "• Experience authentic Nowruz celebrations\n"
+              "• Meet entrepreneurs and investors\n"
+              "• Visit cutting-edge tech hubs\n\n"
+              "🏛 Highlights:\n"
+              "• Ancient bazaars & the legendary Registan\n"
+              "• Traditional crafts: carpet weaving & paper making\n"
+              "• Crystal-clear mountain lakes\n\n"
+              "Who can join? Current Harvard & MIT graduate students, fellows and postdocs\n\n"
+              "🗓 The dates: March 14-21, 2027\n"
+              "🌆 Cities: Tashkent, Tashkent region, Samarkand & Bukhara\n"
+              "❗️ Application deadline: December 1, 2026\n"
+              "Limited spots available.\n\n"
+              "Registration form: [form link]")},
 ]
 
 # Home FAQ in two groups: (group title, [(question, [paragraphs])])

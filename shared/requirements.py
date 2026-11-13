@@ -21,6 +21,7 @@ R=[
  # ambassador program (13 Nov 2026): hero and "Who we are" from the owner's mock-ups
  ('home','hero pill and title', r'Ambassador program Become an Uzbekistan Trek Ambassador', True),
  ('home','hero lede', r'Bring Uzbekistan to your campus\. You coordinate your students\. We give you the materials, the promotion techniques and support at every step, and you travel to Uzbekistan with your group\.', True),
+ ('home','hero title: Uzbekistan Trek as a white sticker', r'<h1 id="home-title">Become an <span class="sticker">Uzbekistan Trek</span> Ambassador</h1>', 'raw'),
  ('home','hero buttons', r'href="#apply">Apply now</a>\s*<a class="btn btn-line" href="#how">How it works', 'raw'),
  ('home','who we are lede', r'We are Jakhongir and Zokirjon, two Uzbek graduate students in Boston who love showing our country to classmates from around the world\.', True),
  ('home','founder card', r'Founder Jakhongir Sadiev Harvard Kennedy School\. Started the trek at Harvard in 2025: two treks, 95 travelers\. Read his story', True),
@@ -39,8 +40,15 @@ R=[
  ('home','where to find group', r'Where to find your group', True),
  ('home','student-led tips', r'Keep it student-led', True),
  ('home','sample note', r'Quick interest check', True),
- ('home','sample announcement', r'sign-ups are open', True),
- ('home','samples not official', r'not an official \[University\] program', True),
+ ('home','sample announcement from Harvard (email)', r'Sample announcement from Harvard \(email\).*excited to announce the Uzbekistan Trek 2027!', True),
+ ('home','sample WhatsApp message from Harvard', r'Sample WhatsApp message from Harvard.*UZBEKISTAN TREK 2027 \(3rd edition\)', True),
+ ('home','samples not official', r'not an official Harvard or MIT program', True),
+ ('home','samples promise no government meetings', r'Meet top government officials|policymakers|Exclusive meetings', False),
+ ('home','samples: graduate students only', r'MIT students and postdocs|95 Harvard and MIT students', False),
+ ('home','Harvard brochure next to the WhatsApp sample', r'id="sample-whatsapp".*href="files/uzbekistan_trek_2027_harvard_info\.pdf"', 'raw'),
+ ('home','sample email points to the site FAQ', r'refer to the FAQ at https://uzbekistantrek\.com/#faq', True),
+ ('home','sample email: no FAQ that is not there', r'FAQs below', False),
+ ('home','no dollar placeholders in samples', r'\$X', False),
  ('home','faq funding', r'Who is funding the travel\? The students themselves', True),
  ('home','faq demand', r'How can I check the demand at my university\?', True),
  ('home','no prices in samples', r'\$\s?\d', False),
@@ -94,7 +102,8 @@ R=[
  ('founder','no press on founder', r'In the news', False),
  ('founder','before harvard order', r'World Bank, United Nations, Auburn University \(AL\)', True),
  ('founder','lede no dot', r'Founder of the Uzbekistan Trek\.', False),
- ('founder','senate caption', r'The first trek at the Senate with Chairwoman Tanzila Narbaeva, 2025', True),
+ ('home','senate caption (in the banner since Nov 2026)', r'The first trek at the Senate with Chairwoman Tanzila Narbaeva, 2025', True),
+ ('home','banner photos from the PowerPoint', r'class="hero-pols h">.*y2025_circle\.webp.*y2025_bukhara_arch\.webp.*y2025_senate\.webp', 'raw'),
  ('founder','shakhnoza caption', r'With Shakhnoza Mirziyoyeva, National Agency for Social Protection', True),
  ('big','acwa caption', r'Breakfast with the leadership of ACWA(?! Power)', True),
  ('big','tbc caption', r'TBC Bank visit, Tashkent', True),
@@ -129,7 +138,7 @@ R=[
  ('any','email', r'jsadiev@hks\.harvard\.edu', True),
  ('any','telegram', r't\.me/uzbtrek_bot', 'raw'),
  ('any','no operated by', r'Operated by', False),
- ('any','no TREK 2027', r'TREK\s*2027', False),
+ # A year on the vertical side label is banned in check.py. The owner wants "Uzbekistan Trek 2027" in the Harvard samples (Nov 2026).
 ]
 
 PAGEFILE = {"home": "index.html", "big": "big-group.html", "small": "small-group.html", "founder": "founder.html"}
@@ -154,6 +163,9 @@ def main():
     if "zokirjon_khabibullaev" not in pages["index.html"][0]:
         fails += 1
         print("FAIL home page: the co-founder photo is missing")
+    if "jakhongir_sadiev.webp" not in pages["index.html"][0]:
+        fails += 1
+        print("FAIL home page: the founder photo is missing")
     if "samarkand_registan_night" in raw:
         fails += 1
         print("FAIL founder page shows the Registan at night (it belongs to the small group page)")
@@ -162,7 +174,7 @@ def main():
     if not 0 <= i < j:
         fails += 1
         print("FAIL founder page: government must come before the private sector")
-    print(f"{len(R) + 6} requirement checks, {fails} failed")
+    print(f"{len(R) + 7} requirement checks, {fails} failed")
     sys.exit(1 if fails else 0)
 
 

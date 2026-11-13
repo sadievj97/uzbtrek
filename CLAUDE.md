@@ -13,6 +13,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 - `assets/config.js` belongs to the owner: it holds the relay address and the analytics token. Never overwrite, regenerate or reformat it. Change a line in it only when the owner asks.
 - `worker/telegram-relay.js` is the Cloudflare Worker. GitHub does not deploy it: after changing it, tell the owner to paste it into the Worker in Cloudflare and deploy.
 - `img/` holds only the photos the site uses. To add one, put a `.webp` (about 2000 px on the long side) in `img/` and add its entry to `shared/photos.json`.
+- `files/` holds downloads linked from the site, such as the Harvard 2027 brochure next to the WhatsApp sample. In those files, prices show as [$X] and personal emails are removed (true redaction, not a box over the text).
 - To look at the pages, run `python3 -m http.server 8000` in the repository root and open http://localhost:8000.
 
 ## Content rules
@@ -24,7 +25,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 - Never invent quotes, names, numbers or reviews. Use people's names and titles exactly as they appear in `shared/content.py`, and list government before the private sector.
 - Never promise ambassadors pay, a discount, a free place or any other reward. Describe them as students organizing a trip for their own classmates.
 - Founder: Jakhongir Sadiev. Co-Founder: Zokirjon Khabibullaev (Boston University). Say only that Jakhongir's hometown is Samarkand. Never say he was born or raised there.
-- Jakhongir's card on the home page shows his initials, because his portrait is on the founder page. Use a different photo of him there, never a crop of `founder_portrait`.
+- Jakhongir's card on the home page uses `jakhongir_sadiev`, a different photo from the portrait on the founder page. Never use a crop of `founder_portrait` there.
 - Contact: jsadiev@hks.harvard.edu and Telegram @uzbtrek_bot.
 - No em dashes. Short, plain sentences.
 - Each photo appears once per site, near-duplicates included (`SAME_PHOTO` in `shared/check.py`).
