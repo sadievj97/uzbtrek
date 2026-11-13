@@ -99,7 +99,7 @@
       if (phase !== lastBus) {
         lastBus = phase;
         if (routeMap) routeMap.classList.toggle("by-bus", onBus);
-        if (hint) hint.textContent = ["Scroll to ride the fast train", "To the mountains by bus", "Back to Tashkent by bus"][phase];
+        if (hint) hint.textContent = (hint.getAttribute("data-hints") || "Scroll to ride the fast train|To the mountains by bus|Back to Tashkent by bus").split("|")[phase];
       }
       var pos = "translate(" + pt.x.toFixed(1) + " " + pt.y.toFixed(1) + ")";
       train.setAttribute("transform", pos + " rotate(" + ang.toFixed(1) + ")");
