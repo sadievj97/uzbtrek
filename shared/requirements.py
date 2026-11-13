@@ -165,7 +165,8 @@ R += [(p, "both emails in the footer", r"Email: jsadiev@hks\.harvard\.edu ?, zkh
 R += [(p, "link to the same page in Uzbek", r'<a class="lang" href="uz/[^"]*" hreflang="uz"', "raw") for p in PAGEFILE]
 
 # ---------------------------------------------------------------- the Uzbek pages in uz/ (the owner, Nov 2026)
-# Written in the new Latin letters (Ö, Ğ, Ş, Ç). The samples, the brochure, the quotes and names stay in English.
+# Written in the new Latin letters (Ö, Ğ, Ş, Ç). The samples, the brochure and the quotes stay in English.
+# Names use their Uzbek spelling there (the owner, Nov 2026): Jaxongir Sadiyev, Zokirjon Xabibullayev, Tanzila Norboyeva...
 UZFILE = {"uz-" + k: "uz/" + v for k, v in PAGEFILE.items()}
 R += [(p, "independence line", r"Uzbekistan Trek mustaqil loyiha", True) for p in UZFILE]
 R += [(p, "both emails in the footer", r"Elektron poçta: jsadiev@hks\.harvard\.edu ?, zkhabib@bu\.edu", True) for p in UZFILE]
@@ -173,7 +174,9 @@ R += [(p, "marked as Uzbek", r'<html lang="uz">', "raw") for p in UZFILE]
 R += [(p, "link to the same page in English", r'<a class="lang" href="\.\./[^"]*" hreflang="en"', "raw") for p in UZFILE]
 R += [
  ('uz-home', 'hero title', r'Uzbekistan Trek elçisi böling', True),
- ('uz-home', 'both co-founders are Hammuassis', r'Hammuassis Jakhongir Sadiev .*Hammuassis Zokirjon Khabibullaev', True),
+ ('uz-home', 'both co-founders are Hammuassis', r'Hammuassis Jaxongir Sadiyev .*Hammuassis Zokirjon Xabibullayev', True),
+ ('uz-founder', 'co-founder name in Uzbek spelling', r'Jaxongir Sadiyev', True),
+ ('uz-any', 'no English spellings of names', r'Jakhongir|Sadiev\b|Khabibullaev|Narbaeva|Shakhnoza|Kongratbay|Khilola|Juraev', False),
  ('uz-home', 'sample texts stay in English', r'Subject: Uzbekistan over spring break\? Quick interest check', True),
  ('uz-home', 'brochure next to the samples', r'href="\.\./files/uzbekistan_trek_2027_harvard_info\.pdf"', 'raw'),
  ('uz-home', 'never undergraduates', r'Bakalavriat talabalari uçun sayohat taşkil qilmaymiz', True),
@@ -181,7 +184,7 @@ R += [
  ('uz-big', 'no formal government meetings promised', r'Rasmiy davlat uçraşuvlari unga kirmaydi', True),
  ('uz-founder', 'no formal government meetings in the standard program', r'Rasmiy davlat uçraşuvlari standart dasturga kirmaydi', True),
  ('uz-founder', 'hometown only', r'ona şahrim Samarqand', True),
- ('uz-contact', 'both co-founders and their emails', r'Jakhongir Sadiev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Khabibullaev Boston University zkhabib@bu\.edu', True),
+ ('uz-contact', 'both co-founders and their emails', r'Jaxongir Sadiyev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Xabibullayev Boston University zkhabib@bu\.edu', True),
  ('uz-any', 'never just "asoschi" (founder)', r'\b[Aa]soschi|\b[Aa]soşçi', False),
  ('uz-any', "no old letters o' and g' left", r"[oOgG][ʻ‘']\w|ʻ", False),
 ]
@@ -219,7 +222,7 @@ def main():
         fails += 1
         print("FAIL founder page: government must come before the private sector")
     v = pages["uz/founder.html"][1]
-    i, j = v.find("Narbaeva"), v.find("Jon Zaidi")
+    i, j = v.find("Norboyeva"), v.find("Jon Zaidi")
     if not 0 <= i < j:
         fails += 1
         print("FAIL uz/founder.html: government must come before the private sector")

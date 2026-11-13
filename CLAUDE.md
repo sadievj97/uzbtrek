@@ -32,7 +32,8 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 - Contact: jsadiev@hks.harvard.edu (Jakhongir), zkhabib@bu.edu (Zokirjon) and Telegram @uzbtrek_bot. The Contact page (`contact.html`, text in `CONTACT` in `shared/content.py`) lists all three.
 - No em dashes. Short, plain sentences.
 - Uzbek pages (`uz/`) use the new Latin letters from the law of October 2026: Ö, Ğ, Ş, Ç (not Oʻ, Gʻ, Sh, Ch). In `content_uz.py`, write the familiar spelling (o', g', sh, ch); `newlat()` converts it when the module loads and leaves names in `PROTECT`, tags and links alone. Titles: Co-Founder is "Hammuassis", never just "asoschi". Ambassador is "elchi".
-- On the Uzbek pages these stay in English: the sample texts and the brochure (ambassadors send them to international classmates), participants' quotes, people's names as in `content.py`, the English names of schools and companies, and the Uzbekistan Trek brand.
+- On the Uzbek pages these stay in English: the sample texts and the brochure (ambassadors send them to international classmates), participants' quotes, the English names of schools and companies, and the Uzbekistan Trek brand.
+- On the Uzbek pages, names use their Uzbek spelling, as in `content_uz.py`: Jaxongir Sadiyev and Zokirjon Xabibullayev (the owner's own spellings), and officials as Uzbek media write them (Tanzila Norboyeva, Shahnoza Mirziyoyeva, Qoʻngʻirotboy Sharipov, Hilola Umarova). The English pages keep the spellings in `content.py`.
 - Each photo appears once per site, near-duplicates included (`SAME_PHOTO` in `shared/check.py`).
 - When the owner asks to remove copy, also add it to `BANNED` in `shared/check.py` so it cannot come back.
 - Check facts that change before stating them: visa rules, the US State Department advisory level, Uzbekistan Airways flights from New York, Nowruz dates, officials' current titles and form links. Cite the source.

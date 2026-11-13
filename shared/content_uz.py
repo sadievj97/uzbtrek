@@ -4,7 +4,8 @@ The text below is written in the familiar Latin spelling, with o' and g' for Oʻ
 newlat() turns it into the new letters when this module loads: o' to ö, g' to ğ, sh to ş, ch to ç, any other apostrophe
 between letters to ʼ. It leaves HTML tags, entities, web addresses, emails, @handles and the names in PROTECT as they are.
 Kept in English on purpose: the sample texts and the brochure (ambassadors send them to international classmates), the
-participants' quotes (their own words), people's names (as in content.py) and the English names of schools and companies.
+participants' quotes (their own words) and the English names of schools and companies. People's names use their Uzbek
+spelling (the owner, Nov 2026): Jaxongir Sadiyev, Zokirjon Xabibullayev, and the officials as Uzbek media write them.
 The same rules as content.py apply: no prices, graduate students only, no promised government meetings, no em dashes.
 """
 import json
@@ -18,8 +19,7 @@ LANG = "uz"
 
 # ---------------------------------------------------------------- new letters
 # Names and English titles that contain sh, ch or an apostrophe and must stay exactly as written.
-PROTECT = ["Shakhnoza Mirziyoyeva", "Sherzod Shermatov", "Kongratbay Sharipov", "Nodirbek Achilov", "Alisher Juraev",
-           "Harvard Kennedy School", "Harvard Full Scholarship", "Massachusetts Institute of Technology", "fellowship",
+PROTECT = ["Harvard Kennedy School", "Harvard Full Scholarship", "Massachusetts Institute of Technology", "fellowship",
            "English", "WhatsApp", "Ctrl+C", "Cmd+C"]
 _SKIP = re.compile("|".join([r"<[^>]*>", r"&[#\w]+;", r"https?://[^\s\"<>]+", r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", r"@\w+"]
                             + [re.escape(p) for p in sorted(PROTECT, key=len, reverse=True)]))
@@ -96,13 +96,13 @@ HERO = dict(EN.HERO,
 
 TEAM = {
     "title": "Biz kimmiz",
-    "lede": ("Biz, Jakhongir va Zokirjon, Bostonda tahsil olayotgan ikki o'zbek talabasimiz. Yurtimizni dunyoning turli "
+    "lede": ("Biz, Jaxongir va Zokirjon, Bostonda tahsil olayotgan ikki o'zbek talabasimiz. Yurtimizni dunyoning turli "
              "burchaklaridan kelgan kursdoshlarimizga ko'rsatishni yaxshi ko'ramiz."),
     "members": [
-        dict(EN.TEAM["members"][0], role="Hammuassis",
+        dict(EN.TEAM["members"][0], role="Hammuassis", name="Jaxongir Sadiyev",
              text="Harvard Kennedy School. Trekni 2025-yilda Garvardda boshlagan: ikki trek, 95 nafar sayohatchi.",
              link=("founder.html", "Uning hikoyasini o'qing")),
-        dict(EN.TEAM["members"][1], role="Hammuassis",
+        dict(EN.TEAM["members"][1], role="Hammuassis", name="Zokirjon Xabibullayev", initials="ZX",
              text="Boston University. Elchilar dasturini va trekning yangi universitetlarga kengayishini muvofiqlashtiradi."),
     ],
 }
@@ -447,6 +447,8 @@ SMALL = dict(EN.SMALL,
 # ---------------------------------------------------------------- co-founder page
 FOUNDER = dict(EN.FOUNDER,
     kicker="Hammuassis haqida",
+    name="Jaxongir Sadiyev",
+    signature="Jaxongir Sadiyev",
     lede="Uzbekistan Trek hammuassisi",
     facts=[
         ("Harvard University (HKS)", "Iqtisodiyot magistri (MPA/ID)"),
@@ -499,12 +501,12 @@ FOUNDER = dict(EN.FOUNDER,
     areas_title="Garvard va MIT treklari kimlar bilan uchrashdi",
     areas={
         "Davlat": [
-            "Senat: Senat raisi Tanzila Narbaeva",
-            "Ijtimoiy himoya milliy agentligi: Shakhnoza Mirziyoyeva",
+            "Senat: Senat raisi Tanzila Norboyeva",
+            "Ijtimoiy himoya milliy agentligi: Shahnoza Mirziyoyeva",
             "Buxoro viloyati: hokim Botir Zaripov",
             "Raqamli texnologiyalar vazirligi: vazir Sherzod Shermatov",
-            "Oliy ta'lim, fan va innovatsiyalar vazirligi: vazir Kongratbay Sharipov",
-            "Maktabgacha va maktab ta'limi vazirligi: vazir Khilola Umarova",
+            "Oliy ta'lim, fan va innovatsiyalar vazirligi: vazir Qo'ng'irotboy Sharipov",
+            "Maktabgacha va maktab ta'limi vazirligi: vazir Hilola Umarova",
             "Markaziy bank: rais o'rinbosari Dr. Nodirbek Achilov",
         ],
         "Xususiy sektor va universitetlar": [
@@ -512,7 +514,7 @@ FOUNDER = dict(EN.FOUNDER,
             "TBC Bank: Nika Kurdiani, O'zbekiston bo'yicha bosh ijrochi direktor",
             "IT Park",
             "Yangi O'zbekiston universiteti",
-            "Nordic University: Dr. Alisher Juraev",
+            "Nordic University: Dr. Alisher Jo'rayev",
         ],
     },
     areas_note=("Boshqa universitetlar uchun treklar kompaniyalar, universitetlar va/yoki madaniyatga qaratiladi (tasdiqlanishiga qarab). "
@@ -540,6 +542,7 @@ _PRESS_LINES = {   # English line: Uzbek line
     "Instagram post": "Instagram posti",
 }
 _PRESS_SRC = {"Uzbekistan 24": "O'zbekiston 24", "UzA": "O'zA", "Senate": "Senat",
+              "Tanzila Narbaeva": "Tanzila Norboyeva", "Shakhnoza Mirziyoyeva": "Shahnoza Mirziyoyeva",
               "New Uzbekistan University": "Yangi O'zbekiston universiteti",
               "Ministry of Higher Education, Science and Innovation": "Oliy ta'lim, fan va innovatsiyalar vazirligi",
               "National Agency for Social Protection": "Ijtimoiy himoya milliy agentligi"}
@@ -567,7 +570,8 @@ CONTACT = dict(EN.CONTACT,
     kicker="Aloqa",
     title="Biz bilan bog'laning",
     lede="Elchilar dasturi yoki guruh sayohati haqida savolingiz bormi? Ikkimizdan biriga yozing yoki Telegram orqali xabar yuboring.",
-    people=[dict(p, role="Hammuassis") for p in EN.CONTACT["people"]],
+    people=[dict(EN.CONTACT["people"][0], role="Hammuassis", name="Jaxongir Sadiyev"),
+            dict(EN.CONTACT["people"][1], role="Hammuassis", name="Zokirjon Xabibullayev", initials="ZX")],
     telegram_text="Yozishmani afzal ko'rasizmi? Bizga Telegramda xabar yuboring.",
     telegram_cta="Telegramda yozish",
     next_title="Boshqa narsa qidiryapsizmi?",
@@ -616,9 +620,9 @@ META = {
                        "sizning sanalaringiz, alohida marshrut va to'liq paket."),
     "small-group.html": ("Kichik guruh sayohati", "10 kishidan kam magistrant va doktorant uchun O'zbekistonga kichik guruh sayohatlari: "
                          "rejalashtirilgan safarga qo'shiling yoki o'z sanalaringizda alohida sayohat qiling."),
-    "founder.html": ("Hammuassis Jakhongir Sadiev", "Uzbekistan Trek hammuassisi Jakhongir Sadiev: bolalik orzusidan 95 nafar "
+    "founder.html": ("Hammuassis Jaxongir Sadiyev", "Uzbekistan Trek hammuassisi Jaxongir Sadiyev: bolalik orzusidan 95 nafar "
                      "sayohatchi bilan o'tgan ikki Garvard va MIT trekigacha."),
-    "contact.html": ("Biz bilan bog'laning", "Uzbekistan Trek bilan aloqa: Jakhongir Sadiev yoki Zokirjon Khabibullaevga yozing yoki "
+    "contact.html": ("Biz bilan bog'laning", "Uzbekistan Trek bilan aloqa: Jaxongir Sadiyev yoki Zokirjon Xabibullayevga yozing yoki "
                      "Telegramda @uzbtrek_bot ga xabar yuboring."),
 }
 MAP = {
@@ -694,10 +698,10 @@ PHOTO_TEXT = {   # photo key: (caption, alt)
     "y2025_kalyan": ("Minorai Kalon, Buxoro", "Minorai Kalon poyida 2025-yilgi guruh"),
     "y2025_dancer": ("Kutib olish kechasi", "Guruh uchun raqs ijro etayotgan milliy libosdagi raqqosa"),
     "y2025_nowruz": ("Toshkentda Navro'z", "Navro'z bayramida milliy liboslardagi talabalar"),
-    "founder_portrait": ("Jakhongir Sadiev", "Samarqanddagi moviy koshinli Shohizinda oldida o'tirgan Jakhongir Sadiev"),
-    "senate_group": ("Senatda Senat raisi Tanzila Narbaeva va Ijtimoiy himoya milliy agentligi rahbariyati bilan",
+    "founder_portrait": ("Jaxongir Sadiyev", "Samarqanddagi moviy koshinli Shohizinda oldida o'tirgan Jaxongir Sadiyev"),
+    "senate_group": ("Senatda Senat raisi Tanzila Norboyeva va Ijtimoiy himoya milliy agentligi rahbariyati bilan",
                      "O'zbekiston Senati zinapoyalarida rasmiy kiyimdagi katta talabalar guruhi"),
-    "with_shakhnoza": ("Shakhnoza Mirziyoyeva bilan, Ijtimoiy himoya milliy agentligi", "Shakhnoza Mirziyoyeva bilan turgan Jakhongir Sadiev"),
+    "with_shakhnoza": ("Shahnoza Mirziyoyeva bilan, Ijtimoiy himoya milliy agentligi", "Shahnoza Mirziyoyeva bilan turgan Jaxongir Sadiyev"),
     "a006": ("Toshkent", "Toshkentdagi moviy gumbazli masjid majmuasi"),
     "a030": ("Toshkentda quyosh botishi", "Toshkentda quyosh botayotganda qorayib ko'ringan ulkan bino"),
     "a060": ("ACWA rahbariyati bilan nonushta", "ACWA rahbariyati bilan nonushtada taqdimot qilayotgan ma'ruzachi"),
@@ -712,7 +716,7 @@ PHOTO_TEXT = {   # photo key: (caption, alt)
     "a822": ("Labi Hovuz, Buxoro", "Buxorodagi Labi Hovuz"),
     "a916": ("Ark qal'asi, Buxoro", "Moviy osmon fonida Ark qal'asining g'ishtin minorasi"),
     "a947": ("Buxoro", "Buxorodagi koshinli peshtoq va feruza gumbaz"),
-    "y2025_senate": ("Birinchi trek Senatda Senat raisi Tanzila Narbaeva bilan, 2025",
+    "y2025_senate": ("Birinchi trek Senatda Senat raisi Tanzila Norboyeva bilan, 2025",
                      "Bayroqlar o'rnatilgan Senat zalida rasmiy kiyimdagi 2025-yilgi guruh"),
     "navoi_theater": ("Alisher Navoiy nomidagi opera va balet teatrida",
                       "Toshkentdagi Alisher Navoiy nomidagi opera va balet teatri zalidagi guruh"),
@@ -722,8 +726,8 @@ PHOTO_TEXT = {   # photo key: (caption, alt)
     "y2026_chimgan": ("Chimyon tog'larida, 2026", "Chimyon tog'larida qorli cho'qqilar oldida turgan olti do'st"),
     "y2025_football": ("Toshkentdagi Milliy stadionda futbol o'yinida, 2025", "Stadiondagi futbol o'yinida o'zbek bayroqlari bilan guruh selfisi"),
     "a573": ("Amirsoyda qor ustida", "Amirsoyda qor ustidagi guruh"),
-    "zokirjon_khabibullaev": ("Zokirjon Khabibullaev", "Uzbekistan Trek hammuassisi Zokirjon Khabibullaev"),
-    "jakhongir_sadiev": ("Jakhongir Sadiev", "Uzbekistan Trek hammuassisi Jakhongir Sadiev"),
+    "zokirjon_khabibullaev": ("Zokirjon Xabibullayev", "Uzbekistan Trek hammuassisi Zokirjon Xabibullayev"),
+    "jakhongir_sadiev": ("Jaxongir Sadiyev", "Uzbekistan Trek hammuassisi Jaxongir Sadiyev"),
     "train_group": ("Poyezdda", "Kameraga qo'l silkitib, jilmayib turgan talabalar bilan to'la poyezd vagoni"),
     "senate_handshake": ("Senatda", "O'zbek bayroqlari oldida, Senat zalida o'tirib qo'l berib ko'rishayotgan kostyumdagi ikki kishi"),
 }
