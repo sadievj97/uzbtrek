@@ -571,17 +571,6 @@
   "h": 1200,
   "orient": "landscape"
  },
- "a423": {
-  "file": "a423.webp",
-  "caption": "Friends at the Registan",
-  "alt": "Five students at the Registan",
-  "year": "2026",
-  "people": "faces",
-  "restrict": "",
-  "w": 1500,
-  "h": 1125,
-  "orient": "landscape"
- },
  "a573": {
   "file": "a573.webp",
   "caption": "In the snow at Amirsoy",
@@ -614,5 +603,16 @@
   "w": 600,
   "h": 600,
   "orient": "square"
+ },
+ "y2026_bukhara_view": {
+  "file": "y2026_bukhara_view.webp",
+  "caption": "Above old Bukhara",
+  "alt": "Four students on a viewpoint above old Bukhara, with a minaret and a blue dome behind them",
+  "year": "2026",
+  "people": "faces",
+  "restrict": "",
+  "w": 2000,
+  "h": 1500,
+  "orient": "landscape"
  }
 }

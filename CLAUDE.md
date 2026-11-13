@@ -3,7 +3,7 @@
 Static site for uzbekistantrek.com. The home page leads with the ambassador program: Uzbek graduate students at universities outside Uzbekistan bring their classmates on a trek, with our materials and support. Group trips stay as secondary pages for graduate students at any university (big groups of 10 or more, small groups under 10), linked from "Group trips" in the header and from the footer. GitHub Pages serves the root of `main`; merging into `main` publishes the site in a minute or two.
 
 ## How the site is built
-- `index.html`, `big-group.html`, `small-group.html` and `founder.html` are generated. Never edit them by hand.
+- `index.html`, `big-group.html`, `small-group.html`, `founder.html` and `contact.html` are generated. Never edit them by hand.
 - All text lives in `shared/content.py`. Photo captions and alt text live in `shared/photos.json`. Layout and CSS live in `shared/build.py`, with motion pieces in `shared/motion_parts.py`, forms in `shared/forms_html.py` and the logo in `shared/logos.py`.
 - Rebuild: `pip install fonttools` (once per machine), then `python3 shared/build.py` from the repository root.
 - Both checks must pass before you commit:
@@ -26,7 +26,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 - Never promise ambassadors pay, a discount, a free place or any other reward. Describe them as students organizing a trip for their own classmates.
 - Co-Founders: Jakhongir Sadiev and Zokirjon Khabibullaev (Boston University). Never call Jakhongir just "Founder". Say only that Jakhongir's hometown is Samarkand. Never say he was born or raised there.
 - Jakhongir's card on the home page uses `jakhongir_sadiev`, a different photo from the portrait on the founder page. Never use a crop of `founder_portrait` there.
-- Contact: jsadiev@hks.harvard.edu and Telegram @uzbtrek_bot.
+- Contact: jsadiev@hks.harvard.edu (Jakhongir), zkhabib@bu.edu (Zokirjon) and Telegram @uzbtrek_bot. The Contact page (`contact.html`, text in `CONTACT` in `shared/content.py`) lists all three.
 - No em dashes. Short, plain sentences.
 - Each photo appears once per site, near-duplicates included (`SAME_PHOTO` in `shared/check.py`).
 - When the owner asks to remove copy, also add it to `BANNED` in `shared/check.py` so it cannot come back.

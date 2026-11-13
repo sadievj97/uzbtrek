@@ -25,6 +25,7 @@ NAV = [
     ("index.html#team", "Who we are", "team"),
     ("index.html#groups", "Group trips", "groups"),
     ("index.html#faq", "FAQ", "faq"),
+    ("contact.html", "Contact", "contact"),
 ]
 NAV_CTA = ("index.html#apply", "Apply now")
 
@@ -576,3 +577,22 @@ FORM_COMMON = {
     "telegram_hint": "Prefer chatting? Message us on Telegram at <a href=\"https://t.me/uzbtrek_bot\" target=\"_blank\" rel=\"noopener\">@uzbtrek_bot</a>.",
 }
 INTERESTS = ["Business and finance", "Public policy", "Technology", "Energy and climate", "Culture and food", "Mountains and outdoors"]
+
+# ---------------------------------------------------------------- contact page (contact.html)
+# Names, roles and schools as in TEAM. No photos here: each photo appears once per site, and both portraits are on the home page.
+CONTACT = {
+    "kicker": "Contact",
+    "title": "Contact us",
+    "lede": "Questions about the ambassador program or a group trip? Write to either of us, or message us on Telegram.",
+    "people": [
+        {"role": "Co-Founder", "name": "Jakhongir Sadiev", "initials": "JS", "school": "Harvard Kennedy School", "email": "jsadiev@hks.harvard.edu"},
+        {"role": "Co-Founder", "name": "Zokirjon Khabibullaev", "initials": "ZK", "school": "Boston University", "email": "zkhabib@bu.edu"},
+    ],
+    "telegram_role": "Telegram",
+    "telegram_title": "@uzbtrek_bot",
+    "telegram_text": "Prefer chatting? Send us a message on Telegram.",
+    "telegram_cta": "Message us on Telegram",
+    "next_title": "Looking for something else?",
+    "next": [("index.html#apply", "Become an ambassador"), ("big-group.html", "Plan a big group trek, 10 or more"),
+             ("small-group.html", "Plan a small group trip, under 10"), ("index.html#faq", "Read the FAQ")],
+}

@@ -1,6 +1,6 @@
-"""Builds the four pages of the Uzbekistan Trek site. Run from the repository root:
+"""Builds the five pages of the Uzbekistan Trek site. Run from the repository root:
 
-    python3 shared/build.py                    writes index.html, big-group.html, small-group.html, founder.html
+    python3 shared/build.py                    writes index.html, big-group.html, small-group.html, founder.html, contact.html
     python3 shared/build.py --preview DIR      also writes claude.ai preview copies to DIR (index.html without html/head/body)
 
 Text comes from shared/content.py, photo captions from shared/photos.json. The pages are generated: edit the sources, not the HTML.
@@ -406,6 +406,14 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .member h3{ font-size:24px; font-weight:800; margin-top:10px; }
 .member p{ font-size:16.5px; line-height:1.5; margin-top:6px; }
 .member .go-link{ display:inline-block; margin-top:12px; }
+/* Contact page */
+.contact-grid{ margin-top:0; }
+.contact-grid .member.tg{ grid-column:1 / -1; }
+.contact-grid .avatar svg{ width:42px; height:42px; fill:var(--navy-deep); }
+.contact-mail{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-top:12px; }
+.contact-mail .addr{ font-weight:750; font-size:17px; overflow-wrap:anywhere; }
+.tg-btn{ margin-top:14px; }
+.contact-next{ display:flex; flex-wrap:wrap; gap:14px 30px; margin-top:18px; }
 
 /* What you get (home) */
 .gets{ list-style:none; margin:40px 0 0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px; }
@@ -647,6 +655,7 @@ def footer():
       <a href="big-group.html">Big group trek, 10 or more</a>
       <a href="small-group.html">Small group trip, under 10</a>
       <a href="founder.html">About the co-founder</a>
+      <a href="contact.html">Contact us</a>
       <a href="index.html#faq">Questions</a>
       <span style="margin-top:14px">{COPYRIGHT}</span>
     </nav>
@@ -878,7 +887,7 @@ def page_home():
       </div>
       <div class="pols quotes">
         {pol("a405", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
-        {pol("a423", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
+        {pol("y2026_bukhara_view", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
         {pol("y2025_dancer", "&ldquo;" + q["dancing"]["text"] + "&rdquo;", q["dancing"]["cite"], cls="pol q")}
         {pol("cohort_registan", None, "March 2026")}
       </div>
@@ -1211,7 +1220,46 @@ def page_founder():
     return head("Co-Founder Jakhongir Sadiev", "Jakhongir Sadiev, co-founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("team") + body + footer()
 
 
-PAGES = {"index.html": page_home, "big-group.html": page_big, "small-group.html": page_small, "founder.html": page_founder}
+def page_contact():
+    C = CONTACT
+    cards = ""
+    for p in C["people"]:
+        mid = "mail-" + p["initials"].lower()
+        cards += (f'<article class="member"><div class="avatar" aria-hidden="true">{p["initials"]}</div><div>'
+                  f'<span class="role">{p["role"]}</span><h3>{p["name"]}</h3><p>{p["school"]}</p>'
+                  f'<div class="contact-mail"><a class="addr" id="{mid}" href="mailto:{p["email"]}">{p["email"]}</a>'
+                  f'<button class="mini" type="button" data-copy="{mid}">Copy</button>'
+                  f'<span class="copy-status" role="status" aria-live="polite"></span></div></div></article>')
+    plane = '<svg viewBox="0 0 24 24" focusable="false"><path d="M2.5 11.3 21.6 3.2l-3.4 17.4-5.9-4.4-3.1 3 .4-4.8 8.3-7.6-10.2 6.3z"/></svg>'
+    cards += (f'<article class="member tg"><div class="avatar" aria-hidden="true">{plane}</div><div>'
+              f'<span class="role">{C["telegram_role"]}</span><h3>{C["telegram_title"]}</h3><p>{C["telegram_text"]}</p>'
+              f'<a class="btn btn-navy tg-btn" href="{SITE["telegram_url"]}" target="_blank" rel="noopener">{C["telegram_cta"]}</a></div></article>')
+    nxt = "".join(f'<a class="go-link" href="{h}">{t}</a>' for h, t in C["next"])
+    body = f"""
+<main>
+  <section class="page-hero contact-hero" aria-labelledby="c-title">
+    {side()}
+    <div class="wrap">
+      <span class="kicker">{C["kicker"]}</span>
+      <h1 id="c-title">{C["title"]}</h1>
+      <p class="lede">{C["lede"]}</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="How to reach us">
+    <div class="wrap">
+      <div class="team-grid contact-grid">{cards}</div>
+      <h2 class="samples-title">{C["next_title"]}</h2>
+      <div class="contact-next">{nxt}</div>
+    </div>
+  </section>
+</main>
+"""
+    return head("Contact us", "Contact Uzbekistan Trek: email Jakhongir Sadiev or Zokirjon Khabibullaev, or message @uzbtrek_bot on Telegram.") + header("contact") + body + footer()
+
+
+PAGES = {"index.html": page_home, "big-group.html": page_big, "small-group.html": page_small, "founder.html": page_founder,
+         "contact.html": page_contact}
 
 
 def full_doc(inner):
@@ -1226,7 +1274,7 @@ def fix_links(html):
 
 
 def main():
-    """Writes the four pages to the site root. With --preview DIR it also writes claude.ai preview copies there."""
+    """Writes the pages in PAGES to the site root. With --preview DIR it also writes claude.ai preview copies there."""
     preview = sys.argv[sys.argv.index("--preview") + 1] if "--preview" in sys.argv else None
     if preview:
         os.makedirs(preview, exist_ok=True)

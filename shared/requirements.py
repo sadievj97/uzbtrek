@@ -137,13 +137,20 @@ R=[
  ('founder','classmate quote', r'Name something better than being guided around the beauties of the Silk Road', True),
  # the owner, Nov 2026: Jakhongir is a Co-Founder too, so nobody is called just "Founder"
  ('any','Jakhongir is Co-Founder, never just Founder', r'(?<![Cc]o-)\b[Ff]ounder\b', False),
+ # the owner, Nov 2026: a Contact page with both co-founders' emails and Telegram, linked from the menu and the footer
+ ('contact','both co-founders and their emails', r'Jakhongir Sadiev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Khabibullaev Boston University zkhabib@bu\.edu', True),
+ ('contact','telegram on the contact page', r'href="https://t\.me/uzbtrek_bot"', 'raw'),
+ ('contact','independence line on the contact page', r'Uzbekistan Trek is independent', True),
+ ('any','Contact in the menu', r'<a href="contact\.html"[^>]*>Contact</a>', 'raw'),
+ ('any','Contact us in the footer', r'<a href="contact\.html">Contact us</a>', 'raw'),
  ('any','email', r'jsadiev@hks\.harvard\.edu', True),
  ('any','telegram', r't\.me/uzbtrek_bot', 'raw'),
  ('any','no operated by', r'Operated by', False),
  # A year on the vertical side label is banned in check.py. The owner wants "Uzbekistan Trek 2027" in the Harvard samples (Nov 2026).
 ]
 
-PAGEFILE = {"home": "index.html", "big": "big-group.html", "small": "small-group.html", "founder": "founder.html"}
+PAGEFILE = {"home": "index.html", "big": "big-group.html", "small": "small-group.html", "founder": "founder.html",
+            "contact": "contact.html"}
 
 
 def main():
