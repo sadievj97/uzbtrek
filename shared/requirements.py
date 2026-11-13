@@ -146,6 +146,12 @@ R=[
  # the owner, Nov 2026: the circle photo in the banner
  ('home','circle caption', r'Under the dome in Samarkand', True),
  ('home','old circle caption', r'Under a painted dome', False),
+ # the owner, Nov 2026: bold and italic in the Harvard samples, as in the originals
+ ('home','email sample formatting', r'announce the <strong>Uzbekistan Trek 2027!</strong>[\s\S]*<em>Note: Personal expenses[^<]*</em>[\s\S]*<strong>Uzbekistan Trek 2027 Team</strong>', 'raw'),
+ ('home','WhatsApp sample formatting, copied as WhatsApp marks', r'data-copy-as="whatsapp">🌟 <strong>UZBEKISTAN TREK 2027</strong> \(3rd edition\)[\s\S]*<strong>Who can join\?</strong>', 'raw'),
+ ('home','December 1 in bold red in the email sample', r'open until <strong style="color:#C2272D">December 1</strong>, 2026', 'raw'),
+ ('home','no unconverted ** marks', r'\*\*', False),
+ ('home','no unconverted !! marks', r'!!', False),
  ('any','email', r'jsadiev@hks\.harvard\.edu', True),
  ('any','telegram', r't\.me/uzbtrek_bot', 'raw'),
  ('any','no operated by', r'Operated by', False),

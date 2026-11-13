@@ -559,6 +559,15 @@ def pol(key, cap=None, sub=None, ar="4/3", extra_style="", cls="pol", lazy=True,
             f'<figcaption>{cap}{subh}</figcaption></figure>')
 
 
+def rich(text):
+    """A sample text as HTML: **bold**, __italic__ and !!bold red!! (within one line) become <strong>, <em> and a red <strong>;
+    everything else is escaped. The red is an inline style, so it stays red when the copied text is pasted into an email."""
+    t = html.escape(text, quote=False)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = re.sub(r"!!(.+?)!!", r'<strong style="color:#C2272D">\1</strong>', t)
+    return re.sub(r"__(.+?)__", r"<em>\1</em>", t)
+
+
 def faq_bg(key):
     return f"background-image:linear-gradient(rgba(19,35,75,.62), rgba(19,35,75,.82)), url('{img(key)}')"
 
@@ -738,10 +747,11 @@ def start_block():
         top = (f'<div class="sample-top"><span class="pill">{s["step"]}</span><h4 id="{s["id"]}-title">{s["title"]}</h4>'
                f'<p class="when">{s["when"]}</p></div>')
         if "text" in s:
+            wa = ' data-copy-as="whatsapp"' if s.get("copy_as") == "whatsapp" else ""
             act = (f'<div class="copy-row"><button class="mini" type="button" data-copy="{tid}">Copy the text</button>'
                    f'<span class="copy-status" role="status" aria-live="polite"></span></div>')
             more = (f'<details><summary>Read the text</summary>'
-                    f'<div class="sample-text" id="{tid}">{html.escape(s["text"], quote=False)}</div></details>')
+                    f'<div class="sample-text" id="{tid}"{wa}>{rich(s["text"])}</div></details>')
         else:
             href, open_label, dl_label = s["file"]
             act = f'<div class="copy-row"><a class="mini" href="{href}" target="_blank" rel="noopener">{open_label}</a></div>'

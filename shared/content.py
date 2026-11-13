@@ -226,7 +226,9 @@ START = {
     "samples_title": "Sample texts you can copy",
 }
 
-# Plain text (not HTML): shown with line breaks and copied as is. Words in [brackets] are for the organizer to fill in.
+# Plain text (not HTML): shown with line breaks. Words in [brackets] are for the organizer to fill in.
+# **bold**, __italic__ and !!bold red!! follow the owner's originals (Nov 2026). Copy keeps them: the email copies as formatted text for
+# Gmail or Outlook, the WhatsApp message ("copy_as": "whatsapp") as WhatsApp's own *bold* and _italic_ marks.
 SAMPLES = [
     {"id": "sample-note", "step": "Step 3", "title": "Sample note to check interest", "when": "Send it before you ask for a quote.",
      "text": ("Subject: Uzbekistan over spring break? Quick interest check\n\n"
@@ -248,60 +250,61 @@ SAMPLES = [
      "when": "Send it once you have your quote. Swap the Harvard details and the words in [brackets] for your own.",
      "text": ("Dear friends!\n\n"
               "After the tremendous success of our March 2025 and 2026 treks with 95 Harvard and MIT graduate students, "
-              "we are excited to announce the Uzbekistan Trek 2027! This is the right opportunity to explore the heart of Central Asia! "
+              "we are excited to announce the **Uzbekistan Trek 2027!** This is the right opportunity to explore the heart of Central Asia! "
               "Want to join? Follow the instructions below.\n\n"
-              "📅 When?\n"
+              "📅 **When?**\n"
               "• March 14-21, 2027 (Spring Break)\n"
               "• Arrive in Tashkent by March 14, and departures begin any time on March 21.\n\n"
-              "📍 Where?\n"
+              "📍 **Where?**\n"
               "• Tashkent, Tashkent region (mountains), Samarkand, Bukhara\n\n"
-              "💰 How much?\n"
+              "💰 **How much?**\n"
               "• [price] per person for double occupancy\n"
               "• [price] per person for single occupancy\n\n"
-              "📦 What's included?\n"
+              "📦 **What's included?**\n"
               "• The cost covers nearly everything: hotel accommodations, guide, city tours, local transportation, and in-country transfers "
               "(bullet train tickets), all meals, SIM card, museum and cultural site admissions.\n"
-              "Note: Personal expenses, visa fees (if any), alcohol, and international airfare are not included.\n\n"
-              "🟢 How to join?\n"
-              "• Submit the form here: [form link] (the form is open until December 1, 2026, EOD. If you have already submitted the form, "
+              "__Note: Personal expenses, visa fees (if any), alcohol, and international airfare are not included.__\n\n"
+              "🟢 **How to join?**\n"
+              "• Submit the form here: [form link] (the form is open until !!December 1!!, 2026, EOD. If you have already submitted the form, "
               "there is no need to submit it again).\n"
-              "• Make the first deposit of [amount] by December 20, 2026, to confirm your spot. The second deposit of [amount] is due by "
+              "• Make the first deposit of **[amount]** by **December 20, 2026**, to confirm your spot. The second deposit of [amount] is due by "
               "January 20, 2027, and the remaining balance must be paid by February 27, 2027. Payment details will be sent to the email "
               "address provided in your application form.\n\n"
-              "👥 Who can join?\n"
+              "👥 **Who Can Join?**\n"
               "• All current Harvard and MIT graduate students, fellows, and postdocs\n\n"
-              "🎉 Program highlights\n"
+              "🎉 **Program Highlights**\n"
               "• Visit iconic Silk Road cities, see the stunning bazaars, visit the oldest carpet and paper-making workshop, "
               "and attend the Nowruz celebration.\n"
               "• Meet local entrepreneurs and visit companies and universities.\n"
               "• Experience authentic Uzbek cuisine, music, shows, and hospitality.\n\n"
-              "If you have any questions, refer to the FAQ at https://uzbekistantrek.com/#faq, or feel free to reach out to us! We are here to help!\n\n"
+              "If you have any questions, refer to the **FAQ** at https://uzbekistantrek.com/#faq, or feel free to reach out to us! We are here to help!\n\n"
               "We look forward to exploring Uzbekistan with you!\n\n"
               "This trip is organized by students. It is not an official Harvard or MIT program.\n\n"
               "Best regards,\n"
-              "Uzbekistan Trek 2027 Team")},
+              "**Uzbekistan Trek 2027 Team**")},
     {"id": "sample-whatsapp", "step": "Step 4", "title": "Sample WhatsApp message from Harvard",
      "when": "Post it in your class group chats when sign-ups open. Swap the Harvard details for your own.",
-     "text": ("🌟 UZBEKISTAN TREK 2027 (3rd edition) 🌟\n\n"
+     "copy_as": "whatsapp",
+     "text": ("🌟 **UZBEKISTAN TREK 2027** (3rd edition) 🌟\n\n"
               "Hi everyone!\n"
               "🇺🇿 After the tremendous success of our March 2025 and 2026 treks with 95 Harvard and MIT graduate students, "
               "we are excited to bring the Uzbekistan Trek experience back for a new cohort. "
               "An incredible opportunity awaits in the heart of the Silk Road!\n\n"
               "Previous years' participants described the trek as “the best ever,” “a week packed with unforgettable moments,” "
               "and “one of the most inspiring journeys at Harvard.”\n\n"
-              "Get ready to:\n"
+              "**Get ready to**:\n"
               "• Explore magnificent sites in Samarkand, Tashkent and Bukhara\n"
               "• Experience authentic Nowruz celebrations\n"
               "• Meet entrepreneurs and investors\n"
               "• Visit cutting-edge tech hubs\n\n"
-              "🏛 Highlights:\n"
+              "🏛 **Highlights:**\n"
               "• Ancient bazaars & the legendary Registan\n"
               "• Traditional crafts: carpet weaving & paper making\n"
               "• Crystal-clear mountain lakes\n\n"
-              "Who can join? Current Harvard & MIT graduate students, fellows and postdocs\n\n"
+              "**Who can join?** Current Harvard & MIT graduate students, fellows and postdocs\n\n"
               "🗓 The dates: March 14-21, 2027\n"
               "🌆 Cities: Tashkent, Tashkent region, Samarkand & Bukhara\n"
-              "❗️ Application deadline: December 1, 2026\n"
+              "❗️ Application Deadline: December 1, 2026\n"
               "Limited spots available.\n\n"
               "Registration form: [form link]")},
     # the owner's Harvard brochure as the fourth block: prices show as [$X], the organizers' emails and the form link are removed
