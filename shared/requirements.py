@@ -162,15 +162,39 @@ PAGEFILE = {"home": "index.html", "big": "big-group.html", "small": "small-group
             "contact": "contact.html"}
 # the owner, Nov 2026: both co-founders' emails in the footer of every page
 R += [(p, "both emails in the footer", r"Email: jsadiev@hks\.harvard\.edu ?, zkhabib@bu\.edu", True) for p in PAGEFILE]
+R += [(p, "link to the same page in Uzbek", r'<a class="lang" href="uz/[^"]*" hreflang="uz"', "raw") for p in PAGEFILE]
+
+# ---------------------------------------------------------------- the Uzbek pages in uz/ (the owner, Nov 2026)
+# Written in the new Latin letters (Ö, Ğ, Ş, Ç). The samples, the brochure, the quotes and names stay in English.
+UZFILE = {"uz-" + k: "uz/" + v for k, v in PAGEFILE.items()}
+R += [(p, "independence line", r"Uzbekistan Trek mustaqil loyiha", True) for p in UZFILE]
+R += [(p, "both emails in the footer", r"Elektron poçta: jsadiev@hks\.harvard\.edu ?, zkhabib@bu\.edu", True) for p in UZFILE]
+R += [(p, "marked as Uzbek", r'<html lang="uz">', "raw") for p in UZFILE]
+R += [(p, "link to the same page in English", r'<a class="lang" href="\.\./[^"]*" hreflang="en"', "raw") for p in UZFILE]
+R += [
+ ('uz-home', 'hero title', r'Uzbekistan Trek elçisi böling', True),
+ ('uz-home', 'both co-founders are Hammuassis', r'Hammuassis Jakhongir Sadiev .*Hammuassis Zokirjon Khabibullaev', True),
+ ('uz-home', 'sample texts stay in English', r'Subject: Uzbekistan over spring break\? Quick interest check', True),
+ ('uz-home', 'brochure next to the samples', r'href="\.\./files/uzbekistan_trek_2027_harvard_info\.pdf"', 'raw'),
+ ('uz-home', 'never undergraduates', r'Bakalavriat talabalari uçun sayohat taşkil qilmaymiz', True),
+ ('uz-home', 'no formal government meetings promised', r'Rasmiy davlat uçraşuvlari unga kirmaydi', True),
+ ('uz-big', 'no formal government meetings promised', r'Rasmiy davlat uçraşuvlari unga kirmaydi', True),
+ ('uz-founder', 'no formal government meetings in the standard program', r'Rasmiy davlat uçraşuvlari standart dasturga kirmaydi', True),
+ ('uz-founder', 'hometown only', r'ona şahrim Samarqand', True),
+ ('uz-contact', 'both co-founders and their emails', r'Jakhongir Sadiev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Khabibullaev Boston University zkhabib@bu\.edu', True),
+ ('uz-any', 'never just "asoschi" (founder)', r'\b[Aa]soschi|\b[Aa]soşçi', False),
+ ('uz-any', "no old letters o' and g' left", r"[oOgG][ʻ‘']\w|ʻ", False),
+]
 
 
 def main():
-    pages = {f: text_of(os.path.join(SITE_ROOT, f)) for f in PAGEFILE.values()}
-    allraw = " ".join(r for r, v in pages.values())
-    allvis = " ".join(v for r, v in pages.values())
+    files = dict(PAGEFILE, **UZFILE)
+    pages = {f: text_of(os.path.join(SITE_ROOT, f)) for f in files.values()}
+    every = {"any": PAGEFILE, "uz-any": UZFILE}   # "any": every English page; "uz-any": every Uzbek page
+    joined = {k: (" ".join(pages[f][0] for f in m.values()), " ".join(pages[f][1] for f in m.values())) for k, m in every.items()}
     fails = 0
     for page, label, rx, want in R:
-        raw, vis = (allraw, allvis) if page == "any" else pages[PAGEFILE[page]]
+        raw, vis = joined[page] if page in joined else pages[files[page]]
         found = re.search(rx, raw if want == "raw" else vis) is not None
         if found != (want in (True, "raw")):
             fails += 1
@@ -194,7 +218,12 @@ def main():
     if not 0 <= i < j:
         fails += 1
         print("FAIL founder page: government must come before the private sector")
-    print(f"{len(R) + 7} requirement checks, {fails} failed")
+    v = pages["uz/founder.html"][1]
+    i, j = v.find("Narbaeva"), v.find("Jon Zaidi")
+    if not 0 <= i < j:
+        fails += 1
+        print("FAIL uz/founder.html: government must come before the private sector")
+    print(f"{len(R) + 8} requirement checks, {fails} failed")
     sys.exit(1 if fails else 0)
 
 

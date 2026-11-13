@@ -600,3 +600,92 @@ CONTACT = {
     "next": [("index.html#apply", "Become an ambassador"), ("big-group.html", "Plan a big group trek, 10 or more"),
              ("small-group.html", "Plan a small group trip, under 10"), ("index.html#faq", "Read the FAQ")],
 }
+
+# ---------------------------------------------------------------- interface words (used by shared/build.py and shared/forms_html.py)
+# shared/content_uz.py gives the same names in Uzbek, for the pages in uz/.
+LANG = "en"
+UI = {
+    "logo_label": "Uzbekistan Trek, home",
+    "menu": "Menu",
+    "nav_label": "Main",
+    "footer_label": "Footer",
+    "email": "Email:",
+    "telegram": "Telegram:",
+    "footer_links": [("index.html#apply", "Become an ambassador"), ("index.html#how", "How it works"),
+                     ("big-group.html", "Big group trek, 10 or more"), ("small-group.html", "Small group trip, under 10"),
+                     ("founder.html", "About the co-founder"), ("contact.html", "Contact us"), ("index.html#faq", "Questions")],
+    # the link to the same page in the other language, written in that language
+    "other_lang": ("uz", "Özbekça", "Bu sahifani özbek tilida öqing"),
+    "new_tab": " (opens in a new tab)",
+    "press_kind": {"tv": "TV", "article": "Article", "news": "News agency", "telegram": "Telegram", "instagram": "Instagram", "video": "YouTube"},
+    "copy_text": "Copy the text",
+    "read_text": "Read the text",
+    "copy": "Copy",
+    "day": "Day {n}",
+    "stop_of": "Stop {i} of {total}",
+    "map_hints": ["Scroll to ride the fast train", "To the mountains by bus", "Back to Tashkent by bus"],
+    "how_started": "How the trek started",
+    "cohort_sub": "March 2026",
+    "moments": "Uzbekistan Trek moments",
+    "includes_title": "What the trek includes",
+    "included": "Included in the cost",
+    "not_included": "Not included",
+    "faq": "FAQ",
+    "you": "You",
+    "we": "We",
+    "dep_head": ["Departure", "Dates", "Why these dates", "Status", "Action"],
+    "register_interest": "Register interest",
+    "cofounder": "Co-Founder",
+    "signature_role": "Co-Founder, Uzbekistan Trek",
+    "story_label": "The story",
+    "how_it_works": "How it works",
+    "reach_label": "How to reach us",
+}
+# (title, description) for each page's <title> and search snippet
+META = {
+    "index.html": (SITE["name"], SITE["description"]),
+    "big-group.html": ("Big Group Trek", "Big group treks to Uzbekistan for 10 or more graduate students: your dates, a private itinerary and a full package."),
+    "small-group.html": ("Small Group Trip", "Small group trips to Uzbekistan for fewer than 10 graduate students: join a planned departure or travel privately on your own dates."),
+    "founder.html": ("Co-Founder Jakhongir Sadiev", "Jakhongir Sadiev, co-founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers."),
+    "contact.html": ("Contact us", "Contact Uzbekistan Trek: email Jakhongir Sadiev or Zokirjon Khabibullaev, or message @uzbtrek_bot on Telegram."),
+}
+# words on the route map of the sample itinerary; None keeps the English in shared/motion_parts.py
+MAP = None
+STOP_CAPS = {}   # photo key: caption on a stop card of the route, when it differs from photos.json
+PHOTO_TEXT = {}  # photo key: (caption, alt), when it differs from photos.json
+
+# Form words. data-form-title stays in English on every page, so the Telegram messages read the same; "title_note" marks the language.
+FORMS = {
+    "title_note": "",
+    "honeypot": "Leave this field empty",
+    "name": "Your name", "req_name": "your name",
+    "email": "Email", "req_email": "a valid email",
+    "university": "University", "req_university": "your university", "ph_university": "e.g. Columbia University",
+    "telegram": "Telegram or WhatsApp (optional)", "ph_telegram": "@username or phone",
+    "anything": "Anything else",
+    "choose": "Choose one",
+    "a_ph_email": "Your university email, if you can",
+    "a_program": "Program and degree", "a_req_program": "your program and degree", "a_ph_program": "e.g. MBA, MPP or PhD",
+    "a_grad": "Expected graduation", "a_grad_opts": ["2027", "2028", "2029 or later"],
+    "a_size": "Classmates who might come", "a_size_opts": ["Not sure yet", "Fewer than 10", "10 to 20", "20 to 40", "More than 40"],
+    "a_dates": "When could your group travel?", "a_ph_dates": "e.g. Spring break 2027",
+    "a_notes": "Why do you want to bring your classmates?",
+    "a_ph_notes": "A few lines about you, your classmates and the student clubs you are part of",
+    "a_send": "Send application",
+    "b_program": "Program or club", "b_ph_program": "e.g. SIPA, Energy Club",
+    "b_size": "Group size (10 or more)", "b_req_size": "a group size of 10 or more", "b_ph_size": "e.g. 25",
+    "b_dates": "Preferred dates or month", "b_ph_dates": "e.g. School break in March",
+    "b_flex": "Are your dates flexible?", "b_flex_opts": ["Yes, within a week or two", "No, they are fixed", "Not sure yet"],
+    "b_focus": "What should the trip focus on?", "b_focus_label": "Focus",
+    "b_ph_notes": "Extra cities, length, visits you would like, dietary needs, questions",
+    "b_send": "Send request",
+    "s_which": "Which option?", "s_option_label": "Option",
+    # (value sent to the bot, label shown); assets/trek.js looks for the value "Join a departure"
+    "s_options": [("Join a departure", "Join a departure"), ("Private small-group trip", "Private trip"), ("Not sure yet", "Not sure yet")],
+    "s_university": "University and program", "s_req_university": "your university and program", "s_ph_university": "e.g. NYU Stern",
+    "s_travelers": "Number of travelers",
+    "s_departure": "Departure or dates", "s_own_dates": "My own dates (private trip)",
+    "s_room": "Room", "s_room_opts": ["Share a double room", "Single room", "Not sure yet"],
+    "s_ph_notes": "Your dates if private, dietary needs, questions",
+    "s_send": "Send",
+}

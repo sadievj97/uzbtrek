@@ -15,7 +15,26 @@ from forms_html import big_group_form, small_group_form, ambassador_form
 import logos
 import motion_parts as MP
 
-PH = json.load(open(os.path.join(HERE, "photos.json"), encoding="utf-8"))
+PH_BASE = json.load(open(os.path.join(HERE, "photos.json"), encoding="utf-8"))
+PH = PH_BASE
+import content as CONTENT_EN
+import content_uz as CONTENT_UZ
+# language: (content module, folder for its pages). The Uzbek pages live in uz/ and use the same img/, assets/ and files/.
+LANGS = {"en": (CONTENT_EN, ""), "uz": (CONTENT_UZ, "uz")}
+SITE_URL = "https://uzbekistantrek.com/"
+CURRENT_PAGE = "index.html"   # set by main() for the page being built
+
+
+def set_lang(lang):
+    """Points every text constant (SITE, NAV, UI, FORMS, ...) at the language's content module, and the photo captions at its PHOTO_TEXT."""
+    global ROOT, PH
+    mod, folder = LANGS[lang]
+    g = globals()
+    for k, v in vars(mod).items():
+        if k.isupper():
+            g[k] = v
+    ROOT = "../" if folder else ""
+    PH = {k: (dict(v, caption=PHOTO_TEXT[k][0], alt=PHOTO_TEXT[k][1]) if k in PHOTO_TEXT else v) for k, v in PH_BASE.items()}
 
 NAVY, NAVY_DEEP, YELLOW = "#1C3166", "#13234B", "#FBB617"
 ROOT = ""   # img/ and assets/ sit next to the pages in both outputs
@@ -61,6 +80,9 @@ p{ margin:0; }
 .nav a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
 .nav a:hover, .nav a[aria-current]{ border-bottom-color:var(--yellow); }
 .nav .btn{ border-bottom:0; padding:10px 18px; min-height:44px; font-size:15px; color:var(--white); }
+/* the same page in the other language (Özbekça / English) */
+.nav .lang{ border:2px solid var(--navy); border-radius:999px; padding:5px 12px; font-size:14px; line-height:1.2; white-space:nowrap; }
+.nav .lang:hover{ background-color:var(--yellow-soft); border-color:var(--navy); }
 .menu-btn{ display:none; appearance:none; border:2px solid var(--navy); background-color:var(--white); color:var(--navy); --sw:var(--navy); --swf:var(--white); border-radius:999px; min-height:44px; padding:0 16px; font:inherit; font-weight:700; cursor:pointer; }
 
 /* Vertical side label, as on the decks */
@@ -486,12 +508,24 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .steps .sn{ grid-row:1 / span 3; margin:0; }
   .steps li > :not(.sn){ grid-column:2; }
 }
-@media (max-width: 860px){
+/* Below these widths the header links fold into the Menu button: 1010px in English, 1080px in Uzbek (longer words). */
+@media (max-width: 1010px){
   .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
   .nav.open{ display:flex; }
   .nav a{ padding:12px 0; border-bottom:1px solid var(--line); }
   .nav .btn{ margin-top:14px; }
+  .nav .lang{ align-self:flex-start; margin-top:12px; padding:8px 14px; border:2px solid var(--navy); }
   .menu-btn{ display:inline-flex; align-items:center; }
+}
+@media (max-width: 1080px){
+  :root[lang="uz"] .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
+  :root[lang="uz"] .nav.open{ display:flex; }
+  :root[lang="uz"] .nav a{ padding:12px 0; border-bottom:1px solid var(--line); }
+  :root[lang="uz"] .nav .btn{ margin-top:14px; }
+  :root[lang="uz"] .nav .lang{ align-self:flex-start; margin-top:12px; padding:8px 14px; border:2px solid var(--navy); }
+  :root[lang="uz"] .menu-btn{ display:inline-flex; align-items:center; }
+}
+@media (max-width: 860px){
   .choices{ grid-template-columns:1fr; }
   .opt-grid, .who-grid, .areas-grid, .inc-cols, .team-grid{ grid-template-columns:1fr; }
   .start-grid, .samples{ grid-template-columns:1fr; }
@@ -557,6 +591,15 @@ def pol(key, cap=None, sub=None, ar="4/3", extra_style="", cls="pol", lazy=True,
     fl = f' data-float="{drift}"' if drift else ""
     return (f'<figure class="{cls}" style="--ar:{ar}{extra_style}"{fl}><div class="ph"><img src="{img(key)}" alt="{p["alt"]}"{ld}></div>'
             f'<figcaption>{cap}{subh}</figcaption></figure>')
+
+
+def en(fragment):
+    """English words on an Uzbek page (quotes, sample texts) are marked as English, for screen readers and translators."""
+    return fragment if LANG == "en" else f'<span lang="en">{fragment}</span>'
+
+
+def en_attr():
+    return "" if LANG == "en" else ' lang="en"'
 
 
 def rich(text):
@@ -633,12 +676,17 @@ def header(active):
     cta_href, cta_label = NAV_CTA
     cta_href = here(cta_href)   # "Apply now" goes to the application form from every page
     lk = logos.lockup_star(YELLOW, NAVY, NAVY, height=40)
+    code, label, hint = UI["other_lang"]
+    page = "" if CURRENT_PAGE == "index.html" else CURRENT_PAGE
+    other = ("../" if LANG == "uz" else "uz/") + page   # the same page in the other language
+    lang_link = f'<a class="lang" href="{other or "./"}" hreflang="{code}" lang="{code}" title="{hint}">{label}</a>'
     return f"""<header class="head">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Uzbekistan Trek, home">{lk}</a>
-    <button class="menu-btn" id="menu-btn" data-menu-btn aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav class="nav" id="nav" aria-label="Main">
+    <a class="logo" href="index.html" aria-label="{UI["logo_label"]}">{lk}</a>
+    <button class="menu-btn" id="menu-btn" data-menu-btn aria-expanded="false" aria-controls="nav">{UI["menu"]}</button>
+    <nav class="nav" id="nav" aria-label="{UI["nav_label"]}">
       {"".join(links)}
+      {lang_link}
       <a class="btn btn-navy" href="{cta_href}">{cta_label}</a>
     </nav>
   </div>
@@ -650,22 +698,16 @@ def footer():
     return f"""<footer class="foot">
   <div class="wrap">
     <div>
-      <a class="logo" href="index.html" aria-label="Uzbekistan Trek, home">{lk}</a>
+      <a class="logo" href="index.html" aria-label="{UI["logo_label"]}">{lk}</a>
       <p style="margin-top:16px">{FOOTER_BLURB}</p>
       <p>{DISCLAIMER}</p>
       <div class="contact">
-        <span><b>Email:</b> {", ".join(f'<span class="mail">{e}</span>' for e in SITE["emails"])}</span>
-        <span><b>Telegram:</b> <a href="{SITE["telegram_url"]}" target="_blank" rel="noopener">@{SITE["telegram_bot"]}</a></span>
+        <span><b>{UI["email"]}</b> {", ".join(f'<span class="mail">{e}</span>' for e in SITE["emails"])}</span>
+        <span><b>{UI["telegram"]}</b> <a href="{SITE["telegram_url"]}" target="_blank" rel="noopener">@{SITE["telegram_bot"]}</a></span>
       </div>
     </div>
-    <nav aria-label="Footer">
-      <a href="index.html#apply">Become an ambassador</a>
-      <a href="index.html#how">How it works</a>
-      <a href="big-group.html">Big group trek, 10 or more</a>
-      <a href="small-group.html">Small group trip, under 10</a>
-      <a href="founder.html">About the co-founder</a>
-      <a href="contact.html">Contact us</a>
-      <a href="index.html#faq">Questions</a>
+    <nav aria-label="{UI["footer_label"]}">
+      {"".join(f'<a href="{h}">{t}</a>' for h, t in UI["footer_links"])}
       <span style="margin-top:14px">{COPYRIGHT}</span>
     </nav>
   </div>
@@ -675,10 +717,16 @@ def footer():
 <script src="{ROOT}assets/motion.js"></script>"""
 
 
-def head(title, desc):
+def head(title=None, desc=None):
+    """The page's <head> part: title and description from META, and links to the same page in each language."""
+    title, desc = (title, desc) if title else META[CURRENT_PAGE]
+    page = "" if CURRENT_PAGE == "index.html" else CURRENT_PAGE
+    alts = "".join(f'<link rel="alternate" hreflang="{h}" href="{SITE_URL}{f}{page}">\n'
+                   for h, f in (("en", ""), ("uz", "uz/"), ("x-default", "")))
     return f"""<title>{title}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="{desc}">
+{alts}
 <link rel="icon" href="data:image/svg+xml,{logos.star_mark(YELLOW, NAVY).replace('"', "'").replace('#', '%23').replace('<', '%3C').replace('>', '%3E')}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -695,7 +743,6 @@ PRESS_ICON = {
     "instagram": '<rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M4.5 11.2 7 8.4l1.8 1.8L10.4 8.8l1.4 2.4"/><circle cx="10.4" cy="5.6" r="1"/>',
     "video": '<circle cx="8" cy="8" r="6"/><path d="M6.9 5.7v4.6L10.6 8z" fill="currentColor" stroke="none"/>',
 }
-PRESS_KIND = {"tv": "TV", "article": "Article", "news": "News agency", "telegram": "Telegram", "instagram": "Instagram", "video": "YouTube"}
 
 
 def press_block():
@@ -709,8 +756,8 @@ def press_block():
         icon = (f'<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" '
                 f'stroke-linecap="round" stroke-linejoin="round">{PRESS_ICON[kind]}</svg>')
         return (f'<a class="press-card" href="{url}" target="_blank" rel="noopener">'
-                f'<span class="pc-kind">{icon}{PRESS_KIND[kind]}</span><b class="pc-src">{src}</b><span class="pc-line">{line}</span>'
-                f'<span class="pc-go">{act}{arrow}</span><span class="sr"> (opens in a new tab)</span></a>')
+                f'<span class="pc-kind">{icon}{UI["press_kind"][kind]}</span><b class="pc-src">{src}</b><span class="pc-line">{line}</span>'
+                f'<span class="pc-go">{act}{arrow}</span><span class="sr">{UI["new_tab"]}</span></a>')
 
     years = "".join(
         f'<div class="press-year"><div class="py-label"><b>{yr}</b><span>{sub}</span></div>'
@@ -748,12 +795,13 @@ def start_block():
                f'<p class="when">{s["when"]}</p></div>')
         if "text" in s:
             wa = ' data-copy-as="whatsapp"' if s.get("copy_as") == "whatsapp" else ""
-            act = (f'<div class="copy-row"><button class="mini" type="button" data-copy="{tid}">Copy the text</button>'
+            act = (f'<div class="copy-row"><button class="mini" type="button" data-copy="{tid}">{UI["copy_text"]}</button>'
                    f'<span class="copy-status" role="status" aria-live="polite"></span></div>')
-            more = (f'<details><summary>Read the text</summary>'
-                    f'<div class="sample-text" id="{tid}"{wa}>{rich(s["text"])}</div></details>')
+            more = (f'<details><summary>{UI["read_text"]}</summary>'
+                    f'<div class="sample-text" id="{tid}"{wa}{en_attr()}>{rich(s["text"])}</div></details>')
         else:
             href, open_label, dl_label = s["file"]
+            href = ROOT + href
             act = f'<div class="copy-row"><a class="mini" href="{href}" target="_blank" rel="noopener">{open_label}</a></div>'
             more = f'<div class="sample-more"><a class="sample-dl" href="{href}" download>{dl_label}</a></div>'
         samples += f'<article class="sample" id="{s["id"]}" aria-labelledby="{s["id"]}-title">{top}{act}{more}</article>'
@@ -781,17 +829,18 @@ def route_block():
 
     def sday(n):
         d = days[n]
-        return (f'<div class="sday"><b>Day {n}</b><span class="where">{d["where"]}</span>'
+        return (f'<div class="sday"><b>{UI["day"].format(n=n)}</b><span class="where">{d["where"]}</span>'
                 f'<ul>{"".join(f"<li>{i}</li>" for i in d["items"])}</ul></div>')
 
     cards = ""
     total = len(MP.STOPS)
     for i, st in enumerate(MP.STOPS):
         p = PH[st["photo"]]
-        cap = st["cap"] or p["caption"]
+        cap = STOP_CAPS.get(st["photo"]) or st["cap"] or p["caption"]
+        card = (MAP or {}).get("cards", {}).get(st["city"]) or MP.CITIES[st["city"]]["card"]
         cards += (f'<article class="stop-card{" on" if i == 0 else ""}" data-city="{st["city"]}">'
                   f'<div class="stop-photo"><img src="{img(st["photo"])}" alt="{p["alt"]}" loading="lazy" decoding="async"><span class="cap">{cap}</span></div>'
-                  f'<div class="stop-text"><p class="stop-n">Stop {i + 1} of {total}</p><h3>{MP.CITIES[st["city"]]["card"]}</h3>'
+                  f'<div class="stop-text"><p class="stop-n">{UI["stop_of"].format(i=i + 1, total=total)}</p><h3>{card}</h3>'
                   f'{"".join(sday(n) for n in st["days"])}</div></article>')
     return f"""
   <section class="itin" id="itinerary" aria-labelledby="itin-title">
@@ -804,7 +853,7 @@ def route_block():
     </div>
     <div class="route-pin">
       <div class="route-stage wrap">
-        <div class="map-wrap">{MP.route_svg()}<p class="map-hint" aria-hidden="true">Scroll to ride the fast train</p></div>
+        <div class="map-wrap">{MP.route_svg(MAP)}<p class="map-hint" aria-hidden="true" data-hints="{"|".join(UI["map_hints"])}">{UI["map_hints"][0]}</p></div>
         <div class="stops">{cards}</div>
       </div>
     </div>
@@ -893,20 +942,20 @@ def page_home():
         <h2 id="prev-title">{PREVIOUS["title"]}</h2>
         {diam(PREVIOUS["bullets"])}
         <span class="red-script">{PREVIOUS["script"]}</span>
-        <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">How the trek started</a></div>
+        <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">{UI["how_started"]}</a></div>
       </div>
       <div class="pols quotes">
-        {pol("senate_handshake", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
-        {pol("train_group", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
-        {pol("y2025_dancer", "&ldquo;" + q["dancing"]["text"] + "&rdquo;", q["dancing"]["cite"], cls="pol q")}
-        {pol("cohort_registan", None, "March 2026")}
+        {pol("senate_handshake", en("&ldquo;" + q["best"]["text"] + "&rdquo;"), q["best"]["cite"], cls="pol q")}
+        {pol("train_group", en("&ldquo;" + q["guided"]["text"] + "&rdquo;"), q["guided"]["cite"].split(",")[0], cls="pol q")}
+        {pol("y2025_dancer", en("&ldquo;" + q["dancing"]["text"] + "&rdquo;"), q["dancing"]["cite"], cls="pol q")}
+        {pol("cohort_registan", None, UI["cohort_sub"])}
       </div>
     </div>
   </section>
 {press_block()}
   <section class="sec band-sky" aria-labelledby="mom-title">
     <div class="wrap">
-      <h2 id="mom-title" class="moments-title">Uzbekistan Trek moments</h2>
+      <h2 id="mom-title" class="moments-title">{UI["moments"]}</h2>
       <div class="collage">{"".join(pol(k, c, ar=a) for k, c, a in collage)}</div>
     </div>
   </section>
@@ -917,10 +966,10 @@ def page_home():
     <div class="inc-grid">
       <div class="inc-photo" style="background-image:url('{img("samarkand_shahizinda")}')">{pol("samarkand_tillakari_dome", None, None, "3/4")}</div>
       <div class="inc-text">
-        <h2 id="inc-title">What the trek includes</h2>
+        <h2 id="inc-title">{UI["includes_title"]}</h2>
         <div class="inc-cols">
-          <div><h3>Included in the cost</h3>{diam(INCLUDED)}</div>
-          <div><h3>Not included</h3>{diam(NOT_INCLUDED, "diam x")}</div>
+          <div><h3>{UI["included"]}</h3>{diam(INCLUDED)}</div>
+          <div><h3>{UI["not_included"]}</h3>{diam(NOT_INCLUDED, "diam x")}</div>
         </div>
       </div>
     </div>
@@ -944,7 +993,7 @@ def page_home():
   </section>
 
   <section class="sec faq-sec" id="faq" aria-labelledby="faq-title" style="{faq_bg("tashkent_civilization_dome")}">
-    <div class="wrap">{faq_block("FAQ", FAQ_HOME, "faq-title")}</div>
+    <div class="wrap">{faq_block(UI["faq"], FAQ_HOME, "faq-title")}</div>
   </section>
 
   <section class="sec band-yellow apply" id="apply" aria-labelledby="apply-title">
@@ -956,7 +1005,7 @@ def page_home():
         <h3>{A["who_title"]}</h3>
         {diam(A["who"])}
       </div>
-      {ambassador_form("btn btn-navy", "a")}
+      {ambassador_form("btn btn-navy", "a", FORMS, FORM_COMMON)}
     </div>
   </section>
 
@@ -969,7 +1018,7 @@ def page_home():
   </section>
 </main>
 """
-    return head(SITE["name"], SITE["description"]) + header("home") + body + footer()
+    return head() + header("home") + body + footer()
 
 
 def page_big():
@@ -1023,8 +1072,8 @@ def page_big():
     <div class="wrap">
       <h2 id="split-title">{B["split_title"]}</h2>
       <div class="who-grid">
-        <div class="who"><h3>You</h3><ul>{"".join(f"<li>{i}</li>" for i in B["you"])}</ul></div>
-        <div class="who us"><h3>We</h3><ul>{"".join(f"<li>{i}</li>" for i in B["we"])}</ul></div>
+        <div class="who"><h3>{UI["you"]}</h3><ul>{"".join(f"<li>{i}</li>" for i in B["you"])}</ul></div>
+        <div class="who us"><h3>{UI["we"]}</h3><ul>{"".join(f"<li>{i}</li>" for i in B["we"])}</ul></div>
       </div>
     </div>
   </section>
@@ -1043,7 +1092,7 @@ def page_big():
         <h2 id="quote-title">{B["form_title"]}</h2>
         <p class="lede">{B["form_lede"]}</p>
       </div>
-      {big_group_form("btn btn-yellow", "b")}
+      {big_group_form("btn btn-yellow", "b", FORMS, FORM_COMMON, INTERESTS)}
     </div>
   </section>
 
@@ -1052,7 +1101,7 @@ def page_big():
   </section>
 </main>
 """
-    return head("Big Group Trek", "Big group treks to Uzbekistan for 10 or more graduate students: your dates, a private itinerary and a full package.") + header("groups") + body + footer()
+    return head() + header("groups") + body + footer()
 
 
 def page_small():
@@ -1065,7 +1114,7 @@ def page_small():
                 f'<a class="btn btn-navy" href="{o["cta"][0]}">{o["cta"][1]}</a></div></article>')
 
     rows = "".join(f'<tr><td><b>{d["name"]}</b>{d["len"]}</td><td>{d["dates"]}</td><td>{d["why"]}</td><td><span class="pill">{d["status"]}</span></td>'
-                   f'<td><button class="mini" type="button" data-pick="{d["pick"]}">Register interest</button></td></tr>' for d in S["departures"])
+                   f'<td><button class="mini" type="button" data-pick="{d["pick"]}">{UI["register_interest"]}</button></td></tr>' for d in S["departures"])
     cmp_head = "".join(f"<th>{h}</th>" for h in S["cmp_head"])
     cmp_rows = "".join("<tr>" + f"<td><b>{r[0]}</b></td>" + "".join(f"<td>{c}</td>" for c in r[1:]) + "</tr>" for r in S["cmp_rows"])
     body = f"""
@@ -1104,7 +1153,7 @@ def page_small():
       <p class="lede">{S["dep_lede"]}</p>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Departure</th><th>Dates</th><th>Why these dates</th><th>Status</th><th><span class="sr">Action</span></th></tr></thead>
+          <thead><tr>{"".join(f"<th>{h}</th>" for h in UI["dep_head"][:4])}<th><span class="sr">{UI["dep_head"][4]}</span></th></tr></thead>
           <tbody>{rows}</tbody>
         </table>
       </div>
@@ -1125,7 +1174,7 @@ def page_small():
         <h2 id="int-title">{S["form_title"]}</h2>
         <p class="lede">{S["form_lede"]}</p>
       </div>
-      {small_group_form("btn btn-yellow", "s", S["departures"])}
+      {small_group_form("btn btn-yellow", "s", S["departures"], FORMS, FORM_COMMON)}
     </div>
   </section>
 
@@ -1134,7 +1183,7 @@ def page_small():
   </section>
 </main>
 """
-    return head("Small Group Trip", "Small group trips to Uzbekistan for fewer than 10 graduate students: join a planned departure or travel privately on your own dates.") + header("groups") + body + footer()
+    return head() + header("groups") + body + footer()
 
 
 def page_founder():
@@ -1142,7 +1191,7 @@ def page_founder():
     facts = "".join(f"<div><b>{a}</b>{b}</div>" for a, b in F["facts"])
     story = "".join(f"<h2>{h}</h2>" + "".join(f"<p>{p}</p>" for p in ps) for h, ps in F["story"])
     tl = "".join(f'<li><b>{a}</b>{f"<strong>{n}</strong>" if n else ""}<span>{t}</span></li>' for a, n, t in F["timeline"])
-    quotes = "".join(f'<div><blockquote class="bigquote">{QUOTES[k]["text"]}</blockquote><p class="cite">{QUOTES[k]["cite"]}</p></div>' for k in F["quotes"])
+    quotes = "".join(f'<div><blockquote class="bigquote"{en_attr()}>{QUOTES[k]["text"]}</blockquote><p class="cite">{QUOTES[k]["cite"]}</p></div>' for k in F["quotes"])
     areas = "".join(f'<div class="areas-col"><h3>{grp}</h3><ul>{"".join(f"<li>{i}</li>" for i in items)}</ul></div>' for grp, items in F["areas"].items())
     moments = "".join(pol(k, None, "", ar=a) for k, a in F["moments"])
     body = f"""
@@ -1151,7 +1200,7 @@ def page_founder():
     {side()}
     <div class="wrap split">
       <div class="hero-pols f">
-        {pol("founder_portrait", F["name"], "Co-Founder", "3/4", lazy=False)}
+        {pol("founder_portrait", F["name"], UI["cofounder"], "3/4", lazy=False)}
         {pol("y2025_hazrati_imam", None, "", lazy=False)}
       </div>
       <div>
@@ -1163,11 +1212,11 @@ def page_founder():
     </div>
   </section>
 
-  <section class="sec" aria-label="The story">
+  <section class="sec" aria-label="{UI["story_label"]}">
     <div class="wrap story-grid">
       <article class="story">
         {story}
-        <span class="sig">{F["signature"]}<small>Co-Founder, Uzbekistan Trek</small></span>
+        <span class="sig">{F["signature"]}<small>{UI["signature_role"]}</small></span>
       </article>
       <aside class="story-side">
         {pol("senate_group", None, "", "3/2")}
@@ -1220,14 +1269,14 @@ def page_founder():
       <p class="lede" style="margin:12px auto 0">{F["cta_lede"]}</p>
       <div class="btn-row" style="justify-content:center">
         <a class="btn btn-navy" href="{NAV_CTA[0]}">{NAV_CTA[1]}</a>
-        <a class="btn btn-line" href="index.html#how">How it works</a>
+        <a class="btn btn-line" href="index.html#how">{UI["how_it_works"]}</a>
       </div>
       <p class="groups-note">{F["cta_groups"]}</p>
     </div>
   </section>
 </main>
 """
-    return head("Co-Founder Jakhongir Sadiev", "Jakhongir Sadiev, co-founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("team") + body + footer()
+    return head() + header("team") + body + footer()
 
 
 def page_contact():
@@ -1238,7 +1287,7 @@ def page_contact():
         cards += (f'<article class="member"><div class="avatar" aria-hidden="true">{p["initials"]}</div><div>'
                   f'<span class="role">{p["role"]}</span><h3>{p["name"]}</h3><p>{p["school"]}</p>'
                   f'<div class="contact-mail"><a class="addr" id="{mid}" href="mailto:{p["email"]}">{p["email"]}</a>'
-                  f'<button class="mini" type="button" data-copy="{mid}">Copy</button>'
+                  f'<button class="mini" type="button" data-copy="{mid}">{UI["copy"]}</button>'
                   f'<span class="copy-status" role="status" aria-live="polite"></span></div></div></article>')
     plane = '<svg viewBox="0 0 24 24" focusable="false"><path d="M2.5 11.3 21.6 3.2l-3.4 17.4-5.9-4.4-3.1 3 .4-4.8 8.3-7.6-10.2 6.3z"/></svg>'
     cards += (f'<article class="member tg"><div class="avatar" aria-hidden="true">{plane}</div><div>'
@@ -1256,7 +1305,7 @@ def page_contact():
     </div>
   </section>
 
-  <section class="sec" aria-label="How to reach us">
+  <section class="sec" aria-label="{UI["reach_label"]}">
     <div class="wrap">
       <div class="team-grid contact-grid">{cards}</div>
       <h2 class="samples-title">{C["next_title"]}</h2>
@@ -1265,7 +1314,7 @@ def page_contact():
   </section>
 </main>
 """
-    return head("Contact us", "Contact Uzbekistan Trek: email Jakhongir Sadiev or Zokirjon Khabibullaev, or message @uzbtrek_bot on Telegram.") + header("contact") + body + footer()
+    return head() + header("contact") + body + footer()
 
 
 PAGES = {"index.html": page_home, "big-group.html": page_big, "small-group.html": page_small, "founder.html": page_founder,
@@ -1274,7 +1323,7 @@ PAGES = {"index.html": page_home, "big-group.html": page_big, "small-group.html"
 
 def full_doc(inner):
     head_part, rest = inner.split('<header class="head">', 1)
-    return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+    return (f'<!doctype html>\n<html lang="{LANG}">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             + head_part + '</head>\n<body>\n<header class="head">' + rest + '\n</body>\n</html>\n')
 
@@ -1284,18 +1333,26 @@ def fix_links(html):
 
 
 def main():
-    """Writes the pages in PAGES to the site root. With --preview DIR it also writes claude.ai preview copies there."""
+    """Writes the pages in PAGES to the site root (English) and to uz/ (Uzbek).
+    With --preview DIR it also writes claude.ai preview copies of the English pages there."""
+    global CURRENT_PAGE
     preview = sys.argv[sys.argv.index("--preview") + 1] if "--preview" in sys.argv else None
     if preview:
         os.makedirs(preview, exist_ok=True)
-    for name, fn in PAGES.items():
-        inner = fix_links(fn())
-        with open(os.path.join(SITE_ROOT, name), "w", encoding="utf-8") as fh:
-            fh.write(full_doc(inner))
-        if preview:
-            with open(os.path.join(preview, name), "w", encoding="utf-8") as fh:
-                fh.write(inner if name == "index.html" else full_doc(inner))
-    print("built:", ", ".join(PAGES))
+    for lang, (mod, folder) in LANGS.items():
+        set_lang(lang)
+        out_dir = os.path.join(SITE_ROOT, folder)
+        os.makedirs(out_dir, exist_ok=True)
+        for name, fn in PAGES.items():
+            CURRENT_PAGE = name
+            inner = fix_links(fn())
+            with open(os.path.join(out_dir, name), "w", encoding="utf-8") as fh:
+                fh.write(full_doc(inner))
+            if preview and lang == "en":
+                with open(os.path.join(preview, name), "w", encoding="utf-8") as fh:
+                    fh.write(inner if name == "index.html" else full_doc(inner))
+        print(f"built ({lang}):", ", ".join((folder + "/" if folder else "") + n for n in PAGES))
+    set_lang("en")
 
 
 if __name__ == "__main__":

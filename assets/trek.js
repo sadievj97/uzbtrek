@@ -15,6 +15,22 @@
   var BOT_URL = "https://t.me/" + BOT;
   var EMAIL = CFG.email || "";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* words this script shows, in the page's language (<html lang="uz"> for the pages in uz/, in the new Uzbek letters) */
+  var T = (document.documentElement.lang || "").slice(0, 2) === "uz" ? {
+    menu: "Menyu", close: "Yopiş",
+    copied: "Nusxa olindi.", selected: "Matn belgilandi: nusxa oliş uçun Ctrl+C (yoki Cmd+C) bosing.", byHand: "Matnni oçib, qölda nusxa oling.",
+    please: function (names) { return "Iltimos, " + names.join(", ") + " kiriting."; },
+    thanks: "Rahmat.", sending: "Yuborilmoqda", sent: "Xabaringiz muvaffaqiyatli yuborildi!",
+    failed: "Kechirasiz, xabaringiz yuborilmadi. Iltimos, bir daqiqadan söng qayta urinib köring.",
+    altStart: "Bizga Telegramda ham yozişingiz mumkin: ", altEmail: " yoki elektron poçta orqali: "
+  } : {
+    menu: "Menu", close: "Close",
+    copied: "Copied.", selected: "Text selected: press Ctrl+C (or Cmd+C) to copy.", byHand: "Open the text and copy it by hand.",
+    please: function (names) { return "Please add " + names.join(", ") + "."; },
+    thanks: "Thank you.", sending: "Sending", sent: "Your message has been successfully sent!",
+    failed: "Sorry, your message could not be sent. Please try again in a minute.",
+    altStart: "You can also write to us on Telegram at ", altEmail: " or by email at "
+  };
 
   /* ---------- every page opens at its top, showing the banner ----------
      Normal browsers already open a new page at the top. Some previews and app views keep the old scroll position,
@@ -148,11 +164,11 @@
     btn.addEventListener("click", function () {
       var open = menu.classList.toggle("open");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
-      btn.textContent = open ? "Close" : "Menu";
+      btn.textContent = open ? T.close : T.menu;
     });
     menu.addEventListener("click", function (e) {
       if (e.target.closest("a") && menu.classList.contains("open")) {
-        menu.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); btn.textContent = "Menu";
+        menu.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); btn.textContent = T.menu;
       }
     });
   });
@@ -268,14 +284,14 @@
           var sel = window.getSelection();
           sel.removeAllRanges();
           sel.addRange(range);
-          say("Text selected: press Ctrl+C (or Cmd+C) to copy.");
-        } catch (err) { say("Open the text and copy it by hand."); }
+          say(T.selected);
+        } catch (err) { say(T.byHand); }
       }
       try {
         var isSample = src.classList.contains("sample-text");
         var wa = src.getAttribute("data-copy-as") === "whatsapp";
         var plain = isSample ? plainOf(src, wa) : src.textContent;
-        var done = function () { say("Copied."); };
+        var done = function () { say(T.copied); };
         if (isSample && !wa && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
           var rich = src.innerHTML.replace(/\n/g, "<br>");
           navigator.clipboard.write([new ClipboardItem({
@@ -339,19 +355,19 @@
     path.setAttribute("d", "M5 10.5 8.5 14 15 6.5");
     svg.appendChild(path);
     msg.appendChild(svg);
-    msg.appendChild(document.createTextNode("Your message has been successfully sent!"));
+    msg.appendChild(document.createTextNode(T.sent));
   }
 
   /* red message when the request could not be sent; the form keeps what the visitor typed */
   function showFailed(msg) {
     setMsg(msg, "err");
-    line(msg, "Sorry, your message could not be sent. Please try again in a minute.");
-    var p = line(msg, "You can also write to us on Telegram at ");
+    line(msg, T.failed);
+    var p = line(msg, T.altStart);
     var a = document.createElement("a");
     a.href = BOT_URL; a.target = "_blank"; a.rel = "noopener"; a.textContent = "@" + BOT;
     p.appendChild(a);
     if (EMAIL) {
-      p.appendChild(document.createTextNode(" or by email at "));
+      p.appendChild(document.createTextNode(T.altEmail));
       var m = document.createElement("a");
       m.href = "mailto:" + EMAIL; m.textContent = EMAIL;
       p.appendChild(m);
@@ -370,12 +386,12 @@
       var v = validate(form);
       if (v.bad) {
         setMsg(msg, "err");
-        msg.textContent = "Please add " + v.names.join(", ") + ".";
+        msg.textContent = T.please(v.names);
         v.bad.focus();
         return;
       }
       var hp = form.querySelector('input[name="website"]');
-      if (hp && hp.value) { form.reset(); setMsg(msg, "ok"); msg.textContent = "Thank you."; return; }
+      if (hp && hp.value) { form.reset(); setMsg(msg, "ok"); msg.textContent = T.thanks; return; }
 
       var fields = fieldsOf(form);
 
@@ -385,7 +401,7 @@
       }
 
       submit.disabled = true;
-      submit.textContent = "Sending";
+      submit.textContent = T.sending;
       var payload = {
         form: form.getAttribute("data-form") || "",
         title: form.getAttribute("data-form-title") || "",

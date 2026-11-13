@@ -4,10 +4,19 @@ Hooks: form.tform[data-form][data-form-title], .tf (field wrapper), .tf.full, fi
 .tform-hp (honeypot, hidden), .tform-foot, .tform-msg (status), .tform-alt (Telegram hint).
 Inputs carry data-label (used in the Telegram message) and data-req (required, with the phrase used in errors).
 """
+import content
 from content import FORM_COMMON, INTERESTS
 
-HONEYPOT = ('<div class="tform-hp" aria-hidden="true"><label>Leave this field empty'
+# The words come from FORMS, FORM_COMMON and INTERESTS in content.py; shared/build.py passes the Uzbek ones (content_uz.py)
+# for the pages in uz/. data-form-title stays in English, so the Telegram messages read the same in both languages.
+
+
+def _honeypot(t):
+    return (f'<div class="tform-hp" aria-hidden="true"><label>{t["honeypot"]}'
             '<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>')
+
+
+HONEYPOT = _honeypot(content.FORMS)
 
 
 def _field(fid, name, label, kind="text", req=None, extra="", full=False, placeholder=""):
@@ -29,70 +38,71 @@ def _select(fid, name, label, options, selected=None, full=False, prompt=None):
     return f'<div class="{cls}"><label for="{fid}">{label}</label><select id="{fid}" name="{name}" data-label="{label}">{opts}</select></div>'
 
 
-def ambassador_form(btn_class="btn", prefix="a"):
+def _foot(t, common, privacy, btn_class, send):
+    return f"""<div class="tform-foot"><small>{common[privacy]}</small><button class="{btn_class}" type="submit">{t[send]}</button></div>
+  <div class="tform-msg" role="status" hidden></div>
+  <p class="tform-alt">{common["telegram_hint"]}</p>"""
+
+
+def ambassador_form(btn_class="btn", prefix="a", t=None, common=None):
     """Home page application. It goes to the bot like the other forms, titled "Ambassador application"."""
-    p = prefix
-    return f"""<form class="tform" data-form="ambassador" data-form-title="Ambassador application" novalidate>
-  {HONEYPOT}
-  {_field(p+"-name", "name", "Your name", req="your name", extra=' autocomplete="name"')}
-  {_field(p+"-email", "email", "Email", kind="email", req="a valid email", extra=' autocomplete="email"', placeholder="Your university email, if you can")}
-  {_field(p+"-school", "university", "University", req="your university", placeholder="e.g. Columbia University")}
-  {_field(p+"-program", "program", "Program and degree", req="your program and degree", placeholder="e.g. MBA, MPP or PhD")}
-  {_select(p+"-grad", "graduation", "Expected graduation", ["2027", "2028", "2029 or later"], prompt="Choose one")}
-  {_select(p+"-size", "group_size", "Classmates who might come", ["Not sure yet", "Fewer than 10", "10 to 20", "20 to 40", "More than 40"])}
-  {_field(p+"-dates", "dates", "When could your group travel?", placeholder="e.g. Spring break 2027")}
-  {_field(p+"-telegram", "telegram", "Telegram or WhatsApp (optional)", placeholder="@username or phone")}
-  {_field(p+"-notes", "notes", "Why do you want to bring your classmates?", kind="textarea", full=True, placeholder="A few lines about you, your classmates and the student clubs you are part of")}
-  <div class="tform-foot"><small>{FORM_COMMON["privacy_apply"]}</small><button class="{btn_class}" type="submit">Send application</button></div>
-  <div class="tform-msg" role="status" hidden></div>
-  <p class="tform-alt">{FORM_COMMON["telegram_hint"]}</p>
+    t, common, p = t or content.FORMS, common or FORM_COMMON, prefix
+    return f"""<form class="tform" data-form="ambassador" data-form-title="Ambassador application{t["title_note"]}" novalidate>
+  {_honeypot(t)}
+  {_field(p+"-name", "name", t["name"], req=t["req_name"], extra=' autocomplete="name"')}
+  {_field(p+"-email", "email", t["email"], kind="email", req=t["req_email"], extra=' autocomplete="email"', placeholder=t["a_ph_email"])}
+  {_field(p+"-school", "university", t["university"], req=t["req_university"], placeholder=t["ph_university"])}
+  {_field(p+"-program", "program", t["a_program"], req=t["a_req_program"], placeholder=t["a_ph_program"])}
+  {_select(p+"-grad", "graduation", t["a_grad"], t["a_grad_opts"], prompt=t["choose"])}
+  {_select(p+"-size", "group_size", t["a_size"], t["a_size_opts"])}
+  {_field(p+"-dates", "dates", t["a_dates"], placeholder=t["a_ph_dates"])}
+  {_field(p+"-telegram", "telegram", t["telegram"], placeholder=t["ph_telegram"])}
+  {_field(p+"-notes", "notes", t["a_notes"], kind="textarea", full=True, placeholder=t["a_ph_notes"])}
+  {_foot(t, common, "privacy_apply", btn_class, "a_send")}
 </form>"""
 
 
-def big_group_form(btn_class="btn", prefix="b"):
-    p = prefix
+def big_group_form(btn_class="btn", prefix="b", t=None, common=None, interests=None):
+    t, common, p = t or content.FORMS, common or FORM_COMMON, prefix
     chips = "".join(
-        f'<label class="tchip"><input type="checkbox" name="interests" id="{p}-i{i}" value="{v}" data-label="Focus"> {v}</label>'
-        for i, v in enumerate(INTERESTS, 1))
-    return f"""<form class="tform" data-form="big-group" data-form-title="Big group quote request" novalidate>
-  {HONEYPOT}
-  {_field(p+"-name", "name", "Your name", req="your name", extra=' autocomplete="name"')}
-  {_field(p+"-email", "email", "Email", kind="email", req="a valid email", extra=' autocomplete="email"')}
-  {_field(p+"-school", "university", "University", req="your university", placeholder="e.g. Columbia University")}
-  {_field(p+"-program", "program", "Program or club", placeholder="e.g. SIPA, Energy Club")}
-  {_field(p+"-size", "group_size", "Group size (10 or more)", kind="number", req="a group size of 10 or more", extra=' min="10" max="300" inputmode="numeric"', placeholder="e.g. 25")}
-  {_field(p+"-dates", "dates", "Preferred dates or month", placeholder="e.g. School break in March")}
-  {_field(p+"-telegram", "telegram", "Telegram or WhatsApp (optional)", placeholder="@username or phone")}
-  {_select(p+"-flex", "flexible", "Are your dates flexible?", ["Yes, within a week or two", "No, they are fixed", "Not sure yet"])}
-  <fieldset class="tf full"><legend>What should the trip focus on?</legend><div class="tchips">{chips}</div></fieldset>
-  {_field(p+"-notes", "notes", "Anything else", kind="textarea", full=True, placeholder="Extra cities, length, visits you would like, dietary needs, questions")}
-  <div class="tform-foot"><small>{FORM_COMMON["privacy"]}</small><button class="{btn_class}" type="submit">Send request</button></div>
-  <div class="tform-msg" role="status" hidden></div>
-  <p class="tform-alt">{FORM_COMMON["telegram_hint"]}</p>
+        f'<label class="tchip"><input type="checkbox" name="interests" id="{p}-i{i}" value="{v}" data-label="{t["b_focus_label"]}"> {v}</label>'
+        for i, v in enumerate(interests or INTERESTS, 1))
+    return f"""<form class="tform" data-form="big-group" data-form-title="Big group quote request{t["title_note"]}" novalidate>
+  {_honeypot(t)}
+  {_field(p+"-name", "name", t["name"], req=t["req_name"], extra=' autocomplete="name"')}
+  {_field(p+"-email", "email", t["email"], kind="email", req=t["req_email"], extra=' autocomplete="email"')}
+  {_field(p+"-school", "university", t["university"], req=t["req_university"], placeholder=t["ph_university"])}
+  {_field(p+"-program", "program", t["b_program"], placeholder=t["b_ph_program"])}
+  {_field(p+"-size", "group_size", t["b_size"], kind="number", req=t["b_req_size"], extra=' min="10" max="300" inputmode="numeric"', placeholder=t["b_ph_size"])}
+  {_field(p+"-dates", "dates", t["b_dates"], placeholder=t["b_ph_dates"])}
+  {_field(p+"-telegram", "telegram", t["telegram"], placeholder=t["ph_telegram"])}
+  {_select(p+"-flex", "flexible", t["b_flex"], t["b_flex_opts"])}
+  <fieldset class="tf full"><legend>{t["b_focus"]}</legend><div class="tchips">{chips}</div></fieldset>
+  {_field(p+"-notes", "notes", t["anything"], kind="textarea", full=True, placeholder=t["b_ph_notes"])}
+  {_foot(t, common, "privacy", btn_class, "b_send")}
 </form>"""
 
 
-def small_group_form(btn_class="btn", prefix="s", departures=None):
-    p = prefix
-    deps = [d["pick"] for d in (departures or [])] + ["My own dates (private trip)"]
-    return f"""<form class="tform" data-form="small-group" data-form-title="Small group interest" novalidate>
-  {HONEYPOT}
-  <fieldset class="tf full"><legend>Which option?</legend><div class="tchips">
-    <label class="tchip"><input type="radio" name="option" id="{p}-opt-join" value="Join a departure" data-label="Option" checked> Join a departure</label>
-    <label class="tchip"><input type="radio" name="option" id="{p}-opt-private" value="Private small-group trip" data-label="Option"> Private trip</label>
-    <label class="tchip"><input type="radio" name="option" id="{p}-opt-unsure" value="Not sure yet" data-label="Option"> Not sure yet</label>
+def small_group_form(btn_class="btn", prefix="s", departures=None, t=None, common=None):
+    t, common, p = t or content.FORMS, common or FORM_COMMON, prefix
+    deps = [d["pick"] for d in (departures or [])] + [t["s_own_dates"]]
+    ids = ["join", "private", "unsure"]
+    radios = "".join(
+        f'\n    <label class="tchip"><input type="radio" name="option" id="{p}-opt-{ids[i]}" value="{v}" data-label="{t["s_option_label"]}"'
+        f'{" checked" if i == 0 else ""}> {lab}</label>' for i, (v, lab) in enumerate(t["s_options"]))
+    return f"""<form class="tform" data-form="small-group" data-form-title="Small group interest{t["title_note"]}" novalidate>
+  {_honeypot(t)}
+  <fieldset class="tf full"><legend>{t["s_which"]}</legend><div class="tchips">{radios}
   </div></fieldset>
-  {_field(p+"-name", "name", "Your name", req="your name", extra=' autocomplete="name"')}
-  {_field(p+"-email", "email", "Email", kind="email", req="a valid email", extra=' autocomplete="email"')}
-  {_field(p+"-school", "university", "University and program", req="your university and program", placeholder="e.g. NYU Stern")}
-  {_select(p+"-size", "travelers", "Number of travelers", [str(i) for i in range(1, 10)], selected="2")}
-  {_select(p+"-departure", "departure", "Departure or dates", deps)}
-  {_select(p+"-room", "room", "Room", ["Share a double room", "Single room", "Not sure yet"])}
-  {_field(p+"-telegram", "telegram", "Telegram or WhatsApp (optional)", placeholder="@username or phone", full=True)}
-  {_field(p+"-notes", "notes", "Anything else", kind="textarea", full=True, placeholder="Your dates if private, dietary needs, questions")}
-  <div class="tform-foot"><small>{FORM_COMMON["privacy"]}</small><button class="{btn_class}" type="submit">Send</button></div>
-  <div class="tform-msg" role="status" hidden></div>
-  <p class="tform-alt">{FORM_COMMON["telegram_hint"]}</p>
+  {_field(p+"-name", "name", t["name"], req=t["req_name"], extra=' autocomplete="name"')}
+  {_field(p+"-email", "email", t["email"], kind="email", req=t["req_email"], extra=' autocomplete="email"')}
+  {_field(p+"-school", "university", t["s_university"], req=t["s_req_university"], placeholder=t["s_ph_university"])}
+  {_select(p+"-size", "travelers", t["s_travelers"], [str(i) for i in range(1, 10)], selected="2")}
+  {_select(p+"-departure", "departure", t["s_departure"], deps)}
+  {_select(p+"-room", "room", t["s_room"], t["s_room_opts"])}
+  {_field(p+"-telegram", "telegram", t["telegram"], placeholder=t["ph_telegram"], full=True)}
+  {_field(p+"-notes", "notes", t["anything"], kind="textarea", full=True, placeholder=t["s_ph_notes"])}
+  {_foot(t, common, "privacy", btn_class, "s_send")}
 </form>"""
 
 

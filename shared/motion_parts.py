@@ -105,6 +105,8 @@ def bezier_len(p0, c1, c2, p1, steps=600):
     return length
 
 
+MAP_TITLE = ("Route of the sample itinerary: arrival in Tashkent, fast train to Bukhara, fast train to Samarkand, back to Tashkent, "
+             "a day in the Tashkent mountains by bus, departures from Tashkent. Khiva can be added as an option.")
 BUS_FROM = 3   # stop index where the bus takes over: Tashkent (day 6) to the mountains and back
 
 
@@ -122,7 +124,12 @@ def route_geometry():
     return d, [round(v / lens[-1], 5) for v in lens], rail, road
 
 
-def route_svg():
+def route_svg(text=None):
+    """text (optional) gives the map's words in another language: {"cities": {city id: (name, sub)}, "khiva": (name, sub),
+    "title": the description read by screen readers}. Without it the words come from CITIES and the English defaults below."""
+    text = text or {}
+    names = text.get("cities", {})
+    khiva_name, khiva_sub = text.get("khiva", ("Khiva", "Optional add-on"))
     d, fracs, rail, road = route_geometry()
     dots, labels = "", ""
     for cid, c in CITIES.items():
@@ -130,8 +137,9 @@ def route_svg():
         lx, ly, anchor = c["lab"]
         dots += (f'<g class="stop-dot" data-city="{cid}"><circle class="halo" cx="{x}" cy="{y}" r="22"/>'
                  f'<circle class="ring" cx="{x}" cy="{y}" r="11"/><circle class="core" cx="{x}" cy="{y}" r="5"/></g>')
-        labels += (f'<g class="city" data-city="{cid}"><text x="{lx}" y="{ly}" text-anchor="{anchor}">{c["name"]}</text>'
-                   f'<text class="sub" x="{lx}" y="{ly + 22}" text-anchor="{anchor}">{c["sub"]}</text></g>')
+        name, csub = names.get(cid, (c["name"], c["sub"]))
+        labels += (f'<g class="city" data-city="{cid}"><text x="{lx}" y="{ly}" text-anchor="{anchor}">{name}</text>'
+                   f'<text class="sub" x="{lx}" y="{ly + 22}" text-anchor="{anchor}">{csub}</text></g>')
     peaks = "M866 178l15-30 15 30Z M878 178l11-21 11 21Z M856 178l10-17 10 17Z"
     dunes = ("M40 470C90 455 130 455 180 468C230 481 260 480 300 468"
              "M90 500C140 488 180 488 230 498C270 506 300 505 340 496")
@@ -144,9 +152,9 @@ def route_svg():
            '<circle class="wheel" cx="-11" cy="8" r="3.8"/><circle class="wheel" cx="11" cy="8" r="3.8"/></g>')
     khiva = ('<g class="extra" data-city="khi"><path class="opt-link" d="M170 345C176 268 92 214 60 120"/>'
              '<circle class="opt-ring" cx="60" cy="120" r="11"/><path class="opt-plus" d="M60 114.5v11M54.5 120h11"/>'
-             '<text x="84" y="113">Khiva</text><text class="sub" x="84" y="137">Optional add-on</text></g>')
+             f'<text x="84" y="113">{khiva_name}</text><text class="sub" x="84" y="137">{khiva_sub}</text></g>')
     return f"""<svg class="map" viewBox="0 0 900 520" role="img" aria-labelledby="mapTitle" focusable="false">
-  <title id="mapTitle">Route of the sample itinerary: arrival in Tashkent, fast train to Bukhara, fast train to Samarkand, back to Tashkent, a day in the Tashkent mountains by bus, departures from Tashkent. Khiva can be added as an option.</title>
+  <title id="mapTitle">{text.get("title", MAP_TITLE)}</title>
   <defs><pattern id="dotgrid" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#FFFFFF" fill-opacity=".11"/></pattern></defs>
   <rect width="900" height="520" fill="url(#dotgrid)"/>
   <path d="{dunes}" fill="none" stroke="#FBB617" stroke-opacity=".32" stroke-width="2" stroke-linecap="round"/>
