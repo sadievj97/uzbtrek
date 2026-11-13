@@ -304,7 +304,7 @@ SAMPLES = [
               "Registration form: [form link]")},
     # the owner's Harvard brochure as the fourth block: prices show as [$X], the organizers' emails and the form link are removed
     {"id": "sample-brochure", "step": "Step 4", "title": "Harvard info brochure (PDF)",
-     "when": "The info brochure for the Harvard 2027 trek, with the prices taken out.",
+     "when": "Sample info brochure used for the Harvard trek 2027",
      "file": ("files/uzbekistan_trek_2027_harvard_info.pdf", "Open the brochure", "Download the PDF (17 pages, 3 MB)")},
 ]
 
