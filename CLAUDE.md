@@ -24,7 +24,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 - Do not name or link to any tour operator or travel company.
 - Never invent quotes, names, numbers or reviews. Use people's names and titles exactly as they appear in `shared/content.py`, and list government before the private sector.
 - Never promise ambassadors pay, a discount, a free place or any other reward. Describe them as students organizing a trip for their own classmates.
-- Founder: Jakhongir Sadiev. Co-Founder: Zokirjon Khabibullaev (Boston University). Say only that Jakhongir's hometown is Samarkand. Never say he was born or raised there.
+- Co-Founders: Jakhongir Sadiev and Zokirjon Khabibullaev (Boston University). Never call Jakhongir just "Founder". Say only that Jakhongir's hometown is Samarkand. Never say he was born or raised there.
 - Jakhongir's card on the home page uses `jakhongir_sadiev`, a different photo from the portrait on the founder page. Never use a crop of `founder_portrait` there.
 - Contact: jsadiev@hks.harvard.edu and Telegram @uzbtrek_bot.
 - No em dashes. Short, plain sentences.

@@ -24,7 +24,7 @@ R=[
  ('home','hero title: Uzbekistan Trek as a white sticker', r'<h1 id="home-title">Become an <span class="sticker">Uzbekistan Trek</span> Ambassador</h1>', 'raw'),
  ('home','hero buttons', r'href="#apply">Apply now</a>\s*<a class="btn btn-line" href="#how">How it works', 'raw'),
  ('home','who we are lede', r'We are Jakhongir and Zokirjon, two Uzbek graduate students in Boston who love showing our country to classmates from around the world\.', True),
- ('home','founder card', r'Founder Jakhongir Sadiev Harvard Kennedy School\. Started the trek at Harvard in 2025: two treks, 95 travelers\. Read his story', True),
+ ('home','founder card', r'Co-Founder Jakhongir Sadiev Harvard Kennedy School\. Started the trek at Harvard in 2025: two treks, 95 travelers\. Read his story', True),
  ('home','co-founder card', r'Co-Founder Zokirjon Khabibullaev Boston University\. Coordinates the ambassador program and the trek.s growth to new universities\.', True),
  ('home','what you get', r'What you get.*Ready-made materials.*Promotion techniques.*Support at every step.*Travel with your group', True),
  ('home','application form', r'data-form="ambassador"', 'raw'),
@@ -135,6 +135,8 @@ R=[
  ('founder','laser show', r'laser show at Registan Square', True),
  ('founder','no movie night', r'movie night', False),
  ('founder','classmate quote', r'Name something better than being guided around the beauties of the Silk Road', True),
+ # the owner, Nov 2026: Jakhongir is a Co-Founder too, so nobody is called just "Founder"
+ ('any','Jakhongir is Co-Founder, never just Founder', r'(?<![Cc]o-)\b[Ff]ounder\b', False),
  ('any','email', r'jsadiev@hks\.harvard\.edu', True),
  ('any','telegram', r't\.me/uzbtrek_bot', 'raw'),
  ('any','no operated by', r'Operated by', False),

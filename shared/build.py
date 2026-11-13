@@ -636,7 +636,7 @@ def footer():
       <a href="index.html#how">How it works</a>
       <a href="big-group.html">Big group trek, 10 or more</a>
       <a href="small-group.html">Small group trip, under 10</a>
-      <a href="founder.html">About the founder</a>
+      <a href="founder.html">About the co-founder</a>
       <a href="index.html#faq">Questions</a>
       <span style="margin-top:14px">{COPYRIGHT}</span>
     </nav>
@@ -1119,7 +1119,7 @@ def page_founder():
     {side()}
     <div class="wrap split">
       <div class="hero-pols f">
-        {pol("founder_portrait", F["name"], "Founder", "3/4", lazy=False)}
+        {pol("founder_portrait", F["name"], "Co-Founder", "3/4", lazy=False)}
         {pol("y2025_hazrati_imam", None, "", lazy=False)}
       </div>
       <div>
@@ -1135,7 +1135,7 @@ def page_founder():
     <div class="wrap story-grid">
       <article class="story">
         {story}
-        <span class="sig">{F["signature"]}<small>Founder, Uzbekistan Trek</small></span>
+        <span class="sig">{F["signature"]}<small>Co-Founder, Uzbekistan Trek</small></span>
       </article>
       <aside class="story-side">
         {pol("senate_group", None, "", "3/2")}
@@ -1195,7 +1195,7 @@ def page_founder():
   </section>
 </main>
 """
-    return head("Founder Jakhongir Sadiev", "Jakhongir Sadiev, founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("team") + body + footer()
+    return head("Co-Founder Jakhongir Sadiev", "Jakhongir Sadiev, co-founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("team") + body + footer()
 
 
 PAGES = {"index.html": page_home, "big-group.html": page_big, "small-group.html": page_small, "founder.html": page_founder}

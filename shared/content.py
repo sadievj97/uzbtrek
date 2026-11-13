@@ -55,7 +55,7 @@ TEAM = {
     # photo None shows the initials. Jakhongir's avatar is a different photo from founder_portrait, which is on the founder page:
     # each photo appears once per site.
     "members": [
-        {"role": "Founder", "name": "Jakhongir Sadiev", "initials": "JS", "photo": "jakhongir_sadiev",
+        {"role": "Co-Founder", "name": "Jakhongir Sadiev", "initials": "JS", "photo": "jakhongir_sadiev",
          "text": "Harvard Kennedy School. Started the trek at Harvard in 2025: two treks, 95 travelers.",
          "link": ("founder.html", "Read his story")},
         {"role": "Co-Founder", "name": "Zokirjon Khabibullaev", "initials": "ZK", "photo": "zokirjon_khabibullaev",
@@ -453,9 +453,9 @@ SMALL = {
 
 # ---------------------------------------------------------------- founder page
 FOUNDER = {
-    "kicker": "About the founder",
+    "kicker": "About the co-founder",
     "name": "Jakhongir Sadiev",
-    "lede": "Founder of the Uzbekistan Trek",
+    "lede": "Co-Founder of the Uzbekistan Trek",
     "facts": [
         ("Harvard University (HKS)", "Master&rsquo;s in economics (MPA/ID)"),
         ("Two treks organized", "2025 and 2026, 95 travelers"),
