@@ -1,12 +1,8 @@
 /* Uzbekistan Trek site settings. Edit these lines after you deploy the Telegram relay (see README.md).
    Never put the bot token here: this file is public. */
 window.TREK_CONFIG = {
-  endpoint: "https://uzbtrek-relay.sadievj97.workers.dev/submit",                 /* e.g. "https://uzbtrek-relay.sadievj97.workers.dev/submit"; leave empty and visitors copy their request and send it on Telegram or by email */
-   analyticsToken: "c615f39ffa6c45429157a557f4cbefd5",
+  endpoint: "https://uzbtrek-relay.sadievj97.workers.dev/submit",
+  analyticsToken: "da28df1948fb4c70a28494108b60ccd3",
   telegramBot: "uzbtrek_bot",   /* bot username without @ */
   email: "jsadiev@hks.harvard.edu"
 };
-<!-- Cloudflare Web Analytics -->
-   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "da28df1948fb4c70a28494108b60ccd3"}'>
-   </script>
-<!-- End Cloudflare Web Analytics -->
