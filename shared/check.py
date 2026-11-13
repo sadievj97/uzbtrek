@@ -17,7 +17,8 @@ ASSET_RE = re.compile(r'''(?:src|href)\s*=\s*["']([^"'#?]+\.(?:js|css|svg|webp|j
 LINK_RE = re.compile(r'''href\s*=\s*["']([^"']+)["']''', re.I)
 # Different file names, same picture (exact copies or burst shots): never use two of a group on one site.
 SAME_PHOTO = [("a000", "tashkent_painted_hall"), ("a131", "bukhara_panorama"), ("a308", "nowruz_trees_group"),
-              ("a638", "mountains_charvak"), ("a070", "a072"), ("a410", "cohort_registan"), ("a709", "a710")]
+              ("a638", "mountains_charvak"), ("a070", "a072"), ("a410", "cohort_registan"), ("a709", "a710"),
+              ("a474", "a480"), ("bukhara_golf_cart", "a905")]
 BANNED = [
     ("em dash", re.compile("—|&mdash;")),
     ("price", re.compile(r"\$\s?\d")),

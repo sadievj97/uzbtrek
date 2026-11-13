@@ -11,7 +11,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))     # shared/: text, photo cat
 SITE_ROOT = os.path.abspath(os.path.join(HERE, ".."))  # the repository root, which GitHub Pages serves
 sys.path.insert(0, HERE)
 from content import *          # noqa: F401,F403
-from forms_html import big_group_form, small_group_form
+from forms_html import big_group_form, small_group_form, ambassador_form
 import logos
 import motion_parts as MP
 
@@ -59,7 +59,7 @@ p{ margin:0; }
 .logo svg{ height:40px; width:auto; display:block; }
 .nav{ display:flex; align-items:center; gap:22px; }
 .nav a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
-.nav a:hover, .nav a[aria-current="page"]{ border-bottom-color:var(--yellow); }
+.nav a:hover, .nav a[aria-current]{ border-bottom-color:var(--yellow); }
 .nav .btn{ border-bottom:0; padding:10px 18px; min-height:44px; font-size:15px; color:var(--white); }
 .menu-btn{ display:none; appearance:none; border:2px solid var(--navy); background-color:var(--white); color:var(--navy); --sw:var(--navy); --swf:var(--white); border-radius:999px; min-height:44px; padding:0 16px; font:inherit; font-weight:700; cursor:pointer; }
 
@@ -68,14 +68,16 @@ p{ margin:0; }
 .side::before, .side::after{ content:""; flex:1; width:1px; background:currentColor; opacity:.7; }
 .side.light{ color:var(--white); }
 
-/* Home hero (layers and motion are in MOTION_CSS) */
-.cover{ background:var(--white); color:var(--navy); display:grid; grid-template-columns:auto 1fr; gap:12px 40px; align-items:center; padding:26px 30px; max-width:760px; margin:0 auto; box-shadow:0 18px 40px rgba(10,20,50,.35); position:relative; }
-.cover::before{ content:""; position:absolute; inset:-14px; border:3px solid var(--white); pointer-events:none; }
-.cover h1{ font-size:clamp(28px, 4.6vw, 46px); line-height:1.02; }
-.cover h1 span{ display:block; font-weight:500; font-stretch:100%; font-size:.62em; letter-spacing:.02em; margin-top:6px; }
-.cover p{ text-align:right; font-size:clamp(15px, 1.7vw, 19px); font-weight:500; text-transform:uppercase; line-height:1.3; letter-spacing:.02em; }
-.ask{ text-align:center; margin:clamp(36px, 5.5vw, 60px) auto 18px; font-weight:800; font-stretch:108%; text-transform:uppercase; font-size:clamp(20px, 2.6vw, 28px); letter-spacing:.01em; }
-.ask small{ display:block; font-weight:500; font-stretch:100%; text-transform:none; font-size:16px; margin-top:6px; color:#E1E7F5; letter-spacing:0; }
+/* Home hero: the ambassador program. A yellow band with the khatam watermark (MOTION_CSS), text left, three polaroids right */
+.home-hero .split{ grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); }
+.home-hero .wrap{ padding-block:clamp(44px, 6vw, 88px); }
+.page-hero.home-hero h1{ font-size:clamp(36px, 5.6vw, 72px); line-height:.95; }   /* the longest word must fit the text column */
+.home-hero .lede{ max-width:54ch; margin-top:22px; }
+.hero-pols.h{ min-height:530px; }
+.hero-pols.h .pol{ width:min(268px, 48%); }
+.hero-pols.h .pol:nth-child(1){ left:0; top:0; --r:-4deg; }
+.hero-pols.h .pol:nth-child(2){ left:auto; right:0; top:30px; --r:3.5deg; }
+.hero-pols.h .pol:nth-child(3){ left:25%; top:auto; bottom:0; --r:-1.5deg; }
 .choices{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px; max-width:1000px; margin:0 auto; }
 .choice{ display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto 1fr auto; column-gap:22px; row-gap:6px; padding:26px 28px; border-radius:20px; background:var(--yellow); color:var(--navy-deep); text-decoration:none; box-shadow:0 14px 34px rgba(10,20,50,.38); transition:transform .18s ease, box-shadow .18s ease; min-height:230px; }
 .choice.on-white{ background:var(--white); box-shadow:0 12px 30px rgba(19,35,75,.16); }
@@ -296,6 +298,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .tform-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 .tform-foot{ grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; }
 .tform-foot small{ color:var(--muted); font-size:14px; max-width:42ch; }
+.tform-msg[hidden]{ display:none; }
 .tform-msg{ grid-column:1 / -1; padding:14px 16px; border-radius:12px; font-size:15.5px; font-weight:600; display:grid; gap:10px; }
 .tform-msg.ok{ background:#E2F2EF; color:#0F5550; }
 .tform-msg.err{ background:#F8E1E3; color:#842129; }
@@ -379,6 +382,34 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .press-card:hover .pc-go svg, .press-card:focus-visible .pc-go svg{ transform:translate(3px, -3px); }
 .areas-col li{ background:var(--white); border:2px solid var(--navy); border-radius:12px; padding:10px 14px; font-weight:650; font-size:16px; }
 
+/* Who we are (home) */
+.team-grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px; margin-top:34px; }
+.member{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:18px 24px; align-items:center; background:var(--white); border:2px solid var(--navy); border-radius:16px; padding:24px 26px; }
+.avatar{ width:96px; height:96px; border-radius:50%; border:3px solid var(--navy); overflow:hidden; background:var(--yellow); display:grid; place-items:center;
+  font-weight:900; font-stretch:110%; font-size:30px; letter-spacing:.02em; color:var(--navy-deep); }
+.avatar img{ width:100%; height:100%; object-fit:cover; }
+.role{ display:inline-block; background:var(--yellow); color:var(--navy-deep); font-weight:800; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; padding:4px 12px; border-radius:999px; }
+.member h3{ font-size:24px; font-weight:800; margin-top:10px; }
+.member p{ font-size:16.5px; line-height:1.5; margin-top:6px; }
+.member .go-link{ display:inline-block; margin-top:12px; }
+
+/* What you get (home) */
+.gets{ list-style:none; margin:40px 0 0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px; }
+.get{ background:var(--navy); border:1px solid rgba(255,255,255,.14); border-radius:18px; padding:24px 22px 26px; display:grid; gap:10px; align-content:start; box-shadow:0 18px 36px rgba(0,0,0,.25); }
+.get .ic{ width:54px; height:54px; border-radius:16px; background:var(--yellow); color:var(--navy-deep); display:grid; place-items:center; margin-bottom:6px; }
+.get .ic svg{ width:28px; height:28px; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+.get b{ font-size:19px; font-weight:850; font-stretch:106%; text-transform:uppercase; line-height:1.15; color:var(--white); }
+.get p{ font-size:15.5px; line-height:1.5; color:#D5DCEC; }
+
+/* Home FAQ groups and the application */
+.faq-box .fq{ margin:28px 0 2px; font-size:14px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.faq-box h2 + .fq{ margin-top:12px; }
+.apply h3{ margin-top:32px; text-transform:uppercase; font-stretch:108%; font-weight:850; }
+.apply .diam{ margin-top:14px; }
+.apply .diam li{ font-size:17px; }
+.apply .tform{ box-shadow:0 18px 40px rgba(19,35,75,.22); }
+.groups-note{ text-align:center; margin-top:22px; font-size:16px; }
+
 /* Footer */
 .foot{ background:var(--navy-deep); color:#CBD3E6; font-size:15px; }
 .foot .wrap{ padding-block:44px 48px; display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:28px 48px; }
@@ -410,9 +441,11 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .choice .go .sw{ justify-content:space-between; }
 .has-sw:hover .sw, .has-sw:focus-visible .sw, .choice:hover .has-sw .sw, .choice:focus-visible .has-sw .sw{ clip-path:inset(0); }
 
-@media (max-width: 1100px){ .side{ display:none; } .press-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
+@media (max-width: 1100px){ .side{ display:none; } .press-grid, .gets{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
 @media (max-width: 980px){
-  .split, .form-wrap, .story-grid{ grid-template-columns:1fr; }
+  .split, .form-wrap, .story-grid, .home-hero .split{ grid-template-columns:1fr; }
+  .hero-pols.h{ width:100%; max-width:600px; margin:6px auto 0; }
+  .page-hero.home-hero h1{ font-size:clamp(32px, 10.2vw, 72px); }
   .story-side{ position:static; grid-template-columns:repeat(2, minmax(0,1fr)); }
   .collage{ grid-template-columns:repeat(3, minmax(0,1fr)); }
   .inc-grid{ grid-template-columns:1fr; }
@@ -438,14 +471,11 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .nav .btn{ margin-top:14px; }
   .menu-btn{ display:inline-flex; align-items:center; }
   .choices{ grid-template-columns:1fr; }
-  .opt-grid, .who-grid, .areas-grid, .inc-cols{ grid-template-columns:1fr; }
+  .opt-grid, .who-grid, .areas-grid, .inc-cols, .team-grid{ grid-template-columns:1fr; }
   .start-grid, .samples{ grid-template-columns:1fr; }
 }
 @media (max-width: 640px){
   .logo svg{ height:32px; }
-  .cover{ grid-template-columns:1fr; text-align:left; padding:22px; }
-  .cover p{ text-align:left; }
-  .cover::before{ inset:-10px; }
   .collage{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px 16px; }
   .press-head{ grid-template-columns:1fr; }
   .press-year{ grid-template-columns:1fr; }
@@ -461,8 +491,8 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .tranches li{ padding:32px 18px 16px; }
   .tranches li:not(:last-child)::after{ right:auto; left:50%; top:auto; bottom:-27px; margin:0 0 0 -6px; transform:rotate(135deg); }
   .tform{ grid-template-columns:1fr; }
-  .hero-pols, .hero-pols.f{ min-height:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:18px; align-items:start; }
-  .hero-pols .pol, .hero-pols.f .pol{ position:static; width:auto !important; }
+  .hero-pols, .hero-pols.f, .hero-pols.h{ min-height:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:18px; align-items:start; }
+  .hero-pols .pol, .hero-pols.f .pol, .hero-pols.h .pol{ position:static; width:auto !important; }
   .hero-pols .pol:nth-child(3){ display:none; }
   .facts{ grid-template-columns:1fr; }
   .tl{ grid-template-columns:repeat(2, minmax(0,1fr)); }
@@ -470,8 +500,12 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .choice{ padding:22px; min-height:0; }
   .choice .num{ font-size:52px; }
 }
+@media (max-width: 560px){ .gets{ grid-template-columns:1fr; } }
 @media (max-width: 420px){
   .story-side{ grid-template-columns:1fr; }
+  .member{ padding:20px; gap:14px 18px; }
+  .avatar{ width:76px; height:76px; font-size:24px; }
+  .member h3{ font-size:21px; }
 }
 @media (max-width: 560px){
   .pols.quotes{ grid-template-columns:1fr; gap:22px; }
@@ -533,8 +567,12 @@ def diam(items, cls="diam"):
 
 
 def faq_block(title, items, hid):
-    rows = "".join(f'<details><summary>{q}</summary><div class="a">{"".join(f"<p>{p}</p>" for p in ps)}</div></details>' for q, ps in items)
-    return f'<div class="faq-box"><h2 id="{hid}">{title}</h2>{rows}</div>'
+    """items: [(question, [paragraphs])], or in groups: [(group title, [(question, [paragraphs])])]."""
+    def rows(its):
+        return "".join(f'<details><summary>{q}</summary><div class="a">{"".join(f"<p>{p}</p>" for p in ps)}</div></details>' for q, ps in its)
+    grouped = bool(items) and bool(items[0][1]) and isinstance(items[0][1][0], tuple)
+    body = "".join(f'<h3 class="fq">{g}</h3>{rows(its)}' for g, its in items) if grouped else rows(items)
+    return f'<div class="faq-box"><h2 id="{hid}">{title}</h2>{body}</div>'
 
 
 def choices(white=False, cid="choose"):
@@ -550,13 +588,19 @@ def choices(white=False, cid="choose"):
 
 
 def header(active):
+    """active: "home", or the NAV key to mark ("groups" on the group pages, "team" on the founder page)."""
+    home = active == "home"
+
+    def here(href):
+        # on the home page, links to its own sections scroll instead of reloading the page
+        return href[len("index.html"):] if home and href.startswith("index.html#") else href
+
     links = []
     for href, label, key in NAV:
-        cur = ' aria-current="page"' if key == active else ""
-        links.append(f'<a href="{href}"{cur}>{label}</a>')
+        cur = ' aria-current="true"' if key == active else ""
+        links.append(f'<a href="{here(href)}"{cur}>{label}</a>')
     cta_href, cta_label = NAV_CTA
-    # from the home page the button jumps to the group boxes; from any other page it opens the home page at its top
-    cta_href = "#choose" if active == "home" else cta_href.split("#")[0]
+    cta_href = here(cta_href)   # "Apply now" goes to the application form from every page
     lk = logos.lockup_star(YELLOW, NAVY, NAVY, height=40)
     return f"""<header class="head">
   <div class="wrap">
@@ -584,6 +628,8 @@ def footer():
       </div>
     </div>
     <nav aria-label="Footer">
+      <a href="index.html#apply">Become an ambassador</a>
+      <a href="index.html#how">How it works</a>
       <a href="big-group.html">Big group trek, 10 or more</a>
       <a href="small-group.html">Small group trip, under 10</a>
       <a href="founder.html">About the founder</a>
@@ -654,7 +700,7 @@ def press_block():
 
 
 def start_block():
-    """Home page guide for students who want to start a trek at their own university."""
+    """Home page "How it works": the steps for an ambassador, where to find a group, tips and the sample texts."""
     S = START
     star = f'<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="{MP.STAR_OUTLINE}"/></svg>'
     steps = ""
@@ -673,7 +719,8 @@ def start_block():
                     f'<details><summary>Read the text</summary><div class="sample-text" id="{tid}">{html.escape(s["text"], quote=False)}</div></details>'
                     f'</article>')
     return f"""
-  <section class="sec start" id="start" aria-labelledby="start-title">
+  <section class="sec start" id="how" aria-labelledby="start-title">
+    <span id="start" aria-hidden="true"></span>
     {side()}
     <div class="wrap">
       <h2 id="start-title">{S["title"]}</h2>
@@ -735,31 +782,68 @@ def route_block():
   </section>"""
 
 
+GET_ICON = {   # 24x24 line icons for "What you get"
+    "slides": '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8.5 20h7M7 8.5h6M7 11.5h9"/>',
+    "megaphone": '<path d="M4 10v4a1 1 0 0 0 1 1h2.2L12 19V5L7.2 9H5a1 1 0 0 0-1 1z"/><path d="M15.5 9a4 4 0 0 1 0 6M18.2 6.3a8 8 0 0 1 0 11.4"/>',
+    "chat": '<path d="M20 12a8 8 0 0 1-11.7 7.1L4 20l1.1-4.1A8 8 0 1 1 20 12z"/><path d="M8.6 12.1l2.3 2.3 4.5-4.6"/>',
+    "plane": ('<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4'
+              'l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>'),
+}
+
+
 def page_home():
     q = QUOTES
+    H, T, G, A = HERO, TEAM, GETS, APPLY
     collage = [("y2025_registan", None, "4/3.4"), ("food_plov", None, "3/4"), ("y2025_suzani", None, "4/3"), ("samarkand_circle", None, "3/4"),
                ("workshop_cooking", None, "3/4"), ("mountains_amirsoy_group", None, "4/3"), ("y2025_workshop", None, "4/3"), ("bukhara_golf_cart", None, "4/3"),
                ("a822", None, "4/3"), ("mountains_charvak", None, "4/3")]
     star = f'<svg viewBox="0 0 48 48" focusable="false"><path d="{MP.STAR_OUTLINE}"/></svg>'
     tranches = "".join(f'<li><span class="tn" aria-hidden="true">{star}<i>{i}</i></span><b>{t}</b><span class="d">{d}</span></li>'
                        for i, (t, d) in enumerate(PAYMENT["tranches"], 1))
+    hero_pols = "".join(pol(k, None, None, lazy=False) for k in H["photos"])
+    members = ""
+    for m in T["members"]:
+        av = f'<img src="{img(m["photo"])}" alt="" loading="lazy">' if m["photo"] else m["initials"]
+        link = f'<a class="go-link" href="{m["link"][0]}">{m["link"][1]}</a>' if m["link"] else ""
+        members += (f'<article class="member"><div class="avatar" aria-hidden="true">{av}</div><div>'
+                    f'<span class="role">{m["role"]}</span><h3>{m["name"]}</h3><p>{m["text"]}</p>{link}</div></article>')
+    gets = "".join(f'<li class="get"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">{GET_ICON[ic]}</svg></span>'
+                   f'<b>{t}</b><p>{d}</p></li>' for ic, t, d in G["items"])
     body = f"""
 <main>
-  <section class="hero" data-parallax aria-labelledby="home-title">
-    <div class="hl hero-photo" aria-hidden="true"><img src="{img("samarkand_registan")}" alt="" fetchpriority="high"></div>
-    <div class="hl hero-shade" aria-hidden="true"></div>
-    <div class="hl hero-stars" aria-hidden="true">{MP.hero_stars()}</div>
-    {side(light=True)}
-    <div class="wrap">
-      <div class="cover">
-        <h1 id="home-title">{SITE["name"]}<span>{SITE["since"]}</span></h1>
-        <p>Explore the hidden gem<br>in Central Asia</p>
+  <section class="page-hero home-hero" aria-labelledby="home-title">
+    {side()}
+    <div class="wrap split">
+      <div>
+        <span class="kicker">{H["kicker"]}</span>
+        <h1 id="home-title">{H["title"]}</h1>
+        <p class="lede">{H["lede"]}</p>
+        <div class="btn-row">
+          <a class="btn btn-navy" href="{H["cta_primary"][0]}">{H["cta_primary"][1]}</a>
+          <a class="btn btn-line" href="{H["cta_secondary"][0]}">{H["cta_secondary"][1]}</a>
+        </div>
       </div>
-      <p class="ask">{CHOICE_QUESTION}<small>{CHOICE_HINT}</small></p>
-      {choices()}
+      <div class="hero-pols h">{hero_pols}</div>
     </div>
   </section>
 
+  <section class="sec band-paper" id="team" aria-labelledby="team-title">
+    <div class="wrap">
+      <h2 id="team-title">{T["title"]}</h2>
+      <p class="lede">{T["lede"]}</p>
+      <div class="team-grid">{members}</div>
+    </div>
+  </section>
+
+  <section class="sec band-navy" id="get" aria-labelledby="get-title">
+    {side(light=True)}
+    <div class="wrap">
+      <h2 id="get-title">{G["title"]}</h2>
+      <p class="lede">{G["lede"]}</p>
+      <ul class="gets">{gets}</ul>
+    </div>
+  </section>
+{start_block()}
   <section class="sec band-yellow" aria-labelledby="prev-title">
     {side()}
     <div class="wrap split">
@@ -777,7 +861,6 @@ def page_home():
       </div>
     </div>
   </section>
-{start_block()}
 {press_block()}
   <section class="sec band-sky" aria-labelledby="mom-title">
     <div class="wrap">
@@ -818,30 +901,28 @@ def page_home():
     </div>
   </section>
 
-  <section class="sec band-navy" aria-labelledby="founder-title">
-    {side(light=True)}
-    <div class="wrap split">
-      {pol("a405", None, "March 2026")}
-      <div>
-        <h2 id="founder-title">{FOUNDER_TEASER["title"]}</h2>
-        <div class="letter" style="margin-top:22px">
-          <p>{FOUNDER_TEASER["text"]}</p>
-          <span class="sig">{FOUNDER_TEASER["signature"]}<small>Founder, Uzbekistan Trek</small></span>
-        </div>
-        <div class="btn-row" data-float="0.06"><a class="btn btn-yellow" href="founder.html">{FOUNDER_TEASER["cta"]}</a></div>
-      </div>
-    </div>
-  </section>
-
   <section class="sec faq-sec" id="faq" aria-labelledby="faq-title" style="{faq_bg("tashkent_civilization_dome")}">
     <div class="wrap">{faq_block("FAQ", FAQ_HOME, "faq-title")}</div>
   </section>
 
-  <section class="sec band-yellow" aria-labelledby="final-title">
+  <section class="sec band-yellow apply" id="apply" aria-labelledby="apply-title">
+    {side()}
+    <div class="wrap form-wrap">
+      <div>
+        <h2 id="apply-title">{A["title"]}</h2>
+        <p class="lede">{A["lede"]}</p>
+        <h3>{A["who_title"]}</h3>
+        {diam(A["who"])}
+      </div>
+      {ambassador_form("btn btn-navy", "a")}
+    </div>
+  </section>
+
+  <section class="sec band-paper" id="groups" aria-labelledby="groups-title">
     <div class="wrap">
-      <h2 id="final-title" style="text-align:center">{FINAL_CTA["title"]}</h2>
-      <p class="lede" style="margin:12px auto 32px; text-align:center">{FINAL_CTA["lede"]}</p>
-      {choices(white=True, cid="choose-end")}
+      <h2 id="groups-title" style="text-align:center">{GROUPS["title"]}</h2>
+      <p class="lede" style="margin:12px auto 32px; text-align:center">{GROUPS["lede"]}</p>
+      {choices(white=True, cid="choose")}
     </div>
   </section>
 </main>
@@ -929,7 +1010,7 @@ def page_big():
   </section>
 </main>
 """
-    return head("Big Group Trek", "Big group treks to Uzbekistan for 10 or more graduate students: your dates, a private itinerary and a full package.") + header("big") + body + footer()
+    return head("Big Group Trek", "Big group treks to Uzbekistan for 10 or more graduate students: your dates, a private itinerary and a full package.") + header("groups") + body + footer()
 
 
 def page_small():
@@ -1011,7 +1092,7 @@ def page_small():
   </section>
 </main>
 """
-    return head("Small Group Trip", "Small group trips to Uzbekistan for fewer than 10 graduate students: join a planned departure or travel privately on your own dates.") + header("small") + body + footer()
+    return head("Small Group Trip", "Small group trips to Uzbekistan for fewer than 10 graduate students: join a planned departure or travel privately on your own dates.") + header("groups") + body + footer()
 
 
 def page_founder():
@@ -1092,15 +1173,19 @@ def page_founder():
   </section>
 
   <section class="sec band-yellow" aria-labelledby="fcta-title">
-    <div class="wrap">
-      <h2 id="fcta-title" style="text-align:center">{F["cta_title"]}</h2>
-      <p class="lede" style="margin:12px auto 32px; text-align:center">{F["cta_lede"]}</p>
-      {choices(white=True, cid="choose-f")}
+    <div class="wrap" style="text-align:center">
+      <h2 id="fcta-title">{F["cta_title"]}</h2>
+      <p class="lede" style="margin:12px auto 0">{F["cta_lede"]}</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn btn-navy" href="{NAV_CTA[0]}">{NAV_CTA[1]}</a>
+        <a class="btn btn-line" href="index.html#how">How it works</a>
+      </div>
+      <p class="groups-note">{F["cta_groups"]}</p>
     </div>
   </section>
 </main>
 """
-    return head("Founder Jakhongir Sadiev", "Jakhongir Sadiev, founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("founder") + body + footer()
+    return head("Founder Jakhongir Sadiev", "Jakhongir Sadiev, founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("team") + body + footer()
 
 
 PAGES = {"index.html": page_home, "big-group.html": page_big, "small-group.html": page_small, "founder.html": page_founder}
