@@ -927,7 +927,7 @@ def page_home():
   </section>
 </main>
 """
-    return head("Uzbekistan Trek Ambassador Program", SITE["description"]) + header("home") + body + footer()
+    return head(SITE["name"], SITE["description"]) + header("home") + body + footer()
 
 
 def page_big():
