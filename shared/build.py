@@ -244,7 +244,6 @@ td b{ display:block; font-weight:850; }
 .go-link{ justify-self:start; font-weight:750; font-size:15px; text-decoration:none; border-bottom:2px solid var(--yellow); line-height:1.3; }
 .go-link::after{ content:" \203A"; }
 .go-link:hover{ border-bottom-color:var(--navy); }
-.sample-file{ display:inline-block; margin-top:8px; }
 .start-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:22px; margin-top:52px; }
 .start-box{ border-radius:16px; padding:24px 26px; }
 .start-box h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:14px; }
@@ -257,7 +256,18 @@ td b{ display:block; font-weight:850; }
 .samples-title{ margin-top:52px; font-size:clamp(22px, 2.6vw, 28px); font-weight:850; font-stretch:108%; text-transform:uppercase; }
 .samples{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px; margin-top:18px; align-items:start; }
 .sample{ background:var(--white); border:2px solid var(--navy); border-top:10px solid var(--yellow); border-radius:14px; padding:20px 22px; scroll-margin-top:100px; min-width:0; }
-.sample-head{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px 16px; }
+/* Where subgrid works, each block spans three rows of the grid (title, button, bottom line), so two blocks side by side
+   are the same height with their buttons and bottom lines at the same level. Elsewhere the blocks simply stack. */
+@supports (grid-template-rows:subgrid){
+  .samples{ row-gap:0; align-items:stretch; }
+  .sample{ display:grid; grid-row:span 3; grid-template-rows:subgrid; row-gap:0; align-content:start; margin-bottom:22px; }
+}
+.sample .copy-row{ margin-top:14px; }
+a.mini{ display:inline-block; text-decoration:none; }
+.sample-more{ margin-top:14px; border-top:1px solid var(--line); }
+.sample-dl{ display:flex; align-items:center; gap:10px; padding:12px 0 2px; font-weight:750; font-size:15.5px; text-decoration:none; color:var(--navy); }
+.sample-dl::before{ content:"\2193"; display:grid; place-items:center; width:24px; height:24px; flex:none; border-radius:50%; background:var(--yellow); font-weight:900; }
+.sample-dl:hover{ text-decoration:underline; }
 .sample h4{ margin:8px 0 0; font-size:19px; font-weight:800; line-height:1.25; }
 .sample .when{ color:var(--muted); font-size:15px; margin-top:2px; }
 .copy-row{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; }
@@ -636,7 +646,7 @@ def footer():
       <a href="index.html#how">How it works</a>
       <a href="big-group.html">Big group trek, 10 or more</a>
       <a href="small-group.html">Small group trip, under 10</a>
-      <a href="founder.html">About the founder</a>
+      <a href="founder.html">About the co-founder</a>
       <a href="index.html#faq">Questions</a>
       <span style="margin-top:14px">{COPYRIGHT}</span>
     </nav>
@@ -713,18 +723,21 @@ def start_block():
         steps += f'<li><span class="sn" aria-hidden="true">{star}<i>{i}</i></span><b>{title}</b><p>{text}</p>{go}</li>'
     chips = "".join(f"<li>{w}</li>" for w in S["where"])
     samples = ""
+    # every block has the same three rows (title, button, bottom line), so blocks side by side line up (see .sample in CSS)
     for s in SAMPLES:
         tid = s["id"] + "-text"
-        samples += (f'<article class="sample" id="{s["id"]}" aria-labelledby="{s["id"]}-title">'
-                    f'<div class="sample-head"><div><span class="pill">{s["step"]}</span><h4 id="{s["id"]}-title">{s["title"]}</h4>'
-                    f'<p class="when">{s["when"]}</p>'
-                    + (f'<a class="go-link sample-file" href="{s["file"][0]}" target="_blank" rel="noopener">{s["file"][1]}</a>'
-                       if s.get("file") else "") +
-                    '</div>'
-                    f'<div class="copy-row"><button class="mini" type="button" data-copy="{tid}">Copy the text</button>'
-                    f'<span class="copy-status" role="status" aria-live="polite"></span></div></div>'
-                    f'<details><summary>Read the text</summary><div class="sample-text" id="{tid}">{html.escape(s["text"], quote=False)}</div></details>'
-                    f'</article>')
+        top = (f'<div class="sample-top"><span class="pill">{s["step"]}</span><h4 id="{s["id"]}-title">{s["title"]}</h4>'
+               f'<p class="when">{s["when"]}</p></div>')
+        if "text" in s:
+            act = (f'<div class="copy-row"><button class="mini" type="button" data-copy="{tid}">Copy the text</button>'
+                   f'<span class="copy-status" role="status" aria-live="polite"></span></div>')
+            more = (f'<details><summary>Read the text</summary>'
+                    f'<div class="sample-text" id="{tid}">{html.escape(s["text"], quote=False)}</div></details>')
+        else:
+            href, open_label, dl_label = s["file"]
+            act = f'<div class="copy-row"><a class="mini" href="{href}" target="_blank" rel="noopener">{open_label}</a></div>'
+            more = f'<div class="sample-more"><a class="sample-dl" href="{href}" download>{dl_label}</a></div>'
+        samples += f'<article class="sample" id="{s["id"]}" aria-labelledby="{s["id"]}-title">{top}{act}{more}</article>'
     return f"""
   <section class="sec start" id="how" aria-labelledby="start-title">
     <span id="start" aria-hidden="true"></span>
@@ -1119,7 +1132,7 @@ def page_founder():
     {side()}
     <div class="wrap split">
       <div class="hero-pols f">
-        {pol("founder_portrait", F["name"], "Founder", "3/4", lazy=False)}
+        {pol("founder_portrait", F["name"], "Co-Founder", "3/4", lazy=False)}
         {pol("y2025_hazrati_imam", None, "", lazy=False)}
       </div>
       <div>
@@ -1135,7 +1148,7 @@ def page_founder():
     <div class="wrap story-grid">
       <article class="story">
         {story}
-        <span class="sig">{F["signature"]}<small>Founder, Uzbekistan Trek</small></span>
+        <span class="sig">{F["signature"]}<small>Co-Founder, Uzbekistan Trek</small></span>
       </article>
       <aside class="story-side">
         {pol("senate_group", None, "", "3/2")}
@@ -1195,7 +1208,7 @@ def page_founder():
   </section>
 </main>
 """
-    return head("Founder Jakhongir Sadiev", "Jakhongir Sadiev, founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("team") + body + footer()
+    return head("Co-Founder Jakhongir Sadiev", "Jakhongir Sadiev, co-founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.") + header("team") + body + footer()
 
 
 PAGES = {"index.html": page_home, "big-group.html": page_big, "small-group.html": page_small, "founder.html": page_founder}

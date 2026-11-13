@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Founder Jakhongir Sadiev</title>
+<title>Co-Founder Jakhongir Sadiev</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Jakhongir Sadiev, founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.">
+<meta name="description" content="Jakhongir Sadiev, co-founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='48' height='48' role='img' aria-label='Uzbekistan Trek'%3E%3Cg fill='%23FBB617'%3E%3Crect x='8' y='8' width='32' height='32' rx='1.5'/%3E%3Crect x='8' y='8' width='32' height='32' rx='1.5' transform='rotate(45 24 24)'/%3E%3C/g%3E%3Cg fill='%231C3166'%3E%3Crect x='15' y='15' width='18' height='18'/%3E%3Crect x='15' y='15' width='18' height='18' transform='rotate(45 24 24)'/%3E%3C/g%3E%3Ccircle cx='24' cy='24' r='4.2' fill='%23FBB617'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,7 +234,6 @@ td b{ display:block; font-weight:850; }
 .go-link{ justify-self:start; font-weight:750; font-size:15px; text-decoration:none; border-bottom:2px solid var(--yellow); line-height:1.3; }
 .go-link::after{ content:" \203A"; }
 .go-link:hover{ border-bottom-color:var(--navy); }
-.sample-file{ display:inline-block; margin-top:8px; }
 .start-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:22px; margin-top:52px; }
 .start-box{ border-radius:16px; padding:24px 26px; }
 .start-box h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:14px; }
@@ -247,7 +246,18 @@ td b{ display:block; font-weight:850; }
 .samples-title{ margin-top:52px; font-size:clamp(22px, 2.6vw, 28px); font-weight:850; font-stretch:108%; text-transform:uppercase; }
 .samples{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px; margin-top:18px; align-items:start; }
 .sample{ background:var(--white); border:2px solid var(--navy); border-top:10px solid var(--yellow); border-radius:14px; padding:20px 22px; scroll-margin-top:100px; min-width:0; }
-.sample-head{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px 16px; }
+/* Where subgrid works, each block spans three rows of the grid (title, button, bottom line), so two blocks side by side
+   are the same height with their buttons and bottom lines at the same level. Elsewhere the blocks simply stack. */
+@supports (grid-template-rows:subgrid){
+  .samples{ row-gap:0; align-items:stretch; }
+  .sample{ display:grid; grid-row:span 3; grid-template-rows:subgrid; row-gap:0; align-content:start; margin-bottom:22px; }
+}
+.sample .copy-row{ margin-top:14px; }
+a.mini{ display:inline-block; text-decoration:none; }
+.sample-more{ margin-top:14px; border-top:1px solid var(--line); }
+.sample-dl{ display:flex; align-items:center; gap:10px; padding:12px 0 2px; font-weight:750; font-size:15.5px; text-decoration:none; color:var(--navy); }
+.sample-dl::before{ content:"\2193"; display:grid; place-items:center; width:24px; height:24px; flex:none; border-radius:50%; background:var(--yellow); font-weight:900; }
+.sample-dl:hover{ text-decoration:underline; }
 .sample h4{ margin:8px 0 0; font-size:19px; font-weight:800; line-height:1.25; }
 .sample .when{ color:var(--muted); font-size:15px; margin-top:2px; }
 .copy-row{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; }
@@ -674,13 +684,13 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
     <span class="side" aria-hidden="true">UZBEKISTAN TREK</span>
     <div class="wrap split">
       <div class="hero-pols f">
-        <figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/founder_portrait.webp" alt="Jakhongir Sadiev sitting in front of the blue-tiled Shah-i-Zinda in Samarkand"></div><figcaption>Jakhongir Sadiev<small>Founder</small></figcaption></figure>
+        <figure class="pol" style="--ar:3/4"><div class="ph"><img src="img/founder_portrait.webp" alt="Jakhongir Sadiev sitting in front of the blue-tiled Shah-i-Zinda in Samarkand"></div><figcaption>Jakhongir Sadiev<small>Co-Founder</small></figcaption></figure>
         <figure class="pol" style="--ar:4/3"><div class="ph"><img src="img/y2025_hazrati_imam.webp" alt="The 2025 group in front of a blue-domed complex at sunset"></div><figcaption>The first trek, March 2025</figcaption></figure>
       </div>
       <div>
-        <span class="kicker">About the founder</span>
+        <span class="kicker">About the co-founder</span>
         <h1 id="f-title">Jakhongir Sadiev</h1>
-        <p class="lede">Founder of the Uzbekistan Trek</p>
+        <p class="lede">Co-Founder of the Uzbekistan Trek</p>
         <div class="facts"><div><b>Harvard University (HKS)</b>Master&rsquo;s in economics (MPA/ID)</div><div><b>Two treks organized</b>2025 and 2026, 95 travelers</div><div><b>Before Harvard</b>World Bank, United Nations, Auburn University (AL)</div><div><b>Fellowships</b>Fulbright, Edmund S. Muskie, Harvard Full Scholarship</div></div>
       </div>
     </div>
@@ -690,7 +700,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
     <div class="wrap story-grid">
       <article class="story">
         <h2>A photo I never forgot</h2><p>When I was a child, I saw a photo of a student traveling through his home country with his university classmates. That image stayed with me. One day, I told myself, I would bring my own classmates to my hometown, Samarkand.</p><h2>The first Uzbek in my program in 25 years</h2><p>When I came to Harvard, I was the first Uzbek in my program at the Harvard Kennedy School in 25 years, and I felt I needed to do something with that. At the American universities where I studied, Uzbekistan and Central Asia rarely came up. I wanted to change that, so I decided to bring my Harvard and MIT classmates to Uzbekistan.</p><h2>Forty sign-ups on the first day</h2><p>Honestly, I was not sure 20 people would join. On the first day we announced the trek, 40 had already signed up. Eventually, we had around 200 interested participants for the first treks, so we had to make a selection.</p><h2>March 2025: 45 travelers</h2><p>The first trek was a huge success. Forty-five graduate students traveled with us. We met ministers, the Governor of Bukhara and the leadership of the Senate, exchanged ideas with students at Nordic University, and celebrated Nowruz together with the President. The feedback from participants, from the university community and from our hosts in Uzbekistan was so strong that we decided to do it again.</p><p>Moreover, the trek contributed further: some students did their research and theses on Uzbekistan, some looked for investment opportunities, and some joined efforts with local universities to launch courses.</p><h2>March 2026: 50 travelers</h2><p>The second trek was bigger, with 50 travelers, and it covered more policy areas. On the government side, we met the Chairwoman of the Senate, the leadership of the National Agency for Social Protection, the Governor of Bukhara, the Minister of Digital Technologies and the Deputy Chairman of the Central Bank.</p><p>In the private sector, we discussed renewable energy with the leadership of ACWA Power, financial markets with TBC Bank, and technology at IT Park.</p><h2>What comes next</h2><p>My goal is to run more treks and open them to graduate students at other universities. That is why we started the ambassador program: Uzbek students studying abroad can now bring their own classmates, and we support them at every step. After two treks, we know what students want from a week in Uzbekistan, and we can help you organize one for your group.</p>
-        <span class="sig">Jakhongir Sadiev<small>Founder, Uzbekistan Trek</small></span>
+        <span class="sig">Jakhongir Sadiev<small>Co-Founder, Uzbekistan Trek</small></span>
       </article>
       <aside class="story-side">
         <figure class="pol" style="--ar:3/2"><div class="ph"><img src="img/senate_group.webp" alt="A large group of students in formal clothes on the steps of the Senate of Uzbekistan" loading="lazy"></div><figcaption>At the Senate with Chairwoman Tanzila Narbaeva and the leadership of the National Agency for Social Protection</figcaption></figure>
@@ -765,7 +775,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
       <a href="./#how">How it works</a>
       <a href="big-group.html">Big group trek, 10 or more</a>
       <a href="small-group.html">Small group trip, under 10</a>
-      <a href="founder.html">About the founder</a>
+      <a href="founder.html">About the co-founder</a>
       <a href="./#faq">Questions</a>
       <span style="margin-top:14px">&copy; 2026 Uzbekistan Trek. Photos from the 2025 and 2026 treks.</span>
     </nav>
