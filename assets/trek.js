@@ -231,6 +231,22 @@
     if (a) openSample(a.getAttribute("href").slice(1));
   });
   if (/^#sample-/.test(location.hash)) openSample(location.hash.slice(1));
+  /* Sample texts keep their bold and italic when copied. The email copies as formatted text (for Gmail or Outlook) with a
+     plain copy alongside; the WhatsApp message (data-copy-as="whatsapp") copies as plain text with WhatsApp's own
+     *bold* and _italic_ marks, which WhatsApp shows as formatting. */
+  function plainOf(el, wa) {
+    var out = "";
+    for (var i = 0; i < el.childNodes.length; i++) {
+      var n = el.childNodes[i];
+      if (n.nodeType === 3) { out += n.nodeValue; continue; }
+      if (n.nodeType !== 1) continue;
+      var t = plainOf(n, wa);
+      if (wa && n.tagName === "STRONG") t = "*" + t + "*";
+      else if (wa && n.tagName === "EM") t = "_" + t + "_";
+      out += t;
+    }
+    return out;
+  }
   document.querySelectorAll("[data-copy]").forEach(function (btn) {
     var status = btn.parentNode.querySelector(".copy-status");
     var timer = null;
@@ -256,8 +272,18 @@
         } catch (err) { say("Open the text and copy it by hand."); }
       }
       try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(src.textContent).then(function () { say("Copied."); }, selectIt);
+        var isSample = src.classList.contains("sample-text");
+        var wa = src.getAttribute("data-copy-as") === "whatsapp";
+        var plain = isSample ? plainOf(src, wa) : src.textContent;
+        var done = function () { say("Copied."); };
+        if (isSample && !wa && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+          var rich = src.innerHTML.replace(/\n/g, "<br>");
+          navigator.clipboard.write([new ClipboardItem({
+            "text/html": new Blob([rich], { type: "text/html" }),
+            "text/plain": new Blob([plain], { type: "text/plain" })
+          })]).then(done, function () { navigator.clipboard.writeText(plain).then(done, selectIt); });
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(plain).then(done, selectIt);
         } else { selectIt(); }
       } catch (err) { selectIt(); }
     });
