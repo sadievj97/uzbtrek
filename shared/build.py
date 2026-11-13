@@ -807,7 +807,8 @@ def page_home():
     star = f'<svg viewBox="0 0 48 48" focusable="false"><path d="{MP.STAR_OUTLINE}"/></svg>'
     tranches = "".join(f'<li><span class="tn" aria-hidden="true">{star}<i>{i}</i></span><b>{t}</b><span class="d">{d}</span></li>'
                        for i, (t, d) in enumerate(PAYMENT["tranches"], 1))
-    hero_pols = "".join(pol(k, None, None, lazy=False) for k in H["photos"])
+    hero_pols = "".join(pol(k, None, "" if PH[k]["year"] and PH[k]["caption"].endswith(PH[k]["year"]) else None, lazy=False)
+                        for k in H["photos"])
     assert H["title_sticker"] in H["title"], "HERO title_sticker must be part of the title"
     hero_title = H["title"].replace(H["title_sticker"], f'<span class="sticker">{H["title_sticker"]}</span>', 1)
     members = ""
@@ -863,8 +864,8 @@ def page_home():
         <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">How the trek started</a></div>
       </div>
       <div class="pols quotes">
-        {pol("y2025_circle", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
-        {pol("y2025_bukhara_arch", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
+        {pol("a405", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
+        {pol("a423", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
         {pol("y2025_dancer", "&ldquo;" + q["dancing"]["text"] + "&rdquo;", q["dancing"]["cite"], cls="pol q")}
         {pol("cohort_registan", None, "March 2026")}
       </div>
@@ -1139,7 +1140,7 @@ def page_founder():
       <aside class="story-side">
         {pol("senate_group", None, "", "3/2")}
         {pol("with_shakhnoza", None, "", "3/4")}
-        {pol("y2025_senate", None, "")}
+        {pol("a573", None, "")}
       </aside>
     </div>
   </section>

@@ -43,8 +43,9 @@ HERO = {
              "and support at every step, and you travel to Uzbekistan with your group."),
     "cta_primary": ("#apply", "Apply now"),
     "cta_secondary": ("#how", "How it works"),
-    # group photos used nowhere else on the site; captions and years come from photos.json
-    "photos": ["a405", "a423", "a573"],
+    # the owner's choice from the Harvard 2027 PowerPoint (Nov 2026): two photos from its "From the previous treks" slide and
+    # the first trek at the Senate. Captions and years come from photos.json. Each photo appears once per site.
+    "photos": ["y2025_circle", "y2025_bukhara_arch", "y2025_senate"],
 }
 
 TEAM = {

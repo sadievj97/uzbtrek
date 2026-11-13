@@ -215,8 +215,8 @@
   "year": "2025",
   "people": "faces",
   "restrict": "",
-  "w": 485,
-  "h": 422,
+  "w": 960,
+  "h": 836,
   "orient": "landscape"
  },
  "y2025_bukhara_arch": {
@@ -226,8 +226,8 @@
   "year": "2025",
   "people": "faces",
   "restrict": "",
-  "w": 474,
-  "h": 422,
+  "w": 939,
+  "h": 837,
   "orient": "landscape"
  },
  "y2025_workshop": {
@@ -511,7 +511,7 @@
   "alt": "The 2025 group in formal clothes in the Senate hall with flags",
   "year": "2025",
   "people": "faces",
-  "restrict": "founder",
+  "restrict": "",
   "w": 538,
   "h": 454,
   "orient": "landscape"
