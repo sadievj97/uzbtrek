@@ -614,8 +614,10 @@ UI = {
     "footer_links": [("index.html#apply", "Become an ambassador"), ("index.html#how", "How it works"),
                      ("big-group.html", "Big group trek, 10 or more"), ("small-group.html", "Small group trip, under 10"),
                      ("founder.html", "About the co-founder"), ("contact.html", "Contact us"), ("index.html#faq", "Questions")],
-    # the link to the same page in the other language, written in that language
-    "other_lang": ("uz", "Özbekça", "Bu sahifani özbek tilida öqing"),
+    # EN and UZ buttons in the header: the current language is highlighted, the other links to the same page in it.
+    # The hints are written in the language they lead to.
+    "langs": [("en", "EN", "Read this page in English"), ("uz", "UZ", "Bu sahifani özbek tilida öqing")],
+    "lang_label": "Language",
     "new_tab": " (opens in a new tab)",
     "press_kind": {"tv": "TV", "article": "Article", "news": "News agency", "telegram": "Telegram", "instagram": "Instagram", "video": "YouTube"},
     "copy_text": "Copy the text",

@@ -162,7 +162,8 @@ PAGEFILE = {"home": "index.html", "big": "big-group.html", "small": "small-group
             "contact": "contact.html"}
 # the owner, Nov 2026: both co-founders' emails in the footer of every page
 R += [(p, "both emails in the footer", r"Email: jsadiev@hks\.harvard\.edu ?, zkhabib@bu\.edu", True) for p in PAGEFILE]
-R += [(p, "link to the same page in Uzbek", r'<a class="lang" href="uz/[^"]*" hreflang="uz"', "raw") for p in PAGEFILE]
+# the owner, Nov 2026: EN and UZ buttons in the header, the current one highlighted, the other a link to the same page
+R += [(p, "EN and UZ buttons", r'<span class="lang"[^>]*><span class="on" aria-current="true">EN</span><a href="uz/[^"]*" hreflang="uz"[^>]*>UZ</a></span>', "raw") for p in PAGEFILE]
 
 # ---------------------------------------------------------------- the Uzbek pages in uz/ (the owner, Nov 2026)
 # Written in the new Latin letters (Ö, Ğ, Ş, Ç). The samples, the brochure and the quotes stay in English.
@@ -171,7 +172,7 @@ UZFILE = {"uz-" + k: "uz/" + v for k, v in PAGEFILE.items()}
 R += [(p, "independence line", r"Uzbekistan Trek mustaqil loyiha", True) for p in UZFILE]
 R += [(p, "both emails in the footer", r"Elektron poçta: jsadiev@hks\.harvard\.edu ?, zkhabib@bu\.edu", True) for p in UZFILE]
 R += [(p, "marked as Uzbek", r'<html lang="uz">', "raw") for p in UZFILE]
-R += [(p, "link to the same page in English", r'<a class="lang" href="\.\./[^"]*" hreflang="en"', "raw") for p in UZFILE]
+R += [(p, "EN and UZ buttons", r'<span class="lang"[^>]*><a href="\.\./[^"]*" hreflang="en"[^>]*>EN</a><span class="on" aria-current="true">UZ</span></span>', "raw") for p in UZFILE]
 R += [
  ('uz-home', 'hero title', r'Uzbekistan Trek elçisi böling', True),
  ('uz-home', 'both co-founders are Hammuassis', r'Hammuassis Jaxongir Sadiyev .*Hammuassis Zokirjon Xabibullayev', True),
@@ -184,6 +185,13 @@ R += [
  ('uz-big', 'no formal government meetings promised', r'Rasmiy davlat uçraşuvlari unga kirmaydi', True),
  ('uz-founder', 'no formal government meetings in the standard program', r'Rasmiy davlat uçraşuvlari standart dasturga kirmaydi', True),
  ('uz-founder', 'hometown only', r'ona şahrim Samarqand', True),
+ # the owner, Nov 2026: ministers who have since left those posts carry "at the time", on the Uzbek pages only
+ ('uz-founder', 'at the time: Sharipov', r'öşa paytdagi vazir Qönğirotboy Şaripov', True),
+ ('uz-founder', 'at the time: Umarova', r'öşa paytdagi vazir Hilola Umarova', True),
+ ('founder', 'English page keeps the plain title', r'at the time', False),
+ # the owner, Nov 2026: the participants' quotes in Uzbek on the Uzbek pages
+ ('uz-home', 'quotes in Uzbek', r'Sakkizta trek içida Özbekiston eng yaxşisi böldi', True),
+ ('uz-founder', 'quotes in Uzbek', r'8 ta trekdan keyin işonç bilan ayta olaman', True),
  ('uz-contact', 'both co-founders and their emails', r'Jaxongir Sadiyev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Xabibullayev Boston University zkhabib@bu\.edu', True),
  ('uz-any', 'never just "asoschi" (founder)', r'\b[Aa]soschi|\b[Aa]soşçi', False),
  ('uz-any', "no old letters o' and g' left", r"[oOgG][ʻ‘']\w|ʻ", False),

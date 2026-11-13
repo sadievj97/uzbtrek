@@ -52,12 +52,15 @@ p{ margin:0; }
 .logo{ display:flex; align-items:center; text-decoration:none; flex:none; }
 .logo svg{ height:40px; width:auto; display:block; }
 .nav{ display:flex; align-items:center; gap:22px; }
-.nav a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
-.nav a:hover, .nav a[aria-current]{ border-bottom-color:var(--yellow); }
+.nav > a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
+.nav > a:hover, .nav > a[aria-current]{ border-bottom-color:var(--yellow); }
 .nav .btn{ border-bottom:0; padding:10px 18px; min-height:44px; font-size:15px; color:var(--white); }
-/* the same page in the other language (Özbekça / English) */
-.nav .lang{ border:2px solid var(--navy); border-radius:999px; padding:5px 12px; font-size:14px; line-height:1.2; white-space:nowrap; }
-.nav .lang:hover{ background-color:var(--yellow-soft); border-color:var(--navy); }
+/* EN / UZ: the current language on navy, the other one a link to the same page in it */
+.nav .lang{ display:inline-flex; align-items:stretch; border:2px solid var(--navy); border-radius:999px; overflow:hidden; font-size:13px; font-weight:800; letter-spacing:.06em; line-height:1.2; }
+.nav .lang a, .nav .lang .on{ padding:6px 10px; text-decoration:none; }
+.nav .lang .on{ background-color:var(--navy); color:var(--white); }
+.nav .lang a{ color:var(--navy); }
+.nav .lang a:hover, .nav .lang a:focus-visible{ background-color:var(--yellow-soft); }
 .menu-btn{ display:none; appearance:none; border:2px solid var(--navy); background-color:var(--white); color:var(--navy); --sw:var(--navy); --swf:var(--white); border-radius:999px; min-height:44px; padding:0 16px; font:inherit; font-weight:700; cursor:pointer; }
 
 /* Vertical side label, as on the decks */
@@ -487,17 +490,19 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 @media (max-width: 1010px){
   .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
   .nav.open{ display:flex; }
-  .nav a{ padding:12px 0; border-bottom:1px solid var(--line); }
+  .nav > a{ padding:12px 0; border-bottom:1px solid var(--line); }
   .nav .btn{ margin-top:14px; }
-  .nav .lang{ align-self:flex-start; margin-top:12px; padding:8px 14px; border:2px solid var(--navy); }
+  .nav .lang{ align-self:flex-start; margin-top:12px; }
+  .nav .lang a, .nav .lang .on{ padding:9px 18px; }
   .menu-btn{ display:inline-flex; align-items:center; }
 }
 @media (max-width: 1080px){
   :root[lang="uz"] .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
   :root[lang="uz"] .nav.open{ display:flex; }
-  :root[lang="uz"] .nav a{ padding:12px 0; border-bottom:1px solid var(--line); }
+  :root[lang="uz"] .nav > a{ padding:12px 0; border-bottom:1px solid var(--line); }
   :root[lang="uz"] .nav .btn{ margin-top:14px; }
-  :root[lang="uz"] .nav .lang{ align-self:flex-start; margin-top:12px; padding:8px 14px; border:2px solid var(--navy); }
+  :root[lang="uz"] .nav .lang{ align-self:flex-start; margin-top:12px; }
+  :root[lang="uz"] .nav .lang a, :root[lang="uz"] .nav .lang .on{ padding:9px 18px; }
   :root[lang="uz"] .menu-btn{ display:inline-flex; align-items:center; }
 }
 @media (max-width: 860px){
@@ -702,7 +707,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
     <button class="menu-btn" id="menu-btn" data-menu-btn aria-expanded="false" aria-controls="nav">Menyu</button>
     <nav class="nav" id="nav" aria-label="Asosiy menyu">
       <a href="./#how">Qanday işlaydi</a><a href="./#team" aria-current="true">Biz kimmiz</a><a href="./#groups">Guruh sayohatlari</a><a href="./#faq">Savollar</a><a href="contact.html">Aloqa</a>
-      <a class="lang" href="../founder.html" hreflang="en" lang="en" title="Read this page in English">English</a>
+      <span class="lang" role="group" aria-label="Til"><a href="../founder.html" hreflang="en" lang="en" title="Read this page in English">EN</a><span class="on" aria-current="true">UZ</span></span>
       <a class="btn btn-navy" href="./#apply">Ariza topşiriş</a>
     </nav>
   </div>
@@ -758,7 +763,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
     <div class="wrap split">
       <div>
         <h2 id="q-title" style="margin-bottom:26px">2025 va 2026-yil iştirokçilaridan</h2>
-        <div class="quotes2"><div><blockquote class="bigquote" lang="en">After 8 treks, I can safely say that Uzbekistan was the best trek ever&hellip; HKS offers plenty of incredible treks and I have been on many of them, yet this one still holds a special place in my heart. If you are looking for a great blend of culture, policy engagements and fun, this trek is for you. You will get delicious food, an unforgettable welcome ceremony and meaningful exchanges&hellip; You will also enjoy a laser show at Registan Square.</blockquote><p class="cite">2025-yil iştirokçisi, Harvard Kennedy School</p></div><div><blockquote class="bigquote" lang="en">Name something better than being guided around the beauties of the Silk Road by HKS classmates that truly love their country.</blockquote><p class="cite">2026-yil iştirokçisi, Harvard Kennedy School kursdoşi</p></div></div>
+        <div class="quotes2"><div><blockquote class="bigquote">8 ta trekdan keyin işonç bilan ayta olaman: Özbekiston eng zör trek böldi&hellip; HKS juda köp ajoyib treklar taklif qiladi va men ularning köpçiligida qatnaşganman, lekin aynan şu trek qalbimda alohida örin egallaydi. Agar madaniyat, siyosat böyiça suhbatlar va köngiloçar tadbirlarning ajoyib uyğunligini izlayotgan bölsangiz, bu trek siz uçun. Sizni mazali taomlar, unutilmas kutib oliş marosimi va mazmunli fikr almaşuvlar kutadi&hellip; Registon maydonidagi lazer şouni ham tomoşa qilasiz.</blockquote><p class="cite">2025-yil iştirokçisi, Harvard Kennedy School</p></div><div><blockquote class="bigquote">Ipak yölining gözalliklarini öz yurtini çin dildan sevadigan HKS kursdoşlaring bilan kezişdan yaxşiroq narsa bormi?</blockquote><p class="cite">2026-yil iştirokçisi, Harvard Kennedy School kursdoşi</p></div></div>
       </div>
       <div class="pols">
         <figure class="pol" style="--ar:3/4"><div class="ph"><img src="../img/y2025_nowruz.webp" alt="Navröz bayramida milliy liboslardagi talabalar" loading="lazy"></div><figcaption>Toşkentda Navröz<small>2025</small></figcaption></figure>
@@ -770,7 +775,7 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   <section class="sec" aria-labelledby="areas-title">
     <div class="wrap">
       <h2 id="areas-title">Garvard va MIT treklari kimlar bilan uçraşdi</h2>
-      <div class="areas-grid"><div class="areas-col"><h3>Davlat</h3><ul><li>Senat: Senat raisi Tanzila Norboyeva</li><li>Ijtimoiy himoya milliy agentligi: Şahnoza Mirziyoyeva</li><li>Buxoro viloyati: hokim Botir Zaripov</li><li>Raqamli texnologiyalar vazirligi: vazir Şerzod Şermatov</li><li>Oliy taʼlim, fan va innovatsiyalar vazirligi: vazir Qönğirotboy Şaripov</li><li>Maktabgaça va maktab taʼlimi vazirligi: vazir Hilola Umarova</li><li>Markaziy bank: rais örinbosari Dr. Nodirbek Açilov</li></ul></div><div class="areas-col"><h3>Xususiy sektor va universitetlar</h3><ul><li>ACWA Power: Dr. Jon Zaidi, Özbekiston böyiça boş ijroçi direktor va vitse-prezident</li><li>TBC Bank: Nika Kurdiani, Özbekiston böyiça boş ijroçi direktor</li><li>IT Park</li><li>Yangi Özbekiston universiteti</li><li>Nordic University: Dr. Alişer Jörayev</li></ul></div></div>
+      <div class="areas-grid"><div class="areas-col"><h3>Davlat</h3><ul><li>Senat: Senat raisi Tanzila Norboyeva</li><li>Ijtimoiy himoya milliy agentligi: Şahnoza Mirziyoyeva</li><li>Buxoro viloyati: hokim Botir Zaripov</li><li>Raqamli texnologiyalar vazirligi: vazir Şerzod Şermatov</li><li>Oliy taʼlim, fan va innovatsiyalar vazirligi: öşa paytdagi vazir Qönğirotboy Şaripov</li><li>Maktabgaça va maktab taʼlimi vazirligi: öşa paytdagi vazir Hilola Umarova</li><li>Markaziy bank: rais örinbosari Dr. Nodirbek Açilov</li></ul></div><div class="areas-col"><h3>Xususiy sektor va universitetlar</h3><ul><li>ACWA Power: Dr. Jon Zaidi, Özbekiston böyiça boş ijroçi direktor va vitse-prezident</li><li>TBC Bank: Nika Kurdiani, Özbekiston böyiça boş ijroçi direktor</li><li>IT Park</li><li>Yangi Özbekiston universiteti</li><li>Nordic University: Dr. Alişer Jörayev</li></ul></div></div>
       <p class="muted" style="margin-top:20px; max-width:72ch">Boşqa universitetlar uçun treklar kompaniyalar, universitetlar va/yoki madaniyatga qaratiladi (tasdiqlanişiga qarab). Rasmiy davlat uçraşuvlari standart dasturga kirmaydi.</p>
     </div>
   </section>

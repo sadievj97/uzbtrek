@@ -77,12 +77,15 @@ p{ margin:0; }
 .logo{ display:flex; align-items:center; text-decoration:none; flex:none; }
 .logo svg{ height:40px; width:auto; display:block; }
 .nav{ display:flex; align-items:center; gap:22px; }
-.nav a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
-.nav a:hover, .nav a[aria-current]{ border-bottom-color:var(--yellow); }
+.nav > a{ text-decoration:none; font-weight:650; font-size:15px; color:var(--navy); padding:6px 0; border-bottom:3px solid transparent; }
+.nav > a:hover, .nav > a[aria-current]{ border-bottom-color:var(--yellow); }
 .nav .btn{ border-bottom:0; padding:10px 18px; min-height:44px; font-size:15px; color:var(--white); }
-/* the same page in the other language (Özbekça / English) */
-.nav .lang{ border:2px solid var(--navy); border-radius:999px; padding:5px 12px; font-size:14px; line-height:1.2; white-space:nowrap; }
-.nav .lang:hover{ background-color:var(--yellow-soft); border-color:var(--navy); }
+/* EN / UZ: the current language on navy, the other one a link to the same page in it */
+.nav .lang{ display:inline-flex; align-items:stretch; border:2px solid var(--navy); border-radius:999px; overflow:hidden; font-size:13px; font-weight:800; letter-spacing:.06em; line-height:1.2; }
+.nav .lang a, .nav .lang .on{ padding:6px 10px; text-decoration:none; }
+.nav .lang .on{ background-color:var(--navy); color:var(--white); }
+.nav .lang a{ color:var(--navy); }
+.nav .lang a:hover, .nav .lang a:focus-visible{ background-color:var(--yellow-soft); }
 .menu-btn{ display:none; appearance:none; border:2px solid var(--navy); background-color:var(--white); color:var(--navy); --sw:var(--navy); --swf:var(--white); border-radius:999px; min-height:44px; padding:0 16px; font:inherit; font-weight:700; cursor:pointer; }
 
 /* Vertical side label, as on the decks */
@@ -512,17 +515,19 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 @media (max-width: 1010px){
   .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
   .nav.open{ display:flex; }
-  .nav a{ padding:12px 0; border-bottom:1px solid var(--line); }
+  .nav > a{ padding:12px 0; border-bottom:1px solid var(--line); }
   .nav .btn{ margin-top:14px; }
-  .nav .lang{ align-self:flex-start; margin-top:12px; padding:8px 14px; border:2px solid var(--navy); }
+  .nav .lang{ align-self:flex-start; margin-top:12px; }
+  .nav .lang a, .nav .lang .on{ padding:9px 18px; }
   .menu-btn{ display:inline-flex; align-items:center; }
 }
 @media (max-width: 1080px){
   :root[lang="uz"] .nav{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--white); border-bottom:3px solid var(--yellow); padding:8px max(16px, env(safe-area-inset-right,0px)) 18px max(16px, env(safe-area-inset-left,0px)); }
   :root[lang="uz"] .nav.open{ display:flex; }
-  :root[lang="uz"] .nav a{ padding:12px 0; border-bottom:1px solid var(--line); }
+  :root[lang="uz"] .nav > a{ padding:12px 0; border-bottom:1px solid var(--line); }
   :root[lang="uz"] .nav .btn{ margin-top:14px; }
-  :root[lang="uz"] .nav .lang{ align-self:flex-start; margin-top:12px; padding:8px 14px; border:2px solid var(--navy); }
+  :root[lang="uz"] .nav .lang{ align-self:flex-start; margin-top:12px; }
+  :root[lang="uz"] .nav .lang a, :root[lang="uz"] .nav .lang .on{ padding:9px 18px; }
   :root[lang="uz"] .menu-btn{ display:inline-flex; align-items:center; }
 }
 @media (max-width: 860px){
@@ -593,12 +598,8 @@ def pol(key, cap=None, sub=None, ar="4/3", extra_style="", cls="pol", lazy=True,
             f'<figcaption>{cap}{subh}</figcaption></figure>')
 
 
-def en(fragment):
-    """English words on an Uzbek page (quotes, sample texts) are marked as English, for screen readers and translators."""
-    return fragment if LANG == "en" else f'<span lang="en">{fragment}</span>'
-
-
 def en_attr():
+    """The sample texts stay in English on the Uzbek pages; they are marked as English for screen readers and translators."""
     return "" if LANG == "en" else ' lang="en"'
 
 
@@ -676,10 +677,12 @@ def header(active):
     cta_href, cta_label = NAV_CTA
     cta_href = here(cta_href)   # "Apply now" goes to the application form from every page
     lk = logos.lockup_star(YELLOW, NAVY, NAVY, height=40)
-    code, label, hint = UI["other_lang"]
     page = "" if CURRENT_PAGE == "index.html" else CURRENT_PAGE
-    other = ("../" if LANG == "uz" else "uz/") + page   # the same page in the other language
-    lang_link = f'<a class="lang" href="{other or "./"}" hreflang="{code}" lang="{code}" title="{hint}">{label}</a>'
+    to = {"en": ("../" if LANG == "uz" else "") + page, "uz": ("" if LANG == "uz" else "uz/") + page}   # the same page
+    parts = "".join(f'<span class="on" aria-current="true">{label}</span>' if code == LANG else
+                    f'<a href="{to[code] or "./"}" hreflang="{code}" lang="{code}" title="{hint}">{label}</a>'
+                    for code, label, hint in UI["langs"])
+    lang_link = f'<span class="lang" role="group" aria-label="{UI["lang_label"]}">{parts}</span>'
     return f"""<header class="head">
   <div class="wrap">
     <a class="logo" href="index.html" aria-label="{UI["logo_label"]}">{lk}</a>
@@ -945,9 +948,9 @@ def page_home():
         <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">{UI["how_started"]}</a></div>
       </div>
       <div class="pols quotes">
-        {pol("senate_handshake", en("&ldquo;" + q["best"]["text"] + "&rdquo;"), q["best"]["cite"], cls="pol q")}
-        {pol("train_group", en("&ldquo;" + q["guided"]["text"] + "&rdquo;"), q["guided"]["cite"].split(",")[0], cls="pol q")}
-        {pol("y2025_dancer", en("&ldquo;" + q["dancing"]["text"] + "&rdquo;"), q["dancing"]["cite"], cls="pol q")}
+        {pol("senate_handshake", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
+        {pol("train_group", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
+        {pol("y2025_dancer", "&ldquo;" + q["dancing"]["text"] + "&rdquo;", q["dancing"]["cite"], cls="pol q")}
         {pol("cohort_registan", None, UI["cohort_sub"])}
       </div>
     </div>
@@ -1191,7 +1194,7 @@ def page_founder():
     facts = "".join(f"<div><b>{a}</b>{b}</div>" for a, b in F["facts"])
     story = "".join(f"<h2>{h}</h2>" + "".join(f"<p>{p}</p>" for p in ps) for h, ps in F["story"])
     tl = "".join(f'<li><b>{a}</b>{f"<strong>{n}</strong>" if n else ""}<span>{t}</span></li>' for a, n, t in F["timeline"])
-    quotes = "".join(f'<div><blockquote class="bigquote"{en_attr()}>{QUOTES[k]["text"]}</blockquote><p class="cite">{QUOTES[k]["cite"]}</p></div>' for k in F["quotes"])
+    quotes = "".join(f'<div><blockquote class="bigquote">{QUOTES[k]["text"]}</blockquote><p class="cite">{QUOTES[k]["cite"]}</p></div>' for k in F["quotes"])
     areas = "".join(f'<div class="areas-col"><h3>{grp}</h3><ul>{"".join(f"<li>{i}</li>" for i in items)}</ul></div>' for grp, items in F["areas"].items())
     moments = "".join(pol(k, None, "", ar=a) for k, a in F["moments"])
     body = f"""
