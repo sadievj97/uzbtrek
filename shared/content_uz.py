@@ -3,8 +3,8 @@
 The text below is written in the familiar Latin spelling, with o' and g' for Oʻ and Gʻ and an apostrophe for the tutuq belgisi.
 newlat() turns it into the new letters when this module loads: o' to ö, g' to ğ, sh to ş, ch to ç, any other apostrophe
 between letters to ʼ. It leaves HTML tags, entities, web addresses, emails, @handles and the names in PROTECT as they are.
-Kept in English on purpose: the sample texts and the brochure (ambassadors send them to international classmates), the
-participants' quotes (their own words) and the English names of schools and companies. People's names use their Uzbek
+Kept in English on purpose: the sample texts and the brochure (ambassadors send them to international classmates) and the
+English names of schools and companies. The participants' quotes are translated (the owner, Nov 2026). People's names use their Uzbek
 spelling (the owner, Nov 2026): Jaxongir Sadiyev, Zokirjon Xabibullayev, and the officials as Uzbek media write them.
 The same rules as content.py apply: no prices, graduate students only, no promised government meetings, no em dashes.
 """
@@ -147,8 +147,20 @@ CHOICES = {
                   short="Safarga qo'shiling yoki alohida boring.", cta="Kichik guruh variantlari"),
 }
 
-# ---------------------------------------------------------------- testimonials: the quotes stay in the participants' own English
+# ---------------------------------------------------------------- testimonials, translated from the participants' English
 QUOTES = {k: dict(v) for k, v in EN.QUOTES.items()}
+_QUOTES_UZ = {
+    "best": "Sakkizta trek ichida O'zbekiston eng yaxshisi bo'ldi. Boshqalardan ancha ustun!",
+    "guided": ("Ipak yo'lining go'zalliklarini o'z yurtini chin dildan sevadigan HKS kursdoshlaring bilan kezishdan "
+               "yaxshiroq narsa bormi?"),
+    "dancing": ("Deyarli har bir ovqatda raqs, faqat biz uchun ko'rsatilgan Registon yorug'lik shousi&hellip; Chindan ham "
+                "Garvarddagi eng alohida haftalarimdan biri."),
+    "long": ("8 ta trekdan keyin ishonch bilan ayta olaman: O'zbekiston eng zo'r trek bo'ldi&hellip; HKS juda ko'p ajoyib "
+             "treklar taklif qiladi va men ularning ko'pchiligida qatnashganman, lekin aynan shu trek qalbimda alohida o'rin "
+             "egallaydi. Agar madaniyat, siyosat bo'yicha suhbatlar va ko'ngilochar tadbirlarning ajoyib uyg'unligini izlayotgan "
+             "bo'lsangiz, bu trek siz uchun. Sizni mazali taomlar, unutilmas kutib olish marosimi va mazmunli fikr almashuvlar "
+             "kutadi&hellip; Registon maydonidagi lazer shouni ham tomosha qilasiz."),
+}
 _CITES = {"best": "2025-yil ishtirokchisi", "guided": "2026-yil ishtirokchisi, Harvard Kennedy School kursdoshi",
           "dancing": "2025-yil ishtirokchisi", "long": "2025-yil ishtirokchisi, Harvard Kennedy School"}
 
@@ -505,8 +517,8 @@ FOUNDER = dict(EN.FOUNDER,
             "Ijtimoiy himoya milliy agentligi: Shahnoza Mirziyoyeva",
             "Buxoro viloyati: hokim Botir Zaripov",
             "Raqamli texnologiyalar vazirligi: vazir Sherzod Shermatov",
-            "Oliy ta'lim, fan va innovatsiyalar vazirligi: vazir Qo'ng'irotboy Sharipov",
-            "Maktabgacha va maktab ta'limi vazirligi: vazir Hilola Umarova",
+            "Oliy ta'lim, fan va innovatsiyalar vazirligi: o'sha paytdagi vazir Qo'ng'irotboy Sharipov",
+            "Maktabgacha va maktab ta'limi vazirligi: o'sha paytdagi vazir Hilola Umarova",
             "Markaziy bank: rais o'rinbosari Dr. Nodirbek Achilov",
         ],
         "Xususiy sektor va universitetlar": [
@@ -582,6 +594,7 @@ CONTACT = dict(EN.CONTACT,
 # ---------------------------------------------------------------- interface words
 UI = dict(EN.UI,
     logo_label="Uzbekistan Trek, bosh sahifa",
+    lang_label="Til",
     menu="Menyu",
     nav_label="Asosiy menyu",
     footer_label="Pastki menyu",
@@ -741,6 +754,7 @@ for _name in ["SITE", "NAV", "NAV_CTA", "DISCLAIMER", "FOOTER_BLURB", "COPYRIGHT
 # set after the conversion, so they stay as written
 for _k, _cite in _CITES.items():
     QUOTES[_k]["cite"] = newlat(_cite)
+    QUOTES[_k]["text"] = newlat(_QUOTES_UZ[_k])
 SAMPLES = []
 for _s in EN.SAMPLES:
     _step, _title, _when = (newlat(x) for x in _SAMPLE_UZ[_s["id"]])
@@ -748,6 +762,5 @@ for _s in EN.SAMPLES:
     if "file" in _s:
         _u["file"] = (_s["file"][0],) + tuple(newlat(x) for x in _FILE_UZ)
     SAMPLES.append(_u)
-UI["other_lang"] = ("en", "English", "Read this page in English")
 FORMS["title_note"] = " (Uzbek page)"
 FORMS["s_options"] = [(v, lab) for (v, _), (_, lab) in zip(EN.FORMS["s_options"], FORMS["s_options"])]
