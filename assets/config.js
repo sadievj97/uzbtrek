@@ -6,3 +6,7 @@ window.TREK_CONFIG = {
   telegramBot: "uzbtrek_bot",   /* bot username without @ */
   email: "jsadiev@hks.harvard.edu"
 };
+<!-- Cloudflare Web Analytics -->
+   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "da28df1948fb4c70a28494108b60ccd3"}'>
+   </script>
+<!-- End Cloudflare Web Analytics -->
