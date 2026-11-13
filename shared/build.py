@@ -886,7 +886,7 @@ def page_home():
         <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">How the trek started</a></div>
       </div>
       <div class="pols quotes">
-        {pol("a405", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
+        {pol("senate_handshake", "&ldquo;" + q["best"]["text"] + "&rdquo;", q["best"]["cite"], cls="pol q")}
         {pol("train_group", "&ldquo;" + q["guided"]["text"] + "&rdquo;", q["guided"]["cite"].split(",")[0], cls="pol q")}
         {pol("y2025_dancer", "&ldquo;" + q["dancing"]["text"] + "&rdquo;", q["dancing"]["cite"], cls="pol q")}
         {pol("cohort_registan", None, "March 2026")}

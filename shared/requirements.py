@@ -143,6 +143,9 @@ R=[
  ('contact','independence line on the contact page', r'Uzbekistan Trek is independent', True),
  ('any','Contact in the menu', r'<a href="contact\.html"[^>]*>Contact</a>', 'raw'),
  ('any','Contact us in the footer', r'<a href="contact\.html">Contact us</a>', 'raw'),
+ # the owner, Nov 2026: the circle photo in the banner
+ ('home','circle caption', r'Under the dome in Samarkand', True),
+ ('home','old circle caption', r'Under a painted dome', False),
  ('any','email', r'jsadiev@hks\.harvard\.edu', True),
  ('any','telegram', r't\.me/uzbtrek_bot', 'raw'),
  ('any','no operated by', r'Operated by', False),
