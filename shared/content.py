@@ -238,14 +238,14 @@ SAMPLES = [
               "[Your name]")},
     # The two Harvard samples are the owner's own texts (November 2026), kept close to the original. Changes, for the content rules:
     # prices and deposits are [placeholders]; no promise of government officials, policymakers or exclusive meetings;
-    # "graduate students, fellows and postdocs", never just "students"; "the 2027 Uzbekistan Trek" because check.py bans
-    # "Trek 2027"; the WhatsApp heading said 2026 for the 3rd edition, which is March 2027; the balance was due "February 27, 2025",
-    # now 2027; the email ends with the not-official line.
+    # "graduate students, fellows and postdocs", never just "students"; the WhatsApp heading said 2026 for the 3rd edition, which is
+    # March 2027; the balance was due "February 27, 2025", now 2027; "the FAQs below" points to the site FAQ instead; the email ends
+    # with the not-official line. The owner asked to keep "Uzbekistan Trek 2027".
     {"id": "sample-announcement", "step": "Step 4", "title": "Sample announcement from Harvard (email)",
      "when": "Send it once you have your quote. Swap the Harvard details and the words in [brackets] for your own.",
      "text": ("Dear friends!\n\n"
               "After the tremendous success of our March 2025 and 2026 treks with 95 Harvard and MIT graduate students, "
-              "we are excited to announce the 2027 Uzbekistan Trek! This is the right opportunity to explore the heart of Central Asia! "
+              "we are excited to announce the Uzbekistan Trek 2027! This is the right opportunity to explore the heart of Central Asia! "
               "Want to join? Follow the instructions below.\n\n"
               "📅 When?\n"
               "• March 14-21, 2027 (Spring Break)\n"
@@ -272,14 +272,16 @@ SAMPLES = [
               "and attend the Nowruz celebration.\n"
               "• Meet local entrepreneurs and visit companies and universities.\n"
               "• Experience authentic Uzbek cuisine, music, shows, and hospitality.\n\n"
-              "If you have any questions, refer to the FAQs below, or feel free to reach out to us! We are here to help!\n\n"
+              "If you have any questions, refer to the FAQ at https://uzbekistantrek.com/#faq, or feel free to reach out to us! We are here to help!\n\n"
               "We look forward to exploring Uzbekistan with you!\n\n"
               "This trip is organized by students. It is not an official Harvard or MIT program.\n\n"
               "Best regards,\n"
-              "The 2027 Uzbekistan Trek team")},
+              "Uzbekistan Trek 2027 Team")},
     {"id": "sample-whatsapp", "step": "Step 4", "title": "Sample WhatsApp message from Harvard",
      "when": "Post it in your class group chats when sign-ups open. Swap the Harvard details for your own.",
-     "text": ("🌟 UZBEKISTAN TREK: 3rd edition, March 2027 🌟\n\n"
+     # the owner's Harvard brochure, with prices shown as [$X] and the organizers' emails removed
+     "file": ("files/uzbekistan_trek_2027_harvard_info.pdf", "Harvard info brochure (PDF, 3 MB)"),
+     "text": ("🌟 UZBEKISTAN TREK 2027 (3rd edition) 🌟\n\n"
               "Hi everyone!\n"
               "🇺🇿 After the tremendous success of our March 2025 and 2026 treks with 95 Harvard and MIT graduate students, "
               "we are excited to bring the Uzbekistan Trek experience back for a new cohort. "

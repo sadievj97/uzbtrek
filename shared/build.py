@@ -244,6 +244,7 @@ td b{ display:block; font-weight:850; }
 .go-link{ justify-self:start; font-weight:750; font-size:15px; text-decoration:none; border-bottom:2px solid var(--yellow); line-height:1.3; }
 .go-link::after{ content:" \203A"; }
 .go-link:hover{ border-bottom-color:var(--navy); }
+.sample-file{ display:inline-block; margin-top:8px; }
 .start-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:22px; margin-top:52px; }
 .start-box{ border-radius:16px; padding:24px 26px; }
 .start-box h3{ text-transform:uppercase; font-stretch:108%; font-weight:850; margin-bottom:14px; }
@@ -716,7 +717,10 @@ def start_block():
         tid = s["id"] + "-text"
         samples += (f'<article class="sample" id="{s["id"]}" aria-labelledby="{s["id"]}-title">'
                     f'<div class="sample-head"><div><span class="pill">{s["step"]}</span><h4 id="{s["id"]}-title">{s["title"]}</h4>'
-                    f'<p class="when">{s["when"]}</p></div>'
+                    f'<p class="when">{s["when"]}</p>'
+                    + (f'<a class="go-link sample-file" href="{s["file"][0]}" target="_blank" rel="noopener">{s["file"][1]}</a>'
+                       if s.get("file") else "") +
+                    '</div>'
                     f'<div class="copy-row"><button class="mini" type="button" data-copy="{tid}">Copy the text</button>'
                     f'<span class="copy-status" role="status" aria-live="polite"></span></div></div>'
                     f'<details><summary>Read the text</summary><div class="sample-text" id="{tid}">{html.escape(s["text"], quote=False)}</div></details>'

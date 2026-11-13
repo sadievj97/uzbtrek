@@ -13,6 +13,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 - `assets/config.js` belongs to the owner: it holds the relay address and the analytics token. Never overwrite, regenerate or reformat it. Change a line in it only when the owner asks.
 - `worker/telegram-relay.js` is the Cloudflare Worker. GitHub does not deploy it: after changing it, tell the owner to paste it into the Worker in Cloudflare and deploy.
 - `img/` holds only the photos the site uses. To add one, put a `.webp` (about 2000 px on the long side) in `img/` and add its entry to `shared/photos.json`.
+- `files/` holds downloads linked from the site, such as the Harvard 2027 brochure next to the WhatsApp sample. In those files, prices show as [$X] and personal emails are removed (true redaction, not a box over the text).
 - To look at the pages, run `python3 -m http.server 8000` in the repository root and open http://localhost:8000.
 
 ## Content rules

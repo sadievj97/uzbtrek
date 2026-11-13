@@ -40,11 +40,14 @@ R=[
  ('home','where to find group', r'Where to find your group', True),
  ('home','student-led tips', r'Keep it student-led', True),
  ('home','sample note', r'Quick interest check', True),
- ('home','sample announcement from Harvard (email)', r'Sample announcement from Harvard \(email\).*excited to announce the 2027 Uzbekistan Trek', True),
- ('home','sample WhatsApp message from Harvard', r'Sample WhatsApp message from Harvard.*UZBEKISTAN TREK: 3rd edition, March 2027', True),
+ ('home','sample announcement from Harvard (email)', r'Sample announcement from Harvard \(email\).*excited to announce the Uzbekistan Trek 2027!', True),
+ ('home','sample WhatsApp message from Harvard', r'Sample WhatsApp message from Harvard.*UZBEKISTAN TREK 2027 \(3rd edition\)', True),
  ('home','samples not official', r'not an official Harvard or MIT program', True),
  ('home','samples promise no government meetings', r'Meet top government officials|policymakers|Exclusive meetings', False),
  ('home','samples: graduate students only', r'MIT students and postdocs|95 Harvard and MIT students', False),
+ ('home','Harvard brochure next to the WhatsApp sample', r'id="sample-whatsapp".*href="files/uzbekistan_trek_2027_harvard_info\.pdf"', 'raw'),
+ ('home','sample email points to the site FAQ', r'refer to the FAQ at https://uzbekistantrek\.com/#faq', True),
+ ('home','sample email: no FAQ that is not there', r'FAQs below', False),
  ('home','no dollar placeholders in samples', r'\$X', False),
  ('home','faq funding', r'Who is funding the travel\? The students themselves', True),
  ('home','faq demand', r'How can I check the demand at my university\?', True),
@@ -134,7 +137,7 @@ R=[
  ('any','email', r'jsadiev@hks\.harvard\.edu', True),
  ('any','telegram', r't\.me/uzbtrek_bot', 'raw'),
  ('any','no operated by', r'Operated by', False),
- ('any','no TREK 2027', r'TREK\s*2027', False),
+ # A year on the vertical side label is banned in check.py. The owner wants "Uzbekistan Trek 2027" in the Harvard samples (Nov 2026).
 ]
 
 PAGEFILE = {"home": "index.html", "big": "big-group.html", "small": "small-group.html", "founder": "founder.html"}
