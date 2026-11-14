@@ -525,9 +525,10 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .collage{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px 16px; }
   .press-head{ grid-template-columns:1fr; }
   .press-year{ grid-template-columns:1fr; }
-  .py-label{ position:static; display:flex; align-items:baseline; gap:14px; }
-  .py-label b{ font-size:52px; }
-  .py-label span{ margin-top:0; }
+  /* on phones the month and travelers sit next to the year, centered on it (two short lines) */
+  .py-label{ position:static; display:flex; align-items:center; gap:16px; }
+  .py-label b{ font-size:52px; flex:none; }
+  .py-label span{ margin-top:0; line-height:1.35; }
   .press-grid{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:78%; overflow-x:auto; scroll-snap-type:x mandatory;
     margin-inline:-16px; padding:4px 16px 14px; scroll-padding-inline:16px; }
   .press-card{ scroll-snap-align:start; }
