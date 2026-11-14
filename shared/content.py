@@ -627,6 +627,7 @@ UI = {
     "stop_of": "Stop {i} of {total}",
     "map_hints": ["Scroll to ride the fast train", "To the mountains by bus", "Back to Tashkent by bus"],
     "how_started": "How the trek started",
+    "quotes_note": "",   # under the participants' quotes; the Uzbek pages say the quotes are translated
     "cohort_sub": "March 2026",
     "moments": "Uzbekistan Trek moments",
     "includes_title": "What the trek includes",

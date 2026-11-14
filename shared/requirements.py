@@ -191,6 +191,11 @@ R += [
  ('founder', 'English page keeps the plain title', r'at the time', False),
  # the owner, Nov 2026: the participants' quotes in Uzbek on the Uzbek pages
  ('uz-home', 'quotes in Uzbek', r'Sakkizta trek içida Özbekiston eng yaxşisi böldi', True),
+ ('uz-home', 'quotes marked as translated', r'Fikrlar ingliz tilidan tarjima qilingan', True),
+ ('uz-founder', 'quotes marked as translated', r'Fikrlar ingliz tilidan tarjima qilingan', True),
+ ('any', 'English pages have no translation note', r'tarjima qilingan', False),
+ # the owner, Nov 2026: smooth page and language changes
+ ('any', 'pages cross-fade (view transitions)', r'@view-transition\{ navigation:auto; \}', 'raw'),
  ('uz-founder', 'quotes in Uzbek', r'8 ta trekdan keyin işonç bilan ayta olaman', True),
  ('uz-contact', 'both co-founders and their emails', r'Jaxongir Sadiyev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Xabibullayev Boston University zkhabib@bu\.edu', True),
  ('uz-any', 'never just "asoschi" (founder)', r'\b[Aa]soschi|\b[Aa]soşçi', False),

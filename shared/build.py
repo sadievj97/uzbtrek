@@ -49,6 +49,14 @@ CSS = r"""
   color-scheme:light;
 }
 *,*::before,*::after{ box-sizing:border-box; }
+/* Moving between pages, or between EN and UZ, cross-fades instead of jumping. Browsers without cross-document view
+   transitions (Firefox for now) switch pages as before. Off for visitors who ask for reduced motion. */
+@media (prefers-reduced-motion: no-preference){
+  @view-transition{ navigation:auto; }
+  ::view-transition-old(root), ::view-transition-new(root){ animation-duration:.38s; animation-timing-function:cubic-bezier(.4,0,.2,1); }
+  ::view-transition-group(site-head){ animation-duration:.38s; }
+  .head{ view-transition-name:site-head; }   /* the header stays in place while the page under it changes */
+}
 html{ background:var(--white); scroll-behavior:smooth; scroll-padding-top:84px; }
 body{ margin:0; background:var(--white); color:var(--navy); font-family:var(--sans); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
 body::before{ content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:40; background:var(--white); }
@@ -377,6 +385,8 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .tl span{ display:block; margin-top:4px; font-size:16px; line-height:1.4; }
 .tl strong{ display:block; font-weight:900; font-stretch:110%; font-size:34px; line-height:1.05; color:var(--white); margin-top:6px; }
 .quotes2{ display:grid; gap:34px; }
+.quote-note{ margin-top:10px; font-size:14.5px; font-style:italic; color:var(--navy-deep); }
+.quotes2 + .quote-note{ margin-top:22px; }
 .bigquote{ margin:0; font-weight:650; font-size:clamp(19px, 2.1vw, 23px); line-height:1.5; max-width:62ch; }
 .bigquote::before{ content:"\201C"; display:block; font-family:var(--script); font-size:84px; line-height:.6; color:var(--navy); margin-bottom:4px; }
 .cite{ margin-top:14px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; font-size:14.5px; }
@@ -540,9 +550,10 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
   .collage{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:22px 16px; }
   .press-head{ grid-template-columns:1fr; }
   .press-year{ grid-template-columns:1fr; }
-  .py-label{ position:static; display:flex; align-items:baseline; gap:14px; }
-  .py-label b{ font-size:52px; }
-  .py-label span{ margin-top:0; }
+  /* on phones the month and travelers sit next to the year, centered on it (two short lines) */
+  .py-label{ position:static; display:flex; align-items:center; gap:16px; }
+  .py-label b{ font-size:52px; flex:none; }
+  .py-label span{ margin-top:0; line-height:1.35; }
   .press-grid{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:78%; overflow-x:auto; scroll-snap-type:x mandatory;
     margin-inline:-16px; padding:4px 16px 14px; scroll-padding-inline:16px; }
   .press-card{ scroll-snap-align:start; }
@@ -596,6 +607,11 @@ def pol(key, cap=None, sub=None, ar="4/3", extra_style="", cls="pol", lazy=True,
     fl = f' data-float="{drift}"' if drift else ""
     return (f'<figure class="{cls}" style="--ar:{ar}{extra_style}"{fl}><div class="ph"><img src="{img(key)}" alt="{p["alt"]}"{ld}></div>'
             f'<figcaption>{cap}{subh}</figcaption></figure>')
+
+
+def quote_note():
+    """On the Uzbek pages, a line under the quotes says they are translated from English (the owner, Nov 2026)."""
+    return f'<p class="quote-note">{UI["quotes_note"]}</p>' if UI.get("quotes_note") else ""
 
 
 def en_attr():
@@ -944,7 +960,7 @@ def page_home():
       <div>
         <h2 id="prev-title">{PREVIOUS["title"]}</h2>
         {diam(PREVIOUS["bullets"])}
-        <span class="red-script">{PREVIOUS["script"]}</span>
+        <span class="red-script">{PREVIOUS["script"]}</span>{quote_note()}
         <div class="btn-row" data-float="0.07"><a class="btn btn-navy" href="founder.html">{UI["how_started"]}</a></div>
       </div>
       <div class="pols quotes">
@@ -1249,7 +1265,7 @@ def page_founder():
     <div class="wrap split">
       <div>
         <h2 id="q-title" style="margin-bottom:26px">{F["quotes_title"]}</h2>
-        <div class="quotes2">{quotes}</div>
+        <div class="quotes2">{quotes}</div>{quote_note()}
       </div>
       <div class="pols">
         {pol("y2025_nowruz", None, None, "3/4")}
