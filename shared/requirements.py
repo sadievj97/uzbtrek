@@ -200,6 +200,9 @@ R += [
  ('uz-contact', 'both co-founders and their emails', r'Jaxongir Sadiyev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Xabibullayev Boston University zkhabib@bu\.edu', True),
  ('uz-any', 'never just "asoschi" (founder)', r'\b[Aa]soschi|\b[Aa]soşçi', False),
  ('uz-any', "no old letters o' and g' left", r"[oOgG][ʻ‘']\w|ʻ", False),
+ # the owner, Nov 2026: Harvard is spelled Harvard in Uzbek too
+ ('uz-any', 'Harvard, never Garvard', r'Garvard', False),
+ ('uz-any', 'independence line names Harvard', r'U Harvard universiteti, Massaçusets texnologiya instituti', True),
 ]
 
 

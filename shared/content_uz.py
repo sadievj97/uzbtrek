@@ -67,7 +67,7 @@ def _deep(v):
 # ---------------------------------------------------------------- site
 SITE = dict(EN.SITE, description=(
     "Uzbekistan Trek elchisi bo'ling: magistratura va doktoranturadagi kursdoshlaringizni O'zbekistonga olib keling, "
-    "har bir qadamda materiallarimiz va yordamimiz bilan. 2025 va 2026-yillardagi Garvard va MIT treklari asosida."))
+    "har bir qadamda materiallarimiz va yordamimiz bilan. 2025 va 2026-yillardagi Harvard va MIT treklari asosida."))
 
 NAV = [
     ("index.html#how", "Qanday ishlaydi", "how"),
@@ -78,7 +78,7 @@ NAV = [
 ]
 NAV_CTA = ("index.html#apply", "Ariza topshirish")
 
-DISCLAIMER = ("Uzbekistan Trek mustaqil loyiha. U Garvard universiteti, Massachusets texnologiya instituti yoki boshqa biror universitet "
+DISCLAIMER = ("Uzbekistan Trek mustaqil loyiha. U Harvard universiteti, Massachusets texnologiya instituti yoki boshqa biror universitet "
               "bilan bog'liq emas, ular tomonidan homiylik qilinmaydi va ma'qullanmaydi. Universitet nomlari o'tgan ishtirokchilar "
               "qayerda tahsil olishini bildiradi.")
 FOOTER_BLURB = ("Magistrant va doktorantlar uchun elchilar dasturi va O'zbekistonga guruh sayohatlari. Sayohatlar faqat O'zbekiston "
@@ -100,7 +100,7 @@ TEAM = {
              "burchaklaridan kelgan kursdoshlarimizga ko'rsatishni yaxshi ko'ramiz."),
     "members": [
         dict(EN.TEAM["members"][0], role="Hammuassis", name="Jaxongir Sadiyev",
-             text="Harvard Kennedy School. Trekni 2025-yilda Garvardda boshlagan: ikki trek, 95 nafar sayohatchi.",
+             text="Harvard Kennedy School. Trekni 2025-yilda Harvardda boshlagan: ikki trek, 95 nafar sayohatchi.",
              link=("founder.html", "Uning hikoyasini o'qing")),
         dict(EN.TEAM["members"][1], role="Hammuassis", name="Zokirjon Xabibullayev", initials="ZX",
              text="Boston University. Elchilar dasturini va trekning yangi universitetlarga kengayishini muvofiqlashtiradi."),
@@ -154,7 +154,7 @@ _QUOTES_UZ = {
     "guided": ("Ipak yo'lining go'zalliklarini o'z yurtini chin dildan sevadigan HKS kursdoshlaring bilan kezishdan "
                "yaxshiroq narsa bormi?"),
     "dancing": ("Deyarli har bir ovqatda raqs, faqat biz uchun ko'rsatilgan Registon yorug'lik shousi&hellip; Chindan ham "
-                "Garvarddagi eng alohida haftalarimdan biri."),
+                "Harvarddagi eng alohida haftalarimdan biri."),
     "long": ("8 ta trekdan keyin ishonch bilan ayta olaman: O'zbekiston eng zo'r trek bo'ldi&hellip; HKS juda ko'p ajoyib "
              "treklar taklif qiladi va men ularning ko'pchiligida qatnashganman, lekin aynan shu trek qalbimda alohida o'rin "
              "egallaydi. Agar madaniyat, siyosat bo'yicha suhbatlar va ko'ngilochar tadbirlarning ajoyib uyg'unligini izlayotgan "
@@ -167,7 +167,7 @@ _CITES = {"best": "2025-yil ishtirokchisi", "guided": "2026-yil ishtirokchisi, H
 PREVIOUS = {
     "title": "O'tgan treklardan",
     "bullets": [
-        "2025-yil mart oyida Garvard va MITning 45 nafar magistrant va doktoranti biz bilan Toshkent, Buxoro va Samarqandga sayohat qildi.",
+        "2025-yil mart oyida Harvard va MITning 45 nafar magistrant va doktoranti biz bilan Toshkent, Buxoro va Samarqandga sayohat qildi.",
         "2026-yil mart oyida ikkinchi trek 50 nafar sayohatchiga yetdi.",
         "Endi boshqa universitetlardagi o'zbek talabalari ham Uzbekistan Trek elchisi sifatida o'z kursdoshlarini olib kelishi mumkin.",
     ],
@@ -176,7 +176,7 @@ PREVIOUS = {
 
 ITINERARY = {
     "title": "Namunaviy marshrut",
-    "intro": ("Garvard va MIT treklarimiz shunday o'tgan, ma'lumot uchun ko'rsatilgan. Bu tayyor paket emas, balki boshlang'ich "
+    "intro": ("Harvard va MIT treklarimiz shunday o'tgan, ma'lumot uchun ko'rsatilgan. Bu tayyor paket emas, balki boshlang'ich "
               "nuqta: uni uzaytirishimiz, Xiva yoki Farg'ona vodiysi kabi shaharlarni qo'shishimiz va har bir kunni guruhingizga "
               "moslashimiz mumkin. O'tgan treklar bahorgi ta'tilda bo'lgan, lekin trek istalgan oyda o'tishi mumkin."),
     "days": [
@@ -196,7 +196,7 @@ ITINERARY = {
         "Xiva, Farg'ona vodiysi yoki cho'ldagi o'tov lagerini qo'shing",
         "Ta'lim yo'nalishingizga mos tashriflar",
     ],
-    "footnote": ("Garvard va MIT treklaridagi namunaviy marshrut, faqat ma'lumot uchun. Har bir trek moslashtiriladi: sanalar, "
+    "footnote": ("Harvard va MIT treklaridagi namunaviy marshrut, faqat ma'lumot uchun. Har bir trek moslashtiriladi: sanalar, "
                  "davomiylik, shaharlar va tashriflar guruhingiz bilan kelishiladi."),
 }
 
@@ -269,12 +269,12 @@ START = {
 # The sample texts and the brochure stay in English (the owner, Nov 2026); only the words around them are in Uzbek.
 _SAMPLE_UZ = {
     "sample-note": ("3-qadam", "Qiziqishni tekshirish uchun namuna xabar", "Narx taklifini so'rashdan oldin yuboring."),
-    "sample-announcement": ("4-qadam", "Garvard trekidan namuna e'lon (email)",
-                            "Narx taklifini olganingizdan keyin yuboring. Garvard ma'lumotlari va [qavs ichidagi] so'zlarni o'zingiznikiga almashtiring."),
-    "sample-whatsapp": ("4-qadam", "Garvard trekidan namuna WhatsApp xabari",
-                        "Ro'yxatdan o'tish ochilganda kurs chatlaringizga joylang. Garvard ma'lumotlarini o'zingiznikiga almashtiring."),
-    "sample-brochure": ("4-qadam", "Garvard trekining ma'lumot broshyurasi (PDF)",
-                        "Garvard treki 2027 uchun ishlatilgan namuna ma'lumot broshyurasi"),
+    "sample-announcement": ("4-qadam", "Harvard trekidan namuna e'lon (email)",
+                            "Narx taklifini olganingizdan keyin yuboring. Harvard ma'lumotlari va [qavs ichidagi] so'zlarni o'zingiznikiga almashtiring."),
+    "sample-whatsapp": ("4-qadam", "Harvard trekidan namuna WhatsApp xabari",
+                        "Ro'yxatdan o'tish ochilganda kurs chatlaringizga joylang. Harvard ma'lumotlarini o'zingiznikiga almashtiring."),
+    "sample-brochure": ("4-qadam", "Harvard trekining ma'lumot broshyurasi (PDF)",
+                        "Harvard treki 2027 uchun ishlatilgan namuna ma'lumot broshyurasi"),
 }
 _FILE_UZ = ("Broshyurani ochish", "PDF yuklab olish (17 sahifa, 3 MB)")
 
@@ -351,7 +351,7 @@ BIG = dict(EN.BIG,
         ("Talabalar klublari va birlashmalari",
          "Markaziy Osiyo bilan bir hafta davomida yaqindan tanishmoqchi bo'lgan mintaqaviy, siyosat, energetika, moliya yoki biznes klublari."),
         ("Kurs yoki guruh",
-         "Ta'til paytida birga sayohat qiladigan dastur talabalari, xuddi 2025 va 2026-yillardagi Garvard va MIT guruhlarimiz kabi."),
+         "Ta'til paytida birga sayohat qiladigan dastur talabalari, xuddi 2025 va 2026-yillardagi Harvard va MIT guruhlarimiz kabi."),
         ("Turli dasturlardagi do'stlar",
          "Turli dastur yoki maktablardan o'z alohida sayohatini xohlagan o'n va undan ortiq magistrant yoki doktorant."),
     ]},
@@ -465,7 +465,7 @@ FOUNDER = dict(EN.FOUNDER,
     facts=[
         ("Harvard University (HKS)", "Iqtisodiyot magistri (MPA/ID)"),
         ("Tashkil qilingan ikki trek", "2025 va 2026-yillar, 95 nafar sayohatchi"),
-        ("Garvarddan oldin", "Jahon banki, Birlashgan Millatlar Tashkiloti, Auburn University (AL)"),
+        ("Harvarddan oldin", "Jahon banki, Birlashgan Millatlar Tashkiloti, Auburn University (AL)"),
         ("Stipendiyalar", "Fulbright, Edmund S. Muskie, Harvard Full Scholarship"),
     ],
     story=[
@@ -473,9 +473,9 @@ FOUNDER = dict(EN.FOUNDER,
          ["Bolaligimda bir talabaning universitetdagi kursdoshlari bilan o'z yurti bo'ylab sayohat qilayotgan suratini ko'rgandim. "
           "Bu surat yodimda qoldi. Bir kun kelib o'z kursdoshlarimni ona shahrim Samarqandga olib kelaman, deb o'zimga so'z bergandim."]),
         ("Dasturimda 25 yil ichidagi birinchi o'zbek",
-         ["Garvardga kelganimda, Harvard Kennedy Schooldagi dasturimda 25 yil ichida birinchi o'zbek edim va shu imkoniyatdan "
+         ["Harvardga kelganimda, Harvard Kennedy Schooldagi dasturimda 25 yil ichida birinchi o'zbek edim va shu imkoniyatdan "
           "foydalanib biror ish qilishim kerakligini his qildim. Men o'qigan Amerika universitetlarida O'zbekiston va Markaziy Osiyo "
-          "haqida kam gapirilardi. Buni o'zgartirmoqchi edim, shuning uchun Garvard va MITdagi kursdoshlarimni O'zbekistonga olib "
+          "haqida kam gapirilardi. Buni o'zgartirmoqchi edim, shuning uchun Harvard va MITdagi kursdoshlarimni O'zbekistonga olib "
           "kelishga qaror qildim."]),
         ("Birinchi kuniyoq qirq kishi",
          ["Rostini aytsam, 20 kishi qo'shilishiga ishonchim komil emasdi. Trekni e'lon qilgan birinchi kunimizdayoq 40 kishi "
@@ -503,14 +503,14 @@ FOUNDER = dict(EN.FOUNDER,
     timeline_title="Qanday o'sdi",
     timeline=[
         ("Bolalik", "", "Bir surat g'oyaga turtki beradi"),
-        ("2024", "", "Garvard universitetiga keladi"),
+        ("2024", "", "Harvard universitetiga keladi"),
         ("Birinchi kun", "40", "trek e'lon qilinganda ro'yxatdan o'tganlar"),
         ("2025-yil mart", "45", "birinchi trekdagi sayohatchilar"),
         ("2026-yil mart", "50", "ikkinchi trekdagi sayohatchilar"),
         ("Keyin", "", "Ko'proq trek, ko'proq universitet"),
     ],
     quotes_title="2025 va 2026-yil ishtirokchilaridan",
-    areas_title="Garvard va MIT treklari kimlar bilan uchrashdi",
+    areas_title="Harvard va MIT treklari kimlar bilan uchrashdi",
     areas={
         "Davlat": [
             "Senat: Senat raisi Tanzila Norboyeva",
@@ -540,10 +540,10 @@ FOUNDER = dict(EN.FOUNDER,
 
 # ---------------------------------------------------------------- press (home page)
 _PRESS_LINES = {   # English line: Uzbek line
-    "Harvard University students in Uzbekistan": "Garvard universiteti talabalari O'zbekistonda",
+    "Harvard University students in Uzbekistan": "Harvard universiteti talabalari O'zbekistonda",
     "The students visit New Uzbekistan University": "Talabalar Yangi O'zbekiston universitetiga tashrif buyurdi",
     "The visit to Uzbekistan begins": "O'zbekistonga tashrif boshlandi",
-    "A meeting with Harvard and MIT students on joint education projects": "Garvard va MIT talabalari bilan qo'shma ta'lim loyihalari bo'yicha uchrashuv",
+    "A meeting with Harvard and MIT students on joint education projects": "Harvard va MIT talabalari bilan qo'shma ta'lim loyihalari bo'yicha uchrashuv",
     "The Chairwoman of the Senate meets the students": "Senat raisi talabalar bilan uchrashdi",
     "43 Harvard Kennedy School and MIT students on campus": "Harvard Kennedy School va MITning 43 nafar talabasi kampusda",
     "Celebrating Nowruz with the Uzbekistan Trek 2025": "Uzbekistan Trek 2025 bilan Navro'z bayrami",
@@ -635,7 +635,7 @@ META = {
     "small-group.html": ("Kichik guruh sayohati", "10 kishidan kam magistrant va doktorant uchun O'zbekistonga kichik guruh sayohatlari: "
                          "rejalashtirilgan safarga qo'shiling yoki o'z sanalaringizda alohida sayohat qiling."),
     "founder.html": ("Hammuassis Jaxongir Sadiyev", "Uzbekistan Trek hammuassisi Jaxongir Sadiyev: bolalik orzusidan 95 nafar "
-                     "sayohatchi bilan o'tgan ikki Garvard va MIT trekigacha."),
+                     "sayohatchi bilan o'tgan ikki Harvard va MIT trekigacha."),
     "contact.html": ("Biz bilan bog'laning", "Uzbekistan Trek bilan aloqa: Jaxongir Sadiyev yoki Zokirjon Xabibullayevga yozing yoki "
                      "Telegramda @uzbtrek_bot ga xabar yuboring."),
 }
