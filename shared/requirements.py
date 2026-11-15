@@ -202,7 +202,8 @@ R += [
  ('uz-any', "no old letters o' and g' left", r"[oOgG][ʻ‘']\w|ʻ", False),
  # the owner, Nov 2026: Harvard is spelled Harvard in Uzbek too
  ('uz-any', 'Harvard, never Garvard', r'Garvard', False),
- ('uz-any', 'independence line names Harvard', r'U Harvard universiteti, Massaçusets texnologiya instituti', True),
+ ('uz-any', 'independence line names Harvard and MIT in their own spelling', r'U Harvard universiteti, Massachusetts texnologiya instituti', True),
+ ('uz-any', 'Massachusetts, never Massaçusets', r'Massaçusets|Massachusets\b', False),
 ]
 
 

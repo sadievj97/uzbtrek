@@ -19,7 +19,7 @@ LANG = "uz"
 
 # ---------------------------------------------------------------- new letters
 # Names and English titles that contain sh, ch or an apostrophe and must stay exactly as written.
-PROTECT = ["Harvard Kennedy School", "Harvard Full Scholarship", "Massachusetts Institute of Technology", "fellowship",
+PROTECT = ["Harvard Kennedy School", "Harvard Full Scholarship", "Massachusetts Institute of Technology", "Massachusetts", "fellowship",
            "English", "WhatsApp", "Ctrl+C", "Cmd+C"]
 _SKIP = re.compile("|".join([r"<[^>]*>", r"&[#\w]+;", r"https?://[^\s\"<>]+", r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", r"@\w+"]
                             + [re.escape(p) for p in sorted(PROTECT, key=len, reverse=True)]))
@@ -78,7 +78,7 @@ NAV = [
 ]
 NAV_CTA = ("index.html#apply", "Ariza topshirish")
 
-DISCLAIMER = ("Uzbekistan Trek mustaqil loyiha. U Harvard universiteti, Massachusets texnologiya instituti yoki boshqa biror universitet "
+DISCLAIMER = ("Uzbekistan Trek mustaqil loyiha. U Harvard universiteti, Massachusetts texnologiya instituti yoki boshqa biror universitet "
               "bilan bog'liq emas, ular tomonidan homiylik qilinmaydi va ma'qullanmaydi. Universitet nomlari o'tgan ishtirokchilar "
               "qayerda tahsil olishini bildiradi.")
 FOOTER_BLURB = ("Magistrant va doktorantlar uchun elchilar dasturi va O'zbekistonga guruh sayohatlari. Sayohatlar faqat O'zbekiston "
