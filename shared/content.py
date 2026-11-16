@@ -16,7 +16,7 @@ SITE = {
     "telegram_bot": "uzbtrek_bot",
     "telegram_url": "https://t.me/uzbtrek_bot",
     "visa_url": "https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi",
-    "description": ("Become an Uzbekistan Trek ambassador: bring your graduate school classmates to Uzbekistan, with our materials "
+    "description": ("Become an Uzbekistan Trek ambassador: bring your university classmates to Uzbekistan, with our materials "
                     "and support at every step. Built on the 2025 and 2026 Harvard and MIT treks."),
 }
 
@@ -32,7 +32,7 @@ NAV_CTA = ("index.html#apply", "Apply now")
 
 DISCLAIMER = ("Uzbekistan Trek is independent. It is not affiliated with, sponsored or endorsed by Harvard University, "
               "the Massachusetts Institute of Technology or any other university. University names describe where past participants study.")
-FOOTER_BLURB = "The ambassador program and group trips to Uzbekistan for graduate students. Trips are land-only; international flights are not included."
+FOOTER_BLURB = "The ambassador program and group trips to Uzbekistan for university students. Trips are land-only; international flights are not included."
 COPYRIGHT = "&copy; 2026 Uzbekistan Trek. Photos from the 2025 and 2026 treks."
 
 # ---------------------------------------------------------------- home: the ambassador program
@@ -84,7 +84,7 @@ APPLY = {
     "title": "Apply to become an ambassador",
     "lede": "Tell us about yourself and the classmates you want to bring. We get back to you by email or Telegram.",
     "who_title": "Who can apply",
-    "who": ["Uzbek graduate students, fellows and postdocs at universities outside Uzbekistan",
+    "who": ["Uzbek undergraduate and graduate students, fellows and postdocs at universities outside Uzbekistan",
             "No experience organizing trips needed",
             "Your classmates can be from any country"],
 }
@@ -216,7 +216,7 @@ START = {
     ],
     "where_title": "Where to find your group",
     "where": ["Your class or cohort group chat", "Student clubs: regional, international affairs, policy, business",
-              "Your program&rsquo;s student newsletter", "The graduate student council", "Professors who teach the region",
+              "Your program&rsquo;s student newsletter", "The student council", "Professors who teach the region",
               "Friends in other programs"],
     "tips_title": "Keep it student-led",
     "tips": ["Write as a classmate: say why you want to go and who you hope will come.",
@@ -233,7 +233,7 @@ SAMPLES = [
     {"id": "sample-note", "step": "Step 3", "title": "Sample note to check interest", "when": "Send it before you ask for a quote.",
      "text": ("Subject: Uzbekistan over spring break? Quick interest check\n\n"
               "Hi everyone,\n\n"
-              "I am thinking of organizing a trip to Uzbekistan for graduate students at [University], around [spring break or other dates]. "
+              "I am thinking of organizing a trip to Uzbekistan for students at [University], around [spring break or other dates]. "
               "Graduate students from Harvard and MIT went in 2025 and 2026: about a week in Tashkent, Samarkand and Bukhara, "
               "with Silk Road cities, great food and a day in the mountains.\n\n"
               "Uzbekistan Trek would plan and run the trip, and everyone would pay for their own place. I am only bringing the group together.\n\n"
@@ -317,7 +317,7 @@ SAMPLES = [
 FAQ_HOME = [
   ("For ambassadors", [
     ("Who can become an ambassador?",
-     ["Uzbek graduate students, fellows and postdocs at universities outside Uzbekistan. You do not need experience organizing trips: "
+     ["Uzbek undergraduate and graduate students, fellows and postdocs at universities outside Uzbekistan. You do not need experience organizing trips: "
       "we give you the materials and support at every step."]),
     ("What does an ambassador do?",
      ["You bring your classmates together: you share the trip, hold an info session and keep your group informed. "
@@ -334,7 +334,7 @@ FAQ_HOME = [
   ]),
   ("For travelers", [
     ("Who can join?",
-     ["Graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows. We do not run trips for undergraduates."]),
+     ["Undergraduate and graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows."]),
     ("Do I need a visa?",
      ["The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).",
       "For other passports, check the official visa page: <a href=\"https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi\" target=\"_blank\" rel=\"noopener\">Visa to the Republic of Uzbekistan</a>."]),
@@ -352,7 +352,7 @@ FAQ_HOME = [
     ("Will we meet government officials?",
      ["The standard program focuses on companies, universities and/or culture (subject to approval). Formal government meetings are not part of it."]),
     ("Is there a refund if I withdraw?",
-     ["You can transfer your place to another graduate student with our approval. Refund terms are set out in the booking terms you accept when you pay. We strongly recommend trip cancellation insurance."]),
+     ["You can transfer your place to another student with our approval. Refund terms are set out in the booking terms you accept when you pay. We strongly recommend trip cancellation insurance."]),
     ("Is this run by my university?",
      ["No. Groups organize themselves, and Uzbekistan Trek is not affiliated with any university. Please do not present the trip as an official university program."]),
   ]),
@@ -369,7 +369,7 @@ BIG = {
     "for": [
         ("Student clubs and caucuses", "Regional, policy, energy, finance or business clubs that want a week of real exposure to Central Asia."),
         ("A cohort or class", "A program year traveling together during a school break, like our Harvard and MIT groups in 2025 and 2026."),
-        ("Friends across programs", "Ten or more graduate students from different programs or schools who want their own private trip."),
+        ("Friends across programs", "Ten or more students from different programs or schools who want their own private trip."),
     ],
     "gets_title": "What your group gets",
     "gets": [
@@ -411,13 +411,13 @@ BIG = {
 SMALL = {
     "kicker": "Fewer than 10 travelers",
     "title": "Small group trip",
-    "lede": "Traveling solo, as a couple or with a few friends? Join a planned departure with graduate students from other universities, or take a private trip on your own dates.",
+    "lede": "Traveling solo, as a couple or with a few friends? Join a planned departure with students from other universities, or take a private trip on your own dates.",
     "cta_primary": ("#departures", "See planned dates"),
     "cta_secondary": ("#interest", "Ask about a private trip"),
     "ways_title": "Two ways to go",
     "join": {
         "tag": "Planned dates", "title": "Join a departure",
-        "items": ["Fixed dates around school breaks and after graduation", "Travel with graduate students from other universities",
+        "items": ["Fixed dates around school breaks and after graduation", "Travel with students from other universities",
                   "The same route and hosts as our big group treks", "Share a double room with another participant, or book a single"],
         "cta": ("#departures", "See planned dates"),
     },
@@ -449,7 +449,7 @@ SMALL = {
     "faq_title": "Small group questions",
     "faq": [
         ("Can I come alone?", ["Yes. Many people join a departure on their own. We pair you with another participant for a shared room, or you can book a single."]),
-        ("Who will I travel with?", ["Graduate students, fellows and postdocs from different universities and countries, with licensed local guides and an Uzbek host (subject to availability)."]),
+        ("Who will I travel with?", ["Undergraduate and graduate students, fellows and postdocs from different universities and countries, with licensed local guides and an Uzbek host (subject to availability)."]),
         ("Can my partner come?", ["Yes, when space allows."]),
         ("Why does a private trip cost more per person?", ["The car, driver and guide are shared by fewer people. The more of you travel, the lower the price per person."]),
         ("Do I need a visa?", ["The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).",
@@ -492,7 +492,7 @@ FOUNDER = {
           "In the private sector, we discussed renewable energy with the leadership of ACWA Power, financial markets with TBC Bank, "
           "and technology at IT Park."]),
         ("What comes next",
-         ["My goal is to run more treks and open them to graduate students at other universities. That is why we started the ambassador program: "
+         ["My goal is to run more treks and open them to students at other universities. That is why we started the ambassador program: "
           "Uzbek students studying abroad can now bring their own classmates, and we support them at every step. "
           "After two treks, we know what students want from a week in Uzbekistan, and we can help you organize one for your group."]),
     ],
@@ -647,8 +647,8 @@ UI = {
 # (title, description) for each page's <title> and search snippet
 META = {
     "index.html": (SITE["name"], SITE["description"]),
-    "big-group.html": ("Big Group Trek", "Big group treks to Uzbekistan for 10 or more graduate students: your dates, a private itinerary and a full package."),
-    "small-group.html": ("Small Group Trip", "Small group trips to Uzbekistan for fewer than 10 graduate students: join a planned departure or travel privately on your own dates."),
+    "big-group.html": ("Big Group Trek", "Big group treks to Uzbekistan for 10 or more students: your dates, a private itinerary and a full package."),
+    "small-group.html": ("Small Group Trip", "Small group trips to Uzbekistan for fewer than 10 students: join a planned departure or travel privately on your own dates."),
     "founder.html": ("Co-Founder Jakhongir Sadiev", "Jakhongir Sadiev, co-founder of the Uzbekistan Trek: from a childhood dream to two Harvard and MIT treks with 95 travelers."),
     "contact.html": ("Contact us", "Contact Uzbekistan Trek: email Jakhongir Sadiev or Zokirjon Khabibullaev, or message @uzbtrek_bot on Telegram."),
 }
@@ -668,7 +668,7 @@ FORMS = {
     "anything": "Anything else",
     "choose": "Choose one",
     "a_ph_email": "Your university email, if you can",
-    "a_program": "Program and degree", "a_req_program": "your program and degree", "a_ph_program": "e.g. MBA, MPP or PhD",
+    "a_program": "Program and degree", "a_req_program": "your program and degree", "a_ph_program": "e.g. BA, MBA, MPP or PhD",
     "a_grad": "Expected graduation", "a_grad_opts": ["2027", "2028", "2029 or later"],
     "a_size": "Classmates who might come", "a_size_opts": ["Not sure yet", "Fewer than 10", "10 to 20", "20 to 40", "More than 40"],
     "a_dates": "When could your group travel?", "a_ph_dates": "e.g. Spring break 2027",

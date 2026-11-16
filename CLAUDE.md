@@ -1,6 +1,6 @@
 # Uzbekistan Trek website
 
-Static site for uzbekistantrek.com. The home page leads with the ambassador program: Uzbek graduate students at universities outside Uzbekistan bring their classmates on a trek, with our materials and support. Group trips stay as secondary pages for graduate students at any university (big groups of 10 or more, small groups under 10), linked from "Group trips" in the header and from the footer. GitHub Pages serves the root of `main`; merging into `main` publishes the site in a minute or two.
+Static site for uzbekistantrek.com. The home page leads with the ambassador program: Uzbek students (undergraduate and graduate) at universities outside Uzbekistan bring their classmates on a trek, with our materials and support. Group trips stay as secondary pages for students at any university (big groups of 10 or more, small groups under 10), linked from "Group trips" in the header and from the footer. GitHub Pages serves the root of `main`; merging into `main` publishes the site in a minute or two.
 
 ## How the site is built
 - `index.html`, `big-group.html`, `small-group.html`, `founder.html` and `contact.html` are generated, and so are their Uzbek copies in `uz/`. Never edit them by hand.
@@ -21,7 +21,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 
 ## Content rules
 - No prices or dollar amounts anywhere.
-- Graduate students, fellows and postdocs only; never undergraduates.
+- Undergraduate and graduate students, fellows and postdocs (the owner opened the program and the trips to undergraduates in Nov 2026). Facts about the 2025 and 2026 treks stay as they are: their travelers were graduate students. The Harvard sample texts keep Harvard's own wording.
 - Uzbekistan Trek is independent. Keep the independence line on every page, and never use a university's name or logo in a way that suggests it runs or endorses the trips.
 - Formal government meetings are not part of the standard program for new universities; never promise them.
 - Do not name or link to any tour operator or travel company.
@@ -31,7 +31,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 - Jakhongir's card on the home page uses `jakhongir_sadiev`, a different photo from the portrait on the founder page. Never use a crop of `founder_portrait` there.
 - Contact: jsadiev@hks.harvard.edu (Jakhongir), zkhabib@bu.edu (Zokirjon) and Telegram @uzbtrek_bot. The Contact page (`contact.html`, text in `CONTACT` in `shared/content.py`) lists all three.
 - No em dashes. Short, plain sentences.
-- Uzbek pages (`uz/`) use the new Latin letters from the law of October 2026: Ö, Ğ, Ş, Ç (not Oʻ, Gʻ, Sh, Ch). In `content_uz.py`, write the familiar spelling (o', g', sh, ch); `newlat()` converts it when the module loads and leaves names in `PROTECT`, tags and links alone. Titles: Co-Founder is "Hammuassis", never just "asoschi". Ambassador is "elchi".
+- Uzbek pages (`uz/`) use the new Latin letters from the law of October 2026: Ö, Ğ, Ş, Ç (not Oʻ, Gʻ, Sh, Ch). In `content_uz.py`, write the familiar spelling (o', g', sh, ch); `newlat()` converts it when the module loads and leaves names in `PROTECT`, tags and links alone. Titles: Co-Founder is "Hammuassis", never just "asoschi". Ambassador is "elchi". Harvard is "Harvard" in Uzbek too ("Harvardda", "Harvard universiteti"), never "Garvard"; MIT is "Massachusetts texnologiya instituti" (in `PROTECT`, so it keeps its "ch").
 - On the Uzbek pages these stay in English: the sample texts and the brochure (ambassadors send them to international classmates), the English names of schools and companies, and the Uzbekistan Trek brand. The participants' quotes are translated into Uzbek there, with the line "Fikrlar ingliz tilidan tarjima qilingan" under them (`UI["quotes_note"]`).
 - On the Uzbek pages, names use their Uzbek spelling, as in `content_uz.py`: Jaxongir Sadiyev and Zokirjon Xabibullayev (the owner's own spellings), and officials as Uzbek media write them (Tanzila Norboyeva, Shahnoza Mirziyoyeva, Qoʻngʻirotboy Sharipov, Hilola Umarova; Alisher Joʻrayev as the owner confirmed). The English pages keep the spellings in `content.py`.
 - Sharipov and Umarova have since left the minister posts they held when the treks met them: the Uzbek founder page says "oʻsha paytdagi vazir" (minister at the time). The English page keeps "Minister" (the owner, Nov 2026).

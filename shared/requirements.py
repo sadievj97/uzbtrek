@@ -28,7 +28,10 @@ R=[
  ('home','co-founder card', r'Co-Founder Zokirjon Khabibullaev Boston University\. Coordinates the ambassador program and the trek.s growth to new universities\.', True),
  ('home','what you get', r'What you get.*Ready-made materials.*Promotion techniques.*Support at every step.*Travel with your group', True),
  ('home','application form', r'data-form="ambassador"', 'raw'),
- ('home','who can apply', r'Uzbek graduate students, fellows and postdocs at universities outside Uzbekistan', True),
+ # the owner, Nov 2026: undergraduates are welcome too, as ambassadors and as travelers
+ ('home','who can apply', r'Uzbek undergraduate and graduate students, fellows and postdocs at universities outside Uzbekistan', True),
+ ('home','who can join: undergraduates too', r'Who can join\? Undergraduate and graduate students, fellows and postdocs', True),
+ ('any','no undergraduate exclusion', r'trips for undergraduates|graduate students only', False),
  ('home','group pages still linked', r'href="big-group\.html".*href="small-group\.html"', 'raw'),
  ('home','old #start links still land', r'id="start"', 'raw'),
  ('home','old #choose links still land', r'id="choose"', 'raw'),
@@ -180,7 +183,8 @@ R += [
  ('uz-any', 'no English spellings of names', r'Jakhongir|Sadiev\b|Khabibullaev|Narbaeva|Shakhnoza|Kongratbay|Khilola|Juraev', False),
  ('uz-home', 'sample texts stay in English', r'Subject: Uzbekistan over spring break\? Quick interest check', True),
  ('uz-home', 'brochure next to the samples', r'href="\.\./files/uzbekistan_trek_2027_harvard_info\.pdf"', 'raw'),
- ('uz-home', 'never undergraduates', r'Bakalavriat talabalari uçun sayohat taşkil qilmaymiz', True),
+ ('uz-home', 'undergraduates welcome', r'[Bb]akalavriat, magistratura va doktorantura talabalari', True),
+ ('uz-any', 'no undergraduate exclusion', r'Bakalavriat talabalari uçun sayohat', False),
  ('uz-home', 'no formal government meetings promised', r'Rasmiy davlat uçraşuvlari unga kirmaydi', True),
  ('uz-big', 'no formal government meetings promised', r'Rasmiy davlat uçraşuvlari unga kirmaydi', True),
  ('uz-founder', 'no formal government meetings in the standard program', r'Rasmiy davlat uçraşuvlari standart dasturga kirmaydi', True),
@@ -200,6 +204,10 @@ R += [
  ('uz-contact', 'both co-founders and their emails', r'Jaxongir Sadiyev Harvard Kennedy School jsadiev@hks\.harvard\.edu .*Zokirjon Xabibullayev Boston University zkhabib@bu\.edu', True),
  ('uz-any', 'never just "asoschi" (founder)', r'\b[Aa]soschi|\b[Aa]soşçi', False),
  ('uz-any', "no old letters o' and g' left", r"[oOgG][ʻ‘']\w|ʻ", False),
+ # the owner, Nov 2026: Harvard is spelled Harvard in Uzbek too
+ ('uz-any', 'Harvard, never Garvard', r'Garvard', False),
+ ('uz-any', 'independence line names Harvard and MIT in their own spelling', r'U Harvard universiteti, Massachusetts texnologiya instituti', True),
+ ('uz-any', 'Massachusetts, never Massaçusets', r'Massaçusets|Massachusets\b', False),
 ]
 
 
