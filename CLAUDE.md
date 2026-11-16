@@ -1,6 +1,6 @@
 # Uzbekistan Trek website
 
-Static site for uzbekistantrek.com. The home page leads with the ambassador program: Uzbek graduate students at universities outside Uzbekistan bring their classmates on a trek, with our materials and support. Group trips stay as secondary pages for graduate students at any university (big groups of 10 or more, small groups under 10), linked from "Group trips" in the header and from the footer. GitHub Pages serves the root of `main`; merging into `main` publishes the site in a minute or two.
+Static site for uzbekistantrek.com. The home page leads with the ambassador program: Uzbek students (undergraduate and graduate) at universities outside Uzbekistan bring their classmates on a trek, with our materials and support. Group trips stay as secondary pages for students at any university (big groups of 10 or more, small groups under 10), linked from "Group trips" in the header and from the footer. GitHub Pages serves the root of `main`; merging into `main` publishes the site in a minute or two.
 
 ## How the site is built
 - `index.html`, `big-group.html`, `small-group.html`, `founder.html` and `contact.html` are generated, and so are their Uzbek copies in `uz/`. Never edit them by hand.
@@ -21,7 +21,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 
 ## Content rules
 - No prices or dollar amounts anywhere.
-- Graduate students, fellows and postdocs only; never undergraduates.
+- Undergraduate and graduate students, fellows and postdocs (the owner opened the program and the trips to undergraduates in Nov 2026). Facts about the 2025 and 2026 treks stay as they are: their travelers were graduate students. The Harvard sample texts keep Harvard's own wording.
 - Uzbekistan Trek is independent. Keep the independence line on every page, and never use a university's name or logo in a way that suggests it runs or endorses the trips.
 - Formal government meetings are not part of the standard program for new universities; never promise them.
 - Do not name or link to any tour operator or travel company.

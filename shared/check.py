@@ -29,6 +29,8 @@ BANNED = [
     ("removed copy: movie night", re.compile(r"movie night", re.I)),
     ("removed copy: born in Samarkand", re.compile(r"(raised|born) in Samarkand|As a boy in Samarkand", re.I)),
     ("removed copy: Timeline for a March trek", re.compile(r"(?<!Example )Timeline for a March trek", re.I)),
+    ("removed copy: undergraduates excluded (open to them since Nov 2026)",
+     re.compile(r"do not run trips for undergraduates|Bakalavriat talabalari u[cç]h?un sayohat", re.I)),
 ]
 
 

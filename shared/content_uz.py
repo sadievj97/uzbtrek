@@ -6,7 +6,7 @@ between letters to ʼ. It leaves HTML tags, entities, web addresses, emails, @ha
 Kept in English on purpose: the sample texts and the brochure (ambassadors send them to international classmates) and the
 English names of schools and companies. The participants' quotes are translated (the owner, Nov 2026). People's names use their Uzbek
 spelling (the owner, Nov 2026): Jaxongir Sadiyev, Zokirjon Xabibullayev, and the officials as Uzbek media write them.
-The same rules as content.py apply: no prices, graduate students only, no promised government meetings, no em dashes.
+The same rules as content.py apply: no prices, no promised government meetings, no em dashes. Undergraduates are welcome (Nov 2026).
 """
 import json
 import os
@@ -66,7 +66,7 @@ def _deep(v):
 
 # ---------------------------------------------------------------- site
 SITE = dict(EN.SITE, description=(
-    "Uzbekistan Trek elchisi bo'ling: magistratura va doktoranturadagi kursdoshlaringizni O'zbekistonga olib keling, "
+    "Uzbekistan Trek elchisi bo'ling: universitetdagi kursdoshlaringizni O'zbekistonga olib keling, "
     "har bir qadamda materiallarimiz va yordamimiz bilan. 2025 va 2026-yillardagi Harvard va MIT treklari asosida."))
 
 NAV = [
@@ -81,7 +81,7 @@ NAV_CTA = ("index.html#apply", "Ariza topshirish")
 DISCLAIMER = ("Uzbekistan Trek mustaqil loyiha. U Harvard universiteti, Massachusetts texnologiya instituti yoki boshqa biror universitet "
               "bilan bog'liq emas, ular tomonidan homiylik qilinmaydi va ma'qullanmaydi. Universitet nomlari o'tgan ishtirokchilar "
               "qayerda tahsil olishini bildiradi.")
-FOOTER_BLURB = ("Magistrant va doktorantlar uchun elchilar dasturi va O'zbekistonga guruh sayohatlari. Sayohatlar faqat O'zbekiston "
+FOOTER_BLURB = ("Universitet talabalari uchun elchilar dasturi va O'zbekistonga guruh sayohatlari. Sayohatlar faqat O'zbekiston "
                 "ichidagi xizmatlarni o'z ichiga oladi; xalqaro parvozlar kiritilmagan.")
 COPYRIGHT = "&copy; 2026 Uzbekistan Trek. Suratlar 2025 va 2026-yillardagi treklardan."
 
@@ -128,8 +128,8 @@ APPLY = {
     "title": "Elchi bo'lish uchun ariza topshiring",
     "lede": "O'zingiz va olib kelmoqchi bo'lgan kursdoshlaringiz haqida yozing. Sizga elektron pochta yoki Telegram orqali javob beramiz.",
     "who_title": "Kimlar ariza topshirishi mumkin",
-    "who": ["O'zbekistondan tashqaridagi universitetlarda tahsil olayotgan o'zbek magistrantlari, doktorantlari, fellowship "
-            "ishtirokchilari va postdoktorantlari",
+    "who": ["O'zbekistondan tashqaridagi universitetlarda tahsil olayotgan o'zbek bakalavriat, magistratura va doktorantura "
+            "talabalari, fellowship ishtirokchilari va postdoktorantlar",
             "Sayohat tashkil qilish tajribasi shart emas",
             "Kursdoshlaringiz istalgan davlatdan bo'lishi mumkin"],
 }
@@ -254,7 +254,7 @@ START = {
     ],
     "where_title": "Guruhingizni qayerdan topish mumkin",
     "where": ["Kursingiz yoki guruhingiz chati", "Talabalar klublari: mintaqaviy, xalqaro munosabatlar, siyosat, biznes",
-              "Dasturingizning talabalar axborotnomasi", "Magistratura talabalari kengashi", "Mintaqa haqida dars beradigan professorlar",
+              "Dasturingizning talabalar axborotnomasi", "Talabalar kengashi", "Mintaqa haqida dars beradigan professorlar",
               "Boshqa dasturlardagi do'stlar"],
     "tips_title": "Tashabbus talabalardan bo'lsin",
     "tips": ["Kursdosh sifatida yozing: nega borishni xohlayotganingizni va kimlar kelishini kutayotganingizni ayting.",
@@ -289,8 +289,8 @@ _GOV = ("Standart dastur kompaniyalar, universitetlar va/yoki madaniyatga qarati
 FAQ_HOME = [
   ("Elchilar uchun", [
     ("Kim elchi bo'la oladi?",
-     ["O'zbekistondan tashqaridagi universitetlarda tahsil olayotgan o'zbek magistrantlari, doktorantlari, fellowship ishtirokchilari "
-      "va postdoktorantlari. Sayohat tashkil qilish tajribasi shart emas: har bir qadamda materiallar va yordam beramiz."]),
+     ["O'zbekistondan tashqaridagi universitetlarda tahsil olayotgan o'zbek bakalavriat, magistratura va doktorantura talabalari, "
+      "fellowship ishtirokchilari va postdoktorantlar. Sayohat tashkil qilish tajribasi shart emas: har bir qadamda materiallar va yordam beramiz."]),
     ("Elchi nima qiladi?",
      ["Kursdoshlaringizni bir joyga yig'asiz: sayohat haqida xabar berasiz, tanishtiruv uchrashuvi o'tkazasiz va guruhingizni "
       "xabardor qilib turasiz. Sayohatni biz rejalashtiramiz, ro'yxatdan o'tish va to'lovlarni yuritamiz hamda guruhingizni "
@@ -311,8 +311,8 @@ FAQ_HOME = [
   ]),
   ("Sayohatchilar uchun", [
     ("Kimlar qatnashishi mumkin?",
-     ["Magistrantlar, doktorantlar, fellowship ishtirokchilari va postdoktorantlar. Trek barcha davlatlar fuqarolari uchun ochiq. "
-      "Joy bo'lsa, turmush o'rtoqlar va juftlar ham qo'shilishi mumkin. Bakalavriat talabalari uchun sayohat tashkil qilmaymiz."]),
+     ["Bakalavriat, magistratura va doktorantura talabalari, fellowship ishtirokchilari va postdoktorantlar. Trek barcha davlatlar "
+      "fuqarolari uchun ochiq. Joy bo'lsa, turmush o'rtoqlar va juftlar ham qo'shilishi mumkin."]),
     ("Viza kerakmi?", [_VISA_US, _VISA]),
     ("O'zbekiston xavfsizmi?",
      ["AQSh Davlat departamenti O'zbekistonga eng past ogohlantirish darajasi bo'lgan 1-darajani bergan va odatiy ehtiyot "
@@ -330,7 +330,7 @@ FAQ_HOME = [
      ["Ha. Aksariyat guruhlar ta'til paytida sayohat qiladi, lekin trekni istalgan oyda va istalgan davomiylikda tashkil qila olamiz."]),
     ("Davlat rasmiylari bilan uchrashamizmi?", [_GOV]),
     ("Voz kechsam, pul qaytariladimi?",
-     ["Bizning roziligimiz bilan joyingizni boshqa magistrant yoki doktorantga o'tkazishingiz mumkin. Pulni qaytarish shartlari "
+     ["Bizning roziligimiz bilan joyingizni boshqa talabaga o'tkazishingiz mumkin. Pulni qaytarish shartlari "
       "to'lov paytida qabul qiladigan bron shartlarida belgilangan. Sayohatni bekor qilish sug'urtasini olishni qat'iy tavsiya qilamiz."]),
     ("Buni universitetim tashkil qiladimi?",
      ["Yo'q. Guruhlar o'zlarini o'zlari tashkil qiladi va Uzbekistan Trek hech qaysi universitet bilan bog'liq emas. Iltimos, "
@@ -353,7 +353,7 @@ BIG = dict(EN.BIG,
         ("Kurs yoki guruh",
          "Ta'til paytida birga sayohat qiladigan dastur talabalari, xuddi 2025 va 2026-yillardagi Harvard va MIT guruhlarimiz kabi."),
         ("Turli dasturlardagi do'stlar",
-         "Turli dastur yoki maktablardan o'z alohida sayohatini xohlagan o'n va undan ortiq magistrant yoki doktorant."),
+         "Turli dastur yoki maktablardan o'z alohida sayohatini xohlagan o'n va undan ortiq talaba."),
     ]},
     gets_title="Guruhingiz nimalarga ega bo'ladi",
     gets=[
@@ -410,13 +410,13 @@ _DEP = [
 SMALL = dict(EN.SMALL,
     kicker="10 kishidan kam sayohatchi",
     title="Kichik guruh sayohati",
-    lede=("Yolg'iz, juftlikda yoki bir necha do'st bilan sayohat qilmoqchimisiz? Boshqa universitetlarning magistrant va "
-          "doktorantlari bilan rejalashtirilgan safarga qo'shiling yoki o'z sanalaringizda alohida sayohat qiling."),
+    lede=("Yolg'iz, juftlikda yoki bir necha do'st bilan sayohat qilmoqchimisiz? Boshqa universitetlar "
+          "talabalari bilan rejalashtirilgan safarga qo'shiling yoki o'z sanalaringizda alohida sayohat qiling."),
     cta_primary=("#departures", "Rejalashtirilgan sanalar"),
     cta_secondary=("#interest", "Alohida sayohat haqida so'rash"),
     ways_title="Ikki yo'l",
     join={"tag": "Rejalashtirilgan sanalar", "title": "Safarga qo'shiling",
-          "items": ["Ta'tillar va bitiruvdan keyingi belgilangan sanalar", "Boshqa universitetlarning magistrant va doktorantlari bilan sayohat",
+          "items": ["Ta'tillar va bitiruvdan keyingi belgilangan sanalar", "Boshqa universitetlar talabalari bilan sayohat",
                     "Katta guruh treklarimizdagi marshrut va mezbonlar", "Boshqa ishtirokchi bilan ikki kishilik xona yoki bir kishilik xona"],
           "cta": ("#departures", "Rejalashtirilgan sanalar")},
     private={"tag": "O'z sanalaringiz", "title": "Alohida kichik guruh sayohati",
@@ -446,7 +446,8 @@ SMALL = dict(EN.SMALL,
          ["Ha. Ko'pchilik safarga yolg'iz qo'shiladi. Sizni umumiy xona uchun boshqa ishtirokchi bilan juftlaymiz yoki bir kishilik "
           "xonani band qilishingiz mumkin."]),
         ("Kim bilan sayohat qilaman?",
-         ["Turli universitet va davlatlardan kelgan magistrantlar, doktorantlar, fellowship ishtirokchilari va postdoktorantlar bilan, "
+         ["Turli universitet va davlatlardan kelgan bakalavriat, magistratura va doktorantura talabalari, fellowship ishtirokchilari "
+          "va postdoktorantlar bilan, "
           "litsenziyali mahalliy gidlar va o'zbek mezbon hamrohligida (imkoniyatga qarab)."]),
         ("Turmush o'rtog'im yoki juftim kela oladimi?", ["Ha, joy bo'lsa."]),
         ("Nega alohida sayohat bir kishi uchun qimmatroq?",
@@ -495,7 +496,7 @@ FOUNDER = dict(EN.FOUNDER,
           "Xususiy sektorda ACWA Power rahbariyati bilan qayta tiklanuvchi energiya, TBC Bank bilan moliya bozorlari va IT Parkda "
           "texnologiyalar haqida suhbatlashdik."]),
         ("Keyingi qadam",
-         ["Maqsadim ko'proq trek o'tkazish va ularni boshqa universitetlarning magistrant va doktorantlariga ochish. Shuning uchun "
+         ["Maqsadim ko'proq trek o'tkazish va ularni boshqa universitetlar talabalariga ochish. Shuning uchun "
           "elchilar dasturini boshladik: endi xorijda o'qiyotgan o'zbek talabalari o'z kursdoshlarini olib kelishi mumkin, biz esa "
           "ularga har bir qadamda yordam beramiz. Ikki trekdan keyin talabalar O'zbekistondagi bir haftadan nimani kutishini "
           "bilamiz va guruhingiz uchun shunday trek tashkil qilishga yordam bera olamiz."]),
@@ -630,9 +631,9 @@ UI = dict(EN.UI,
 )
 META = {
     "index.html": ("Uzbekistan Trek", SITE["description"]),
-    "big-group.html": ("Katta guruh treki", "10 va undan ortiq magistrant va doktorant uchun O'zbekistonga katta guruh treklari: "
+    "big-group.html": ("Katta guruh treki", "10 va undan ortiq talaba uchun O'zbekistonga katta guruh treklari: "
                        "sizning sanalaringiz, alohida marshrut va to'liq paket."),
-    "small-group.html": ("Kichik guruh sayohati", "10 kishidan kam magistrant va doktorant uchun O'zbekistonga kichik guruh sayohatlari: "
+    "small-group.html": ("Kichik guruh sayohati", "10 kishidan kam talaba uchun O'zbekistonga kichik guruh sayohatlari: "
                          "rejalashtirilgan safarga qo'shiling yoki o'z sanalaringizda alohida sayohat qiling."),
     "founder.html": ("Hammuassis Jaxongir Sadiyev", "Uzbekistan Trek hammuassisi Jaxongir Sadiyev: bolalik orzusidan 95 nafar "
                      "sayohatchi bilan o'tgan ikki Harvard va MIT trekigacha."),
@@ -658,7 +659,7 @@ FORMS = dict(EN.FORMS,
     anything="Qo'shimcha ma'lumot",
     choose="Tanlang",
     a_ph_email="Iloji bo'lsa, universitet emailingiz",
-    a_program="Dastur va daraja", a_req_program="dasturingiz va darajangizni", a_ph_program="masalan, MBA, MPP yoki PhD",
+    a_program="Dastur va daraja", a_req_program="dasturingiz va darajangizni", a_ph_program="masalan, BA, MBA, MPP yoki PhD",
     a_grad="Taxminiy bitirish yili", a_grad_opts=["2027", "2028", "2029 yoki keyinroq"],
     a_size="Kelishi mumkin bo'lgan kursdoshlar", a_size_opts=["Hali aniq emas", "10 kishidan kam", "10 dan 20 gacha", "20 dan 40 gacha", "40 dan ortiq"],
     a_dates="Guruhingiz qachon sayohat qila oladi?", a_ph_dates="masalan, 2027-yil bahorgi ta'til",
