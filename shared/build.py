@@ -449,6 +449,9 @@ fieldset.tf{ border:0; margin:0; padding:0; display:grid; gap:8px; }
 .contact-mail .addr{ font-weight:750; font-size:17px; overflow-wrap:anywhere; }
 .tg-btn{ margin-top:14px; }
 .contact-next{ display:flex; flex-wrap:wrap; gap:14px 30px; margin-top:18px; }
+/* one row when all four links fit, otherwise one link per line (never a half-wrapped row); Uzbek words are longer */
+@media (max-width: 1010px){ .contact-next{ flex-direction:column; align-items:flex-start; } }
+@media (max-width: 1120px){ :root[lang="uz"] .contact-next{ flex-direction:column; align-items:flex-start; } }
 
 /* What you get (home) */
 .gets{ list-style:none; margin:40px 0 0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px; }
