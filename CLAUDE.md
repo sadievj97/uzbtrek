@@ -22,6 +22,7 @@ Static site for uzbekistantrek.com. The home page leads with the ambassador prog
 ## Content rules
 - No prices or dollar amounts anywhere.
 - Undergraduate and graduate students, fellows and postdocs (the owner opened the program and the trips to undergraduates in Nov 2026). Facts about the 2025 and 2026 treks stay as they are: their travelers were graduate students. The Harvard sample texts keep Harvard's own wording.
+- Ambassadors and travelers must be 18 or older (the owner, Nov 2026); the site says so in who can apply, who can join and on both group pages.
 - Uzbekistan Trek is independent. Keep the independence line on every page, and never use a university's name or logo in a way that suggests it runs or endorses the trips.
 - Formal government meetings are not part of the standard program for new universities; never promise them.
 - Do not name or link to any tour operator or travel company.

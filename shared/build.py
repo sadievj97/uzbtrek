@@ -1008,7 +1008,7 @@ def page_home():
         <p class="pay-note">{PAYMENT["note"]}</p>
       </div>
       <div class="pols">
-        {pol("a626")}
+        {pol("y2026_bukhara_view")}
         {pol("food_tandir", None, None, "3/4")}
       </div>
     </div>

@@ -85,6 +85,7 @@ APPLY = {
     "lede": "Tell us about yourself and the classmates you want to bring. We get back to you by email or Telegram.",
     "who_title": "Who can apply",
     "who": ["Uzbek undergraduate and graduate students, fellows and postdocs at universities outside Uzbekistan",
+            "You must be 18 or older",
             "No experience organizing trips needed",
             "Your classmates can be from any country"],
 }
@@ -317,7 +318,7 @@ SAMPLES = [
 FAQ_HOME = [
   ("For ambassadors", [
     ("Who can become an ambassador?",
-     ["Uzbek undergraduate and graduate students, fellows and postdocs at universities outside Uzbekistan. You do not need experience organizing trips: "
+     ["Uzbek undergraduate and graduate students, fellows and postdocs at universities outside Uzbekistan. You must be 18 or older. You do not need experience organizing trips: "
       "we give you the materials and support at every step."]),
     ("What does an ambassador do?",
      ["You bring your classmates together: you share the trip, hold an info session and keep your group informed. "
@@ -334,7 +335,7 @@ FAQ_HOME = [
   ]),
   ("For travelers", [
     ("Who can join?",
-     ["Undergraduate and graduate students, fellows and postdocs. The trek is open to citizens of all countries. Partners can join when space allows."]),
+     ["Undergraduate and graduate students, fellows and postdocs. Every traveler must be 18 or older. The trek is open to citizens of all countries. Partners can join when space allows."]),
     ("Do I need a visa?",
      ["The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).",
       "For other passports, check the official visa page: <a href=\"https://gov.uz/en/mfa/pages/o-zbekiston-respublikasi-vizasi\" target=\"_blank\" rel=\"noopener\">Visa to the Republic of Uzbekistan</a>."]),
@@ -381,7 +382,7 @@ BIG = {
         "An organizer kit: info-session slides, a flyer and a registration page",
     ],
     "split_title": "Who does what",
-    "you": ["Gather at least 10 participants", "Pick the week, usually your school break", "Share the registration link with your group", "Tell us what your group cares about"],
+    "you": ["Gather at least 10 participants, all 18 or older", "Pick the week, usually your school break", "Share the registration link with your group", "Tell us what your group cares about"],
     "we": ["Build the itinerary and the quote", "Run registration and payments", "Book hotels, trains, guides and visits", "Brief everyone before departure", "Host your group in Uzbekistan"],
     "timeline_title": "Example timeline for a March trek",
     "timeline_note": "Traveling in another month? We shift the same steps to fit your dates.",
@@ -449,7 +450,7 @@ SMALL = {
     "faq_title": "Small group questions",
     "faq": [
         ("Can I come alone?", ["Yes. Many people join a departure on their own. We pair you with another participant for a shared room, or you can book a single."]),
-        ("Who will I travel with?", ["Undergraduate and graduate students, fellows and postdocs from different universities and countries, with licensed local guides and an Uzbek host (subject to availability)."]),
+        ("Who will I travel with?", ["Undergraduate and graduate students, fellows and postdocs from different universities and countries, with licensed local guides and an Uzbek host (subject to availability). Every traveler is 18 or older."]),
         ("Can my partner come?", ["Yes, when space allows."]),
         ("Why does a private trip cost more per person?", ["The car, driver and guide are shared by fewer people. The more of you travel, the lower the price per person."]),
         ("Do I need a visa?", ["The trek is open to citizens of all countries. US citizens can enter Uzbekistan without a visa for up to 30 days (since January 1, 2026).",

@@ -130,6 +130,7 @@ APPLY = {
     "who_title": "Kimlar ariza topshirishi mumkin",
     "who": ["O'zbekistondan tashqaridagi universitetlarda tahsil olayotgan o'zbek bakalavriat, magistratura va doktorantura "
             "talabalari, fellowship ishtirokchilari va postdoktorantlar",
+            "Kamida 18 yoshda bo'lishingiz kerak",
             "Sayohat tashkil qilish tajribasi shart emas",
             "Kursdoshlaringiz istalgan davlatdan bo'lishi mumkin"],
 }
@@ -290,7 +291,7 @@ FAQ_HOME = [
   ("Elchilar uchun", [
     ("Kim elchi bo'la oladi?",
      ["O'zbekistondan tashqaridagi universitetlarda tahsil olayotgan o'zbek bakalavriat, magistratura va doktorantura talabalari, "
-      "fellowship ishtirokchilari va postdoktorantlar. Sayohat tashkil qilish tajribasi shart emas: har bir qadamda materiallar va yordam beramiz."]),
+      "fellowship ishtirokchilari va postdoktorantlar. Kamida 18 yoshda bo'lishingiz kerak. Sayohat tashkil qilish tajribasi shart emas: har bir qadamda materiallar va yordam beramiz."]),
     ("Elchi nima qiladi?",
      ["Kursdoshlaringizni bir joyga yig'asiz: sayohat haqida xabar berasiz, tanishtiruv uchrashuvi o'tkazasiz va guruhingizni "
       "xabardor qilib turasiz. Sayohatni biz rejalashtiramiz, ro'yxatdan o'tish va to'lovlarni yuritamiz hamda guruhingizni "
@@ -311,7 +312,8 @@ FAQ_HOME = [
   ]),
   ("Sayohatchilar uchun", [
     ("Kimlar qatnashishi mumkin?",
-     ["Bakalavriat, magistratura va doktorantura talabalari, fellowship ishtirokchilari va postdoktorantlar. Trek barcha davlatlar "
+     ["Bakalavriat, magistratura va doktorantura talabalari, fellowship ishtirokchilari va postdoktorantlar. Barcha sayohatchilar "
+      "kamida 18 yoshda bo'lishi kerak. Trek barcha davlatlar "
       "fuqarolari uchun ochiq. Joy bo'lsa, turmush o'rtoqlar va juftlar ham qo'shilishi mumkin."]),
     ("Viza kerakmi?", [_VISA_US, _VISA]),
     ("O'zbekiston xavfsizmi?",
@@ -365,7 +367,7 @@ BIG = dict(EN.BIG,
         "Tashkilotchi to'plami: tanishtiruv uchrashuvi slaydlari, flayer va ro'yxatdan o'tish sahifasi",
     ],
     split_title="Kim nima qiladi",
-    you=["Kamida 10 nafar ishtirokchini yig'ish", "Haftani tanlash, odatda ta'tilingiz", "Ro'yxatdan o'tish havolasini guruhingizga ulashish",
+    you=["Kamida 10 nafar ishtirokchini yig'ish, hammasi kamida 18 yoshda", "Haftani tanlash, odatda ta'tilingiz", "Ro'yxatdan o'tish havolasini guruhingizga ulashish",
          "Guruhingizni nima qiziqtirishini bizga aytish"],
     we=["Marshrut va narx taklifini tuzish", "Ro'yxatdan o'tish va to'lovlarni yuritish", "Mehmonxona, poyezd, gid va tashriflarni band qilish",
         "Jo'nab ketishdan oldin hammaga yo'riqnoma berish", "Guruhingizni O'zbekistonda kutib olish"],
@@ -448,7 +450,7 @@ SMALL = dict(EN.SMALL,
         ("Kim bilan sayohat qilaman?",
          ["Turli universitet va davlatlardan kelgan bakalavriat, magistratura va doktorantura talabalari, fellowship ishtirokchilari "
           "va postdoktorantlar bilan, "
-          "litsenziyali mahalliy gidlar va o'zbek mezbon hamrohligida (imkoniyatga qarab)."]),
+          "litsenziyali mahalliy gidlar va o'zbek mezbon hamrohligida (imkoniyatga qarab). Barcha sayohatchilar kamida 18 yoshda."]),
         ("Turmush o'rtog'im yoki juftim kela oladimi?", ["Ha, joy bo'lsa."]),
         ("Nega alohida sayohat bir kishi uchun qimmatroq?",
          ["Avtomobil, haydovchi va gid kamroq odam o'rtasida taqsimlanadi. Qancha ko'p kishi sayohat qilsa, bir kishi uchun narx "
@@ -725,7 +727,7 @@ PHOTO_TEXT = {   # photo key: (caption, alt)
     "a365": ("Go'ri Amir, Samarqand", "Go'ri Amirning qovurg'ali moviy gumbazi"),
     "a474": ("Tillakori eshigi oldida, Registon", "Registondagi Tillakori madrasasining katta yog'och eshigi oldida yig'ilgan guruh"),
     "a489": ("Shohizinda gumbazi", "Shohizindadagi koshinli gumbaz ichki ko'rinishi"),
-    "a626": ("Cho'qqida issiq ichimliklar", "Tog'dagi kafeda jilmayib o'tirgan uch do'st"),
+    "y2026_bukhara_view": ("Eski Buxoro tepasida", "Ortida minora va moviy gumbaz ko'rinib turgan, eski Buxoro tepasidagi to'rt talaba"),
     "a634": ("Tog'da selfi", "Ortida tog'lar ko'rinib turgan ayvonda guruh selfisi"),
     "a693": ("Gumbaz ostida", "Naqshli gumbaz ostidagi yorug'lik halqasi"),
     "a822": ("Labi Hovuz, Buxoro", "Buxorodagi Labi Hovuz"),

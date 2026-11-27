@@ -428,17 +428,6 @@
   "h": 1500,
   "orient": "portrait"
  },
- "a626": {
-  "file": "a626.webp",
-  "caption": "Hot drinks at the top",
-  "alt": "Three friends smiling in a mountain cafe",
-  "year": "2026",
-  "people": "faces",
-  "restrict": "",
-  "w": 1500,
-  "h": 1125,
-  "orient": "landscape"
- },
  "a634": {
   "file": "a634.webp",
   "caption": "Mountain selfie",
@@ -613,6 +602,17 @@
   "restrict": "",
   "w": 1200,
   "h": 900,
+  "orient": "landscape"
+ },
+ "y2026_bukhara_view": {
+  "file": "y2026_bukhara_view.webp",
+  "caption": "Above old Bukhara",
+  "alt": "Four students on a viewpoint above old Bukhara, with a minaret and a blue dome behind them",
+  "year": "2026",
+  "people": "faces",
+  "restrict": "",
+  "w": 2000,
+  "h": 1500,
   "orient": "landscape"
  }
 }

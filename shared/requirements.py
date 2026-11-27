@@ -31,6 +31,11 @@ R=[
  # the owner, Nov 2026: undergraduates are welcome too, as ambassadors and as travelers
  ('home','who can apply', r'Uzbek undergraduate and graduate students, fellows and postdocs at universities outside Uzbekistan', True),
  ('home','who can join: undergraduates too', r'Who can join\? Undergraduate and graduate students, fellows and postdocs', True),
+ # the owner, Nov 2026: ambassadors and travelers must be 18 or older
+ ('home','apply: 18 or older', r'Who can apply .*You must be 18 or older', True),
+ ('home','who can join: 18 or older', r'Every traveler must be 18 or older', True),
+ ('uz-home','apply: 18 or older (uz)', r'Kamida 18 yoşda bölişingiz kerak', True),
+ ('uz-home','who can join: 18 or older (uz)', r'Barça sayohatçilar kamida 18 yoşda bölişi kerak', True),
  ('any','no undergraduate exclusion', r'trips for undergraduates|graduate students only', False),
  ('home','group pages still linked', r'href="big-group\.html".*href="small-group\.html"', 'raw'),
  ('home','old #start links still land', r'id="start"', 'raw'),
